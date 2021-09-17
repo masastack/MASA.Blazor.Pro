@@ -1,0 +1,67 @@
+﻿<MSubheader>Forms</MSubheader>
+
+<MListGroup PrependIcon="fab fa-wpforms">
+    <Activator>
+        <MListItemTitle Class="subtitle-1">Forms Elements</MListItemTitle>
+    </Activator>
+    <ChildContent>
+        @foreach (var item in elements)
+        {
+            <MListItem Link Href=@item.Link>
+                <MListItemIcon Class="mx-3">
+                    <MIcon> fas fa-genderless </MIcon>
+                </MListItemIcon>
+                <MListItemContent Class="mx-3">
+                    <MListItemTitle Class="subtitle-1">@item.Text</MListItemTitle>
+                </MListItemContent>
+            </MListItem>
+        }
+    </ChildContent>
+</MListGroup>
+
+<MListItem Link Href="/forms/form-layout">
+    <MListItemIcon>
+        <MIcon>fas fa-columns</MIcon>
+    </MListItemIcon>
+    <MListItemContent>
+        <MListItemTitle Class="subtitle-1">Form Layout</MListItemTitle>
+    </MListItemContent>
+</MListItem>
+<MListItem Link Href="/forms/form-wizard">
+    <MListItemIcon>
+        <MIcon>fas fa-caret-square-right</MIcon>
+    </MListItemIcon>
+    <MListItemContent>
+        <MListItemTitle Class="subtitle-1">Form Wizard</MListItemTitle>
+    </MListItemContent>
+</MListItem>
+<MListItem Link Href="/forms/form-validation">
+    <MListItemIcon>
+        <MIcon>far fa-check-circle</MIcon>
+    </MListItemIcon>
+    <MListItemContent>
+        <MListItemTitle Class="subtitle-1">Form Validation</MListItemTitle>
+    </MListItemContent>
+</MListItem>
+<MListItem Link Href="/forms/form-repeater">
+    <MListItemIcon>
+        <MIcon>far fa-clone</MIcon>
+    </MListItemIcon>
+    <MListItemContent>
+        <MListItemTitle Class="subtitle-1">Form Repeater</MListItemTitle>
+    </MListItemContent>
+</MListItem>
+
+
+@code {
+    List<Item> elements = new List<Item>
+    {
+    new Item { Text= "Input",Link ="/forms/forms-elements/input" }
+    };
+
+    class Item
+    {
+        public string Text { get; set; } = "";
+        public string Link { get; set; } = "";
+    }
+}

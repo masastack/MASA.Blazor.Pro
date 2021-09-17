@@ -1,0 +1,47 @@
+﻿@inherits LayoutComponentBase
+
+@using MASA.Blazor.Pro.Data;
+
+<MApp>
+
+    <MAppBar App Style="padding-left:256px" Elevation=0 Class="my-4">
+        <MToolbar Class="mx-2" Elevation=2>
+            <MAppBarNavIcon></MAppBarNavIcon>
+            <MToolbarTitle>@GlobalVariables.Title</MToolbarTitle>
+            <MSpacer></MSpacer>
+
+            <MButton Icon>
+                <MIcon>mdi-magnify</MIcon>
+            </MButton>
+
+            <Login/>
+        </MToolbar>
+    </MAppBar>
+
+    <MNavigationDrawer App>
+        <MList Dense>
+
+            <MASA.Blazor.Pro.Apps.Index />
+
+            <MASA.Blazor.Pro.Pages.Index />
+
+            <MASA.Blazor.Pro.Components.Index />
+
+            <MASA.Blazor.Pro.Froms.Index/>
+
+            <MASA.Blazor.Pro.Others.Index/>
+
+        </MList>
+    </MNavigationDrawer>
+
+    <MMain Style="padding-left:268px;padding-top:90px;padding-right:12px; background-color:rgb(245, 245, 245)">
+        <MContainer Fluid>
+            @Body
+        </MContainer>
+    </MMain>
+
+</MApp>
+
+@code { 
+
+}

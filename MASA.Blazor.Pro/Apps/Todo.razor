@@ -1,0 +1,21 @@
+﻿@page "/"
+@page "/apps/todo/{FilterText?}"
+
+@using MASA.Blazor.Pro.Data;
+
+<MCard MinHeight=845>
+    <MASA.Blazor.Pro.Apps.TodoNav/>  
+    <MASA.Blazor.Pro.Apps.TodoList FilterText=@FilterText />
+</MCard>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        GlobalVariables.Title = "Todo";
+    }
+
+    [Parameter]
+    public string FilterText { get; set; }
+
+}

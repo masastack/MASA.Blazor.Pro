@@ -1,0 +1,270 @@
+﻿@using MASA.Blazor.Pro.Data
+@using System.Diagnostics
+
+
+<div Style="padding-left:256px;">
+
+    <MToolbar Dense Elevation=0>
+        @*<MAppBarNavIcon></MAppBarNavIcon>*@
+        @*<MToolbarTitle></MToolbarTitle>*@
+        <MTextField TValue="string" Class="mx-4" HideDetails=true
+                    PrependIcon="mdi-magnify"
+                    Placeholder=@FilterText Value=InputText ValueChanged="(v)=>InputTextChanged(v)">
+        </MTextField>
+        <MMenu OffsetX Left OffsetY>
+            <Activator>
+                <MButton Icon Large><MIcon>mdi-dots-vertical</MIcon></MButton>
+            </Activator>
+            <ChildContent>
+                <MList Dense>
+                    <MListItem Link Click=ResetSort>
+                        <MListItemIcon>
+                            <MIcon>fas fa-align-justify</MIcon>
+                        </MListItemIcon>
+                        <MListItemContent>
+                            <MListItemTitle>
+                                Reset Sort
+                            </MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                    <MListItem Link Click=SortbyAssignee>
+                        <MListItemIcon>
+                            <MIcon>fas fa-sort-alpha-down</MIcon>
+                        </MListItemIcon>
+                        <MListItemContent>
+                            <MListItemTitle>
+                                Sort Assignee
+                            </MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                    <MListItem Link Click=SortbyDueDate>
+                        <MListItemIcon>
+                            <MIcon>fas fa-sort-numeric-down</MIcon>
+                        </MListItemIcon>
+                        <MListItemContent>
+                            <MListItemTitle>
+                                Sort Due Date
+                            </MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                </MList>
+            </ChildContent>
+        </MMenu>
+    </MToolbar>
+
+    <MList Dense>
+        @foreach (var item in ThisList)
+        {
+            <MDivider></MDivider>
+            <MListItem Link Click="() => ShowDetail(item)">
+                <MListItemContent>
+                    <MCheckbox Height=0 @bind-Checked=@item.IsChecked Label=@item.Title Color="deep-purple"></MCheckbox>
+                </MListItemContent>
+
+                <MListItemAction>
+                    <MChip Class="mx-3" Small TextColor=@tcolor[@item.Tag] Color=@bcolor[@item.Tag]>@item.Tag</MChip>
+                    <span>@item.DueDate</span>
+                </MListItemAction>
+
+                <MListItemAvatar>
+                    <img style="height:32px;width:32px" src=@avas[item.Avatar]>
+                </MListItemAvatar>
+            </MListItem>
+        }
+    </MList>
+
+    <MNavigationDrawer Temporary Absolute Right Drawer="_visible" Width="420">
+        <MToolbar Dense Elevation=0 Color="indigo lighten-5">
+            <MButton Small Click="() => _selectItem.IsCompleted = !_selectItem.IsCompleted"
+                     Color=@CompletedColor Outlined>@CompletedText</MButton>
+            <MSpacer></MSpacer>
+            <MButton Small Icon>
+                <MIcon Small Color="red">fas fa-trash-alt</MIcon>
+            </MButton>
+            <MButton Small Icon Click="() => _selectItem.IsImportant = !_selectItem.IsImportant">
+                @if (_selectItem.IsImportant)
+                {
+                    <MIcon Small Color="orange">fas fa-star</MIcon>
+                }
+                else
+                {
+                    <MIcon Small Color="orange">far fa-star</MIcon>
+                }
+            </MButton>
+            <MButton Small Icon Click="() => _visible = false">
+                <MIcon Small>fas fa-times</MIcon>
+            </MButton>
+        </MToolbar>
+
+        <MTextField Dense Class="mx-5 mt-6" @bind-Value=_selectItem.Title Label="Title" Outlined Clearable></MTextField>
+
+        <MSelect Class="mx-5" Dense Outlined Label="Assignee" @bind-Value=_selectItem.Assignee
+                 TItem="SelectData" TValue="string" TItemValue="string"
+                 Items=@_assList ItemText="i => i.Label" ItemValue="i => i.Value">
+        </MSelect>
+        <div class="mx-5">
+            <MASA.Blazor.Presets.PDatePicker Dense Outlined Label="Due Date" @bind-Value=_selectItem.DueDate />
+        </div>
+
+        <MSelect Class="mx-5" Dense Outlined Label="Tag" @bind-Value=_selectItem.Tag
+                 TItem="SelectData" TValue="string" TItemValue="string"
+                 Items=@_tagList ItemText="i => i.Label" ItemValue="i => i.Value">
+        </MSelect>
+
+        <MTextArea Class="mx-5" Outlined Label="Description" @bind-Value=_selectItem.Description></MTextArea>
+
+    </MNavigationDrawer>
+
+    @*    <MTable TItem="TodoData" Items="ThisList" PageSize=15>
+        <MTableCol>
+        <MCheckbox Height=0 @bind-Checked=@context.Selected Label=@context.Title Color="deep-purple"></MCheckbox>
+        </MTableCol>
+        <MTableCol Align="right">
+        <MChip Small TextColor=@tcolor[@context.Tag] Color=@bcolor[@context.Tag]>@context.Tag</MChip>
+        <span Class="mx-3">@context.DueDate</span>
+        <MAvatar Color="deep-purple lighten-4" Size="32">
+        <img src=@avas[context.Avatar]>
+        </MAvatar>
+        </MTableCol>
+        </MTable>*@
+</div>
+
+
+@code {
+    private string _filterText;
+
+    private bool _visible = false;
+
+    public class SelectData
+    {
+        public string Label { get; set; }
+        public string Value { get; set; }
+    }
+
+    private List<SelectData> _assList = new()
+        {
+            new SelectData() { Label = "紫萱", Value = "紫萱" },
+            new SelectData() { Label = "若芹", Value = "若芹" },
+            new SelectData() { Label = "思菱", Value = "思菱" },
+            new SelectData() { Label = "向秋", Value = "向秋" },
+            new SelectData() { Label = "雨珍", Value = "雨珍" },
+            new SelectData() { Label = "海瑶", Value = "海瑶" },
+            new SelectData() { Label = "乐萱", Value = "乐萱" },
+        };
+
+    private List<SelectData> _tagList = new()
+        {
+            new SelectData() { Label = "Team", Value = "Team" },
+            new SelectData() { Label = "Low", Value = "Low" },
+            new SelectData() { Label = "Medium", Value = "Medium" },
+            new SelectData() { Label = "High", Value = "High" },
+            new SelectData() { Label = "Update", Value = "Update" }
+        };
+
+    private string CompletedColor { get { return _selectItem.IsCompleted ? "grey" : "teal"; } }
+
+    private string CompletedText { get { return _selectItem.IsCompleted ? "Mark Complete" : "Completed"; } }
+
+    private List<TodoData> ThisList = new();
+
+    private TodoData _selectItem = new();
+
+    private void ShowDetail(TodoData item)
+    {
+        _visible = true;
+        _selectItem = item;
+    }
+
+    private void ResetSort()
+    {
+        ThisList = TodoService.List;
+    }
+
+    private void SortbyAssignee()
+    {
+        ThisList = TodoService.List.OrderBy(i => i.Assignee).ToList();
+    }
+
+    private void SortbyDueDate()
+    {
+        ThisList = TodoService.List.OrderBy(i => i.DueDate).ToList();
+    }
+
+    private void InputTextChanged(string text)
+    {
+        if (!string.IsNullOrWhiteSpace(text))
+        {
+            ThisList = TodoService.List.Where(item => item.Title.Contains(text)).ToList();
+        }
+    }
+
+    public string? InputText { get; set; }
+
+    [Parameter]
+    public string FilterText
+    {
+        get { return _filterText; }
+        set
+        {
+            _filterText = value;
+            switch (_filterText)
+            {
+                case "important":
+                    ThisList = TodoService.List.Where(item => item.IsImportant).ToList();
+                    break;
+                case "completed":
+                    ThisList = TodoService.List.Where(item => item.IsCompleted).ToList();
+                    break;
+                case "deleted":
+                    ThisList = TodoService.List.Where(item => item.IsDeleted).ToList();
+                    break;
+                case "team":
+                    ThisList = TodoService.List.Where(item => item.Tag == "Team").ToList();
+                    break;
+                case "low":
+                    ThisList = TodoService.List.Where(item => item.Tag == "Low").ToList();
+                    break;
+                case "medium":
+                    ThisList = TodoService.List.Where(item => item.Tag == "Medium").ToList();
+                    break;
+                case "high":
+                    ThisList = TodoService.List.Where(item => item.Tag == "High").ToList();
+                    break;
+                case "update":
+                    ThisList = TodoService.List.Where(item => item.Tag == "Update").ToList();
+                    break;
+                default:
+                    ThisList = TodoService.List;
+                    break;
+            }
+        }
+    }
+
+    private string[] avas = new string[]
+                                                {
+        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/5.f13458cc.png",
+        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/1.9cba4a79.png",
+        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/13-small.d796bffd.png",
+        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/12.03bf9466.png",
+        "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+                                                };
+
+    private Dictionary<string, string> tcolor = new()
+        {
+            { "Team", "purple" },
+            { "Low", "teal" },
+            { "Medium", "orange" },
+            { "High", "red" },
+            { "Update", "cyan" },
+        };
+
+    private Dictionary<string, string> bcolor = new()
+        {
+            { "Team", "purple lighten-4" },
+            { "Low", "teal lighten-4" },
+            { "Medium", "orange lighten-4" },
+            { "High", "red lighten-4" },
+            { "Update", "cyan lighten-4" },
+        };
+
+}
