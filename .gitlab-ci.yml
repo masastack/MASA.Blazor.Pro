@@ -1,0 +1,29 @@
+stages:
+  - docker
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://localhost:2375/
+  IMAGE: proget-hz.lonsid.cn/masa-blazor/pro:0.0.$CI_PIPELINE_ID
+
+docker:
+  image: docker:17.05.0
+  stage: docker
+  only:
+    - develop
+  services:
+    - name: proget-hz.lonsid.cn/masa-images/library/docker:17.05.01-dind
+  script:
+    - docker login -u gitlabci -p gitlabci http://proget-hz.lonsid.cn
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
+  retry: 2
+
+deploy:
+  image: proget-hz.lonsid.cn/masa-images/library/kubectl:1.17.2-newack
+  stage: deploy
+  only:
+    - develop
+  script:
+    - kubectl set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
+  retry: 2
