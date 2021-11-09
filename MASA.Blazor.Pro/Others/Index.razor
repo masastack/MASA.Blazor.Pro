@@ -10,16 +10,16 @@
 </MListItem>
 
 <MListGroup PrependIcon="fas fa-list">
-    <Activator>
+    <ActivatorContent>
         <MListItemTitle Class="subtitle-1">Menu Levels</MListItemTitle>
-    </Activator>
+    </ActivatorContent>
     <ChildContent>
         <MListGroup NoAction SubGroup>
-            <Activator>
+            <ActivatorContent>
                 <MListItemContent>
                     <MListItemTitle Class="subtitle-1">Menu 1</MListItemTitle>
                 </MListItemContent>
-            </Activator>
+            </ActivatorContent>
             <ChildContent>
                 @foreach (var item in _admins)
                 {
@@ -35,11 +35,11 @@
         </MListGroup>
 
         <MListGroup NoAction SubGroup>
-            <Activator>
+            <ActivatorContent>
                 <MListItemContent>
                     <MListItemTitle Class="subtitle-1">Menu 2</MListItemTitle>
                 </MListItemContent>
-            </Activator>
+            </ActivatorContent>
             <ChildContent>
                 @foreach (var item in _cruds)
                 {

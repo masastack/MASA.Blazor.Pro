@@ -12,9 +12,9 @@
                     Placeholder=@FilterText Value=InputText ValueChanged="(v)=>InputTextChanged(v)">
         </MTextField>
         <MMenu OffsetX Left OffsetY>
-            <Activator>
+            <ActivatorContent>
                 <MButton Icon Large><MIcon>mdi-dots-vertical</MIcon></MButton>
-            </Activator>
+            </ActivatorContent>
             <ChildContent>
                 <MList Dense>
                     <MListItem Link Click=ResetSort>
@@ -103,7 +103,7 @@
                  Items=@_assList ItemText="i => i.Label" ItemValue="i => i.Value">
         </MSelect>
         <div class="mx-5">
-            <MASA.Blazor.Presets.PDatePicker Dense Outlined Label="Due Date" @bind-Value=_selectItem.DueDate />
+            <MDatePicker Dense Outlined Label="Due Date" @bind-Value=_selectItem.DueDate />
         </div>
 
         <MSelect Class="mx-5" Dense Outlined Label="Tag" @bind-Value=_selectItem.Tag
@@ -111,7 +111,7 @@
                  Items=@_tagList ItemText="i => i.Label" ItemValue="i => i.Value">
         </MSelect>
 
-        <MTextArea Class="mx-5" Outlined Label="Description" @bind-Value=_selectItem.Description></MTextArea>
+        <MTextarea Class="mx-5" Outlined Label="Description" @bind-Value=_selectItem.Description></MTextarea>
 
     </MNavigationDrawer>
 

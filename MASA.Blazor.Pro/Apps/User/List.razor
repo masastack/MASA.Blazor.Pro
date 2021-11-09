@@ -1,0 +1,133 @@
+﻿@page "/pages/user/list"
+@using BlazorComponent
+@using MASA.Blazor.Pro.Data.User;
+
+<MCard Class="mx-auto">
+    <MListItem>
+        <MListItemContent>
+             <MContainer>
+                  <MRow>
+                        <MCol Cols=12 Lg=12>Filters</MCol>
+                   </MRow>
+                 <MRow>
+                        <MCol Cols=12 Lg=4>
+                             <MLabel Class="text-body-2">Role</MLabel>
+                             <MSelect Value="@("")"
+                                 Clearable
+                                 Dense
+                                 Solo
+                                 Class="mt-1 pb-0"
+                                 HideDetails="@SelectHideDetails"
+                                 Items="@Roles"
+                                 ItemText="u => u.Key"
+                                 ItemValue="u => u.Key"
+                                 ItemDisabled="u => u.Value"
+                                 Label="">
+                             </MSelect>
+                        </MCol>
+                        <MCol Cols=12 Lg=4>
+                             <MLabel Class="text-body-2">Plan</MLabel>
+                             <MSelect Value="@("")"
+                                Clearable
+                                 Dense
+                                 Solo
+                                 HideDetails="@SelectHideDetails"
+                                 Class="mt-1 pb-0"
+                                 Items="@Plans"
+                                 ItemText="u => u.Key"
+                                 ItemValue="u => u.Key"
+                                 ItemDisabled="u => u.Value"
+                                 Label="">
+                             </MSelect>
+                        </MCol>
+                        <MCol Cols=12 Lg=4>
+                            <MLabel Class="text-body-2">Status</MLabel>
+                            <MSelect Value="@("")"
+                                 HideDetails="@SelectHideDetails"
+                                 Items="@Status"
+                                 Solo
+                                 Clearable
+                                 Dense
+                                 Class="mt-1 pb-0"
+                                 ItemText="u => u.Key"
+                                 ItemValue="u => u.Key"
+                                 ItemDisabled="u => u.Value"
+                                 Label="">
+                            </MSelect>
+                        </MCol>
+                </MRow>
+              </MContainer>
+        </MListItemContent>
+    </MListItem>
+</MCard>
+
+<MCard Class="mt-7">
+    <MCardTitle>
+        <MContainer>
+            <MRow>
+                <MCol Cols=12 Lg=6></MCol>
+                <MCol Cols=12 Lg=5>
+                    <MTextField Label="Search..." 
+                        HideDetails="@SelectHideDetails"  
+                        Dense
+                        Solo  
+                        Class="float-right" 
+                        @bind-Value="_search"
+                        TValue="string">
+                    </MTextField>
+                </MCol>
+                <MCol Cols=12 Lg=1>
+                     <MButton Color="primary" Class="float-right">Add User</MButton>
+                </MCol>
+            </MRow>
+        </MContainer>
+    </MCardTitle>
+
+    <MDataTable Headers="Headers"   
+            Items="UserDatas"
+            SortBy="SortBy"
+            SortDesc="SortDesc"
+            Search="@_search"
+            Dense>
+          <ItemColContent>
+              @if (context.Header.Value == nameof(UserData.FullName))
+              {
+                  <MContainer>
+                      <MRow>
+                          <MCol Lg=2 Align=AlignTypes.Center>
+                             
+                                  @if(string.IsNullOrEmpty(context.Item.HeadImg))
+                                    {
+                                         <MAvatar Color="red">
+                                            <span class="white--text text-h5">@context.Item.ShortName</span>
+                                        </MAvatar>
+                                    }else{
+                                        <MAvatar>
+                                            <MImage Src="@context.Item.HeadImg"></MImage>
+                                        </MAvatar>
+                                    }
+                            
+                          </MCol>
+                          <MCol Lg=10>
+                              <MContainer>
+                                  <MRow>
+                                      <MCol>
+                                          <span class="purple--text text-body-1 text-start">@context.Item.FullName</span>
+                                      </MCol>
+                                  </MRow>
+                                  <MRow>
+                                       <MCol>
+                                          <span class="grey--text text-caption text-end">@context.Item.UserName</span>
+                                      </MCol>
+                                  </MRow>
+                              </MContainer>
+                          </MCol>
+                      </MRow>
+                  </MContainer>
+              }else{
+                  @context.Value
+              }
+          </ItemColContent>
+    </MDataTable>
+</MCard>
+
