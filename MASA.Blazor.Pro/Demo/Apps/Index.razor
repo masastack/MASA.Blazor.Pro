@@ -1,11 +1,23 @@
-﻿<MSubheader>Pages</MSubheader>
+﻿@namespace MASA.Blazor.Pro.Apps
+
+<MSubheader>Apps</MSubheader>
+
+
+<MListItem Link Href="/apps/todo">
+    <MListItemIcon>
+        <MIcon>fas fa-check-square</MIcon>
+    </MListItemIcon>
+    <MListItemContent>
+        <MListItemTitle Class="subtitle-1">Todo</MListItemTitle>
+    </MListItemContent>
+</MListItem>
 
 <MListGroup PrependIcon="fas fa-receipt">
-    <Activator>
+    <ActivatorContent>
         <MListItemTitle Class="subtitle-1">Invoice</MListItemTitle>
-    </Activator>
+    </ActivatorContent>
     <ChildContent>
-        <MListItem Link Href="/pages/invoice/list">
+        <MListItem Link Href="/apps/invoice/list">
             <MListItemIcon Class="mx-3">
                 <MIcon> fas fa-genderless </MIcon>
             </MListItemIcon>
@@ -13,15 +25,15 @@
                 <MListItemTitle Class="subtitle-1">List</MListItemTitle>
             </MListItemContent>
         </MListItem>
-        <MListItem Link Href="/pages/invoice/info/4987">
+        <MListItem Link Href="/apps/invoice/preview">
             <MListItemIcon Class="mx-3">
                 <MIcon>fas fa-genderless</MIcon>
             </MListItemIcon>
             <MListItemContent Class="mx-3">
-                <MListItemTitle Class="subtitle-1">Info</MListItemTitle>
+                <MListItemTitle Class="subtitle-1">Preview</MListItemTitle>
             </MListItemContent>
         </MListItem>
-        <MListItem Link Href="/pages/invoice/edit/4987">
+        <MListItem Link Href="/apps/invoice/edit">
             <MListItemIcon Class="mx-3">
                 <MIcon> fas fa-genderless </MIcon>
             </MListItemIcon>
@@ -29,7 +41,7 @@
                 <MListItemTitle Class="subtitle-1">Edit</MListItemTitle>
             </MListItemContent>
         </MListItem>
-        <MListItem Link Href="/pages/invoice/add">
+        <MListItem Link Href="/apps/invoice/add">
             <MListItemIcon Class="mx-3">
                 <MIcon>fas fa-genderless</MIcon>
             </MListItemIcon>
@@ -40,12 +52,21 @@
     </ChildContent>
 </MListGroup>
 
+<MListItem Link Href="/apps/ecommerce">
+    <MListItemIcon>
+        <MIcon>fas fa-shopping-bag</MIcon>
+    </MListItemIcon>
+    <MListItemContent>
+        <MListItemTitle Class="subtitle-1">eCommerce</MListItemTitle>
+    </MListItemContent>
+</MListItem>
+
 <MListGroup PrependIcon="far fa-user">
-    <Activator>
+    <ActivatorContent>
         <MListItemTitle Class="subtitle-1">User</MListItemTitle>
-    </Activator>
+    </ActivatorContent>
     <ChildContent>
-        <MListItem Link Href="/pages/user/list">
+        <MListItem Link Href="/apps/user/list">
             <MListItemIcon Class="mx-3">
                 <MIcon> fas fa-genderless </MIcon>
             </MListItemIcon>
@@ -53,15 +74,15 @@
                 <MListItemTitle Class="subtitle-1">List</MListItemTitle>
             </MListItemContent>
         </MListItem>
-        <MListItem Link Href="/pages/user/view/21">
+        <MListItem Link Href="/apps/user/view">
             <MListItemIcon Class="mx-3">
                 <MIcon>fas fa-genderless</MIcon>
             </MListItemIcon>
             <MListItemContent Class="mx-3">
-                <MListItemTitle Class="subtitle-1">Info</MListItemTitle>
+                <MListItemTitle Class="subtitle-1">View</MListItemTitle>
             </MListItemContent>
         </MListItem>
-        <MListItem Link Href="/pages/user/edit/21">
+        <MListItem Link Href="/apps/user/edit">
             <MListItemIcon Class="mx-3">
                 <MIcon> fas fa-genderless </MIcon>
             </MListItemIcon>
@@ -72,29 +93,6 @@
     </ChildContent>
 </MListGroup>
 
-<MListGroup PrependIcon="fas fa-user-shield">
-    <Activator>
-        <MListItemTitle Class="subtitle-1">Auth</MListItemTitle>
-    </Activator>
-    <ChildContent>
-        <MListItem Link Href="/pages/auth/login-v1">
-            <MListItemIcon Class="mx-3">
-                <MIcon> fas fa-genderless </MIcon>
-            </MListItemIcon>
-            <MListItemContent Class="mx-3">
-                <MListItemTitle Class="subtitle-1">Login v1</MListItemTitle>
-            </MListItemContent>
-        </MListItem>
-        <MListItem Link Href="/pages/auth/login-v2">
-            <MListItemIcon Class="mx-3">
-                <MIcon>fas fa-genderless</MIcon>
-            </MListItemIcon>
-            <MListItemContent Class="mx-3">
-                <MListItemTitle Class="subtitle-1">Login v2</MListItemTitle>
-            </MListItemContent>
-        </MListItem>
-    </ChildContent>
-</MListGroup>
 
 @code {
 
