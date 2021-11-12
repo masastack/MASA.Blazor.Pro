@@ -1,0 +1,35 @@
+﻿@page "/pages/authentication/Login-v2"
+@layout EmptyLayout
+
+<MRow>
+    <MCol Cols="8" Style="background-color: #f8f8f8; height:100vh;">
+        <MContainer Class="text-h6">
+            <MIcon Large Left Color="purple">fas fa-seedling</MIcon>
+            MASA.Blazor.Pro
+        </MContainer>
+        <MContainer Class="col-lg-7 mt-16">
+            <MImage Class="" Src="/img/login-v2.72cd8a26.svg">
+            </MImage>
+        </MContainer>
+    </MCol>
+
+    <MCol Cols="4" Align="AlignTypes.Center" Style="background-color:white;">
+        <MASA.Blazor.Pro.Components.Login HideLogo
+                                          Elevation="0"
+                                          Width="500"
+                                          CreateAccountRoute="pages/authentication/register-v2"
+                                          ForgotPasswordRoute="pages/authentication/forgot-password-v2"
+                                          SlinInClick="Login">
+        </MASA.Blazor.Pro.Components.Login>
+    </MCol>
+</MRow>
+
+@code {
+    [Inject]
+    public NavigationManager Navigation { get; set; } = default!;
+
+    public void Login(MouseEventArgs args)
+    {
+        Navigation.NavigateTo(Navigation.BaseUri);
+    }
+}

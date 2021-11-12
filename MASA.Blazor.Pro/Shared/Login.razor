@@ -1,9 +1,9 @@
 ﻿<AuthorizeView>
     <Authorized>
         <MMenu OffsetX Left OffsetY>
-            <ActivatorContent Context="_">
+            <ActivatorContent Context="menuContext">
                 <span>Hello, @context.User.Identity?.Name!</span>
-                <MButton Icon Large><MIcon>mdi-account-circle-outline</MIcon></MButton>
+                <MButton Icon Large @attributes="menuContext.Attrs"><MIcon>mdi-account-circle-outline</MIcon></MButton>
             </ActivatorContent>
             <ChildContent>
                 <MList Dense>
@@ -43,8 +43,8 @@
     </Authorized>
     <NotAuthorized>
         <MMenu OffsetX Left OffsetY>
-            <ActivatorContent Context="_">
-                <MButton Icon Large><MIcon>mdi-account-circle-outline</MIcon></MButton>
+            <ActivatorContent Context="menuContext">
+                <MButton Icon Large @attributes="menuContext.Attrs"><MIcon>mdi-account-circle-outline</MIcon></MButton>
             </ActivatorContent>
             <ChildContent>
                 <MList Dense>

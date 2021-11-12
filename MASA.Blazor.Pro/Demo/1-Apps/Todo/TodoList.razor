@@ -13,7 +13,7 @@
         </MTextField>
         <MMenu OffsetX Left OffsetY>
             <ActivatorContent>
-                <MButton Icon Large><MIcon>mdi-dots-vertical</MIcon></MButton>
+                <MButton Icon Large @attributes="context.Attrs"><MIcon>mdi-dots-vertical</MIcon></MButton>
             </ActivatorContent>
             <ChildContent>
                 <MList Dense>
@@ -56,7 +56,7 @@
         @foreach (var item in ThisList)
         {
             <MDivider></MDivider>
-            <MListItem Link Click="() => ShowDetail(item)">
+            <MListItem Link OnClick="() => ShowDetail(item)">
                 <MListItemContent>
                     <MCheckbox Height=0 @bind-Checked=@item.IsChecked Label=@item.Title Color="deep-purple"></MCheckbox>
                 </MListItemContent>
@@ -73,7 +73,7 @@
         }
     </MList>
 
-    <MNavigationDrawer Temporary Absolute Right Drawer="_visible" Width="420">
+    <MNavigationDrawer Temporary Absolute Right Value="_visible" Width="420">
         <MToolbar Dense Elevation=0 Color="indigo lighten-5">
             <MButton Small Click="() => _selectItem.IsCompleted = !_selectItem.IsCompleted"
                      Color=@CompletedColor Outlined>@CompletedText</MButton>

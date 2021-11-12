@@ -1,0 +1,16 @@
+﻿@page "/pages/authentication/Login-v1"
+@layout EmptyLayout
+
+<MRow Class="mt-16 pt-12">
+    <MASA.Blazor.Pro.Components.Login SlinInClick="Login"></MASA.Blazor.Pro.Components.Login>
+</MRow>
+
+@code {
+    [Inject]
+    public NavigationManager Navigation { get; set; } = default!;
+
+    public void Login(MouseEventArgs args)
+    {
+        Navigation.NavigateTo(Navigation.BaseUri);
+    }
+}

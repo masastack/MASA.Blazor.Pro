@@ -1,0 +1,78 @@
+﻿<MCard Class="mx-auto" MaxWidth="@Width" Elevation="@Elevation">
+    @if (!HideLogo)
+    {
+        <MCardTitle Class="justify-center pt-9">
+            <MIcon Large Left Color="purple">fas fa-seedling</MIcon>
+            MASA.Blazor.Pro
+        </MCardTitle>
+    }
+
+    <MCardTitle Class="pt-3 text-h5"> Welcome to MASA.Blazor.Pro! 👋</MCardTitle>
+    <MCardSubtitle Class="pt-2 mb-2 text-subtitle-1">Please sign-in to your account and start the adventure</MCardSubtitle>
+
+    <MCardText>
+        <MTextField TValue="string"
+                    Class="mt-2"
+                    Label="Email"
+                    Placeholder="john@example.com"
+                    Outlined
+                    Dense></MTextField>
+
+        <a class="d-flex justify-end" style="color:#7367f0;text-decoration:none;"
+           onclick=@(()=>Navigation.NavigateTo(Navigation.BaseUri+ForgotPasswordRoute))>
+            Forgot Password?
+        </a>
+        <MTextField TValue="string"
+                    Class="mt-2"
+                    Label="Password"
+                    Type="@(_show ? "text" : "password")"
+                    Placeholder="john@example.com"
+                    AppendIcon="@(_show ? "mdi-eye" : "mdi-eye-off")"
+                    OnAppendClick="()=>_show = !_show"
+                    Outlined
+                    Dense></MTextField>
+
+        <MCheckbox Class="mt-0 pt-0" Color="#7367f0" Label="Remember Me"></MCheckbox>
+        <MButton Color="#7367f0" Dark Block OnClick="SlinInClick">Sign in</MButton>
+        <MRow NoGutters Justify="JustifyTypes.Center" Class="mt-5">
+            New on our platform? &nbsp;
+            <a style="color:#7367f0;text-decoration:none;" onclick="@(()=>Navigation.NavigateTo(Navigation.BaseUri+CreateAccountRoute))">Create an account</a>
+        </MRow>
+
+        <MRow NoGutters Class="mt-4">
+            <MCol Align="AlignTypes.Center" Class="mr-3"><MDivider></MDivider></MCol>
+            or
+            <MCol Align="AlignTypes.Center" Class="ml-3"><MDivider></MDivider></MCol>
+        </MRow>
+    </MCardText>
+    <MCardActions>
+        <MRow Class="pb-5" Justify="JustifyTypes.Center" NoGutters>
+            <MButton Class="mx-3"
+                     Fab
+                     Small
+                     Dark
+                     Color="primary">
+                <MIcon>
+                    mdi-qqchat
+                </MIcon>
+            </MButton>
+            <MButton Class="mx-3"
+                     Fab
+                     Small
+                     Dark
+                     Color="green">
+                <MIcon>
+                    mdi-wechat
+                </MIcon>
+            </MButton>
+            <MButton Class="mx-3"
+                     Fab
+                     Small
+                     Dark>
+                <MIcon>
+                    mdi-github
+                </MIcon>
+            </MButton>
+        </MRow>
+    </MCardActions>
+</MCard>
