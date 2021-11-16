@@ -1,4 +1,7 @@
-﻿<CascadingAuthenticationState>
+﻿@using System.Diagnostics.CodeAnalysis
+@inject GlobalConfigs ScopGlobalConfig;
+
+<CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly" 
         AdditionalAssemblies="new[] { typeof(Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Manage.Internal.IndexModel).Assembly }">
         <Found Context="routeData">
@@ -13,3 +16,15 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
+
+@code{
+
+    [Parameter]
+    [NotNull]
+    public GlobalConfigs? GlobalConfig{ get; set; }
+
+    protected override void OnInitialized()
+    {
+        ScopGlobalConfig.Bind(GlobalConfig);
+    }
+}

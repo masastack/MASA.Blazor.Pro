@@ -1,0 +1,156 @@
+[
+  {
+    "Category": "Dashboards",
+    "Navs": [
+      {
+        "Title": "eCommerce",
+        "Icon": "fas fa-chart-line",
+        "Href": "/dashboard/ecommerce"
+      },
+      {
+        "Title": "Analytics",
+        "Icon": "fas fa-chart-bar",
+        "Href": "/dashboard/analytics"
+      }
+    ]
+  },
+  {
+    "Category": "Apps",
+    "Navs": [
+      {
+        "Title": "eCommerce",
+        "Icon": "fas fa-shopping-bag",
+        "Href": "/apps/ecommerce"
+      },
+      {
+        "Title": "Todo",
+        "Icon": "fas fa-check-square",
+        "Href": "/apps/todo"
+      },
+      {
+        "Title": "Invoice",
+        "Icon": "fas fa-receipt",
+        "Childs": [
+          {
+            "Title": "List",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/invoice/list"
+          },
+          {
+            "Title": "Preview",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/invoice/preview"
+          },
+          {
+            "Title": "Edit",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/invoice/edit"
+          },
+          {
+            "Title": "Add",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/invoice/add"
+          }
+        ]
+      },
+      {
+        "Title": "User",
+        "Icon": "far fa-user",
+        "Childs": [
+          {
+            "Title": "List",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/user/list"
+          },
+          {
+            "Title": "View",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/user/view"
+          },
+          {
+            "Title": "Edit",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/user/edit"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Category": "Pages",
+    "Navs": [
+      {
+        "Title": "Auth",
+        "Icon": "fas fa-user-tie",
+        "Childs": [
+          {
+            "Title": "Login v1",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/login-v1"
+          },
+          {
+            "Title": "Login v2",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/login-v2"
+          },
+          {
+            "Title": "Not Authorized",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/not-authorized"
+          },
+          {
+            "Title": "Register v1",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/register-v1"
+          },
+          {
+            "Title": "Register v2",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/register-v2"
+          },
+          {
+            "Title": "Forgot Password v1",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/forgot-password-v1"
+          },
+          {
+            "Title": "Forgot Password v2",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/forgot-password-v2"
+          },
+          {
+            "Title": "Reset Password v1",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/reset-password-v1"
+          },
+          {
+            "Title": "Reset Password v2",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/authentication/reset-password-v2"
+          }
+        ]
+      },
+      {
+        "Title": "Others",
+        "Icon": "fas fa-expand",
+        "Childs": [
+          {
+            "Title": "Account Settings",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/others/account-settings"
+          },
+          {
+            "Title": "500",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/others/500"
+          },
+          {
+            "Title": "404",
+            "Icon": "fas fa-genderless",
+            "Href": "/pages/others/404"
+          }
+        ]
+      }
+    ]
+  }
+]

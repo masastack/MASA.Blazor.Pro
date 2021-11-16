@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
+	<WarningsAsErrors>
+		$(WarningsAsErrors);CS8605
+	</WarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-MASA.Blazor.Pro-1C269218-357E-4813-926B-0CA83F60438B</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -16,6 +19,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0-rc.1.21452.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0-rc.1.21452.10" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Demo\2-Pages\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

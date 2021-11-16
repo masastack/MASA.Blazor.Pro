@@ -1,0 +1,11 @@
+﻿
+a {
+    color: #7367f0 !important;
+    text-decoration: none;
+}
+
+.congratulation-medal {
+    position: absolute;
+    top: 0;
+    right: 37px;
+}

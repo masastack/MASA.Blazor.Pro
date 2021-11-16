@@ -1,0 +1,188 @@
+﻿@page "/dashboard/ecommerce/"
+@inherits DemoCompontentBase
+@using BlazorComponent
+
+<MRow>
+    <MCol Cols=12 Md=6 Xl=4>
+        <MCard>
+            <MCardText>
+                <span Class="font-weight-bold text-h6">Congratulations 🎉 John!</span>
+                <p>You have won gold medal</p>
+                <div class="text-h5 mb-1">
+                    <a href="#" target="_self">$48.9k</a>
+                </div>
+                <MButton Class="deep-purple text-center white--text">
+                    View Sales
+                </MButton>
+            </MCardText>
+            <img class="congratulation-medal" src="/img/eCommerce-congratulation-medal.svg" alt="Medal Pic" />
+        </MCard>
+    </MCol>
+    <MCol Cols=12 Md=6 Xl=8>
+        <MCard Height=174>
+            <MCardText>
+                <MRow>
+                    <MCol Class="font-weight-bold text-h5">Statistics</MCol>
+                    <MCol Align=AlignTypes.Center Class="text-right">Updated 1 month ago</MCol>
+                </MRow>
+                <MRow>
+                    <MCol Xl=3 Class="px-4 d-flex">
+                        <MAvatar Size=48 Color="deep-purple lighten-5 mr-4">
+                            <span Class="deep-purple--text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                            </span>
+                        </MAvatar>
+                        <div>
+                            <span class="font-weight-black text-h6"> 230k </span>
+                            <p> Sales </p>
+                        </div>
+                    </MCol>
+                    <MCol Xl=3 Class="px-4 d-flex">
+                        <MAvatar Size=48 Color="cyan lighten-5 mr-4">
+                            <span Class="cyan--text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </span>
+                        </MAvatar>
+                        <div>
+                            <span class="font-weight-black text-h6"> 8.549k </span>
+                            <p> Customers </p>
+                        </div>
+                    </MCol>
+                    <MCol Xl=3 Class="px-4 d-flex">
+                        <MAvatar Size=48 Color="red lighten-5 mr-4">
+                            <span Class="red--text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </span>
+                        </MAvatar>
+                        <div>
+                            <span class="font-weight-black text-h6"> 8.549k </span>
+                            <p> Customers </p>
+                        </div>
+                    </MCol>
+                    <MCol Xl=3 Class="px-4 d-flex">
+                        <MAvatar Size=48 Color="green lighten-5 mr-4">
+                            <span Class="green--text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </span>
+                        </MAvatar>
+                        <div>
+                            <span class="font-weight-black text-h6"> $9745 </span>
+                            <p> Revenue </p>
+                        </div>
+                    </MCol>
+                </MRow>
+            </MCardText>
+        </MCard>
+    </MCol>
+</MRow>
+
+<MRow>
+    <MCol Cols=12 Lg=4>
+        <MRow>
+            <MCol Cols=12 Md=3 Lg=6 Xl=6 Sm=6>
+                <MCard Height=170>
+                    <MCardText>
+                        <span style="font-size:16px">Orders</span>
+                        <p class="font-weight-black text-h6"> 2,76k </p>
+                    </MCardText>
+                </MCard>
+            </MCol>
+            <MCol Cols=12 Md=3 Lg=6 Xl=6 Sm=6>
+                <MCard Height=170>
+                    <MCardText>
+                        <span style="font-size:16px">Profit</span>
+                        <p class="font-weight-black text-h6"> 6,24k </p>
+                    </MCardText>
+                </MCard>
+            </MCol>
+            <MCol Cols=12 Md=6 Lg=12>
+                <MCard MinHeight=180>
+                    <MCardText>
+                        <MRow>
+                            <MCol>
+                                <div class="text-h5 mb-3">Earnings</div>
+                                <div> This Month </div>
+                                <div class="font-weight-black mb-3">  $4055.56  </div>
+                                <p>
+                                    <span class="font-weight-bold">68.2%</span>
+                                    <span> more earnings than last month.</span>
+                                </p>
+                            </MCol>
+                            <MCol>
+
+                            </MCol>
+                        </MRow>
+                    </MCardText>
+                </MCard>
+            </MCol>
+        </MRow>
+    </MCol>
+    <MCol Cols=12 Lg=8>
+        <MCard>
+            <MCardText>
+                <MRow Style="height:385px">
+                    <MCol Md=8 style="height:90%;border-right:1px solid #ebe9f1">
+
+                    </MCol>
+                    <MCol Align=AlignTypes.Center Md=4 style="height:90%;">
+                        <MSelect Dense Solo Class="ma-auto" Style="width:100px;" Value=2020 Items="_items" ItemText="u => u.ToString()" ItemValue="u=>u" TItem="int" TItemValue="int" TValue="int">
+
+                        </MSelect>
+
+                        <div class="text-h5 font-weight-black text-center"> $25,852 </div>
+                        <div class="text-center">
+                            <span class="font-weight-bold">Budget:</span>
+                            <span class="font-weight-thin">56,800 </span>
+                        </div>
+                        <div style="min-height: 80px;" class="my-7">
+                        </div>
+                        <MCardActions>
+                            <MButton Class="deep-purple text-center white--text ma-auto">
+                                Increase Budget
+                            </MButton>
+                        </MCardActions>
+                    </MCol>
+                </MRow>
+            </MCardText>
+        </MCard>
+    </MCol>
+</MRow>
+
+<MRow>
+    <MCol Cols=12 Lg=8>
+        <MCard>
+
+        </MCard>
+    </MCol>
+    <MCol Cols=12 Md=6 Xl=4>
+        <MCard>
+
+        </MCard>
+    </MCol>
+    <MCol Cols=12 Md=6 Xl=4>
+        <MCard>
+
+        </MCard>
+    </MCol>
+    <MCol Cols=12 Md=6 Xl=4>
+        <MCard>
+
+        </MCard>
+    </MCol>
+    <MCol Cols=12 Md=6 Xl=4>
+        <MCard>
+
+        </MCard>
+    </MCol>
+</MRow>
+
+@code {
+    public override string Name => nameof(ECommerce);
+
+    protected override void OnInitialized()
+    {
+        //GlobalVariables.Title = "ECommerce";
+    }
+
+    int[] _items = new[] { 2020, 2019, 2018 };
+}

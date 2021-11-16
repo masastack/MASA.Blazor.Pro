@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
-
-@using MASA.Blazor.Pro.Data;
+@inject LanguageProvider LanguageProvider
+@inject GlobalConfigs GlobalConfig
 
 <MApp>
 
@@ -10,22 +10,45 @@
             <MToolbarTitle>@GlobalVariables.Title</MToolbarTitle>
             <MSpacer></MSpacer>
 
+            <MMenu OffsetY Bottom>
+                <ActivatorContent>
+                    <MChip Label Color="white" @attributes="@context.Attrs">
+                        @*                        <MIcon Left>
+                            @currentLanguageOption?.Img
+                            </MIcon>*@
+                        @_currentLanguageOption?.Text
+                    </MChip>
+
+                </ActivatorContent>
+                <ChildContent>
+                    <MList>
+                        @foreach (var option in _languageOptions)
+                        {
+                            <MListItem Link OnClick="()=> OnLanguageChange(option)">
+                                <MListItemContent>
+                                    <MListItemTitle>
+                                        @*     <MIcon Left>
+                                            @option.Img
+                                            </MIcon>*@
+                                        @option.Text
+                                    </MListItemTitle>
+                                </MListItemContent>
+                            </MListItem>
+                        }
+                    </MList>
+                </ChildContent>
+            </MMenu>
+
             <MButton Icon>
                 <MIcon>mdi-magnify</MIcon>
             </MButton>
 
-            <Login/>
+            <Login />
         </MToolbar>
     </MAppBar>
 
     <MNavigationDrawer App>
-        <MList Dense>
-
-            <MASA.Blazor.Pro.Dashboards.Index />
-            <MASA.Blazor.Pro.Apps.Index />
-            <MASA.Blazor.Pro.Pages.Index />
-
-        </MList>
+        <Navigation/>
     </MNavigationDrawer>
 
     <MMain Style="padding-left:268px;padding-top:90px;padding-right:12px; background-color:rgb(245, 245, 245)">
@@ -36,6 +59,37 @@
 
 </MApp>
 
-@code { 
+@code {
+    List<LanguageOption> _languageOptions = new List<LanguageOption>
+    {
+        new LanguageOption("简体中文","zh-CN",""),
+        new LanguageOption("English","en-US",""),
+    };
 
+    LanguageOption? _currentLanguageOption;
+
+    protected override void OnInitialized()
+    {
+        _currentLanguageOption = _languageOptions.FirstOrDefault(o => o.Value == (GlobalConfig.Language ?? LanguageProvider.CurrentLanguage));
+        LanguageProvider.SetLang(_currentLanguageOption?.Value ?? LanguageProvider.CurrentLanguage);
+    }
+
+    void OnLanguageChange(LanguageOption option)
+    {
+        _currentLanguageOption = option;
+        LanguageProvider.SetLang(option.Value);
+        GlobalConfig.Language = option.Value;
+        GlobalConfig.SaveChanges();
+    }
+
+    class LanguageOption
+    {
+        public LanguageOption(string text, string value, string img) => (Text, Value, Img) = (text, value, img);
+
+        public string Text { get; set; }
+
+        public string Value { get; set; }
+
+        public string Img { get; set; }
+    }
 }

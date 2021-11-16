@@ -1,10 +1,10 @@
 using MASA.Blazor.Pro.Areas.Identity;
 using MASA.Blazor.Pro.Data;
-using Microsoft.AspNetCore.Components;
+using MASA.Blazor.Pro.Gloab;
+using MASA.Blazor.Pro.JsRuntime;
+using MASA.Blazor.Pro.Middleware;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +20,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+builder.Services.AddGloab();
+builder.Services.AddScoped<CookieStorage>();
 
 var app = builder.Build();
 
@@ -45,7 +47,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<CookieMiddleware>();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
-
 app.Run();
