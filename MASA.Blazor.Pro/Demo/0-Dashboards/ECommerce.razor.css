@@ -9,3 +9,11 @@ a {
     top: 0;
     right: 37px;
 }
+
+.border-right-solid {
+    border-right: 1px solid #d8d6de;
+}
+
+.border-top-solid {
+    border-top: 1px solid #d8d6de;
+}
