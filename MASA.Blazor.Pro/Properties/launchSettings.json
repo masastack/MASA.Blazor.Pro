@@ -8,13 +8,6 @@
       },
       "applicationUrl": "http://localhost:8080;https://localhost:8443",
       "dotnetRunMessages": true
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "publishAllPorts": true,
-      "useSSL": true
     }
   }
 }
