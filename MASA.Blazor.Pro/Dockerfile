@@ -14,7 +14,7 @@ WORKDIR "/src/MASA.Blazor.Pro"
 RUN dotnet build "MASA.Blazor.Pro.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MASA.Blazor.Pro.csproj" -c Release -o /app/publish
+RUN dotnet publish "MASA.Blazor.Pro.csproj" -c Release -o /app/publish && ls /app/publish
 
 FROM base AS final
 WORKDIR /app
