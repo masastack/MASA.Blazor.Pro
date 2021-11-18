@@ -1,4 +1,4 @@
-﻿using MASA.Blazor.Pro.Gloab;
+﻿using MASA.Blazor.Pro.Global;
 using System.Text.Json;
 using System.Text;
 

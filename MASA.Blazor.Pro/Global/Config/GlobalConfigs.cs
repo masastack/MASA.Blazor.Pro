@@ -1,6 +1,6 @@
 ﻿using MASA.Blazor.Pro.JsRuntime;
 
-namespace MASA.Blazor.Pro.Gloab
+namespace MASA.Blazor.Pro.Global
 {
     public class GlobalConfigs
     {

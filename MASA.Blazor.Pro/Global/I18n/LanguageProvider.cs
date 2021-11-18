@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
-namespace MASA.Blazor.Pro.Gloab
+namespace MASA.Blazor.Pro.Global
 {
     public partial class LanguageProvider
     {

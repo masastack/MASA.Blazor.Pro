@@ -1,6 +1,6 @@
 using MASA.Blazor.Pro.Areas.Identity;
 using MASA.Blazor.Pro.Data;
-using MASA.Blazor.Pro.Gloab;
+using MASA.Blazor.Pro.Global;
 using MASA.Blazor.Pro.JsRuntime;
 using MASA.Blazor.Pro.Middleware;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -20,7 +20,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-builder.Services.AddGloab();
+builder.Services.AddGlobal();
 builder.Services.AddScoped<CookieStorage>();
 
 var app = builder.Build();

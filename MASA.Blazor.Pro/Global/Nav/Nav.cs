@@ -1,4 +1,4 @@
-﻿namespace MASA.Blazor.Pro.Gloab
+﻿namespace MASA.Blazor.Pro.Global
 {
     public class NavCategory
     {
