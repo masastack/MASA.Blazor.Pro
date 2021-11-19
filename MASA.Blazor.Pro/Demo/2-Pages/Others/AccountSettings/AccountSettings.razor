@@ -1,0 +1,253 @@
+﻿@page "/pages/others/account-settings"
+@inherits DemoCompontentBase
+
+<MRow>
+    <MCol Md=3 Sm=12>
+        <MList>
+            <MListItemGroup Mandatory @bind-Value="_current" ActiveClass="deep-purple white--text elevation-6">
+                <MListItem>
+                    <MListItemIcon><MIcon>far fa-user</MIcon></MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>General</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+                <MListItem>
+                    <MListItemIcon><MIcon>fas fa-lock</MIcon></MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>Change Password</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+                <MListItem>
+                    <MListItemIcon><MIcon>fas fa-info-circle</MIcon></MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>Information</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+                <MListItem>
+                    <MListItemIcon><MIcon>fas fa-share-alt-square</MIcon></MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>Social</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+                <MListItem>
+                    <MListItemIcon><MIcon>far fa-bell</MIcon></MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>Notifications</MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+            </MListItemGroup>
+        </MList>
+    </MCol>
+    <MCol Md=9 Sm=12>
+        <MCard Style="@(_current == 0 ?"":"display:none")">
+            <MCardTitle>
+                <MList Style="width:100%">
+                    <div class="d-flex">
+                        <MAvatar Size=90 Tile>
+                            <MImage Src="/img/avatar/avatar-s-11.jpg"></MImage>
+                        </MAvatar>
+                        <div Class="ml-6 pt-3 max-height">
+                            <MButton Small Color="deep-purple white--text font-weight-black"> Upload </MButton>
+                            <MButton Small Outlined Class="ml-2 grey--text font-weight-black"> Reset </MButton>
+                            <p class="mt-2 grey--text text-subtitle-1">Allowed JPG, GIF or PNG. Max size of 800kB</p>
+                        </div>
+                    </div>
+                    <MRow Class="mt-n2">
+                        <MCol Cols=6 Md=6 Sm=12>
+                            <MSubheader>Username</MSubheader>
+                            <MTextField @bind-Value="_currentUserInfo.UserName" Placeholder="Username" Outlined TValue="string" />
+                        </MCol>
+                        <MCol Cols=6 Md=6 Sm=12>
+                            <MSubheader>Name</MSubheader>
+                            <MTextField @bind-Value="_currentUserInfo.Name" Placeholder="Name" Outlined TValue="string" />
+                        </MCol>
+                    </MRow>
+                    <MRow Class="mt-n10">
+                        <MCol Cols=6 Md=6 Sm=12>
+                            <MSubheader>E-mail</MSubheader>
+                            <MTextField @bind-Value="_currentUserInfo.Email" Placeholder="E-mai" Outlined TValue="string" />
+                        </MCol>
+                        <MCol Cols=6 Md=6 Sm=12>
+                            <MSubheader>Company</MSubheader>
+                            <MTextField @bind-Value="_currentUserInfo.Company" Placeholder="Company" Outlined TValue="string" />
+                        </MCol>
+                    </MRow>
+                    <MAlert Color="orange lighten-5" Class="orange--text">
+                        Your email is not confirmed. Please check your inbox.
+                        <MDivider Class="orange-border"></MDivider>
+                        Resend confirmation
+                    </MAlert>
+                    <MItem>
+                        <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
+                        <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_currentUserInfo = _defaultUserInfo.Clone()"> Reset </MButton>
+                    </MItem>
+                </MList>
+            </MCardTitle>
+        </MCard>
+        <MCard Style="@(_current == 1 ?"":"display:none")">
+            <MCardText>
+                <MRow>
+                    <MCol Cols=6 Md=6 Sm=12>
+                        <MSubheader>Old Password</MSubheader>
+                        <MTextField @bind-Value="_oldPassword" Outlined Placeholder="Old Password" TValue="string" Type="@(_show1 ? "text" : "password")" AppendIcon="@(_show1 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show1 = !_show1"></MTextField>
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=0></MCol>
+                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
+                        <MSubheader>New Password</MSubheader>
+                        <MTextField @bind-Value="_newPassword" Outlined Placeholder="New Password" TValue="string" Type="@(_show2 ? "text" : "password")" AppendIcon="@(_show2 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show2 = !_show2"></MTextField>
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
+                        <MSubheader>Retype New Password</MSubheader>
+                        <MTextField @bind-Value="_retypeNewPassword" Outlined Placeholder="Retype New Password" TValue="string" Type="@(_show3 ? "text" : "password")" AppendIcon="@(_show3 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show3 = !_show3"></MTextField>
+                    </MCol>
+                </MRow>
+                <MItem>
+                    <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="ResetPassoword"> Reset </MButton>
+                </MItem>
+            </MCardText>
+        </MCard>
+        <MCard Style="@(_current == 2 ?"":"display:none")">
+            <MCardText>
+                <MRow>
+                    <MCol Cols=12 Sm=12>
+                        <MSubheader>Bio</MSubheader>
+                        <MTextarea @bind-Value="_information.Bio" Solo Placeholder="Your bio data here..."></MTextarea>
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
+                        <MSubheader>Birth date</MSubheader>
+                        <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
+                            <ActivatorContent>
+                                <MTextField @bind-Value="_information.BirthDate" Outlined Placeholder="Birth date" Readonly @attributes="context.Attrs"></MTextField>
+                            </ActivatorContent>
+                            <ChildContent>
+                                <MDatePicker @bind-Value="_information.BirthDate"></MDatePicker>
+                            </ChildContent>
+                        </MMenu>
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
+                        <MSubheader>Country</MSubheader>
+                        <MSelect Items=_items ItemValue="u => u.Value" ItemText="u => u.Label" Outlined @bind-Value="_information.Country"></MSelect>
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
+                        <MSubheader>Website</MSubheader>
+                        <MTextField @bind-Value="_information.Website" Placeholder="Website address" Outlined TValue="string" />
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
+                        <MSubheader>Phone</MSubheader>
+                        <MTextField @bind-Value="_information.Phone" Placeholder="Phone Number" Outlined TValue="long?" />
+                    </MCol>
+                </MRow>
+                <MItem>
+                    <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information.Reset()"> Reset </MButton>
+                </MItem>
+            </MCardText>
+        </MCard>
+        <MCard Style="@(_current == 3 ?"":"display:none")">
+            <MCardTitle>
+                <MIcon>fas fa-share-alt-square</MIcon>Social Links
+            </MCardTitle>
+            <MCardText>
+                <MRow Class="mt-n2">
+                    <MCol Cols=6 Md=6 Sm=12>
+                        <MSubheader>Twitter</MSubheader>
+                        <MTextField @bind-Value="_currentUserInfo.UserName" Placeholder="Username" Outlined TValue="string" />
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12>
+                        <MSubheader>Facebook</MSubheader>
+                        <MTextField @bind-Value="_currentUserInfo.Name" Placeholder="Name" Outlined TValue="string" />
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12>
+                        <MSubheader>Google+</MSubheader>
+                        <MTextField @bind-Value="_currentUserInfo.Email" Placeholder="E-mai" Outlined TValue="string" />
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12>
+                        <MSubheader>LinkedIn</MSubheader>
+                        <MTextField @bind-Value="_currentUserInfo.Company" Placeholder="Company" Outlined TValue="string" />
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12>
+                        <MSubheader>Instagram</MSubheader>
+                        <MTextField @bind-Value="_currentUserInfo.Email" Placeholder="E-mai" Outlined TValue="string" />
+                    </MCol>
+                    <MCol Cols=6 Md=6 Sm=12>
+                        <MSubheader>Quora</MSubheader>
+                        <MTextField @bind-Value="_currentUserInfo.Company" Placeholder="Company" Outlined TValue="string" />
+                    </MCol>
+                </MRow>
+                <MDivider></MDivider>
+            </MCardText>
+            <MCardTitle>
+                <MIcon>far fa-user</MIcon>Profile Connections
+            </MCardTitle>
+            <MCardText>
+                <MRow>
+                    <MCol Md=3 Sm=6></MCol>
+                    <MCol Md=3 Sm=6></MCol>
+                    <MCol Md=3 Sm=6></MCol>
+                    <MCol Md=3 Sm=6></MCol>
+                </MRow>
+            </MCardText>
+            <MItem>
+                <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
+                <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information.Reset()"> Cancel </MButton>
+            </MItem>
+        </MCard>
+        <MCard Style="@(_current == 4 ?"":"display:none")">
+            <MCardText>
+                <MCardSubtitle>ACTIVITY</MCardSubtitle>
+                <MSwitch Label="Email me when someone comments on my article"></MSwitch>
+                <MSwitch Label="Email me when someone answers on my form"></MSwitch>
+                <MSwitch Label="Email me hen someone follows me"></MSwitch>
+                <MCardSubtitle>APPLICATION</MCardSubtitle>
+                <MSwitch Label="News and announcements"></MSwitch>
+                <MSwitch Label="Weekly product updates"></MSwitch>
+                <MSwitch Label="Weekly blog digest"></MSwitch>
+                <MItem>
+                    <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information.Reset()"> Cancel </MButton>
+                </MItem>
+            </MCardText>
+        </MCard>
+    </MCol>
+</MRow>
+
+
+
+@code {
+    public override string Name => nameof(AccountSettings);
+
+    StringNumber _current = 0;
+
+    UserInfo _defaultUserInfo = new UserInfo("johndoe", "John Doe", "granger007@hogward.com", "Crystal Technologies");
+
+    UserInfo _currentUserInfo;
+
+    protected override void OnInitialized()
+    {
+        _currentUserInfo = _defaultUserInfo.Clone();
+    }
+
+    bool _show1;
+    bool _show2;
+    bool _show3;
+    string _oldPassword = "";
+    string _newPassword = "";
+    string _retypeNewPassword = "";
+
+    void ResetPassoword()
+    {
+        _oldPassword = "";
+        _newPassword = "";
+        _retypeNewPassword = "";
+    }
+
+    List<Item> _items = new()
+        {
+            new Item("USA", "1"),
+            new Item("India", "2"),
+            new Item("Canada", "3"),
+        };
+
+    Information _information = new Information();
+}
