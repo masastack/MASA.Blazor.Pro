@@ -4,16 +4,17 @@
 
 <div Style="padding-left:256px;">
 
-    <MToolbar Dense Elevation=0>
-        @*<MAppBarNavIcon></MAppBarNavIcon>*@
-        @*<MToolbarTitle></MToolbarTitle>*@
-        <MTextField TValue="string" Class="mx-4" HideDetails=true
+    <MToolbar Dense Elevation="0">
+        <MTextField TValue="string"
+                    Class="mx-4 mt-2"
+                    HideDetails=true
+                    Label="Search task"
                     PrependIcon="mdi-magnify"
                     Placeholder=@FilterText Value=InputText ValueChanged="(v)=>InputTextChanged(v)">
         </MTextField>
         <MMenu OffsetX Left OffsetY>
             <ActivatorContent>
-                <MButton Icon Large @attributes="context.Attrs"><MIcon>mdi-dots-vertical</MIcon></MButton>
+                <MButton Class="mt-3" Icon Large @attributes="context.Attrs"><MIcon>mdi-dots-vertical</MIcon></MButton>
             </ActivatorContent>
             <ChildContent>
                 <MList Dense>
@@ -57,8 +58,13 @@
         {
             <MDivider></MDivider>
             <MListItem Link OnClick="() => ShowDetail(item)">
+                <span @onclick:stopPropagation>
+                    <MCheckbox @bind-Value=@item.IsChecked Color="#7367f0"></MCheckbox>
+                </span>
+                @*<MSimpleCheckbox Value=@item.IsChecked OnInput="val=>item.IsChecked=val" Color="#7367f0"></MSimpleCheckbox>*@
+
                 <MListItemContent>
-                    <MCheckbox Height=0 @bind-Checked=@item.IsChecked Label=@item.Title Color="deep-purple"></MCheckbox>
+                    @item.Title
                 </MListItemContent>
 
                 <MListItemAction>
@@ -73,66 +79,12 @@
         }
     </MList>
 
-    <MNavigationDrawer Temporary Absolute Right Value="_visible" Width="420">
-        <MToolbar Dense Elevation=0 Color="indigo lighten-5">
-            <MButton Small Click="() => _selectItem.IsCompleted = !_selectItem.IsCompleted"
-                     Color=@CompletedColor Outlined>@CompletedText</MButton>
-            <MSpacer></MSpacer>
-            <MButton Small Icon>
-                <MIcon Small Color="red">fas fa-trash-alt</MIcon>
-            </MButton>
-            <MButton Small Icon Click="() => _selectItem.IsImportant = !_selectItem.IsImportant">
-                @if (_selectItem.IsImportant)
-                {
-                    <MIcon Small Color="orange">fas fa-star</MIcon>
-                }
-                else
-                {
-                    <MIcon Small Color="orange">far fa-star</MIcon>
-                }
-            </MButton>
-            <MButton Small Icon Click="() => _visible = false">
-                <MIcon Small>fas fa-times</MIcon>
-            </MButton>
-        </MToolbar>
-
-        <MTextField Dense Class="mx-5 mt-6" @bind-Value=_selectItem.Title Label="Title" Outlined Clearable></MTextField>
-
-        <MSelect Class="mx-5" Dense Outlined Label="Assignee" @bind-Value=_selectItem.Assignee
-                 TItem="SelectData" TValue="string" TItemValue="string"
-                 Items=@_assList ItemText="i => i.Label" ItemValue="i => i.Value">
-        </MSelect>
-        <div class="mx-5">
-            <MDatePicker Dense Outlined Label="Due Date" @bind-Value=_selectItem.DueDate />
-        </div>
-
-        <MSelect Class="mx-5" Dense Outlined Label="Tag" @bind-Value=_selectItem.Tag
-                 TItem="SelectData" TValue="string" TItemValue="string"
-                 Items=@_tagList ItemText="i => i.Label" ItemValue="i => i.Value">
-        </MSelect>
-
-        <MTextarea Class="mx-5" Outlined Label="Description" @bind-Value=_selectItem.Description></MTextarea>
-
-    </MNavigationDrawer>
-
-    @*    <MTable TItem="TodoData" Items="ThisList" PageSize=15>
-        <MTableCol>
-        <MCheckbox Height=0 @bind-Checked=@context.Selected Label=@context.Title Color="deep-purple"></MCheckbox>
-        </MTableCol>
-        <MTableCol Align="right">
-        <MChip Small TextColor=@tcolor[@context.Tag] Color=@bcolor[@context.Tag]>@context.Tag</MChip>
-        <span Class="mx-3">@context.DueDate</span>
-        <MAvatar Color="deep-purple lighten-4" Size="32">
-        <img src=@avas[context.Avatar]>
-        </MAvatar>
-        </MTableCol>
-        </MTable>*@
+    <TodoDetail Value="_visible" ValueChanged="val=>_visible = val" SelectItem=_selectItem></TodoDetail>
 </div>
 
 
 @code {
-    private string _filterText;
-
+    private string? _filterText;
     private bool _visible = false;
 
     public class SelectData
@@ -241,13 +193,13 @@
     }
 
     private string[] avas = new string[]
-                                                {
+                                                                                    {
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/5.f13458cc.png",
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/1.9cba4a79.png",
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/13-small.d796bffd.png",
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/12.03bf9466.png",
         "https://cdn.vuetifyjs.com/images/lists/4.jpg",
-                                                };
+                                                                                    };
 
     private Dictionary<string, string> tcolor = new()
         {
@@ -266,5 +218,4 @@
             { "High", "red lighten-4" },
             { "Update", "cyan lighten-4" },
         };
-
 }

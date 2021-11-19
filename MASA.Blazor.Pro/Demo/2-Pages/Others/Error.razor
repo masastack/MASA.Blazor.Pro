@@ -1,0 +1,28 @@
+﻿@page "/pages/others/500"
+@layout EmptyLayout
+
+<MRow>
+    <MContainer Class="ma-0">
+        <MCol Class="pa-3 text-h6">
+            <MIcon Large Left Color="purple">fas fa-seedling</MIcon>
+            MASA.Blazor.Pro
+        </MCol>
+    </MContainer>
+    <MContainer Class="mt-15 d-flex flex-column justify-space-between align-center">
+        <MRow NoGutters Class="mb-2 text-h5">Page Not Found 🕵🏻‍♀️</MRow>
+        <MRow NoGutters Class="text-subtitle-1 text--secondary">Oops! 😖 The requested URL was not found on this server.</MRow>
+        <MButton Class="mt-5 mb-6"
+                 Color="#7367f0"
+                 Dark
+                 OnClick="()=>Navigation.NavigateTo(Navigation.BaseUri)">
+            Back to home
+        </MButton>
+        <MImage Src="/img/error.700bd717.svg" Width="562" Height="507">
+        </MImage>
+    </MContainer>
+</MRow>
+
+@code {
+    [Inject]
+    public NavigationManager Navigation { get; set; } = default!;
+}

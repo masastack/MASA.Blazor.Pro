@@ -1,0 +1,28 @@
+﻿@page "/pages/others/401"
+@layout EmptyLayout
+
+<MRow>
+    <MContainer Class="ma-0">
+        <MCol Class="pa-3 text-h6">
+            <MIcon Large Left Color="purple">fas fa-seedling</MIcon>
+            MASA.Blazor.Pro
+        </MCol>
+    </MContainer>
+    <MContainer Class="mt-15 d-flex flex-column justify-space-between align-center">
+        <MRow NoGutters Class="mb-2 text-h5">You are not authorized! 🔐</MRow>
+        <MRow NoGutters Class="text-subtitle-1 text--secondary">You don’t have permission to access this page. Go Home!!</MRow>
+        <MButton Class="mt-5 mb-6"
+                 Color="#7367f0"
+                 Dark
+                 OnClick="()=>Navigation.NavigateTo(Navigation.BaseUri)">
+            Back to home
+        </MButton>
+        <MImage Src="/img/not-authorized.e9c47c33.svg" Width="562" Height="507">
+        </MImage>
+    </MContainer>
+</MRow>
+
+@code {
+    [Inject]
+    public NavigationManager Navigation { get; set; } = default!;
+}

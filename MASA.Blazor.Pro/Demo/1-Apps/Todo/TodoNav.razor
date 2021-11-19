@@ -1,7 +1,7 @@
 ﻿<MNavigationDrawer Absolute>
     <MList Dense>
-        <MListItem>
-            <MButton Outlined Block Color="purple lighten-3">Add Tasks</MButton>
+        <MListItem Class="ma-2">
+            <MButton Dark Block Color="#7367f0" OnClick="()=>_visible = true">Add Task</MButton>
         </MListItem>
 
         <MListItem Link Href="/apps/todo">
@@ -83,5 +83,8 @@
 
 </MNavigationDrawer>
 
+<TodoDetail @bind-Value="_visible" SelectItem=null></TodoDetail>
+
 @code {
+    public bool _visible { get; set; }
 }

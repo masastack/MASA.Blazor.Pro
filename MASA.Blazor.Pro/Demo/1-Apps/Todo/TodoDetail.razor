@@ -1,0 +1,142 @@
+﻿@using MASA.Blazor.Pro.Data
+
+<MNavigationDrawer Temporary Absolute Right Value=Value ValueChanged=ValueChanged Width="420">
+    <MToolbar Dense Elevation=0 Color="indigo lighten-5">
+        <MButton Small Click="() => SelectItem.IsCompleted = !SelectItem.IsCompleted"
+                 Color=@CompletedColor Outlined>@CompletedText</MButton>
+        <MSpacer></MSpacer>
+        <MButton Small Icon>
+            <MIcon Small Color="red">fas fa-trash-alt</MIcon>
+        </MButton>
+        <MButton Small Icon Click="() => SelectItem.IsImportant = !SelectItem.IsImportant">
+            @if (SelectItem.IsImportant)
+            {
+                <MIcon Small Color="orange">fas fa-star</MIcon>
+            }
+            else
+            {
+                <MIcon Small Color="orange">far fa-star</MIcon>
+            }
+        </MButton>
+        <MButton Small Icon OnClick="()=>UpdateValue(false)">
+            <MIcon Small>fas fa-times</MIcon>
+        </MButton>
+    </MToolbar>
+    <MForm Model="SelectItem" EnableDataAnnotationsValidation>
+        <MTextField Dense Class="mx-5 mt-6" @bind-Value=SelectItem.Title Label="Title" Outlined Clearable></MTextField>
+
+        <MSelect Class="mx-5" Dense Outlined Label="Assignee" @bind-Value=SelectItem.Assignee
+                 TItem="SelectData" TValue="string" TItemValue="string"
+                 Items=@_assList ItemText="i => i.Label" ItemValue="i => i.Value">
+        </MSelect>
+        <div class="mx-5">
+            <MDatePicker Dense Outlined Label="Due Date" @bind-Value=SelectItem.DueDate />
+        </div>
+
+        <MSelect Class="mx-5" Dense Outlined Label="Tag" @bind-Value=SelectItem.Tag
+                 TItem="SelectData" TValue="string" TItemValue="string"
+                 Items=@_tagList ItemText="i => i.Label" ItemValue="i => i.Value">
+        </MSelect>
+
+        <MTextarea Class="mx-5" Outlined Label="Description" @bind-Value=SelectItem.Description></MTextarea>
+
+        <MRow NoGutters Justify="JustifyTypes.Start" Class="ml-5">
+            @if (_isEdit)
+            {
+                <MButton Color="#7367f0" Dark OnClick="()=>Update(context)">Update</MButton>
+            }
+            else
+            {
+                <MButton Color="#7367f0" Dark OnClick="()=>Add(context)">Add</MButton>
+            }
+            <MButton Outlined Class="ml-5">Reset</MButton>
+        </MRow>
+    </MForm>
+</MNavigationDrawer>
+
+@code {
+    public class SelectData
+    {
+        public string Label { get; set; } = default!;
+        public string Value { get; set; } = default!;
+    }
+    private List<SelectData> _tagList = new()
+        {
+            new SelectData() { Label = "Team", Value = "Team" },
+            new SelectData() { Label = "Low", Value = "Low" },
+            new SelectData() { Label = "Medium", Value = "Medium" },
+            new SelectData() { Label = "High", Value = "High" },
+            new SelectData() { Label = "Update", Value = "Update" }
+        };
+    private List<SelectData> _assList = new()
+        {
+            new SelectData() { Label = "紫萱", Value = "紫萱" },
+            new SelectData() { Label = "若芹", Value = "若芹" },
+            new SelectData() { Label = "思菱", Value = "思菱" },
+            new SelectData() { Label = "向秋", Value = "向秋" },
+            new SelectData() { Label = "雨珍", Value = "雨珍" },
+            new SelectData() { Label = "海瑶", Value = "海瑶" },
+            new SelectData() { Label = "乐萱", Value = "乐萱" },
+        };
+
+    private bool _isEdit;
+
+    private string CompletedColor { get { return SelectItem.IsCompleted ? "grey" : "teal"; } }
+
+    private string CompletedText { get { return SelectItem.IsCompleted ? "Mark Complete" : "Completed"; } }
+
+    [Parameter]
+    public bool Value { get; set; } = false;
+
+    [Parameter]
+    public TodoData SelectItem { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ValueChanged { get; set; }
+
+    private async Task UpdateValue(bool value)
+    {
+        if (ValueChanged.HasDelegate)
+        {
+            await ValueChanged.InvokeAsync(value);
+        }
+        else
+        {
+            Value = value;
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (SelectItem == null)
+        {
+            SelectItem = new TodoData();
+            _isEdit = false;
+        }
+        else
+        {
+            _isEdit = true;
+        }
+    }
+
+    private async Task Add(EditContext context)
+    {
+        var success = context.Validate();
+        if (success)
+        {
+            SelectItem.Id = TodoService.List.Count + 1;
+            TodoService.List.Insert(0, SelectItem);
+
+            await UpdateValue(false);
+        }
+    }
+
+    private async Task Update(EditContext context)
+    {
+        var success = context.Validate();
+        if (success)
+        {
+            await UpdateValue(false);
+        }
+    }
+}
