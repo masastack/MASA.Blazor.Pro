@@ -1,0 +1,118 @@
+﻿<MRow class="mt-2">
+    <MCol Md="9">
+        <MCard>
+            <MCardTitle>
+                Add New Address
+            </MCardTitle>
+            <MCardSubtitle>
+                Be sure to check "Deliver to this address" when you have finished
+            </MCardSubtitle>
+            <MCardText>
+                <MForm Model="_address" EnableDataAnnotationsValidation>
+                    <MRow>
+                        <MCol Md="6">
+                            <MTextField @bind-Value="_address.FullName"
+                                        Label="Full Name"
+                                        Outlined
+                                        Dense></MTextField>
+                        </MCol>
+                        <MCol Md="6">
+                            <MTextField @bind-Value="_address.MobileNumber"
+                                        Label="Mobile Number"
+                                        Outlined
+                                        Dense></MTextField>
+                        </MCol>
+                        <MCol Md="6">
+                            <MTextField @bind-Value="_address.HouseNo"
+                                        Label="Flat, House No"
+                                        Outlined
+                                        Dense></MTextField>
+                        </MCol>
+                        <MCol Md="6">
+                            <MTextField @bind-Value="_address.Landmark"
+                                        Label="Landmark"
+                                        Outlined
+                                        Dense></MTextField>
+                        </MCol>
+                        <MCol Md="6">
+                            <MTextField @bind-Value="_address.City"
+                                        Label="Town/City"
+                                        Outlined
+                                        Dense></MTextField>
+                        </MCol>
+                        <MCol Md="6">
+                            <MTextField @bind-Value="_address.Pincode"
+                                        Label="Pincode"
+                                        Outlined
+                                        Dense></MTextField>
+                        </MCol>
+                        <MCol Md="6">
+                            <MTextField @bind-Value="_address.State"
+                                        Label="State"
+                                        Outlined
+                                        Dense></MTextField>
+                        </MCol>
+                        <MCol Md="6">
+                            <MSelect @bind-Value="@_address.AddressType"
+                                     Label="Address Type"
+                                     Outlined Dense
+                                     Items="@_items"
+                                     ItemText="u => u.Label"
+                                     ItemValue="u => u.Value">
+                            </MSelect>
+                        </MCol>
+                    </MRow>
+                    <MRow>
+                        <MCol>
+                            <MButton class="primary text-capitalize" OnClick="()=>AddressForm(context)">
+                                Save and Deliver Here
+                            </MButton>
+                        </MCol>
+                    </MRow>
+                </MForm>
+            </MCardText>
+        </MCard>
+    </MCol>
+    <MCol Md="3">
+        <MCard>
+            <MCardTitle>
+                John Doe
+            </MCardTitle>
+            <MCardText>
+                <p class="mt-1 mb-1">9447 Glen Eagles Drive</p>
+                <p class="mt-1 mb-1">Lewis Center, OH 43035</p>
+                <p class="mt-2 mb-2">UTC-5: Eastern Standard Time (EST)</p>
+                <p class="mt-1 mb-1">202-555-0140</p>
+            </MCardText>
+            <MCardActions>
+                <MButton class="primary text-capitalize" Block OnClick="()=>{ StepChanged.InvokeAsync(3); }">
+                    Deliver To This Address
+                </MButton>
+            </MCardActions>
+        </MCard>
+    </MCol>
+</MRow>
+
+@code {
+
+    AddressModel _address = new();
+    List<AddressType> _items = new()
+    {
+        new AddressType("Home", "1"),
+        new AddressType("Work", "2")
+    };
+
+    [Parameter]
+    public StringNumber Step { get; set; }
+    [Parameter]
+    public EventCallback<StringNumber> StepChanged { get; set; }
+
+    private void AddressForm(EditContext context)
+    {
+          var success = context.Validate();
+        if (success)
+        {
+             StepChanged.InvokeAsync(3);
+        }  
+    }
+}

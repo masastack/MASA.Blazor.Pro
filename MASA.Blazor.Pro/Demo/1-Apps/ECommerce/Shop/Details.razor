@@ -1,0 +1,134 @@
+﻿@page "/apps/ecommerce/details/{Id}"
+@inherits DemoCompontentBase
+
+<div class="d-inline-flex d-flex align-center">
+    <h2 class="auto-width">Product Details</h2>
+    <MDivider Vertical class="ml-4 mt-3" style="height:40px;" />
+    <MBreadcrumbs Large class="auto-width" TItem="BreadcrumbItem">
+        <MBreadcrumbsItem Disabled="false">
+            <MIcon Large class='head-bread-icon'>mdi-home</MIcon>
+        </MBreadcrumbsItem>
+        <MBreadcrumbsItem Href="">ECommerce</MBreadcrumbsItem>
+        <MBreadcrumbsItem Text="Shop"></MBreadcrumbsItem>
+        <MBreadcrumbsItem Text="Product Details"></MBreadcrumbsItem>
+    </MBreadcrumbs>
+</div>
+
+<MCard>
+    <MCardText>
+        <MRow>
+            <MCol Md="4" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
+                <img src="@_shopDataItem.PictureFile" style="width: 460px;height:auto;" />
+            </MCol>
+            <MCol Md="8" Class="d-flex flex-column mt-6">
+                <h4 class="mb-2 blue-grey--text text--darken-2" style="font-size: 1.286rem;">@_shopDataItem.Name</h4>
+                <p>By<span class="ml-2 deep-purple--text text--accent-2 font-weight-bold">@_shopDataItem.Brand</span></p>
+                <div class="d-flex flex-wrap d-inline-flex">
+                    <h4 class="mr-3 mb-1 deep-purple--text text--accent-2" style="font-size: 1.286rem;line-height: 1.82rem;">@_shopDataItem.Price</h4>
+                    <MDivider Vertical class="mr-2"/>
+                    <MRating Readonly Value="_shopDataItem.Rating" BackgroundColor="orange lighten-3" Color="orange" Dense></MRating>
+                </div>
+                <p style="line-height: 1.5rem;">
+                    Available - <span style="color: #28c76f">InStock</span>
+                </p>
+                <p>
+                    @_shopDataItem.Description
+                </p>
+                <div class="mb-2"><MIcon class="mr-2">add_shopping_cart</MIcon><span class="font-weight-bold">Free Shipping</span></div>
+                <div class="mb-2"><MIcon class="mr-2">attach_money</MIcon><span class="font-weight-bold">EMI options available</span></div>
+                <MDivider class="mb-3 mt-3"></MDivider>
+                <div class="mb-3">
+                    <h6 style="font-size: 1rem;">Colors</h6>
+                    <MButtonGroup Mandatory Dense Tile>
+                        <MButton Fab class="mx-2" Width="20" Height="20" MinWidth="20" Color="purple">
+                        </MButton>
+                        <MButton Fab class="mx-2" Width="20" Height="20" MinWidth="20" Color="green">
+                        </MButton>
+                        <MButton Fab class="mx-2" Width="20" Height="20" MinWidth="20" Color="orange">
+                        </MButton>
+                        <MButton class="mx-2" Width="20" Height="20" MinWidth="20" Color="red">
+                        </MButton>
+                        <MButton class="mx-2" Width="20" Height="20" MinWidth="20" Color="blue">
+                        </MButton>
+                    </MButtonGroup>
+                </div>
+                <MDivider class="mb-3 mt-3"></MDivider>
+                <div>
+                    <MButton Depressed class="btn-primary text-capitalize">
+                        <MIcon Left>add_shopping_cart</MIcon>
+                        View In Cart
+                    </MButton>
+                    <MButton Depressed class="text-capitalize">
+                        <MIcon Left>mdi-heart-outline</MIcon>
+                        Wishlist
+                    </MButton>
+                    <MButton Depressed Width="40" MinWidth="40">
+                        <MIcon>mdi-share-variant</MIcon>
+                    </MButton>
+                </div>
+            </MCol>
+        </MRow>
+        <MRow style="background-color:#f8f8f8;" class="mt-3 mb-10">
+            <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="details-icon-item-feather"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                <h4 class="mt-2 mb-1 blue-grey--text text--darken-1" style="font-size: 1.286rem;"> 100% Original </h4>
+                <p class="text-center card-text"> Chocolate bar candy canes ice cream toffee. Croissant pie cookie halvah. </p>
+            </MCol>
+            <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="details-icon-item-feather"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <h4 class="mt-2 mb-1 blue-grey--text text--darken-1" style="font-size: 1.286rem;"> 10 Day Replacement </h4>
+                <p class="text-center card-text"> Marshmallow biscuit donut dragée fruitcake. Jujubes wafer cupcake. </p>
+            </MCol>
+            <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="details-icon-item-feather"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <h4 class="mt-2 mb-1 blue-grey--text text--darken-1" style="font-size: 1.286rem;"> 1 Year Warranty</h4>
+                <p class="text-center card-text"> Cotton candy gingerbread cake I love sugar plum I love sweet croissant. </p>
+            </MCol>
+        </MRow>
+        <MRow>
+            <MSheet Class="mx-auto full-width">
+                <h2 class="text-center mb-2 font-weight-bold">Related Products</h2>
+                <p class="text-center mb-0" style="line-height: 1.5rem;">People also search for this items</p>
+                <MSlideGroup ShowArrows="@(true)" class="pa-4">
+                    @foreach (var item in Enumerable.Range(1, 5))
+                    {
+                        <a target="_self">
+                            <MSlideItem>
+                                <MCard RefBack="@context.Ref" Color="@("#f8f8f8")" class="ma-5" Height="377" Width="320" Click="@context.Toggle">
+                                    <MCardText>
+                                        <div class="text-center">
+                                            <h5 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"> Apple HomePod (Space Grey) </h5>
+                                            <small class="font-weight-regular" style="font-size: .857rem;">by Apple</small>
+                                        </div>
+                                        <div class="mx-auto img-container">
+                                            <img src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" style="max-width:100%;height:auto;" />
+                                        </div>
+                                        <div class="text-center">
+                                            <MRating Value="3" BackgroundColor="orange lighten-3" Color="orange" Dense Readonly></MRating>
+                                            <span style="color: #7367f0;margin-top: 0;margin-bottom: 0!important;line-height: 1.5rem;">$2449</span>
+                                        </div>
+                                    </MCardText>
+                                </MCard>
+                            </MSlideItem>
+                        </a>
+                    }
+                </MSlideGroup>
+            </MSheet>
+        </MRow>
+    </MCardText>
+</MCard>
+
+@code {
+    public override string Name => "Apps-ECommerce-Details";
+
+    ShopDataItem _shopDataItem = new();
+
+    [Parameter]
+    public string Id { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        _shopDataItem = ShopDataService.ShopData.GetDetailItem(Id);
+        return base.OnInitializedAsync();
+    }
+}

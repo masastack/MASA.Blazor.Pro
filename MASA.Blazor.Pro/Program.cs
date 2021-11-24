@@ -1,6 +1,5 @@
 using MASA.Blazor.Pro.Areas.Identity;
 using MASA.Blazor.Pro.Data;
-using MASA.Blazor.Pro.Global;
 using MASA.Blazor.Pro.JsRuntime;
 using MASA.Blazor.Pro.Middleware;
 using Microsoft.AspNetCore.Components.Authorization;

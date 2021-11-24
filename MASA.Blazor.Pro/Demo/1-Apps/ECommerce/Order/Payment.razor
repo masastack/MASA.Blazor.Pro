@@ -1,0 +1,70 @@
+﻿<MRow class="mt-2">
+    <MCol Md="9">
+        <MCard>
+            <MCardTitle>
+                Payment Options
+            </MCardTitle>
+            <MCardSubtitle>
+                Be sure to click on correct payment option
+            </MCardSubtitle>
+
+            <MRadioGroup @bind-Value="_payOptions">
+                <MCardText>
+                    <MRadio Label="US Unlocked Debit Card 12XX XXXX XXXX 0000" Value="1"></MRadio>
+                    <MTextField Dense Solo TValue="string" Style="width:500px;" class="mt-1">
+                        <PrependContent>
+                            <MLabel style="width:100px;">Enter CVV:</MLabel>
+                        </PrependContent>
+                        <AppendOuterContent>
+                            <MButton class="primary mt-n2 text-capitalize">Continue</MButton>
+                        </AppendOuterContent>
+                    </MTextField>
+                </MCardText>
+                <MDivider Class="mx-4"></MDivider>
+                <MCardText>
+                    <MRadio Label="Credit/Debit/ATM Card" Value="2"></MRadio>
+                    <MRadio Label="Net Banking" Value="3"></MRadio>
+                    <MRadio Label="EMI (Easy Installment)" Value="4"></MRadio>
+                    <MRadio Label="Cash On Delivery" Value="5"></MRadio>
+                </MCardText>
+            </MRadioGroup>
+
+            <MDivider Class="mx-4"></MDivider>
+            <MCardActions>
+                <MButton Text>
+                    <MIcon Left>mdi-plus</MIcon>
+                    Add Gift Card
+                </MButton>
+            </MCardActions>
+        </MCard>
+    </MCol>
+    <MCol Md="3">
+        <MCard>
+            <MCardTitle>
+                John Doe
+            </MCardTitle>
+            <MCardText>
+                <MList Dense>
+                    <MListItem>
+                        <MListItemTitle>Price of 3 items</MListItemTitle>
+                        <MListItemTitle class="text-right"> $699.30 </MListItemTitle>
+                    </MListItem>
+                    <MListItem>
+                        <MListItemTitle>Delivery Charges</MListItemTitle>
+                        <MListItemTitle class="text-right">Free</MListItemTitle>
+                    </MListItem>
+                    <MDivider Class="mx-4"></MDivider>
+                    <MListItem>
+                        <MListItemTitle>Amount Payable</MListItemTitle>
+                        <MListItemTitle class="text-right"> $699.30</MListItemTitle>
+                    </MListItem>
+                </MList>
+            </MCardText>
+        </MCard>
+    </MCol>
+</MRow>
+
+
+@code{
+    private int _payOptions = 1;
+}

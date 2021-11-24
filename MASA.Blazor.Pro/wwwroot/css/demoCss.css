@@ -1,0 +1,73 @@
+﻿.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #5e5873;
+}
+
+.coupons.m-text-field > .m-input__control > .m-input__slot:before {
+    border-color: transparent;
+    border-style: hidden;
+}
+
+.coupons.m-text-field > .m-input__control > .m-input__slot:after {
+    border-color: transparent;
+    border-style: hidden;
+}
+
+.max-height {
+    height: 100% !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.img-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 250px;
+}
+
+.full-width{
+    width:100% !important;
+}
+
+.full-height {
+    height: 100% !important;
+}
+
+.hide {
+    display:none;
+}
+
+.text-description {
+    -webkit-box-ordinal-group: 4;
+    -ms-flex-order: 3;
+    order: 3;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.border-right-solid {
+    border-right: 1px solid #ebe9f1;
+}
+
+.card-text {
+    line-height: 1.5rem;
+    box-sizing: border-box;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}

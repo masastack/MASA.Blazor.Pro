@@ -1,0 +1,34 @@
+﻿@page "/apps/ecommerce/order"
+@inherits DemoCompontentBase
+
+<MTabs @bind-Value="_curTab" SliderColor="transparent">
+    <MTab class="text-capitalize">
+        <MIcon>mdi-cart</MIcon>
+        Card
+    </MTab>
+    <MTab class="text-capitalize">
+        <MIcon>mdi-home</MIcon>
+        Address
+    </MTab>
+    <MTab class="text-capitalize">
+        <MIcon>mdi-credit-card-outline</MIcon>
+        Payment
+    </MTab>
+</MTabs>
+
+<MTabsItems Value="_curTab">
+    <MTabItem>
+        <Cart @bind-Step="_curTab" />
+    </MTabItem>
+    <MTabItem>
+        <Address @bind-Step="_curTab" />
+    </MTabItem>
+    <MTabItem>
+        <Payment />
+    </MTabItem>
+</MTabsItems>
+
+@code {
+    public override string Name => "Apps-ECommerce-Checkout";
+    StringNumber _curTab = 0;
+}

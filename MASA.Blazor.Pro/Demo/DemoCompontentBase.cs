@@ -65,16 +65,6 @@ namespace MASA.Blazor.Pro.Demo
         //    GloabEvent.AddEvent(InvokeStateHasChanged);
         //}
 
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-        }
-
-        protected override bool ShouldRender()
-        {
-            return base.ShouldRender();
-        }
-
         public abstract string Name { get; }
 
         public string T(string key)

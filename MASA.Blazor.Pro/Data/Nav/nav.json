@@ -20,7 +20,23 @@
       {
         "Title": "eCommerce",
         "Icon": "fas fa-shopping-bag",
-        "Href": "/apps/ecommerce"
+        "Childs": [
+          {
+            "Title": "Shop",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/ecommerce/shop"
+          },
+          {
+            "Title": "Details",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/ecommerce/Details/2d1e3440-5134-40c8-836f-f988bfef91c8"
+          },
+          {
+            "Title": "Order",
+            "Icon": "fas fa-genderless",
+            "Href": "/apps/ecommerce/order"
+          }
+        ]
       },
       {
         "Title": "Todo",

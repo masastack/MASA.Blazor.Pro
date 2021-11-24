@@ -1,0 +1,197 @@
+﻿@page "/apps/ecommerce/shop"
+@inherits DemoCompontentBase
+@inject NavigationManager Nav
+
+<MRow>
+    <MCol Md="2">
+        <p class="black--text">Filters</p>
+        <MCard Elevation=2>
+            <MCardText>
+                <p class="black--text">Multi Range</p>
+                <MRadioGroup @bind-Value="_shopData.MultiRange">
+                    @foreach (var _multiRange in _multiRanges)
+                    {
+                        <MRadio Color="deep-purple" Label="@_multiRange.Text" Value="@_multiRange"></MRadio>
+                    }
+                </MRadioGroup>
+
+                <p class="black--text">Price Range</p>
+                <MSlider @bind-Value="_priceRange" Ticks="true" ThumbColor="deep-purple" ThumbLabel="true"></MSlider>
+
+                <p class="black--text">Categories</p>
+                <MRadioGroup @bind-Value="_shopData.Category">
+                    @foreach (var categorie in _categories)
+                    {
+                        <MRadio Color="deep-purple" Label="@categorie" Value="@categorie"></MRadio>
+                    }
+                </MRadioGroup>
+
+                <p class="black--text">Brands</p>
+                <MRadioGroup @bind-Value="_shopData.Brand">
+                    @foreach (var brand in _brands)
+                    {
+                        <MRadio Color="deep-purple" Label="@brand" Value="@brand"></MRadio>
+                    }
+                </MRadioGroup>
+
+                <p class="black--text">Ratings</p>
+                @foreach (var (rating, number) in _ratings)
+                {
+                    <MListItem Class="mt-n6 ml-n6">
+                        <MListItemContent>
+                            <MRating Value=rating Size=20 Dense HalfIncrements Readonly Length=5 Color="yellow darken-3"></MRating>
+                        </MListItemContent>
+                        <MListItemAction>@number</MListItemAction>
+                    </MListItem>
+                }
+
+            </MCardText>
+        </MCard>
+    </MCol>
+    <MCol Md="10" Sm=12>
+        <div class="d-flex">
+            <p class="black--text mr-auto">27 results found</p>
+            <div>
+                <MMenu OffsetY>
+                    <ActivatorContent>
+                        <MButton Outlined @attributes="@context.Attrs" Color="deep-purple" Class="max-height mt-n2" Style="width:130px">
+                            <span Class="black--text">@_shopData.SortType</span>
+                        </MButton>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <MList>
+                            <MListItemGroup @bind-Value="_shopData.SortType" ActiveClass="deep-purple lighten-5">
+                                <MListItem Value="@("Featured")">Featured </MListItem>
+                                <MListItem Value="@("Lowest")"> Lowest </MListItem>
+                                <MListItem Value="@("Highest")"> Highest </MListItem>
+                            </MListItemGroup>
+                        </MList>
+                    </ChildContent>
+                </MMenu>
+                <MButtonGroup @bind-Value="showType" Color="deep-purple" Class="max-height ml-2">
+                    <MButton Value=0 Outlined>
+                        <MIcon>fas fa-th-large</MIcon>
+                    </MButton>
+                    <MButton Value=1 Outlined>
+                        <MIcon>fas fa-list</MIcon>
+                    </MButton>
+                </MButtonGroup>
+            </div>
+        </div>
+        <div class="mt-4">
+            <MTextField @bind-Value="_shopData.Search" TValue="string" HideDetails="true" Flat Solo Dense Class="rounded-lg" Height=50 Placeholder="Search Product">
+                <AppendContent>
+                    <MIcon Class="ml-1 mr-2">mdi-magnify</MIcon>
+                </AppendContent>
+            </MTextField>
+        </div>
+        <div class="mt-8">
+            <MRow>
+                @foreach (var item in _shopData.GetPageDatas())
+                    {
+                <MHover>
+
+                        <MCol Md=4 Sm=1 Class="@(showType==1?"hide":"")">
+                            <MCard @onclick="()=>NavigateToDetails(item.Id)" @attributes="context.Attrs" Class="@(context.Hover?"mt-n2 elevation-5":"")">
+                                <MImage Contain MaxHeight=250 Src="@item.PictureFile" />
+                                <MCardText>
+                                    <div class="d-flex">
+                                        <div class="mr-auto">
+                                            <MRating Value="item.Rating" Size=20 Dense HalfIncrements Readonly Length=5 Color="yellow darken-3"></MRating>
+                                        </div>
+                                        <div class="black--text">$@item.Price</div>
+                                    </div>
+                                    <div class="black--text mt-2">@item.Name</div>
+                                    <p class="text-truncate">@item.Description</p>
+                                </MCardText>
+                                <MCardActions Class="mt-n6">
+                                    <MButton OnClick="()=>NavigateToOrder(item.Id)" Color="deep-purple" Class="white--text" Style="width:100%">
+                                        <MIcon left>fas fa-shopping-bag</MIcon>
+                                        View in Cart
+                                    </MButton>
+                                </MCardActions>
+                            </MCard>
+                        </MCol>
+
+                        <MCol Cols=12 Class="@(showType==0?"hide":"")" @onclick="()=>NavigateToDetails(item.Id)">
+                            <MList>
+                                <MListItem>
+                                    <MCol Md=3 Sm=12>
+                                        <MImage Contain MaxWidth=325 MaxHeight=230 Src="@item.PictureFile" />
+                                    </MCol>
+                                    <MCol Md=6 Sm=12 Class="border-right-solid">
+                                        <div class="black--text text-h6">@item.Name</div>
+                                        <p> By <span class="deep-purple--text font-weight-bold">@item.Brand</span> </p>
+                                        <MRating Value="item.Rating" Size=20 Dense HalfIncrements Readonly Length=5 Color="yellow darken-3"></MRating>
+                                        <p class="text-description">@item.Description</p>
+                                    </MCol>
+                                    <MCol Md=3 Sm=12 Class="text-center">
+                                        <div class="deep-purple--text text-h5">$@item.Price</div>
+                                        <MButton OnClick="()=>NavigateToOrder(item.Id)" Color="deep-purple" Class="white--text mt-4" Style="width:80%">
+                                            <MIcon left>fas fa-shopping-bag</MIcon>
+                                            View in Cart
+                                        </MButton>
+                                    </MCol>
+                                </MListItem>
+                            </MList>
+
+                        </MCol>
+
+                    </MHover>
+                }
+            </MRow>
+            <MPagination @bind-Value="_shopData.PageIndex" Color="deep-purple" Circle Length=@_shopData.PageCount Class="mt-4"></MPagination>
+        </div>
+    </MCol>
+</MRow>
+
+@code {
+    public override string Name => "Apps-ECommerce-Shop";
+
+    List<MultiRange> _multiRanges = new List<MultiRange>
+    {
+        new(RangeType.All,"All",0),
+        new(RangeType.LessEqual,"<= $10",10),
+        new(RangeType.Range,"$10 - $100",10,100),
+        new(RangeType.Range,"$100 - $500",100,500),
+        new(RangeType.MoreEqual,">=$500",500),
+    };
+
+    double _priceRange = 0;
+
+    List<string> _categories = new List<string>
+    {
+        "Appliances", "Audio", "Cameras & Camcorders","Car Electronics & GPS", "Cell Phones",
+        "Computers & Tablets", "Health, Fitness & Beauty", "Office & School Supplies","TV & Home Theater", "Video Games",
+    };
+
+    List<string> _brands = new List<string>
+    {
+        "Insignia™", "Samsung", "Metra","HP", "Apple",
+        "GE", "Sony", "Incipio","KitchenAid", "Whirlpool",
+    };
+
+    List<(int, string)> _ratings = new List<(int, string)>
+    {
+        (4,"160"), (3,"176"), (2,"291"), (1,"190")
+    };
+
+    StringNumber showType = 0;
+
+    ShopData _shopData = ShopDataService.ShopData;
+
+    protected override void OnInitialized()
+    {
+        _shopData.MultiRange = _multiRanges[0];
+    }
+
+    void NavigateToDetails(Guid id)
+    {
+        Nav.NavigateTo($"apps/ecommerce/details/{id}");
+    }
+
+    void NavigateToOrder(Guid id)
+    {
+        Nav.NavigateTo($"apps/ecommerce/order/{id}");
+    }
+}
