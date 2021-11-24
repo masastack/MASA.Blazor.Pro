@@ -29,8 +29,16 @@
                  TItem="SelectData" TValue="string" TItemValue="string"
                  Items=@_assList ItemText="i => i.Label" ItemValue="i => i.Value">
         </MSelect>
+
         <div class="mx-5">
-            <MDatePicker Dense Outlined Label="Due Date" @bind-Value=SelectItem.DueDate />
+            <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
+                <ActivatorContent Context="menuContext">
+                    <MTextField @bind-Value=SelectItem.DueDate Label="Due Date" Dense Outlined Placeholder="Due Date" @attributes="menuContext.Attrs"></MTextField>
+                </ActivatorContent>
+                <ChildContent>
+                    <MDatePicker @bind-Value=SelectItem.DueDate></MDatePicker>
+                </ChildContent>
+            </MMenu>
         </div>
 
         <MSelect Class="mx-5" Dense Outlined Label="Tag" @bind-Value=SelectItem.Tag

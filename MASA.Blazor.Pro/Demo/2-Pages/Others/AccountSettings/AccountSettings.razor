@@ -52,24 +52,20 @@
                             <p class="mt-2 grey--text text-subtitle-1">Allowed JPG, GIF or PNG. Max size of 800kB</p>
                         </div>
                     </div>
-                    <MRow Class="mt-n2">
-                        <MCol Cols=6 Md=6 Sm=12>
-                            <MSubheader>Username</MSubheader>
-                            <MTextField @bind-Value="_currentUserInfo.UserName" Placeholder="Username" Outlined TValue="string" />
+                    <MRow Class="mt-2">
+                        <MCol Md=6 Sm=12>
+                            <MTextField @bind-Value="_userInfo.UserName" Label="Username" Placeholder="Username" Outlined TValue="string" />
                         </MCol>
-                        <MCol Cols=6 Md=6 Sm=12>
-                            <MSubheader>Name</MSubheader>
-                            <MTextField @bind-Value="_currentUserInfo.Name" Placeholder="Name" Outlined TValue="string" />
+                        <MCol Md=6 Sm=12>
+                            <MTextField @bind-Value="_userInfo.Name" Label="Name" Placeholder="Name" Outlined TValue="string" />
                         </MCol>
                     </MRow>
-                    <MRow Class="mt-n10">
-                        <MCol Cols=6 Md=6 Sm=12>
-                            <MSubheader>E-mail</MSubheader>
-                            <MTextField @bind-Value="_currentUserInfo.Email" Placeholder="E-mai" Outlined TValue="string" />
+                    <MRow Class="mt-n6">
+                        <MCol Md=6 Sm=12>
+                            <MTextField @bind-Value="_userInfo.Email" Label="E-mail" Placeholder="E-mai" Outlined TValue="string" />
                         </MCol>
-                        <MCol Cols=6 Md=6 Sm=12>
-                            <MSubheader>Company</MSubheader>
-                            <MTextField @bind-Value="_currentUserInfo.Company" Placeholder="Company" Outlined TValue="string" />
+                        <MCol Md=6 Sm=12>
+                            <MTextField @bind-Value="_userInfo.Company" Label="Company" Placeholder="Company" Outlined TValue="string" />
                         </MCol>
                     </MRow>
                     <MAlert Color="orange lighten-5" Class="orange--text">
@@ -79,7 +75,7 @@
                     </MAlert>
                     <MItem>
                         <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
-                        <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_currentUserInfo = _defaultUserInfo.Clone()"> Reset </MButton>
+                        <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_userInfo = new UserInfo()"> Reset </MButton>
                     </MItem>
                 </MList>
             </MCardTitle>
@@ -87,18 +83,15 @@
         <MCard Style="@(_current == 1 ?"":"display:none")">
             <MCardText>
                 <MRow>
-                    <MCol Cols=6 Md=6 Sm=12>
-                        <MSubheader>Old Password</MSubheader>
-                        <MTextField @bind-Value="_oldPassword" Outlined Placeholder="Old Password" TValue="string" Type="@(_show1 ? "text" : "password")" AppendIcon="@(_show1 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show1 = !_show1"></MTextField>
+                    <MCol Md=6 Sm=12>
+                        <MTextField @bind-Value="_oldPassword" Label="Old Password" Outlined Placeholder="Old Password" TValue="string" Type="@(_show1 ? "text" : "password")" AppendIcon="@(_show1 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show1 = !_show1"></MTextField>
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=0></MCol>
-                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
-                        <MSubheader>New Password</MSubheader>
-                        <MTextField @bind-Value="_newPassword" Outlined Placeholder="New Password" TValue="string" Type="@(_show2 ? "text" : "password")" AppendIcon="@(_show2 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show2 = !_show2"></MTextField>
+                    <MCol Md=6 Sm=0></MCol>
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_newPassword" Label="New Password" Outlined Placeholder="New Password" TValue="string" Type="@(_show2 ? "text" : "password")" AppendIcon="@(_show2 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show2 = !_show2"></MTextField>
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
-                        <MSubheader>Retype New Password</MSubheader>
-                        <MTextField @bind-Value="_retypeNewPassword" Outlined Placeholder="Retype New Password" TValue="string" Type="@(_show3 ? "text" : "password")" AppendIcon="@(_show3 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show3 = !_show3"></MTextField>
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_retypeNewPassword" Label="Retype New Password" Outlined Placeholder="Retype New Password" TValue="string" Type="@(_show3 ? "text" : "password")" AppendIcon="@(_show3 ? "mdi-eye" : "mdi-eye-off")" OnAppendClick="() => _show3 = !_show3"></MTextField>
                     </MCol>
                 </MRow>
                 <MItem>
@@ -110,102 +103,113 @@
         <MCard Style="@(_current == 2 ?"":"display:none")">
             <MCardText>
                 <MRow>
-                    <MCol Cols=12 Sm=12>
-                        <MSubheader>Bio</MSubheader>
-                        <MTextarea @bind-Value="_information.Bio" Solo Placeholder="Your bio data here..."></MTextarea>
+                    <MCol Sm=12>
+                        <MTextarea @bind-Value="_information.Bio" Label="Bio" Outlined Placeholder="Your bio data here..."></MTextarea>
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
-                        <MSubheader>Birth date</MSubheader>
+                    <MCol Md=6 Sm=12 Class="mt-n6">
                         <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
                             <ActivatorContent>
-                                <MTextField @bind-Value="_information.BirthDate" Outlined Placeholder="Birth date" Readonly @attributes="context.Attrs"></MTextField>
+                                <MTextField @bind-Value="_information.BirthDate" Label="Birth date"  Outlined Placeholder="Birth date" Readonly @attributes="context.Attrs"></MTextField>
                             </ActivatorContent>
                             <ChildContent>
                                 <MDatePicker @bind-Value="_information.BirthDate"></MDatePicker>
                             </ChildContent>
                         </MMenu>
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
-                        <MSubheader>Country</MSubheader>
-                        <MSelect Items=_items ItemValue="u => u.Value" ItemText="u => u.Label" Outlined @bind-Value="_information.Country"></MSelect>
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MSelect Items=_items ItemValue="u => u.Value" Label="Country" ItemText="u => u.Label" Outlined @bind-Value="_information.Country"></MSelect>
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
-                        <MSubheader>Website</MSubheader>
-                        <MTextField @bind-Value="_information.Website" Placeholder="Website address" Outlined TValue="string" />
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_information.Website" Label="Website" Placeholder="Website address" Outlined TValue="string" />
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12 Class="mt-n12">
-                        <MSubheader>Phone</MSubheader>
-                        <MTextField @bind-Value="_information.Phone" Placeholder="Phone Number" Outlined TValue="long?" />
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_information.Phone" Label="Phone" Placeholder="Phone Number" Outlined TValue="long?" />
                     </MCol>
                 </MRow>
                 <MItem>
                     <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
-                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information.Reset()"> Reset </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information=new Information()"> Reset </MButton>
                 </MItem>
             </MCardText>
         </MCard>
         <MCard Style="@(_current == 3 ?"":"display:none")">
             <MCardTitle>
-                <MIcon>fas fa-share-alt-square</MIcon>Social Links
+                <MIcon>fas fa-share-alt-square</MIcon>
+                <span class="ml-3">Social Links</span>
             </MCardTitle>
             <MCardText>
-                <MRow Class="mt-n2">
-                    <MCol Cols=6 Md=6 Sm=12>
-                        <MSubheader>Twitter</MSubheader>
-                        <MTextField @bind-Value="_currentUserInfo.UserName" Placeholder="Username" Outlined TValue="string" />
+                <MRow>
+                    <MCol Md=6 Sm=12>
+                        <MTextField @bind-Value="_social.Twitter" Label="Twitter" Placeholder="Add Link" Outlined TValue="string" />
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12>
-                        <MSubheader>Facebook</MSubheader>
-                        <MTextField @bind-Value="_currentUserInfo.Name" Placeholder="Name" Outlined TValue="string" />
+                    <MCol Md=6 Sm=12>
+                        <MTextField @bind-Value="_social.Facebook" Label="Facebook" Placeholder="Add Link" Outlined TValue="string" />
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12>
-                        <MSubheader>Google+</MSubheader>
-                        <MTextField @bind-Value="_currentUserInfo.Email" Placeholder="E-mai" Outlined TValue="string" />
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_social.Google" Label="Google+" Placeholder="Add Link" Outlined TValue="string" />
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12>
-                        <MSubheader>LinkedIn</MSubheader>
-                        <MTextField @bind-Value="_currentUserInfo.Company" Placeholder="Company" Outlined TValue="string" />
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_social.LinkedIn" Label="LinkedIn" Placeholder="Add Link" Outlined TValue="string" />
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12>
-                        <MSubheader>Instagram</MSubheader>
-                        <MTextField @bind-Value="_currentUserInfo.Email" Placeholder="E-mai" Outlined TValue="string" />
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_social.Instagram" Label="Instagram" Placeholder="Add Link" Outlined TValue="string" />
                     </MCol>
-                    <MCol Cols=6 Md=6 Sm=12>
-                        <MSubheader>Quora</MSubheader>
-                        <MTextField @bind-Value="_currentUserInfo.Company" Placeholder="Company" Outlined TValue="string" />
+                    <MCol Md=6 Sm=12 Class="mt-n6">
+                        <MTextField @bind-Value="_social.Quora" Label="Quora" Placeholder="Add Link" Outlined TValue="string" />
                     </MCol>
                 </MRow>
                 <MDivider></MDivider>
             </MCardText>
             <MCardTitle>
-                <MIcon>far fa-user</MIcon>Profile Connections
+                <MIcon>far fa-user</MIcon>
+                <span class="ml-3">Profile Connections</span>
             </MCardTitle>
             <MCardText>
                 <MRow>
-                    <MCol Md=3 Sm=6></MCol>
-                    <MCol Md=3 Sm=6></MCol>
-                    <MCol Md=3 Sm=6></MCol>
-                    <MCol Md=3 Sm=6></MCol>
+                    <MCol Md=3 Sm=6 Class="text-center">
+                        <div class="text-subtitle-1">Your Twitter</div>
+                        <MAvatar Class="mt-2 mb-2">
+                            <MImage Src="/img/avatar/11-small.png"></MImage>
+                        </MAvatar>
+                        <div class="text-subtitle-1">@@johndoe</div>
+                        <MButton Icon Color="deep-purple">Disconnect</MButton>
+                    </MCol>
+                    <MCol Md=3 Sm=6  Class="text-center">
+                         <div class="text-subtitle-1">Your Facebook</div>
+                          <MButton Color="deep-purple light-5" Outlined Class="white--text mt-5">Connect</MButton>
+                    </MCol>
+                    <MCol Md=3 Sm=6  Class="text-center">
+                        <div class="text-subtitle-1">Your Google</div>
+                        <MAvatar Class="mt-2 mb-2">
+                            <MImage Src="/img/avatar/3-small.png"></MImage>
+                        </MAvatar>
+                        <div class="text-subtitle-1">@@luraweber</div>
+                        <MButton Icon Color="deep-purple">Disconnect</MButton>
+                    </MCol>
+                    <MCol Md=3 Sm=6 Class="text-center">
+                         <div class="text-subtitle-1">Your GitHub</div>
+                         <MButton Color="deep-purple light-5" Outlined Class="white--text mt-5">Connect</MButton>
+                    </MCol>
                 </MRow>
+                <div Class="mt-5">
+                    <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_social=new Social()"> Cancel </MButton>
+                </div>
             </MCardText>
-            <MItem>
-                <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
-                <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information.Reset()"> Cancel </MButton>
-            </MItem>
         </MCard>
         <MCard Style="@(_current == 4 ?"":"display:none")">
             <MCardText>
-                <MCardSubtitle>ACTIVITY</MCardSubtitle>
+                <p class="grey--text">ACTIVITY</p>
                 <MSwitch Label="Email me when someone comments on my article"></MSwitch>
                 <MSwitch Label="Email me when someone answers on my form"></MSwitch>
                 <MSwitch Label="Email me hen someone follows me"></MSwitch>
-                <MCardSubtitle>APPLICATION</MCardSubtitle>
+                <p class="grey--text">APPLICATION</p>
                 <MSwitch Label="News and announcements"></MSwitch>
                 <MSwitch Label="Weekly product updates"></MSwitch>
                 <MSwitch Label="Weekly blog digest"></MSwitch>
                 <MItem>
                     <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
-                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information.Reset()"> Cancel </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black"> Cancel </MButton>
                 </MItem>
             </MCardText>
         </MCard>
@@ -219,14 +223,7 @@
 
     StringNumber _current = 0;
 
-    UserInfo _defaultUserInfo = new UserInfo("johndoe", "John Doe", "granger007@hogward.com", "Crystal Technologies");
-
-    UserInfo _currentUserInfo;
-
-    protected override void OnInitialized()
-    {
-        _currentUserInfo = _defaultUserInfo.Clone();
-    }
+    UserInfo _userInfo = new UserInfo();
 
     bool _show1;
     bool _show2;
@@ -243,11 +240,13 @@
     }
 
     List<Item> _items = new()
-        {
-            new Item("USA", "1"),
-            new Item("India", "2"),
-            new Item("Canada", "3"),
-        };
+    {
+        new Item("USA", "1"),
+        new Item("India", "2"),
+        new Item("Canada", "3"),
+    };
 
     Information _information = new Information();
+
+    Social _social = new Social();
 }

@@ -110,11 +110,6 @@
             "Href": "/pages/authentication/login-v2"
           },
           {
-            "Title": "Not Authorized",
-            "Icon": "fas fa-genderless",
-            "Href": "/pages/authentication/not-authorized"
-          },
-          {
             "Title": "Register v1",
             "Icon": "fas fa-genderless",
             "Href": "/pages/authentication/register-v1"

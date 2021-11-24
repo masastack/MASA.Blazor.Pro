@@ -108,7 +108,7 @@
 </MRow>
 
 @code {
-    List<ViewModel.BasketItem> _basketItems = BasketService.GetUserBasket().Items;
+    List<BasketItem> _basketItems = BasketService.GetUserBasket().Items;
 
     [Parameter]
     public StringNumber Step { get; set; }

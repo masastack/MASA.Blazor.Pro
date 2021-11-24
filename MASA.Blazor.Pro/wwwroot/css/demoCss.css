@@ -36,8 +36,8 @@
     height: 250px;
 }
 
-.full-width{
-    width:100% !important;
+.full-width {
+    width: 100% !important;
 }
 
 .full-height {
@@ -45,7 +45,7 @@
 }
 
 .hide {
-    display:none;
+    display: none;
 }
 
 .text-description {
@@ -61,6 +61,21 @@
 
 .border-right-solid {
     border-right: 1px solid #ebe9f1;
+}
+
+.congratulation-medal {
+    position: absolute;
+    top: 0;
+    right: 37px;
+}
+
+.a {
+    color: #7367f0 !important;
+    text-decoration: none;
+}
+
+.border-top-solid {
+    border-top: 1px solid #d8d6de;
 }
 
 .card-text {

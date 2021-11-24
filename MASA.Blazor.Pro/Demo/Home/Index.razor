@@ -1,0 +1,14 @@
+﻿@page "/"
+
+@code {
+    [Inject]
+    public NavigationManager Navigation { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if(firstRender)
+        {
+            Navigation.NavigateTo(GlobalVariables.DefaultRoute);    
+        }
+    }
+}

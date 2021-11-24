@@ -119,7 +119,7 @@ namespace MASA.Blazor.Pro.Demo
 
     public static class ShopDataService
     {
-        public static ShopData ShopData = new ShopData(new List<ShopDataItem>
+        private static List<ShopDataItem> _shopDataItems = new List<ShopDataItem>
         {
             new("Apple Watch Series 5",339.99,"/img/apps-eCommerce/1.png","Cell Phones",4,"Apple","On Retina display that never sleeps, so it’s easy to see the time and other important information, without raising or tapping the display. New location features, from a built-in compass to current elevation, help users better navigate their day, while international emergency calling1 allows customers to call emergency services directly from Apple Watch in over 150 countries, even without iPhone nearby. Apple Watch Series 5 is available in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.",Guid.Parse("2d1e3440-5134-40c8-836f-f988bfef91c8")),
             new("Apple iPhone 11 (64GB, Black)",669.99,"/img/apps-eCommerce/2.png","Cell Phones",5,"Apple","The Apple iPhone 11 is a great smartphone, which was loaded with a lot of quality features. It comes with a waterproof and dustproof body which is the key attraction of the device. The excellent set of cameras offer excellent images as well as capable of recording crisp videos. However, expandable storage and a fingerprint scanner would have made it a perfect option to go for around this price range."),
@@ -148,6 +148,7 @@ namespace MASA.Blazor.Pro.Demo
             new("Willful Smart Watch for Men Women 2020",29.99,"/img/apps-eCommerce/25.png","Cell Phones",5,"Willful","Are you looking for a smart watch, which can not only easily keep tracking of your steps, calories, heart rate and sleep quality, but also keep you informed of incoming calls."),
             new("Rectangular Polarized, Bluetooth Audio Sunglasses",249,"/img/apps-eCommerce/26.png","Health, Fitness & Beauty",4,"Bose","Redesigned for luxury — Thoughtfully refined and strikingly elegant, the latest Bose sunglasses blend enhanced features and designs for an elevated way to listen."),
             new("VicTsing Wireless Mouse",10.99,"/img/apps-eCommerce/27.png","Computers & Tablets",3,"VicTsing","After thousands of samples of palm data, we designed this ergonomic mouse. The laptop mouse has a streamlined arc and thumb rest to help reduce the stress caused by prolonged use of the laptop mouse."),
-        });
+        };
+        public static ShopData ShopData => new ShopData(_shopDataItems);
     }
 }

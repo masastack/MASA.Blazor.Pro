@@ -1,21 +1,19 @@
 ﻿@inherits LayoutComponentBase
-@inject LanguageProvider LanguageProvider
+@inject I18n LanguageProvider
 @inject GlobalConfigs GlobalConfig
+@inject NavigationManager NavigationManager
 
 <MApp>
 
     <MAppBar App Style="padding-left:256px" Elevation=0 Class="my-4">
         <MToolbar Class="mx-2" Elevation=2>
             <MAppBarNavIcon></MAppBarNavIcon>
-            <MToolbarTitle>@GlobalVariables.Title</MToolbarTitle>
+            @*<MToolbarTitle>@GlobalVariables.Title</MToolbarTitle>*@
             <MSpacer></MSpacer>
 
             <MMenu OffsetY Bottom>
                 <ActivatorContent>
                     <MChip Label Color="white" @attributes="@context.Attrs">
-                        @*                        <MIcon Left>
-                            @currentLanguageOption?.Img
-                            </MIcon>*@
                         @_currentLanguageOption?.Text
                     </MChip>
 
@@ -27,9 +25,6 @@
                             <MListItem Link OnClick="()=> OnLanguageChange(option)">
                                 <MListItemContent>
                                     <MListItemTitle>
-                                        @*     <MIcon Left>
-                                            @option.Img
-                                            </MIcon>*@
                                         @option.Text
                                     </MListItemTitle>
                                 </MListItemContent>
@@ -53,6 +48,7 @@
 
     <MMain Style="padding-left:268px;padding-top:90px;padding-right:12px; background-color:rgb(245, 245, 245)">
         <MContainer Fluid>
+           @* <MBreadcrumbs Linkage Items=GetCurrentBreadcrumbItems()></MBreadcrumbs>*@
             @Body
         </MContainer>
     </MMain>
@@ -67,11 +63,12 @@
     };
 
     LanguageOption? _currentLanguageOption;
+    List<BreadcrumbItem> _breadcrumbItems = new List<BreadcrumbItem>();
 
     protected override void OnInitialized()
     {
         _currentLanguageOption = _languageOptions.FirstOrDefault(o => o.Value == (GlobalConfig.Language ?? LanguageProvider.CurrentLanguage));
-        LanguageProvider.SetLang(_currentLanguageOption?.Value ?? LanguageProvider.CurrentLanguage);
+        LanguageProvider.SetLang(_currentLanguageOption?.Value ?? LanguageProvider.CurrentLanguage);         
     }
 
     void OnLanguageChange(LanguageOption option)
@@ -80,6 +77,14 @@
         LanguageProvider.SetLang(option.Value);
         GlobalConfig.Language = option.Value;
         GlobalConfig.SaveChanges();
+    }
+
+    List<BreadcrumbItem> GetCurrentBreadcrumbItems()
+    {
+        string route = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
+        if (route == "") route = GlobalVariables.DefaultRoute;
+
+        return route.Split("/").Select(v =>new BreadcrumbItem { Text=v,Href=v } ).ToList();
     }
 
     class LanguageOption

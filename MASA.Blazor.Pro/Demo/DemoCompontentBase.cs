@@ -1,15 +1,14 @@
-﻿using MASA.Blazor.Pro.Global;
+﻿using BlazorComponent.Components;
 using Microsoft.AspNetCore.Components;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MASA.Blazor.Pro.Demo
 {
     public abstract class DemoCompontentBase : ComponentBase
     {
-        private LanguageProvider? _languageProvider;
+        private I18n? _languageProvider;
 
         [Inject]
-        public LanguageProvider LanguageProvider
+        public I18n LanguageProvider
         {
             get
             {
@@ -21,49 +20,15 @@ namespace MASA.Blazor.Pro.Demo
             }
         }
 
-        private GlobalConfigs? _globalConfig;
-
-        [Inject]
-        public GlobalConfigs GlobalConfig
+        protected override void OnParametersSet()
         {
-            get
-            {
-                return _globalConfig ?? throw new Exception("please Inject GlobalConfig!");
-            }
-            set
-            {
-                _globalConfig = value;
-            }
+            base.OnParametersSet();
         }
 
-        //private GloabEvent? _gloabEvent;
-
-        //[Inject]
-        //[DisallowNull]
-        //public GloabEvent GloabEvent
-        //{
-        //    get
-        //    {
-        //        return _gloabEvent ?? throw new Exception("please Inject GloabEvent!");
-        //    }
-        //    set
-        //    {
-        //        _gloabEvent = value;
-        //    }
-        //}
-
-        //private void InvokeStateHasChanged()
-        //{
-        //    InvokeAsync(() =>
-        //    {
-        //        StateHasChanged();
-        //    });
-        //}
-
-        //protected override void OnInitialized()
-        //{
-        //    GloabEvent.AddEvent(InvokeStateHasChanged);
-        //}
+        protected override bool ShouldRender()
+        {
+            return base.ShouldRender();
+        }
 
         public abstract string Name { get; }
 

@@ -1,5 +1,4 @@
-﻿namespace MASA.Blazor.Pro.Demo._1_Apps.ECommerce.Order.ViewModel;
-
+﻿namespace MASA.Blazor.Pro.Demo;
 public class AddressType
 {
     public string Label { get; set; }

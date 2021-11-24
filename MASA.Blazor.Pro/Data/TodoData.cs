@@ -21,7 +21,7 @@ namespace MASA.Blazor.Pro.Data
 
         public int Avatar { get; set; }
 
-        public DateTime DueDate { get; set; }
+        public DateOnly DueDate { get; set; }
 
         public string? Tag { get; set; }
 

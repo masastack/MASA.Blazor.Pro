@@ -2,26 +2,15 @@
 {
     public class UserInfo
     {
-        public UserInfo(string userName, string name, string email, string company)
-        {
-            UserName = userName;
-            Name = name;
-            Email = email;
-            Company = company;
-        }
 
-        public string UserName { get; set; }
+        public string UserName { get; set; } = "johndoe";
 
-        public string Name { get; set; }
+        public string Name { get; set; } = "John Doe";
 
-        public string Email { get; set; }
+        public string Email { get; set; } = "granger007@hogward.com";
 
-        public string Company { get; set; }
+        public string Company { get; set; } = "Crystal Technologies";
 
-        public UserInfo Clone()
-        {
-            return (UserInfo)base.MemberwiseClone();
-        }
     }
 
     public class Item
@@ -37,37 +26,29 @@
 
     public class Information
     {
-        public Information()
-        {
-            Bio = "";
-            Website = "";
-        }
-        public Information(string bio, DateOnly birthDate, string country, string website, long? phone)
-        {
-            Bio = bio;
-            BirthDate = birthDate;
-            Country = country;
-            Website = website;
-            Phone = phone;
-        }
-
-        public string Bio { get; set; }
+        public string Bio { get; set; } = "";
 
         public DateOnly BirthDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
         public string Country { get; set; } = "1";
 
-        public string Website { get; set; }
+        public string Website { get; set; } = "";
 
         public long? Phone { get; set; } = 6562542568;
+    }
 
-        public void Reset()
-        {
-            Bio = "";
-            Website = "";
-            BirthDate= DateOnly.FromDateTime(DateTime.Now);
-            Country = "1";
-            Phone = 6562542568;
-        }
+    public class Social
+    {
+        public string Twitter { get; set; } = "https://www.twitter.com";
+
+        public string Facebook { get; set; } = "";
+
+        public string Google { get; set; } = "";
+
+        public string LinkedIn { get; set; } = "https://www.linkedin.com";
+
+        public string Instagram { get; set; } = "";
+
+        public string Quora { get; set; } = "";
     }
 }

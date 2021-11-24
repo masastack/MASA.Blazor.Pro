@@ -1,4 +1,4 @@
-﻿using MASA.Blazor.Pro.Demo._1_Apps.ECommerce.Order.ViewModel;
+﻿using MASA.Blazor.Pro.Demo;
 
 namespace MASA.Blazor.Pro.Data;
 
