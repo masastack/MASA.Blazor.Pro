@@ -1,7 +1,8 @@
-﻿@page "/apps/ecommerce/details/{Id}"
+﻿@page "/apps/ecommerce/details"
+@page "/apps/ecommerce/details/{Id}"
 @inherits DemoCompontentBase
 
-<div class="d-inline-flex d-flex align-center">
+@*<div class="d-inline-flex d-flex align-center">
     <h2 class="auto-width">Product Details</h2>
     <MDivider Vertical class="ml-4 mt-3" style="height:40px;" />
     <MBreadcrumbs Large class="auto-width" TItem="BreadcrumbItem">
@@ -12,7 +13,7 @@
         <MBreadcrumbsItem Text="Shop"></MBreadcrumbsItem>
         <MBreadcrumbsItem Text="Product Details"></MBreadcrumbsItem>
     </MBreadcrumbs>
-</div>
+</div>*@
 
 <MCard>
     <MCardText>
@@ -25,7 +26,7 @@
                 <p>By<span class="ml-2 deep-purple--text text--accent-2 font-weight-bold">@_shopDataItem.Brand</span></p>
                 <div class="d-flex flex-wrap d-inline-flex">
                     <h4 class="mr-3 mb-1 deep-purple--text text--accent-2" style="font-size: 1.286rem;line-height: 1.82rem;">@_shopDataItem.Price</h4>
-                    <MDivider Vertical class="mr-2"/>
+                    <MDivider Vertical class="mr-2" />
                     <MRating Readonly Value="_shopDataItem.Rating" BackgroundColor="orange lighten-3" Color="orange" Dense></MRating>
                 </div>
                 <p style="line-height: 1.5rem;">
@@ -128,7 +129,7 @@
 
     protected override Task OnInitializedAsync()
     {
-        _shopDataItem = ShopDataService.ShopData.GetDetailItem(Id);
+        _shopDataItem = ShopDataService.ShopData.GetDetailItem(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8");
         return base.OnInitializedAsync();
     }
 }

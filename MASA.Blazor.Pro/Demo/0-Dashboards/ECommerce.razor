@@ -1,4 +1,4 @@
-﻿@page "/dashboard/ecommerce/"
+﻿@page "/dashboards/ecommerce"
 @inherits DemoCompontentBase
 @using BlazorComponent
 
@@ -80,36 +80,38 @@
     <MCol Cols=12 Lg=4>
         <MRow>
             <MCol Cols=12 Md=3 Lg=6 Xl=6 Sm=6>
-                <MCard Style="height:100%;">
+                <MCard>
                     <MCardText>
                         <span style="font-size:16px">Orders</span>
                         <p class="font-weight-black text-h6"> 2,76k </p>
+                        <MECharts Height=200 Class="mb-n16 mt-n15 max-width" Option=_chart1></MECharts>
                     </MCardText>
                 </MCard>
             </MCol>
             <MCol Cols=12 Md=3 Lg=6 Xl=6 Sm=6>
-                <MCard Style="height:100%;">
+                <MCard>
                     <MCardText>
                         <span style="font-size:16px">Profit</span>
                         <p class="font-weight-black text-h6"> 6,24k </p>
+                        <MECharts Height=200 Class="mb-n16 mt-n15 max-width" Option=_chart2></MECharts>
                     </MCardText>
                 </MCard>
             </MCol>
             <MCol Cols=12 Md=6 Lg=12>
-                <MCard Style="min-height:240px">
+                <MCard>
                     <MCardText>
                         <MRow>
                             <MCol>
-                                <div class="text-h5 mb-3">Earnings</div>
+                                <div class="text-h6 mb-3">Earnings</div>
                                 <div> This Month </div>
                                 <div class="font-weight-black mb-3">  $4055.56  </div>
-                                <p>
+                                <p class="grey--text">
                                     <span class="font-weight-bold">68.2%</span>
                                     <span> more earnings than last month.</span>
                                 </p>
                             </MCol>
                             <MCol>
-
+                                <MECharts Width=160 Height=160 Class="ml-4" Option=_chart3></MECharts>
                             </MCol>
                         </MRow>
                     </MCardText>
@@ -118,15 +120,14 @@
         </MRow>
     </MCol>
     <MCol Cols=12 Lg=8>
-        <MCard Style="height:100%;">
+        <MCard Class="max-height">
             <MCardText>
                 <MRow>
-                    <MCol Md=8 style="height:90%;border-right:1px solid #ebe9f1">
-
+                    <MCol Md=8 style="border-right:1px solid #ebe9f1">
+                        <MECharts Class="max-width" Height=350 Option=_chart4></MECharts>
                     </MCol>
-                    <MCol Align=AlignTypes.Center Md=4 style="height:90%;">
-                        <MSelect Dense Solo Class="ma-auto" Style="width:100px;" Value=2020 Items="_items" ItemText="u => u.ToString()" ItemValue="u=>u" TItem="int" TItemValue="int" TValue="int">
-
+                    <MCol Align=AlignTypes.Center Md=4>
+                        <MSelect Dense Solo Class="ma-auto" BackgroundColor="deep-purple lighten-5" Style="width:100px;" @bind-Value=_currentYear Items="_items" ItemText="u => u.ToString()" ItemValue="u=>u" TItem="int" TItemValue="int" TValue="int">
                         </MSelect>
 
                         <div class="text-h5 font-weight-black text-center"> $25,852 </div>
@@ -134,9 +135,10 @@
                             <span class="font-weight-bold">Budget:</span>
                             <span class="font-weight-thin">56,800 </span>
                         </div>
-                        <div style="min-height: 80px;" class="my-7">
+                        <div class="my-n2">
+                            <MECharts Class="max-width" Height=200 Option=_chart5></MECharts>
                         </div>
-                        <MCardActions>
+                        <MCardActions>                           
                             <MButton Class="deep-purple text-center white--text ma-auto">
                                 Increase Budget
                             </MButton>
@@ -150,7 +152,7 @@
 
 <MRow>
     <MCol Cols=12 Lg=8>
-        <MCard>
+        <MCard Class="max-height">
             <MDataTable Headers="_headers"
                         Items="_companyDatas"
                         HideDefaultFooter>
@@ -159,16 +161,14 @@
                     {
                         case nameof(CompanyData.CompanyName):
                             <MContainer>
-                                <MRow>
-                                    <MCol Lg=2 Align=AlignTypes.Center>
-                                        <MImage Src="@context.Item.CompanyIcon"></MImage>
-                                    </MCol>
-                                    <MCol Lg=10>
-                                        <span class="font-weight-medium text-start">@context.Item.CompanyName</span>
+                                <div class="d-flex">
+                                    <MImage Height=22 MaxWidth=22 Class="mt-3" Contain src="@context.Item.CompanyIcon"></MImage>
+                                    <div class="ml-6">
+                                        <span class="font-weight-medium">@context.Item.CompanyName</span>
                                         <br />
-                                        <span class="grey--text text-end">@context.Item.CompanyEmail</span>
-                                    </MCol>
-                                </MRow>
+                                        <span class="grey--text">@context.Item.CompanyEmail</span>
+                                    </div>
+                                </div>
                             </MContainer>
                             break;
                         case nameof(CompanyData.Category):
@@ -223,7 +223,7 @@
         </MCard>
     </MCol>
     <MCol Cols=12 Md=6 Xl=4 Lg=4>
-        <MCard Style="height:100%">
+        <MCard Class="max-height">
             <MImage Class="deep-purple lighten-5" Height=185 Src="/img/eCommerce/email.svg"></MImage>
             <MCardText>
                 <div class="d-flex mb-7">
@@ -338,7 +338,7 @@
         </MCard>
     </MCol>
     <MCol Cols=12 Md=6 Xl=4 Lg=4>
-        <MCard Style="height:100%">
+        <MCard Class="max-height">
             <MListItem>
                 <MListItemContent>
                     <MCardTitle>
@@ -448,7 +448,7 @@
         </MCard>
     </MCol>
     <MCol Cols=12 Md=6 Xl=4 Lg=4>
-        <MCard Style="height:100%">
+        <MCard Class="max-height">
             <MListItem>
                 <MListItemContent>
                     <MCardTitle>
@@ -483,7 +483,7 @@
         </MCard>
     </MCol>
     <MCol Cols=12 Md=6 Xl=4 Lg=4>
-        <MCard Style="height:100%">
+        <MCard Class="max-height">
             <MListItem>
                 <MListItemContent>
                     <MCardTitle>
@@ -609,7 +609,295 @@
 @code {
     public override string Name => nameof(ECommerce);
 
+    private dynamic _chart1 = new
+    {
+        Tooltip = new
+        {
+            Trigger = "axis",
+            axisPointer = new
+            {
+                Type = "shadow"
+            }
+        },
+        XAxis = new
+        {
+            Data = new[] { "", "", "", "", "" },
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        YAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        Series = new[]
+                {
+            new
+            {
+                Type= "bar",
+                Data= new []{ 2, 6, 4, 2, 4 },
+                Color="#FF9800"
+            }
+        }
+    };
+
+    private dynamic _chart2 = new
+    {
+        Tooltip = new
+        {
+            Trigger = "axis"
+        },
+        XAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+        },
+        YAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        Series = new[]
+        {
+            new
+            {
+                name="series-1",
+                Type= "line",
+                Data= new int[][]{ new[] { 0,0},new[] { 1,2},new[] { 2,1},new[] { 3,3},new[] { 4,2},new[] { 5,4}},
+                Color="#00BCD4"
+            }
+        }
+    };
+
+    private dynamic _chart3 = new
+    {
+        Tooltip = new
+        {
+            Trigger = "item",
+        },
+        Series=new []
+        {
+           new 
+           {
+               Type="pie",
+               Radius=new []{"50%","70%"},
+               Label=new
+               {
+                   Show=false,
+                   Position="center",
+                   Emphasis=new
+                   {
+                       Show=true
+                   },
+                   Formatter= "{b|{d}%} \n {b}",
+                   Rich=new
+                   {
+                       b=new {Color="#4C5058",FontSize=14,fontWeight="bold",lineHeight=20},
+                   }
+               },
+               KableLine=new
+               {
+                   Show=false
+               },
+               Data=new[]
+               {
+                   new { value=31,Name="Product"},
+                   new { value=16,Name="App"},
+                   new { value=53,Name="Service"},
+               }
+           }           
+        }
+    };
+
+    private dynamic _chart4 = new
+    {
+        Title = new
+        {
+            Text = "Revenue Report"
+        },
+        Tooltip = new
+        {
+            Trigger = "axis",
+            axisPointer = new
+            {
+                Type = "shadow"
+            }
+        },
+        Legend = new
+        {
+            Data=new[] {"Earning", "Expense" },
+            Right="1px"
+        },
+        XAxis = new
+        {
+            Data = new[] { "Jan", "Feb", "Mar", "Apr", "May","Jun","Aug","Sep" },      
+            axisLine = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        YAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        Series = new[]
+        {
+            new
+            {
+                Name="Earning",
+                Type= "bar",
+                Data= new []{ 100, 180, 300, 250, 100,50,200,140,80 },
+                Color="#673AB7",
+                Stack="x",
+                BarWidth="15"
+            },
+            new
+            {
+                Name="Expense",
+                Type= "bar",
+                Data= new []{ -180, -100, -70, -250, -130,-100,-90,-120 },
+                Color="#FF9800",
+                Stack="x",
+                BarWidth="15"
+            }
+        }
+    };
+
+    private dynamic _chart5 = new
+    {
+        XAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            }
+        },
+        YAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        Series = new[]
+        {
+            new
+            {
+                Type= "line",
+                Data= new double[][]{ new[] { 0.0,1.5},new[] { 0.3,1.0},new[] { 0.6,1.7},new[] { 0.9,1.1},new[] { 1.2,1.4},new[] { 1.5,0.7},new[] { 1.8,2.0},new[] { 2.1,1.55},new[] { 2.4,1.45},new[] { 2.7,1.0},new[] { 3.0,1.65}},
+                Color="#673AB7",
+                Smooth=true,
+                Symbol="none"
+            },
+            new
+            {
+                Type= "line",
+                Data= new double[][]{ new[] { 0.0,0.0},new[] { 0.3,-0.5},new[] { 0.6,0.2},new[] { 0.9,-0.3},new[] { 1.2,-0.1},new[] { 1.5,-0.8},new[] { 1.8,-0.1},new[] { 2.1,-0.35},new[] { 2.4,-0.15},new[] { 2.7,-0.05},new[] { 3.0,-0.15}},
+                Color="#ECEFF1",
+                Smooth=true,
+                Symbol="none"
+            }
+        }
+    };
+
+
     int[] _items = new[] { 2020, 2019, 2018 };
+    int _currentYear = 2020;
 
     List<DataTableHeader<CompanyData>> _headers = new List<DataTableHeader<CompanyData>>
     {

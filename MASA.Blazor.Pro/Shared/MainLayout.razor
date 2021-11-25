@@ -1,9 +1,11 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.Rendering
+@inherits LayoutComponentBase
 @inject I18n LanguageProvider
 @inject GlobalConfigs GlobalConfig
 @inject NavigationManager NavigationManager
+@inject List<NavCategory> NavCategorys
 
-<MApp>
+<MApp Dark>
 
     <MAppBar App Style="padding-left:256px" Elevation=0 Class="my-4">
         <MToolbar Class="mx-2" Elevation=2>
@@ -46,9 +48,9 @@
         <Navigation/>
     </MNavigationDrawer>
 
-    <MMain Style="padding-left:268px;padding-top:90px;padding-right:12px; background-color:rgb(245, 245, 245)">
-        <MContainer Fluid>
-           @* <MBreadcrumbs Linkage Items=GetCurrentBreadcrumbItems()></MBreadcrumbs>*@
+    <MMain Style="padding-left:268px;padding-top:90px;padding-right:12px; background-color:rgb(245, 245, 245)">       
+        <MContainer Fluid>     
+            @RenderCurrentBreadcrumbItem
             @Body
         </MContainer>
     </MMain>
@@ -64,11 +66,23 @@
 
     LanguageOption? _currentLanguageOption;
     List<BreadcrumbItem> _breadcrumbItems = new List<BreadcrumbItem>();
+    List<string> allNavHrefs = new List<string>();
 
     protected override void OnInitialized()
     {
         _currentLanguageOption = _languageOptions.FirstOrDefault(o => o.Value == (GlobalConfig.Language ?? LanguageProvider.CurrentLanguage));
-        LanguageProvider.SetLang(_currentLanguageOption?.Value ?? LanguageProvider.CurrentLanguage);         
+        LanguageProvider.SetLang(_currentLanguageOption?.Value ?? LanguageProvider.CurrentLanguage);
+        foreach(var navCategory in NavCategorys)
+        {
+            foreach(var nav in navCategory.Navs)
+            {
+                if (nav.Childs is not null)
+                {
+                    allNavHrefs.AddRange(nav.Childs.Select(nc=>nc.Href.TrimStart('/')));
+                }
+                else allNavHrefs.Add(nav.Href.TrimStart('/'));
+            }
+        }
     }
 
     void OnLanguageChange(LanguageOption option)
@@ -79,12 +93,37 @@
         GlobalConfig.SaveChanges();
     }
 
-    List<BreadcrumbItem> GetCurrentBreadcrumbItems()
+    void RenderCurrentBreadcrumbItem(RenderTreeBuilder __builder)
     {
         string route = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
         if (route == "") route = GlobalVariables.DefaultRoute;
 
-        return route.Split("/").Select(v =>new BreadcrumbItem { Text=v,Href=v } ).ToList();
+        var currentNavHref = allNavHrefs.FirstOrDefault(n=>route.Contains(n));
+        if(currentNavHref is not null)
+        {
+            var items = new List<BreadcrumbItem>();
+            var steps = currentNavHref.Split("/");
+            foreach (var step in steps)
+            {
+                var text = LanguageProvider.LanguageMap["Navigation"].FirstOrDefault(l => l.Key.ToLower() == step.ToLower().Replace("-", " ")).Value ?? step;
+                items.Add(new BreadcrumbItem { Text=text,Href="javascript:void(0);"});
+            }
+            items.Last().Href = currentNavHref;
+
+            <div class="d-flex mb-1">
+                <div class="text-h5 black--text pt-2">
+                    @items.Last().Text                 
+                </div>
+                <MDivider Vertical class="ml-4 mt-3" style="height:30px;" />
+                <MIcon Small Class="ml-4" Color="deep-purple" OnClick="()=>NavigationManager.NavigateTo(GlobalVariables.DefaultRoute)">fas fa-home</MIcon>
+                <MIcon Small class="ml-2">mdi-chevron-right</MIcon>
+                <MBreadcrumbs Linkage Items=items Class="ml-n3">
+                     <DividerContent>
+                        <MIcon>mdi-chevron-right</MIcon>
+                    </DividerContent>
+                </MBreadcrumbs>
+            </div>          
+        }
     }
 
     class LanguageOption

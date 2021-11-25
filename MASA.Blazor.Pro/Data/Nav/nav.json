@@ -5,12 +5,12 @@
       {
         "Title": "eCommerce",
         "Icon": "fas fa-chart-line",
-        "Href": "/dashboard/ecommerce"
+        "Href": "/dashboards/ecommerce"
       },
       {
         "Title": "Analytics",
         "Icon": "fas fa-chart-bar",
-        "Href": "/dashboard/analytics"
+        "Href": "/dashboards/analytics"
       }
     ]
   },
@@ -29,7 +29,7 @@
           {
             "Title": "Details",
             "Icon": "fas fa-genderless",
-            "Href": "/apps/ecommerce/Details/2d1e3440-5134-40c8-836f-f988bfef91c8"
+            "Href": "/apps/ecommerce/details"
           },
           {
             "Title": "Order",

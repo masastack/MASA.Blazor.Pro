@@ -59,11 +59,13 @@ namespace MASA.Blazor.Pro.Demo
             return GetFilterDatas().Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
         }
 
+        public int CurrentCount => GetFilterDatas().Count();
+
         public int PageIndex { get; set; } = 1;
 
         public int PageSize { get; set; } = 9;
 
-        public int PageCount => (int)Math.Ceiling(GetFilterDatas().Count() / (double)PageSize);
+        public int PageCount => (int)Math.Ceiling(CurrentCount / (double)PageSize);
 
         public MultiRange? MultiRange { get; set; }
 

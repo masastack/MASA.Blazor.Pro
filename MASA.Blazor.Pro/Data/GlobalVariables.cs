@@ -4,5 +4,5 @@ public static class GlobalVariables
 {
     public static string Title { get; set; } = "Title";
 
-    public static string DefaultRoute = "/dashboard/ecommerce";
+    public static string DefaultRoute = "/dashboards/ecommerce";    
 }

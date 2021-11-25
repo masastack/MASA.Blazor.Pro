@@ -50,7 +50,7 @@
     </MCol>
     <MCol Md="10" Sm=12>
         <div class="d-flex">
-            <p class="black--text mr-auto">27 results found</p>
+            <p class="black--text mr-auto">@_shopData.CurrentCount results found</p>
             <div>
                 <MMenu OffsetY>
                     <ActivatorContent>
@@ -68,7 +68,7 @@
                         </MList>
                     </ChildContent>
                 </MMenu>
-                <MButtonGroup @bind-Value="showType" Color="deep-purple" Class="max-height ml-2">
+                <MButtonGroup @bind-Value="showType" Mandatory Color="deep-purple" Class="max-height ml-2">
                     <MButton Value=0 Outlined>
                         <MIcon>fas fa-th-large</MIcon>
                     </MButton>
