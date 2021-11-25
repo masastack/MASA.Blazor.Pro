@@ -1,9 +1,8 @@
-﻿namespace MASA.Blazor.Pro.Data
-{
-    public static class GlobalVariables
-    {
-        public static string Title { get; set; } = "Title";
+﻿namespace MASA.Blazor.Pro.Data;
 
-        public static string DefaultRoute = "/dashboard/ecommerce";
-    }
+public static class GlobalVariables
+{
+    public static string Title { get; set; } = "Title";
+
+    public static string DefaultRoute = "/dashboard/ecommerce";
 }

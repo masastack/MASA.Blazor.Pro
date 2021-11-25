@@ -1,18 +1,18 @@
 ﻿@page "/apps/ecommerce/order"
 @inherits DemoCompontentBase
 
-<MTabs @bind-Value="_curTab" SliderColor="transparent">
+<MTabs @bind-Value="_curTab" SliderColor="transparent" class="pro-nav">
     <MTab class="text-capitalize">
         <MIcon>mdi-cart</MIcon>
-        Card
+        <span class="pro-nav-title">Card</span>
     </MTab>
     <MTab class="text-capitalize">
         <MIcon>mdi-home</MIcon>
-        Address
+        <span class="pro-nav-title">Address</span>
     </MTab>
-    <MTab class="text-capitalize">
+    <MTab class="text-capitalize" Disabled>
         <MIcon>mdi-credit-card-outline</MIcon>
-        Payment
+        <span class="pro-nav-title">Payment</span>
     </MTab>
 </MTabs>
 

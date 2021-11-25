@@ -105,7 +105,7 @@
                                     <p class="text-truncate">@item.Description</p>
                                 </MCardText>
                                 <MCardActions Class="mt-n6">
-                                    <MButton OnClick="()=>NavigateToOrder(item.Id)" Color="deep-purple" Class="white--text" Style="width:100%">
+                                    <MButton OnClick="()=>NavigateToOrder()" Color="deep-purple" Class="white--text" Style="width:100%">
                                         <MIcon left>fas fa-shopping-bag</MIcon>
                                         View in Cart
                                     </MButton>
@@ -127,7 +127,7 @@
                                     </MCol>
                                     <MCol Md=3 Sm=12 Class="text-center">
                                         <div class="deep-purple--text text-h5">$@item.Price</div>
-                                        <MButton OnClick="()=>NavigateToOrder(item.Id)" Color="deep-purple" Class="white--text mt-4" Style="width:80%">
+                                        <MButton OnClick="()=>NavigateToOrder()" Color="deep-purple" Class="white--text mt-4" Style="width:80%">
                                             <MIcon left>fas fa-shopping-bag</MIcon>
                                             View in Cart
                                         </MButton>
@@ -190,8 +190,8 @@
         Nav.NavigateTo($"apps/ecommerce/details/{id}");
     }
 
-    void NavigateToOrder(Guid id)
+    void NavigateToOrder()
     {
-        Nav.NavigateTo($"apps/ecommerce/order/{id}");
+        Nav.NavigateTo($"apps/ecommerce/order");
     }
 }

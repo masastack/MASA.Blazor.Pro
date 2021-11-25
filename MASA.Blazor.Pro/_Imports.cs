@@ -1,1 +1,2 @@
-﻿global using System.ComponentModel.DataAnnotations;
+﻿global using MASA.Blazor.Pro.Demo;
+global using System.ComponentModel.DataAnnotations;

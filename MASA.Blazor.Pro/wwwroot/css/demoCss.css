@@ -86,3 +86,31 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+
+.pro-nav > .m-tabs-bar {
+    background-color: transparent !important;
+}
+
+.pro-nav .m-tabs-bar__content .m-tab:not(:first-child) {
+    padding-left:0px;
+}
+
+.pro-nav .m-tabs-bar__content .m-tab span{
+    margin-left:10px;
+}
+
+.pro-nav .m-tabs-bar__content .m-tab:not(:last-child) .pro-nav-title::after {
+    content: ">";
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 1.14rem;
+    margin-left: 10px;
+}
+
+.pro-nav .m-tab:before {
+    background-color: transparent;
+}
