@@ -1,0 +1,244 @@
+﻿@page "/apps/user/edit"
+@page "/apps/user/edit/{Id}"
+@inherits DemoCompontentBase
+@using MASA.Blazor.Pro.Data.User
+
+<MCard>
+    <MCardText>
+        <MTabs @bind-Value="tab" SliderColor="white" ActiveClass="deep-purple white--text elevation-4">
+            <MTab Style="height:40px" Value="@("Account")">
+                <MIcon Small>far fa-user</MIcon>
+                <span class="ml-2">Account</span>
+            </MTab>
+            <MTab Style="height:40px" Class="ml-2" Value="@("Information")">
+                <MIcon Small>fas fa-info-circle</MIcon>
+                <span class="ml-2">Information</span>
+            </MTab>
+            <MTab Style="height:40px" Class="ml-2" Value="@("Social")">
+                <MIcon Small>fas fa-share-alt-square</MIcon>
+                <span class="ml-2">Social</span>
+            </MTab>
+        </MTabs>
+        <MTabsItems @bind-Value="tab" Class="mt-4">
+
+            <MTabItem Value="@("Account")">
+                <div class="d-flex">
+                    <MAvatar Size=90 Tile>
+                        <MImage Src="@_userData.HeadImg"></MImage>
+                    </MAvatar>
+                    <div Class="ml-6">
+                        <h2 class="mb-4">@_userData.FullName</h2>
+                        <MButton Color="deep-purple white--text"> Update </MButton>
+                        <MButton Outlined Class="ml-2 grey--text"> Remove </MButton>
+                    </div>
+                </div>
+                <MRow Class="mt-4">
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.UserName" Color="deep-purple" Label="UserName" Dense Outlined TValue="string" Class="" />
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.FullName" Color="deep-purple" Label="FullName" Dense Outlined TValue="string" Class="" />
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Email" Color="deep-purple" Label="Email" Dense Outlined TValue="string" Class="" />
+                    </MCol>
+                </MRow>
+                <MRow Class="mt-n6">
+                    <MCol Md=4 Sm=12>
+                        <MSelect @bind-Value="_userData.Status"
+                                 Color="deep-purple"
+                                 Outlined
+                                 Dense
+                                 Items="@UserService.Status"
+                                 ItemText="u => u"
+                                 ItemValue="u => u"
+                                 Label="Status">
+                        </MSelect>
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MSelect @bind-Value="_userData.Role"
+                                 Color="deep-purple"
+                                 Outlined
+                                 Dense
+                                 Items="@UserService.Roles"
+                                 ItemText="u => u"
+                                 ItemValue="u => u"
+                                 Label="Role">
+                        </MSelect>
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Company" Color="deep-purple" Label="Company" Dense Outlined TValue="string" Class="" />
+                    </MCol>
+                </MRow>
+
+                <div class="ml-2">
+                    <MIcon Small Class="mt-n1">fas fa-lock</MIcon>
+                    <span class="ml-2 text-h6">Permission</span>
+                </div>
+                <MDataTable Stripe HideDefaultFooter Headers="_headers" Items="_userData.Permissions" ItemKey="r=>r.Module" Class="border-solid elevation-1">
+                    <ItemColContent>
+                        @switch (context.Header.Value)
+                        {
+                            case nameof(Permission.Module):
+                                @context.Value
+                                break;
+                            case nameof(Permission.Read):
+                                <MCheckbox Color="deep-purple" @bind-Value="context.Item.Read"></MCheckbox>
+                                break;
+                            case nameof(Permission.Write):
+                                <MCheckbox Color="deep-purple" @bind-Value="context.Item.Write"></MCheckbox>
+                                break;
+                            case nameof(Permission.Create):
+                                <MCheckbox Color="deep-purple" @bind-Value="context.Item.Create"></MCheckbox>
+                                break;
+                            case nameof(Permission.Delete):
+                                <MCheckbox Color="deep-purple" @bind-Value="context.Item.Delete"></MCheckbox>
+                                break;
+                            default:
+                                @context.Value
+                                break;
+                        }
+                    </ItemColContent>
+                </MDataTable>
+            </MTabItem>
+
+            <MTabItem Value="@("Information")">
+                <div>
+                    <MIcon Small Class="mt-n1">far fa-user</MIcon>
+                    <span class="ml-2 text-h6">Personal Information</span>
+                </div>
+
+                <MRow Class="mt-4">
+                    <MCol Md=4 Sm=12>
+                        <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
+                            <ActivatorContent Context="menuContext">
+                                <MTextField @bind-Value=_userData.BirthDate Label="BirthDate" Color="deep-purple" Dense Outlined @attributes="menuContext.Attrs"></MTextField>
+                            </ActivatorContent>
+                            <ChildContent>
+                                <MDatePicker Color="deep-purple" @bind-Value=_userData.BirthDate></MDatePicker>
+                            </ChildContent>
+                        </MMenu>
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Mobile" Label="Mobile" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Website" Label="Website" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                    </MCol>
+                </MRow>
+
+                <MRow Class="mt-n6">
+                    <MCol Md=4 Sm=12>
+                        <MSelect @bind-Value="_userData.Language"
+                                 Color="deep-purple"
+                                 Outlined
+                                 Dense
+                                 Items="@UserService.Languages"
+                                 ItemText="u => u"
+                                 ItemValue="u => u"
+                                 Label="Language">
+                        </MSelect>
+                    </MCol>
+                    <MCol Md=4 Sm=12 Class="mt-n4">
+                        <span>Gender</span>
+                        <MRadioGroup @bind-Value="_userData.Gender" Color="deep-purple" Row Class="mt-1">
+                            <MRadio Color="deep-purple" Label="Male" Value="@("Male")"></MRadio>
+                            <MRadio Color="deep-purple" Label="Female" Value="@("Female")"></MRadio>
+                        </MRadioGroup>
+                    </MCol>
+                    <MCol Md=4 Sm=12 Class="mt-n5">
+                        <span class="mr-2">Contact Options</span>
+                        <div class="d-flex mt-n2">
+                            <MCheckbox Label="Email" HideDetails="true" Color="deep-purple"></MCheckbox>
+                            <MCheckbox Label="Message" HideDetails="true" Color="deep-purple" Class="ml-2"></MCheckbox>
+                            <MCheckbox Label="Phone" HideDetails="true" Color="deep-purple" Class="ml-2"></MCheckbox>
+                        </div>
+
+                    </MCol>
+                </MRow>
+
+                <div>
+                    <MIcon Small Class="mt-n1">fas fa-map-marker-alt</MIcon>
+                    <span class="ml-2 text-h6">Address</span>
+                    <MRow>
+                        <MCol Md=4 Sm=12>
+                            <MTextField @bind-Value="_userData.Address1" Label="Address Line 1" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                        </MCol>
+                        <MCol Md=4 Sm=12>
+                            <MTextField @bind-Value="_userData.Address2" Label="Address Line 2" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                        </MCol>
+                        <MCol Md=4 Sm=12>
+                            <MTextField @bind-Value="_userData.Address3" Label="Address Line 3" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                        </MCol>
+                    </MRow>
+                    <MRow Class="mt-n6">
+                        <MCol Md=4 Sm=12>
+                            <MTextField @bind-Value="_userData.City" Label="City" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                        </MCol>
+                        <MCol Md=4 Sm=12>
+                            <MTextField @bind-Value="_userData.State" Label="State" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                        </MCol>
+                        <MCol Md=4 Sm=12>
+                            <MTextField @bind-Value="_userData.Country" Label="Country" Color="deep-purple" Dense Outlined TValue="string" Class="" />
+                        </MCol>
+                    </MRow>
+                </div>
+            </MTabItem>
+
+            <MTabItem Value="@("Social")">
+                <MRow>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Twitter" Label="Twitter" Color="deep-purple" Dense Outlined TValue="string" PrependInnerIcon="fab fa-twitter" />
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Facebook" Label="Facebook" Color="deep-purple" Dense Outlined TValue="string" PrependInnerIcon="fab fa-facebook-f" />
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Instagram" Label="Instagram" Color="deep-purple" Dense Outlined TValue="string" PrependInnerIcon="fab fa-instagram" />
+                    </MCol>
+                </MRow>
+                <MRow Class="mt-n6">
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Github" Label="Github" Color="deep-purple" Dense Outlined TValue="string" PrependInnerIcon="fab fa-github" />
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Codepen" Label="Codepen" Color="deep-purple" Dense Outlined TValue="string" PrependInnerIcon="fab fa-codepen" />
+                    </MCol>
+                    <MCol Md=4 Sm=12>
+                        <MTextField @bind-Value="_userData.Slack" Label="Slack" Color="deep-purple" Dense Outlined TValue="string" PrependInnerIcon="fab fa-slack" />
+                    </MCol>
+                </MRow>
+            </MTabItem>
+        </MTabsItems>
+
+        <div class="mt-4">
+            <MButton Color="deep-purple white--text"> Save Changes </MButton>
+            <MButton Outlined Class="ml-2 grey--text"> Reset </MButton>
+        </div>
+    </MCardText>
+</MCard>
+
+@code {
+    public override string Name { get; } = "User-Edit";
+
+    [Parameter]
+    public string? Id { get; set; }
+
+    public UserData _userData;
+
+    protected override void OnParametersSet()
+    {
+        _userData = UserService.UserDatas.FirstOrDefault(u => u.Id == Id) ?? UserService.UserDatas.First();
+    }
+
+    private List<DataTableHeader<Permission>> _headers = new List<DataTableHeader<Permission>>
+    {
+        new (){ Text= "MODULE", Sortable= false, Value= nameof(Permission.Module)},
+        new (){ Text= "READ", Sortable= false, Value= nameof(Permission.Read)},
+        new (){ Text= "WRITE", Sortable= false, Value= nameof(Permission.Write)},
+        new (){ Text= "CREATE", Sortable= false, Value= nameof(Permission.Create)},
+        new (){ Text= "DELETE", Sortable= false, Value= nameof(Permission.Delete)}
+    };
+
+    StringNumber tab;
+}

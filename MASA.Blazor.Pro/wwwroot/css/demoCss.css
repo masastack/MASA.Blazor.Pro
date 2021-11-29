@@ -82,6 +82,9 @@
     border-top: 1px solid #d8d6de;
 }
 
+.border-solid {
+    border: 1px solid #d8d6de;
+}
 .card-text {
     line-height: 1.5rem;
     box-sizing: border-box;
@@ -117,4 +120,29 @@
 
 .pro-nav .m-tab:before {
     background-color: transparent;
+}
+
+.m-btn {
+    text-transform: none !important;
+}
+
+.align-bottom {
+    vertical-align: bottom !important;
+}
+
+.list-unstyled {
+    list-style: none;
+}
+
+.vertical-center {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.navigation .m-icon {
+    font-size: 20px !important;
+    margin-left:4px;
 }

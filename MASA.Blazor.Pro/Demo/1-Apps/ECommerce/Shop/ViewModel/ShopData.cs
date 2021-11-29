@@ -79,7 +79,7 @@ namespace MASA.Blazor.Pro.Demo
 
         public ShopDataItem GetDetailItem(string guid)
         {
-            return Datas.FirstOrDefault(a => a.Id == Guid.Parse(guid)) ?? new ShopDataItem();
+            return Datas.FirstOrDefault(a => a.Id == Guid.Parse(guid)) ?? Datas.First();
         }
     }
 
