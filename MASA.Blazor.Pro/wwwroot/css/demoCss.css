@@ -146,3 +146,13 @@
     font-size: 20px !important;
     margin-left:4px;
 }
+
+.linear-gradient-purple {
+    background: linear-gradient(118deg,#7367f0,rgba(115,103,240,.7))
+}
+
+.grey-bg {
+    background-color: #f8f8f8;
+}
+
+

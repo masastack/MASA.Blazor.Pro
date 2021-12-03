@@ -94,11 +94,6 @@
         GlobalConfig.SaveChanges();      
     }
 
-    protected override bool ShouldRender()
-    {
-        return base.ShouldRender();
-    }
-
     void RenderCurrentBreadcrumbItem(RenderTreeBuilder __builder)
     {
         string route = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");

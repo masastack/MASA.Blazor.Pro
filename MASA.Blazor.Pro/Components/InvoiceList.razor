@@ -5,20 +5,8 @@
     <MCol Md="12">
         <MDataTable Headers="_headers"
                     Items="_records.Items"
-                    Page="_page"
-                    ItemsPerPage="_itemsPerPage"
                     HideDefaultFooter
                     Class="elevation-1">
-            @*            <HeaderColContent Context="header">
-                @if (header.Value == nameof(InvoiceRecord.State))
-                {
-                @header.Text
-                }
-                else
-                {
-                @header.Text.ToUpperInvariant()
-                }
-                </HeaderColContent>*@
             <TopContent>
                 <MRow class="pl-3 pr-3">
                     <MCol Md="1">

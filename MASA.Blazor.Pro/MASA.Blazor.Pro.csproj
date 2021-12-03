@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\apps-eCommerce\" />
+    <Folder Include="wwwroot\img\analytics\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
