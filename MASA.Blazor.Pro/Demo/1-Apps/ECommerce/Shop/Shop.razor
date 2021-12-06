@@ -39,7 +39,7 @@
                 {
                     <MListItem Class="mt-n6 ml-n6">
                         <MListItemContent>
-                            <MRating Value=rating Size=20 Dense HalfIncrements Readonly Length=5 Color="yellow darken-3"></MRating>
+                            <MRating Value=rating Size=20 Dense HalfIncrements Readonly Length=5 Color="orange" BackgroundColor="orange lighten-3"></MRating>
                         </MListItemContent>
                         <MListItemAction>@number</MListItemAction>
                     </MListItem>
@@ -97,7 +97,7 @@
                                 <MCardText>
                                     <div class="d-flex">
                                         <div class="mr-auto">
-                                            <MRating Value="item.Rating" Size=20 Dense HalfIncrements Readonly Length=5 Color="yellow darken-3"></MRating>
+                                            <MRating Value="item.Rating" Size=20 Dense Readonly Length=5 Color="orange" BackgroundColor="orange lighten-3"></MRating>
                                         </div>
                                         <div class="black--text">$@item.Price</div>
                                     </div>
@@ -122,7 +122,7 @@
                                     <MCol Md=6 Sm=12 Class="border-right-solid">
                                         <div class="black--text text-h6">@item.Name</div>
                                         <p> By <span class="deep-purple--text font-weight-bold">@item.Brand</span> </p>
-                                        <MRating Value="item.Rating" Size=20 Dense HalfIncrements Readonly Length=5 Color="yellow darken-3"></MRating>
+                                        <MRating Value="item.Rating" Size=20 Dense HalfIncrements Readonly Length=5 Color="orange" BackgroundColor="orange lighten-3"></MRating>
                                         <p class="text-description">@item.Description</p>
                                     </MCol>
                                     <MCol Md=3 Sm=12 Class="text-center">

@@ -1,13 +1,13 @@
-{
-  "DefaultLanguage": "zh-CN",
-  "Settings":[
-    {
-      "Language": "zh-CN",
-      "FilePath": "Data/I18nResources/language.zh-CN.json"
-    },
-    {
-      "Language": "en-US",
-      "FilePath": "Data/I18nResources/language.en-US.json"
-    }
-  ]
-}
+[
+  {
+    "Value": "zh-CN",
+    "Text": "中文简体",
+    "FilePath": "Data/I18nResources/language.zh-CN.json",
+    "IsDefaultLanguage": true
+  },
+  {
+    "Value": "en-US",
+    "Text": "English",
+    "FilePath": "Data/I18nResources/language.en-US.json"
+  }
+ ]

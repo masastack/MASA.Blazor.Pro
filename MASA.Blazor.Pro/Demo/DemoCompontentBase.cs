@@ -20,21 +20,11 @@ namespace MASA.Blazor.Pro.Demo
             }
         }
 
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-        }
-
-        protected override bool ShouldRender()
-        {
-            return base.ShouldRender();
-        }
-
         public abstract string Name { get; }
 
         public string T(string key)
         {
-            return LanguageProvider.LanguageMap[Name].GetValueOrDefault(key) ?? key;
+            return LanguageProvider.T(key) ?? key;
         }
     }
 }

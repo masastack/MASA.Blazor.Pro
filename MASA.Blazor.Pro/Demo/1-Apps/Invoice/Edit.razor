@@ -1,0 +1,18 @@
+﻿@page "/apps/invoice/edit/{Id:int}"
+@page "/apps/invoice/edit"
+@inherits DemoCompontentBase
+
+<Add Id="@Id"></Add>
+
+@code {
+    public override string Name { get; } = "Apps-Invoice";
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if (Id is null) Id = 0;
+    }
+}

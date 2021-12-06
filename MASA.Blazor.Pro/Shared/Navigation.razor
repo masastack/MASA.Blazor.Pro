@@ -3,13 +3,11 @@
 @inject List<NavCategory> NavCategorys
 
 <MList Dense Linkage Class="navigation">
+    <div class="hover-pointer px-4" @onclick="()=>Nav.NavigateTo(GlobalVariables.DefaultRoute)">  
+        <MIcon Color=purple>fas fa-seedling</MIcon>
+        <span class="ml-6">MASA Blazor Pro</span>
+    </div>
     <MListItemGroup>
-
-        <MListItem OnClick="()=>Nav.NavigateTo(GlobalVariables.DefaultRoute)">
-            <MIcon Color=purple>fas fa-seedling</MIcon>
-            <h3 class="ml-6">MASA Blazor Pro</h3>
-        </MListItem>
-
         @foreach (var navCategory in NavCategorys)
         {
             <MSubheader @key="T(navCategory.Category)">@T(navCategory.Category)</MSubheader>

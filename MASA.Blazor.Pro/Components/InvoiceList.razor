@@ -1,5 +1,6 @@
 ﻿@using MASA.Blazor.Pro.Data.Invoice
 @using MASA.Blazor.Pro.Data.Invoice.Model
+@inject NavigationManager NavigationManager
 
 <MRow>
     <MCol Md="12">
@@ -11,15 +12,17 @@
                 <MRow class="pl-3 pr-3">
                     <MCol Md="1">
                         <MSelect Items="_pageSizes"
-                                 @bind-Value="@_itemsPerPage"
+                                 ValueChanged="PageSizeChanged"
+                                 Value="@_itemsPerPage"
                                  ItemText="u => u.ToString()"
                                  ItemValue="u => u"
                                  Label="Entries"
                                  Dense
-                                 Outlined></MSelect>
+                                 TValue="int" TItem="int" TItemValue="int"
+                                 Outlined></MSelect> 
                     </MCol>
                     <MCol>
-                        <MButton Class="primary">Add Record</MButton>
+                        <MButton Class="primary" OnClick="NavigateToAdd">Add Record</MButton>
                     </MCol>
                     <MSpacer />
                     <MCol Md="3">
@@ -27,8 +30,8 @@
                                     Label="Search..." Solo></MTextField>
                     </MCol>
                     <MCol Md="2">
-                        <MSelect Items="_stateItems"
-                                 @bind-Value="@_state"
+                        <MSelect Items="_stateItems" ValueChanged="StateChanged"
+                                 Value="@_state" TValue="int" TItem="StateItem" TItemValue="int"
                                  ItemText="u => u.Label"
                                  ItemValue="u => u.Value"
                                  Dense Outlined></MSelect>
@@ -41,27 +44,27 @@
                     switch (context.Item.State)
                     {
                         case 1:
-                            <span>
-                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle data-v-9a6e255c="" cx="12" cy="12" r="10"></circle><polyline data-v-9a6e255c="" points="8 12 12 16 16 12"></polyline><line data-v-9a6e255c="" x1="12" y1="8" x2="12" y2="16"></line></svg>
+                            <span class="cyan lighten-4 cyan--text text--darken-1 text-center vertical-center rounded-circle invoice-list-avatar">
+                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline data-v-9a6e255c="" points="8 12 12 16 16 12"></polyline><line data-v-9a6e255c="" x1="12" y1="8" x2="12" y2="16"></line></svg>
                             </span>
                             break;
                         case 2:
-                            <span>
-                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path data-v-9a6e255c="" d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline data-v-9a6e255c="" points="17 21 17 13 7 13 7 21"></polyline><polyline data-v-9a6e255c="" points="7 3 7 8 15 8"></polyline></svg>
+                            <span class="deep-purple lighten-4 deep-purple--text text--darken-1 text-center vertical-center rounded-circle invoice-list-avatar">
+                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline data-v-9a6e255c="" points="17 21 17 13 7 13 7 21"></polyline><polyline data-v-9a6e255c="" points="7 3 7 8 15 8"></polyline></svg>
                             </span>
                             break;
                         case 3:
-                            <span>
-                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path data-v-9a6e255c="" d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline data-v-9a6e255c="" points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span class="green lighten-4 green--text text--darken-1 text-center vertical-center rounded-circle invoice-list-avatar">
+                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline data-v-9a6e255c="" points="22 4 12 14.01 9 11.01"></polyline></svg>
                             </span>
                             break;
                         case 4:
-                            <span>
+                            <span class="orange lighten-4 orange--text text--darken-1 text-center vertical-center rounded-circle invoice-list-avatar">
                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path data-v-9a6e255c="" d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path data-v-9a6e255c="" d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
                             </span>
                             break;
                         case 5:
-                            <span>
+                            <span class="red lighten-4 red--text text--darken-1 text-center vertical-center rounded-circle invoice-list-avatar">
                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle data-v-9a6e255c="" cx="12" cy="12" r="10"></circle><line data-v-9a6e255c="" x1="12" y1="16" x2="12" y2="12"></line><line data-v-9a6e255c="" x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                             </span>
                             break;
@@ -69,17 +72,18 @@
                 }
                 else if (context.Header.Value == nameof(InvoiceRecord.Balance))
                 {
-                    <MChip Color="green" Light Small>
+                    <MChip Color="green lighten-4 green--text text--darken-3 font-weight-bold" Light Small>
                         Paid
                     </MChip>
                 }
                 else if (context.Header.Value == nameof(InvoiceRecord.Client))
                 {
+                    string color = context.Item.Client.Color;
                     <MListItem Class="grow">
-                        <MListItemAvatar Color="deep-purple lighten-1">
+                        <MListItemAvatar Color="@($"{color} lighten-5")">
                             @if (string.IsNullOrEmpty(context.Item.Client.HeadImg))
                             {
-                                <span>@context.Item.Client.GetFullNameInitials()</span>
+                                <span class="@($"{color}--text")">@context.Item.Client.SampleName</span>
                             }
                             else
                             {
@@ -95,13 +99,88 @@
                 }
                 else if (context.Header.Value == nameof(InvoiceRecord.Id))
                 {
-                    <a>#@context.Item.Id</a>
+                    <a @onclick="()=>NavigateToPreview(context.Item.Id)">#@context.Item.Id</a>
+                }
+                else if (context.Header.Value == nameof(InvoiceRecord.Date))
+                {
+                    @context.Item.Date.ToShortDateString()
+                }
+                else if (context.Header.Value == nameof(InvoiceRecord.Total))
+                {
+                    var formatTotal = $"${context.Item.Total}";
+                    <span>
+                        @formatTotal
+                    </span>
                 }
                 else if (context.Header.Value == "Action")
                 {
-                    <MIcon Small Class="mr-2">mdi-pencil</MIcon>
-                    <MIcon Small>mdi-delete</MIcon>
-                    <MIcon Small>mdi-delete</MIcon>
+                    <MTooltip Top>
+                        <ActivatorContent Context="_">
+                            <MIcon Small Class="mr-2" @attributes="@_.Attrs">mdi-send</MIcon>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <span>Send Invoice</span>
+                        </ChildContent>
+                    </MTooltip>
+                    <MTooltip Top>
+                        <ActivatorContent Context="_">
+                            <MIcon @onclick="()=>NavigateToPreview(context.Item.Id)" Small @attributes="@_.Attrs">far fa-eye</MIcon>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <span>Preview Invoice</span>
+                        </ChildContent>
+                    </MTooltip>
+                    <MMenu OffsetY>
+                        <ActivatorContent Context="_">
+                            <MIcon Small Class="ml-2" @attributes="@_.Attrs">mdi-dots-vertical</MIcon>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <MList Dense>
+                                <MListItemGroup>
+                                    <MListItem>
+                                        <MListItemIcon class="mr-3">
+                                            <MIcon>mdi-arrow-down</MIcon>
+                                        </MListItemIcon>
+                                        <MListItemContent>
+                                            <MListItemTitle>
+                                                Download
+                                            </MListItemTitle>
+                                        </MListItemContent>
+                                    </MListItem>
+                                    <MListItem OnClick="()=>NavigateToEdit(context.Item.Id)">
+                                        <MListItemIcon class="mr-3">
+                                            <MIcon>mdi-square-edit-outline</MIcon>
+                                        </MListItemIcon>
+                                        <MListItemContent>
+                                            <MListItemTitle>
+                                                Edit
+                                            </MListItemTitle>
+                                        </MListItemContent>
+                                    </MListItem>
+                                    <MListItem>
+                                        <MListItemIcon class="mr-3">
+                                            <MIcon>mdi-delete-outline</MIcon>
+                                        </MListItemIcon>
+                                        <MListItemContent>
+                                            <MListItemTitle>
+                                                Delete
+                                            </MListItemTitle>
+                                        </MListItemContent>
+                                    </MListItem>
+                                    <MListItem>
+                                        <MListItemIcon class="mr-3">
+                                            <MIcon>mdi-content-copy</MIcon>
+                                        </MListItemIcon>
+                                        <MListItemContent>
+                                            <MListItemTitle>
+                                                Duplocate
+                                            </MListItemTitle>
+                                        </MListItemContent>
+                                    </MListItem>
+                                </MListItemGroup>
+                            </MList>
+                        </ChildContent>
+                    </MMenu>
                 }
                 else
                 {
@@ -111,47 +190,14 @@
         </MDataTable>
         <MRow NoGutters>
             <MCol Md="@("auto")" Align="AlignTypes.Center">
-                <span class="blue-grey--text text--darken-3"> Showing 1 to 10 of 50 entries</span>
+                <span class="blue-grey--text text--darken-3"> Showing @((_records.PageIndex-1)*_records.PageSize+1) to @(Math.Min(_records.PageIndex*_records.PageSize,_records.Count)) of @_records.Count entries</span>
             </MCol>
             <MSpacer />
             <MCol Md="@("auto")">
-                <MPagination Class="ma-3"
-                             @bind-Value="_page"
+                <MPagination Class="ma-3" OnInput="PaginationChanged" @bind-Value="_page"
                              Length="_records.PageCount"
                              Circle></MPagination>
             </MCol>
         </MRow>
     </MCol>
 </MRow>
-
-@code {
-
-    private int _page = 1;
-    private int _itemsPerPage = 10;
-    private int _state = 0;
-    private string _search = "";
-    private List<int> _pageSizes = new List<int> { 10, 25, 50, 100 };
-
-    private List<DataTableHeader<InvoiceRecord>> _headers = new List<DataTableHeader<InvoiceRecord>>
-    {
-        new (){ Text="#" , Value= nameof(InvoiceRecord.Id)},
-        new (){ Text="State" , Value= nameof(InvoiceRecord.State)},
-        new (){ Text="Client" , Value= nameof(InvoiceRecord.Client)},
-        new (){ Text="Total" , Value= nameof(InvoiceRecord.Total)},
-        new (){ Text="Issued Date" , Value= nameof(InvoiceRecord.Date)},
-        new (){ Text="Balance" , Value= nameof(InvoiceRecord.Balance)},
-        new (){ Text="Actions" , Value = "Action", Sortable = false},
-    };
-
-    List<StateItem> _stateItems = InvoiceService.GetStateItems();
-
-    PagingData<InvoiceRecord> _records = new(0, 0, 0, Enumerable.Empty<InvoiceRecord>());
-
-    private PagingData<InvoiceRecord> LoadPagingData() => InvoiceService.GetInvoiceRecords(_page, _itemsPerPage, _state, _search);
-
-    protected override Task OnInitializedAsync()
-    {
-        _records = LoadPagingData();
-        return base.OnInitializedAsync();
-    }
-}

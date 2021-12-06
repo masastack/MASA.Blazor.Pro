@@ -85,7 +85,7 @@
                 <p class="mt-1 mb-1">202-555-0140</p>
             </MCardText>
             <MCardActions>
-                <MButton class="primary text-capitalize" Block OnClick="()=>{ StepChanged.InvokeAsync(3); }">
+                <MButton class="primary text-capitalize" Block OnClick="()=>{ StepChanged.InvokeAsync(2);DisabledChanged.InvokeAsync(false); }">
                     Deliver To This Address
                 </MButton>
             </MCardActions>
@@ -101,11 +101,14 @@
         new AddressType("Home", "1"),
         new AddressType("Work", "2")
     };
-
     [Parameter]
-    public StringNumber Step { get; set; }
+    public StringNumber Step { get; set; } = default!;
     [Parameter]
     public EventCallback<StringNumber> StepChanged { get; set; }
+    [Parameter]
+    public bool Disabled { get; set; }
+    [Parameter]
+    public EventCallback<bool> DisabledChanged { get; set; }
 
     private void AddressForm(EditContext context)
     {

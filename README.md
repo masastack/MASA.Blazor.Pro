@@ -50,10 +50,14 @@ Introduce styles in `wwwroot/index.html`(WebAssembly) or `Pages/_Host.cshtml`(Se
 	<head>
 		<!--Style-->
 		<link href="css/masa-blazor-pro.css" rel="stylesheet">
+		<!--<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">-->
+		<link href="MASA.Blazor.Pro.styles.css" rel="stylesheet">
 	</head>
 </html>
 ```
 > The `masa-blazor-pro.css` file is in the hierarchical directory of the project wwwroot/css/masa-blazor-pro.css 
+
+> `MASA.Blazor.Pro.styles.css` needs to be changed to `{ASSEMBLY NAME}.styles.css`, the placeholder `{ASSEMBLY NAME}` is the assembly name of the project, see [ASP.NET Core Blazor for details CSS isolation](https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/css-isolation?view=aspnetcore-6.0)
 
 ## Related projects
 

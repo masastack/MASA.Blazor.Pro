@@ -156,3 +156,21 @@
 }
 
 
+}
+
+.hover-pointer {
+    cursor: pointer;
+}
+
+.pro-primary--text {
+    color: #7367f0 !important;
+    caret-color: #7367f0 !important;
+}
+
+.pro-primary {
+    background-color: #7367f0;
+}
+
+.grey-light {
+    background-color: rgb(252, 252, 252);
+}

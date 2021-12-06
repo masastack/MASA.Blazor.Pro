@@ -188,7 +188,7 @@
                 User Timeline
             </MCardTitle>
             <MCardText>
-                <MTimeline Dense AlignTop Class="ml-n10">
+                <MTimeline Dense AlignTop Class="ml-n10 pt-0">
                     <MTimelineItem Color="#7367f0" Small>
                         <div class="d-flex">
                             <div class="mr-auto">
@@ -314,7 +314,7 @@
                         </div>
                     </MTimelineItem>
 
-                    <MTimelineItem Color="red" Small>
+                    <MTimelineItem Color="red" Small Class="pb-0">
                         <div class="d-flex">
                             <div class="mr-auto">
                                 <h3>
@@ -376,7 +376,7 @@
                 <MChip Small Color="deep-purple lighten-5">
                     <strong class="deep-purple--text">03 Sep, 20</strong>                      
                 </MChip>
-                <h3 class="mt-2">App design</h3>
+                <div class="text-h6 black--text mt-2">App design</div>
                 <p class="mt-2">You can Find Only Post and Quotes Related to IOS like ipad app design, iphone app design</p>
 
                 <span class="grey--text">TEAM</span>
@@ -431,9 +431,10 @@
     </MCol>
 </MRow>
 
-<MRow Class="mt-7">
+<div class="mt-7">
     <MASA.Blazor.Pro.Components.InvoiceList />
-</MRow>
+</div>
+
 
 @code {
     public override string Name => nameof(Analytics);

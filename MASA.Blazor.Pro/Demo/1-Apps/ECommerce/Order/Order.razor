@@ -6,11 +6,11 @@
         <MIcon>mdi-cart</MIcon>
         <span class="pro-nav-title">Card</span>
     </MTab>
-    <MTab class="text-capitalize">
+    <MTab class="text-capitalize" Disabled="_addressDisabled">
         <MIcon>mdi-home</MIcon>
         <span class="pro-nav-title">Address</span>
     </MTab>
-    <MTab class="text-capitalize" Disabled>
+    <MTab class="text-capitalize" Disabled="_paymentDisabled">
         <MIcon>mdi-credit-card-outline</MIcon>
         <span class="pro-nav-title">Payment</span>
     </MTab>
@@ -18,10 +18,10 @@
 
 <MTabsItems Value="_curTab">
     <MTabItem>
-        <Cart @bind-Step="_curTab" />
+        <Cart @bind-Step="_curTab" @bind-Disabled="_addressDisabled"/>
     </MTabItem>
     <MTabItem>
-        <Address @bind-Step="_curTab" />
+        <Address @bind-Step="_curTab" @bind-Disabled="_paymentDisabled"/>
     </MTabItem>
     <MTabItem>
         <Payment />
@@ -31,4 +31,6 @@
 @code {
     public override string Name => "Apps-ECommerce-Checkout";
     StringNumber _curTab = 0;
+    bool _addressDisabled = true;
+    bool _paymentDisabled = true;
 }

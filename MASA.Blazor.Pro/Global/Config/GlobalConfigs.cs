@@ -41,15 +41,4 @@ namespace MASA.Blazor.Pro.Global
             NavigationMini = globalConfig.NavigationMini;
         }
     }
-
-    class LanguageOption
-    {
-        public LanguageOption(string text, string value, string img) => (Text, Value, Img) = (text, value, img);
-
-        public string Text { get; set; }
-
-        public string Value { get; set; }
-
-        public string Img { get; set; }
-    }
 }
