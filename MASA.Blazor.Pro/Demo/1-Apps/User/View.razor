@@ -10,9 +10,19 @@
                 <MRow>
                     <MCol Md="6">
                         <div class="d-flex justify-content-start">
-                            <MAvatar Color="primary" Size="104" Tile>
-                                <MImage Src="@_userData.HeadImg" />
-                            </MAvatar>
+                            @if (string.IsNullOrEmpty(_userData.HeadImg))
+                            {
+                                string color = _userData.Color;
+                                <MAvatar Size="104" Tile Color="@($"{color} lighten-5")">
+                                    <span class="@($"{color}--text text-h3")">@_userData.SampleName</span>
+                                </MAvatar>
+                            }
+                            else
+                            {
+                                <MAvatar Size="104" Tile>
+                                    <MImage Src="@_userData.HeadImg" />
+                                </MAvatar>
+                            }
                             <div class="d-flex flex-column ml-2">
                                 <div class="mb-1">
                                     <MListItem TwoLine class="pl-0 mt-n3">
@@ -212,7 +222,7 @@
 <MASA.Blazor.Pro.Components.InvoiceList />
 
 @code {
-     public override string Name { get; } = "User-View";
+    public override string Name { get; } = "User-View";
 
     [Parameter]
     public string? Id { get; set; }

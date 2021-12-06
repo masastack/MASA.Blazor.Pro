@@ -23,9 +23,19 @@
 
             <MTabItem Value="@("Account")">
                 <div class="d-flex">
-                    <MAvatar Size=90 Tile>
-                        <MImage Src="@_userData.HeadImg"></MImage>
-                    </MAvatar>
+                    @if (string.IsNullOrEmpty(_userData.HeadImg))
+                    {
+                        string color = _userData.Color;
+                        <MAvatar Rounded="true" Size="104" Tile Color="@($"{color} lighten-5")">
+                            <span class="@($"{color}--text text-h3")">@_userData.SampleName</span>
+                        </MAvatar>
+                    }
+                    else
+                    {
+                        <MAvatar Rounded="true" Size="104" Tile>
+                            <MImage Src="@_userData.HeadImg" />
+                        </MAvatar>
+                    }
                     <div Class="ml-6">
                         <h2 class="mb-4">@_userData.FullName</h2>
                         <MButton Color="deep-purple white--text"> Update </MButton>

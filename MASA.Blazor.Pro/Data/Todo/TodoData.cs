@@ -19,9 +19,10 @@ public class TodoData
 
     public int Avatar { get; set; }
 
-        public DateOnly DueDate { get; set; } = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+    public DateOnly DueDate { get; set; } = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
 
-    public string? Tag { get; set; }
+    [Required]
+    public string Tag { get; set; } = "";
 
     public string? Description { get; set; }
 }
