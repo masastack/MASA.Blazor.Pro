@@ -54,6 +54,7 @@ namespace MASA.Blazor.Pro.Demo
 
             return datas;
         }
+
         public List<ShopDataItem> GetPageDatas()
         {
             return GetFilterDatas().Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();

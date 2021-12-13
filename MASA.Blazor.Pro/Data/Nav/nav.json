@@ -3,15 +3,21 @@
     "Category": "Dashboards",
     "Navs": [
       {
-        "Title": "eCommerce",
-        "Icon": "fas fa-chart-line",
-        "Href": "/dashboards/ecommerce"
-      },
-      {
-        "Title": "Analytics",
-        "Icon": "fas fa-chart-bar",
-        "Href": "/dashboards/analytics"
-      }
+        "Title": "Dashboards",
+        "Icon": "mdi-trending-up",
+        "Childs": [
+          {
+            "Title": "eCommerce",
+            "Icon": "mdi-circle",
+            "Href": "/dashboards/ecommerce"
+          },
+          {
+            "Title": "Analytics",
+            "Icon": "mdi-circle",
+            "Href": "/dashboards/analytics"
+          }
+        ]
+      }    
     ]
   },
   {
@@ -19,52 +25,52 @@
     "Navs": [
       {
         "Title": "eCommerce",
-        "Icon": "fas fa-shopping-bag",
+        "Icon": "mdi-cart-outline",
         "Childs": [
           {
             "Title": "Shop",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/ecommerce/shop"
           },
           {
             "Title": "Details",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/ecommerce/details"
           },
           {
             "Title": "Order",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/ecommerce/order"
           }
         ]
       },
       {
         "Title": "Todo",
-        "Icon": "fas fa-check-square",
+        "Icon": "far fa-calendar-check",
         "Href": "/apps/todo"
       },
       {
         "Title": "Invoice",
-        "Icon": "fas fa-receipt",
+        "Icon": "mdi-content-paste",
         "Childs": [
           {
             "Title": "List",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/invoice/list"
           },
           {
             "Title": "Preview",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/invoice/preview"
           },
           {
             "Title": "Edit",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/invoice/edit"
           },
           {
             "Title": "Add",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/invoice/add"
           }
         ]
@@ -75,17 +81,17 @@
         "Childs": [
           {
             "Title": "List",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/user/list"
           },
           {
             "Title": "View",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/user/view"
           },
           {
             "Title": "Edit",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/apps/user/edit"
           }
         ]
@@ -97,67 +103,67 @@
     "Navs": [
       {
         "Title": "Auth",
-        "Icon": "fas fa-user-tie",
+        "Icon": "mdi-file-outline",
         "Childs": [
           {
             "Title": "Login v1",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/login-v1"
           },
           {
             "Title": "Login v2",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/login-v2"
           },
           {
             "Title": "Register v1",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/register-v1"
           },
           {
             "Title": "Register v2",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/register-v2"
           },
           {
             "Title": "Forgot Password v1",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/forgot-password-v1"
           },
           {
             "Title": "Forgot Password v2",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/forgot-password-v2"
           },
           {
             "Title": "Reset Password v1",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/reset-password-v1"
           },
           {
             "Title": "Reset Password v2",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/authentication/reset-password-v2"
           }
         ]
       },
       {
         "Title": "Others",
-        "Icon": "fas fa-expand",
+        "Icon": "mdi-dots-horizontal",
         "Childs": [
           {
             "Title": "Account Settings",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/others/account-settings"
           },
           {
             "Title": "500",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/others/500"
           },
           {
             "Title": "401",
-            "Icon": "fas fa-genderless",
+            "Icon": "mdi-circle",
             "Href": "/pages/others/401"
           }
         ]

@@ -1,9 +1,361 @@
-﻿.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: #5e5873;
+﻿html {
+    font-size: 16px;
 }
+
+.h1, .text-h1, h1 {
+    /* Headline 1 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    font-size: 6rem !important;
+    line-height: 7rem !important;
+    /* identical to box height */
+    letter-spacing: -0.093755em !important;
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.h2, .text-h2, h2 {
+    /* Headline 2 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 900 !important;
+    font-size: 3.75rem !important;
+    line-height: 4.375rem !important;
+    /* identical to box height */
+    letter-spacing: -0.03125em !important;
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.h3, .text-h3, h3 {
+    /* Headline 3 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 900 !important;
+    font-size: 3rem !important;
+    line-height: 9.33rem !important;
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.h4, .text-h4, h4 {
+    /* Headline 4 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 2.125rem !important;
+    line-height: 2.625rem !important;
+    /* identical to box height */
+    letter-spacing: 0.02em !important;
+    /* default color */
+    color: #2B3674 !important;
+}
+
+.h5, .text-h5, h5 {
+    /* Headline 5 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 1.5rem !important;
+    line-height: 2.25rem !important;
+    /* identical to box height */
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.h6, .text-h6, h6 {
+    /* Headline 6 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 1.25rem !important;
+    line-height: 1.875rem !important;
+    /* identical to box height */
+    letter-spacing: 0.01em !important;
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.h7, .text-h7, h7 {
+    /* Headline 6 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 1.125rem !important;
+    line-height: 1.6875rem !important;
+    /* identical to box height */
+    letter-spacing: 0.01em !important;
+    /* default color */
+    color: #2B3674 !important;
+}
+
+.text-subtitle {
+    /* Subtitle 1-副标题 1 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    line-height: 1.1875rem !important;
+    /* identical to box height */
+    letter-spacing: 0.009375rem !important;
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.text-subtitle2 {
+    /* Subtitle 2-2 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 0.875rem !important;
+    line-height: 1rem !important;
+    /* identical to box height */
+    letter-spacing: 0.00625rem !important;
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.text-body {
+    /* Body 1-内容 1 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    /* identical to box height */
+    line-height: 1.1875rem !important;
+    /* default color */
+    color: #1B2559 !important;
+}
+
+.text-body2 {
+    /* Body 2 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 0.875rem !important;
+    line-height: 1rem !important;
+    /* identical to box height */
+    letter-spacing: 0.015625rem !important;
+    /* default color */
+    color: #A3AED0 !important;
+}
+
+.text-btn {
+    /* BUTTON-按钮 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1rem !important;
+    /* default color */
+    color: #A3AED0 !important;
+}
+
+.text-caption {
+    /* Caption-说明 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 0.75rem !important;
+    line-height: 1.125rem !important;
+    /* default color */
+    color: #A3AED0 !important;
+}
+
+.text-overline {
+    /* OVERLINE-眉题 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 0.625rem !important;
+    line-height: 0.75rem !important;
+    /* identical to box height */
+    letter-spacing: 0.09375rem !important;
+    /* default color */
+    color: #A3AED0 !important;
+}
+
+.pry {
+    background-color: #4318FF !important;
+}
+
+.pry-lighten-1 {
+    background-color: #3613CC !important;
+}
+
+.pry-lighten-2 {
+    background-color: #6946FF !important;
+}
+
+.pry-lighten-3 {
+    background-color: #A18BFF !important;
+}
+
+.pry-lighten-4 {
+    background-color: #D9D1FF !important;
+}
+
+.pry-lighten-5 {
+    background-color: #ECE8FF !important;
+}
+
+.pry--text {
+    color: #4318FF !important;
+    caret-color: #4318FF !important;
+}
+
+.neutral {
+    background-color: #1B2559;
+}
+
+.neutral-lighten-1 {
+    background-color: #2B3674;
+}
+
+.neutral-lighten-2 {
+    background-color: #707EAE;
+}
+
+.neutral-lighten-3 {
+    background-color: #8F9BBA;
+}
+
+.neutral-lighten-4 {
+    background-color: #A3AED0;
+}
+
+.neutral-lighten-5 {
+    color: #E9EDF7;
+}
+
+.neutral--text {
+    color: #1B2559 !important;
+    caret-color: #1B2559 !important;
+}
+
+
+.neutral-lighten-1--text {
+    color: #2B3674 !important;
+    caret-color: #2B3674 !important;
+}
+
+.neutral-lighten-3--text {
+    color: #8F9BBA !important;
+    caret-color: #8F9BBA !important;
+}
+
+.neutral-lighten-4--text {
+    color: #A3AED0 !important;
+    caret-color: #A3AED0 !important;
+}
+
+.fill {
+    background: #E9EDF7;
+}
+
+.fill-lighten-1 {
+    background: #F4F7FE !important;
+}
+
+.fill-lighten-2 {
+    background: #FFFFFF;
+}
+
+.sample-green {
+    background: #05CD99;
+}
+
+.sample-green--text {
+    color: #05CD99 !important;
+    caret-color: #05CD99 !important;
+}
+
+.dark-yellow {
+    background: #FFB547;
+}
+
+.dark-yellow--text {
+    color: #FFB547 !important;
+    caret-color: #FFB547 !important;
+}
+
+.remind--text {
+    color: #FF7D00 !important;
+    caret-color: #FF7D00 !important;
+}
+
+.error {
+    background: #FF5252;
+}
+
+.error--text {
+    color: #FF5252 !important;
+    caret-color: #FF5252 !important;
+}
+
+.border-b-solid {
+    /* 分割线/下 */
+    box-shadow: inset 0px -1px 0px #F4F7FE !important;
+}
+
+.rounded-2 {
+    border-radius: 10px !important;
+}
+
+.rounded-4 {
+    border-radius: 20px !important;
+}
+
+.rounded-b-4 {
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+}
+
+.block-center {
+    /*flex 布局*/
+    display: flex;
+    /*实现垂直居中*/
+    align-items: center;
+}
+
+.block-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*组件样式全局修改start*/
+.m-radio i{
+    font-size:24px !important;
+}
+.m-input__slot {
+    margin-bottom: 0px !important;
+}
+
+.m-messages {
+    min-height: 0px !important;
+}
+
+.m-navigation-drawer__border{
+    width:0
+}
+.m-toolbar__content{
+    padding:0 0 0 0;
+}
+.m-card {
+    box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 12%) !important;
+    border-radius: 20px !important;
+}
+.m-card__text{
+    padding: 16px 24px;
+    height:100%;
+}
+.table-border-none td,th {
+    border-bottom: 0px !important;
+}
+/*组件样式全局修改end*/
 
 .coupons.m-text-field > .m-input__control > .m-input__slot:before {
     border-color: transparent;
@@ -85,6 +437,7 @@
 .border-solid {
     border: 1px solid #d8d6de;
 }
+
 .card-text {
     line-height: 1.5rem;
     box-sizing: border-box;
@@ -99,11 +452,11 @@
 }
 
 .pro-nav .m-tabs-bar__content .m-tab:not(:first-child) {
-    padding-left:0px;
+    padding-left: 0px;
 }
 
-.pro-nav .m-tabs-bar__content .m-tab span{
-    margin-left:10px;
+.pro-nav .m-tabs-bar__content .m-tab span {
+    margin-left: 10px;
 }
 
 .pro-nav .m-tabs-bar__content .m-tab:not(:last-child) .pro-nav-title::after {
@@ -143,8 +496,9 @@
 }
 
 .navigation .m-icon {
-    font-size: 20px !important;
-    margin-left:4px;
+    font-size: 18px;
+    color: #A3AED0;
+    caret-color: #A3AED0;
 }
 
 .linear-gradient-purple {
@@ -156,18 +510,16 @@
 }
 
 
-}
-
 .hover-pointer {
     cursor: pointer;
 }
 
-.pro-primary--text {
+.pro-pry--text {
     color: #7367f0 !important;
     caret-color: #7367f0 !important;
 }
 
-.pro-primary {
+.pro-pry {
     background-color: #7367f0;
 }
 

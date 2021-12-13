@@ -2,65 +2,73 @@
 @inherits DemoCompontentBase
 @inject NavigationManager Nav
 
+
+<MCard Elevation=0 Class="rounded-4 pa-6 mr-3" Style="min-width:300px;width=300px;float:left;">
+    <h6>Filters</h6>
+
+    <span class="text-btn neutral-lighten-4--text mt-1">Multi Range</span>
+    <div class="border-b-solid mt-6 mb-12 pl-2">
+        <MRadioGroup Dense @bind-Value="_shopData.MultiRange">
+            @foreach (var multiRange in _multiRanges)
+            {
+                <div class="block-center" style="height:40px;">
+                    <MRadio Color="pry" Value="@multiRange">
+                        <LabelContent>
+                            <span class="@($"{(_shopData.MultiRange==multiRange?"text-subtitle pry--text":"text-body neutral-lighten-4--text")}")">@multiRange.Text</span>
+                        </LabelContent>
+                    </MRadio>
+                </div>
+            }
+        </MRadioGroup>
+    </div>
+
+    <span class="text-btn neutral-lighten-4--text">Categories</span>
+    <div class="border-b-solid mt-6 mb-12 pl-2">
+        <MRadioGroup @bind-Value="_shopData.Category">
+            @foreach (var categorie in _categories)
+            {
+                <div class="block-center" style="height:40px;">
+                    <MRadio Color="pry" Value="@categorie">
+                        <LabelContent>
+                            <span class="@($"{(_shopData.Category==categorie?"text-subtitle pry--text":"text-body neutral-lighten-4--text")}")">@categorie</span>
+                        </LabelContent>
+                    </MRadio>
+                </div>
+            }
+        </MRadioGroup>
+    </div>
+
+    <span class="text-btn neutral-lighten-4--text">Brands</span>
+    <div class="border-b-solid mt-6 mb-12 pl-2">
+        <MRadioGroup @bind-Value="_shopData.Brand">
+            @foreach (var brand in _brands)
+            {
+                <div class="block-center" style="height:40px;">
+                    <MRadio Color="pry" Value="@brand">
+                        <LabelContent>
+                            <span class="@($"text-subtitle {(_shopData.Category==brand?"pry--text":"text-body neutral-lighten-4--text")}")">@brand</span>
+                        </LabelContent>
+                    </MRadio>
+                </div>
+            }
+        </MRadioGroup>
+    </div>
+</MCard>
+
 <MRow>
-    <MCol Md="2">
-        <p class="black--text">Filters</p>
-        <MCard Elevation=2>
-            <MCardText>
-                <p class="black--text">Multi Range</p>
-                <MRadioGroup @bind-Value="_shopData.MultiRange">
-                    @foreach (var _multiRange in _multiRanges)
-                    {
-                        <MRadio Color="deep-purple" Label="@_multiRange.Text" Value="@_multiRange"></MRadio>
-                    }
-                </MRadioGroup>
-
-                <p class="black--text">Price Range</p>
-                <MSlider @bind-Value="_priceRange" Ticks="true" ThumbColor="deep-purple" ThumbLabel="true"></MSlider>
-
-                <p class="black--text">Categories</p>
-                <MRadioGroup @bind-Value="_shopData.Category">
-                    @foreach (var categorie in _categories)
-                    {
-                        <MRadio Color="deep-purple" Label="@categorie" Value="@categorie"></MRadio>
-                    }
-                </MRadioGroup>
-
-                <p class="black--text">Brands</p>
-                <MRadioGroup @bind-Value="_shopData.Brand">
-                    @foreach (var brand in _brands)
-                    {
-                        <MRadio Color="deep-purple" Label="@brand" Value="@brand"></MRadio>
-                    }
-                </MRadioGroup>
-
-                <p class="black--text">Ratings</p>
-                @foreach (var (rating, number) in _ratings)
-                {
-                    <MListItem Class="mt-n6 ml-n6">
-                        <MListItemContent>
-                            <MRating Value=rating Size=20 Dense HalfIncrements Readonly Length=5 Color="orange" BackgroundColor="orange lighten-3"></MRating>
-                        </MListItemContent>
-                        <MListItemAction>@number</MListItemAction>
-                    </MListItem>
-                }
-
-            </MCardText>
-        </MCard>
-    </MCol>
-    <MCol Md="10" Sm=12>
-        <div class="d-flex">
-            <p class="black--text mr-auto">@_shopData.CurrentCount results found</p>
-            <div>
+    <MCol Md=4 Sm=12>
+        <MCard Elevation=0 Class="rounded-2 px-6 py-3 block-between">
+            <h6>@_shopData.CurrentCount results found</h6>
                 <MMenu OffsetY>
                     <ActivatorContent>
-                        <MButton Outlined @attributes="@context.Attrs" Color="deep-purple" Class="max-height mt-n2" Style="width:130px">
-                            <span Class="black--text">@_shopData.SortType</span>
-                        </MButton>
+                        <div>
+                            <span @attributes="@context.Attrs" class="text-btn">@_shopData.SortType</span>
+                            <MIcon>mdi-menu-down</MIcon>
+                        </div>
                     </ActivatorContent>
                     <ChildContent>
                         <MList>
-                            <MListItemGroup @bind-Value="_shopData.SortType" ActiveClass="deep-purple lighten-5">
+                            <MListItemGroup @bind-Value="_shopData.SortType" ActiveClass="pry white--text">
                                 <MListItem Value="@("Featured")">Featured </MListItem>
                                 <MListItem Value="@("Lowest")"> Lowest </MListItem>
                                 <MListItem Value="@("Highest")"> Highest </MListItem>
@@ -68,85 +76,49 @@
                         </MList>
                     </ChildContent>
                 </MMenu>
-                <MButtonGroup @bind-Value="showType" Mandatory Color="deep-purple" Class="max-height ml-2">
-                    <MButton Value=0 Outlined>
-                        <MIcon>fas fa-th-large</MIcon>
-                    </MButton>
-                    <MButton Value=1 Outlined>
-                        <MIcon>fas fa-list</MIcon>
-                    </MButton>
-                </MButtonGroup>
-            </div>
-        </div>
-        <div class="mt-4">
-            <MTextField @bind-Value="_shopData.Search" TValue="string" HideDetails="true" Flat Solo Dense Class="rounded-lg" Height=50 Placeholder="Search Product">
-                <AppendContent>
-                    <MIcon Class="ml-1 mr-2">mdi-magnify</MIcon>
-                </AppendContent>
-            </MTextField>
-        </div>
-        <div class="mt-8">
-            <MRow>
-                @foreach (var item in _shopData.GetPageDatas())
-                    {
-                <MHover>
-
-                        <MCol Md=4 Sm=1 Class="@(showType==1?"hide":"")">
-                            <MCard @onclick="()=>NavigateToDetails(item.Id)" @attributes="context.Attrs" Class="@(context.Hover?"mt-n2 elevation-5":"")">
-                                <MImage Contain MaxHeight=250 Src="@item.PictureFile" />
-                                <MCardText>
-                                    <div class="d-flex">
-                                        <div class="mr-auto">
-                                            <MRating Value="item.Rating" Size=20 Dense Readonly Length=5 Color="orange" BackgroundColor="orange lighten-3"></MRating>
-                                        </div>
-                                        <div class="black--text">$@item.Price</div>
-                                    </div>
-                                    <div class="black--text mt-2">@item.Name</div>
-                                    <p class="text-truncate">@item.Description</p>
-                                </MCardText>
-                                <MCardActions Class="mt-n6">
-                                    <MButton OnClick="()=>NavigateToOrder()" Color="deep-purple" Class="white--text" Style="width:100%">
-                                        <MIcon left>fas fa-shopping-bag</MIcon>
-                                        View in Cart
-                                    </MButton>
-                                </MCardActions>
-                            </MCard>
-                        </MCol>
-
-                        <MCol Cols=12 Class="@(showType==0?"hide":"")" @onclick="()=>NavigateToDetails(item.Id)">
-                            <MList>
-                                <MListItem>
-                                    <MCol Md=3 Sm=12>
-                                        <MImage Contain MaxWidth=325 MaxHeight=230 Src="@item.PictureFile" />
-                                    </MCol>
-                                    <MCol Md=6 Sm=12 Class="border-right-solid">
-                                        <div class="black--text text-h6">@item.Name</div>
-                                        <p> By <span class="deep-purple--text font-weight-bold">@item.Brand</span> </p>
-                                        <MRating Value="item.Rating" Size=20 Dense HalfIncrements Readonly Length=5 Color="orange" BackgroundColor="orange lighten-3"></MRating>
-                                        <p class="text-description">@item.Description</p>
-                                    </MCol>
-                                    <MCol Md=3 Sm=12 Class="text-center">
-                                        <div class="deep-purple--text text-h5">$@item.Price</div>
-                                        <MButton OnClick="()=>NavigateToOrder()" Color="deep-purple" Class="white--text mt-4" Style="width:80%">
-                                            <MIcon left>fas fa-shopping-bag</MIcon>
-                                            View in Cart
-                                        </MButton>
-                                    </MCol>
-                                </MListItem>
-                            </MList>
-
-                        </MCol>
-
-                    </MHover>
-                }
-            </MRow>
-            <MPagination @bind-Value="_shopData.PageIndex" Color="deep-purple" Circle Length=@_shopData.PageCount Class="mt-4"></MPagination>
-        </div>
+        </MCard>
+    </MCol>
+    <MCol Md=8 Sm=12 Class="pr-0">
+        <MTextField @bind-Value="_shopData.Search" Class="rounded-2 max-height" Height=54 Flat Solo Placeholder="Search Product">
+            <PrependInnerContent>
+                <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
+            </PrependInnerContent>
+        </MTextField>
+    </MCol>
+    <MCol Cols=12 Class="pr-0 mt-n6">
+        <MRow>
+            @foreach (var item in _shopData.GetPageDatas())
+            {
+                <MCol Md=4 Sm=1>
+                    <MCard Elevation=0 Class="rounded-4">
+                        <MImage Height=260 Src="@item.PictureFile" Class="hover-pointer" @onclick="()=>NavigateToDetails(item.Id)"></MImage>
+                        <MCardText Class="pa-3">                          
+                            <div class="block-between">
+                                <MRating Value="item.Rating" Size=20 Dense Readonly Length=5 Color="remind" BackgroundColor="remind"></MRating>
+                                <h6>$@item.Price</h6>
+                            </div>
+                            <div class="text-subtitle text-truncate my-1">@item.Name</div>
+                            <div class="text-truncate text-caption">@item.Description</div>
+                        </MCardText>
+                        <div class="block-between text-center">
+                            <div style="width:50%;height:56px;line-height: 56px;box-shadow: inset 0px 0.5px 0px #F4F7FE;">
+                                 <MIcon Size=24 Class="my-auto">mdi-heart-outline</MIcon>
+                            </div>
+                            <div @onclick="NavigateToOrder" style="width:50%;height:56px;line-height: 56px;box-shadow: inset 0px 0.5px 0px #F4F7FE;">
+                                 <MIcon Size=24>mdi-cart-outline</MIcon>                            
+                            </div>
+                        </div>
+                    </MCard>
+                </MCol>
+            }
+        </MRow>
+        <MPagination @bind-Value="_shopData.PageIndex" Color="pry" Circle Length=@_shopData.PageCount Class="mt-4"></MPagination>
     </MCol>
 </MRow>
 
+
 @code {
-    public override string Name => "Apps-ECommerce-Shop";
+    public override string Name => "Apps-eCommerce-Shop";
 
     List<MultiRange> _multiRanges = new List<MultiRange>
     {

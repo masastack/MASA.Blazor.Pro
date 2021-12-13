@@ -8,12 +8,13 @@
 
 <MApp Dark="GlobalConfig.IsDark">
 
-    <MAppBar App Style="padding-left:256px" Elevation=0 Class="my-4">
-        <MToolbar Class="mx-2" Elevation=2>
-            <MAppBarNavIcon @onclick="()=>GlobalConfig.NavigationMini=!GlobalConfig.NavigationMini"></MAppBarNavIcon>
+    <MAppBar Elevation=0 App MaxHeight=60 Class="px-6">
+        <MToolbar Elevation=0 Class="rounded-b-4">
+            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-heart</MIcon>
+             <MAppBarNavIcon @onclick="()=>GlobalConfig.NavigationMini=!GlobalConfig.NavigationMini"></MAppBarNavIcon>
             <MSpacer></MSpacer>
 
-            <MMenu OffsetY Bottom>
+          @*  <MMenu OffsetY Bottom>
                 <ActivatorContent>
                     <MChip Label Color="white" @attributes="@context.Attrs">
                         @_currentLanguageSetting?.Text
@@ -37,24 +38,39 @@
                     </MList>
                 </ChildContent>
             </MMenu>
+*@
+            <div style="width:340px;height:40px;">
+                <MTextField TValue="string" Class="rounded-2" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search">
+                    <PrependInnerContent>
+                        <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
+                    </PrependInnerContent>
+                </MTextField>
+            </div>
 
-            <MButton Icon>
-                <MIcon>mdi-magnify</MIcon>
-            </MButton>
+            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-4">mdi-message-processing</MIcon>
 
-            <Login />
+            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-cart-outline</MIcon>
+
+            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-google-translate</MIcon>
+
+            <div class="ml-5 text-center" style="width:88px;">
+                <MAvatar Size=40>
+                    <MImage Src="/img/avatar/avatar-s-20.jpg"></MImage>
+                </MAvatar>
+            </div>
+           @* <Login />*@
         </MToolbar>
     </MAppBar>
 
-    <MNavigationDrawer @bind-MiniVariant="GlobalConfig.NavigationMini" App>
+    <MNavigationDrawer MiniVariantWidth=80 Width=300 @bind-MiniVariant="GlobalConfig.NavigationMini" App>
         <Navigation />
     </MNavigationDrawer>
 
-    <MMain Style="padding-left:268px;padding-top:90px;padding-right:12px; background-color:rgb(245, 245, 245)">
-        <MContainer Fluid>
-            @RenderCurrentBreadcrumbItem
-            @Body
-        </MContainer>
+    <MMain Class="fill-lighten-1" Style="padding-left:300px;padding-top:60px">
+        <div class="pa-6">
+             @*@RenderCurrentBreadcrumbItem*@
+             @Body
+        </div>      
     </MMain>
 </MApp>
 
