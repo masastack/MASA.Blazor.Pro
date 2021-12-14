@@ -123,7 +123,7 @@
     font-weight: 500 !important;
     font-size: 1rem !important;
     /* identical to box height */
-    line-height: 1.1875rem !important;
+    line-height: 1.75rem !important;
     /* default color */
     color: #1B2559 !important;
 }
@@ -525,4 +525,21 @@
 
 .grey-light {
     background-color: rgb(252, 252, 252);
+}
+
+
+.ml-px-10 {
+    margin-left: 10px !important;
+}
+
+.justify-text-align {
+    text-align: justify !important;
+}
+
+.relate-group .m-icon {
+    font-size:40px;
+}
+
+.relate-group .m-slide-group__next {
+    margin-left:10px;
 }
