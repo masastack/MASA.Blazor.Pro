@@ -12,7 +12,7 @@
             @foreach (var multiRange in _multiRanges)
             {
                 <div class="block-center" style="height:40px;">
-                    <MRadio Color="primary" Value="@multiRange">
+                    <MRadio Color="primary" Value="@multiRange">                       
                         <LabelContent>
                             <span class="@($"{(_shopData.MultiRange==multiRange?"text-subtitle primary--text":"text-body neutral-lighten-4--text")}")">@multiRange.Text</span>
                         </LabelContent>

@@ -1,19 +1,21 @@
 ﻿@page "/pages/authentication/Login-v2"
 @layout EmptyLayout
-
 <MRow>
-    <MCol Cols="8" Style="background-color: #f8f8f8; height:100vh;">
-        <MContainer Class="text-h6">
-            <MIcon Large Left Color="purple">fas fa-seedling</MIcon>
-            MASA.Blazor.Pro
-        </MContainer>
-        <MContainer Class="col-lg-7 mt-16">
-            <MImage Class="" Src="/img/login-v2.72cd8a26.svg">
-            </MImage>
-        </MContainer>
+    <MCol Md=5 Sm=12 Class="neutral-lighten-5" Style="height:100vh;">
+        <image class="ml-9 mt-9" src="https://cdn.masastack.com/stack/images/logo/MASAStack/logo-h-en.png?x-oss-process=image/resize,w_200"></image>
+        <div style="width:600px;" class="ma-auto mt-12">
+                <h2 class="neutral-lighten-1--text">让变化更简单</h2>
+                <div class="mt-12">
+                    <span class="h7 neutral-lighten-1--text">The ultimate pack of</span>
+                    <span class="h7 pry-lighten-2--text">160 text fields</span>
+                    <span class="h7 neutral-lighten-1--text">in</span>
+                    <span class="h7 pry-lighten-2--text">4 different styles, 5 states</span>
+                    <span class="h7 neutral-lighten-1--text"> and easy-to-replace front/back icons.</span>
+                </div>
+                <image class="mt-12" src="/img/login/left.png"></image>
+        </div>
     </MCol>
-
-    <MCol Cols="4" Align="AlignTypes.Center" Style="background-color:white;">
+    <MCol Md=7 Sm=12 Class="fill-lighten-1 block-center">
         <MASA.Blazor.Pro.Components.Login HideLogo
                                           Elevation="0"
                                           Width="500"

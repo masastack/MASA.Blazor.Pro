@@ -223,6 +223,11 @@
     caret-color: #4318FF !important;
 }
 
+.pry-lighten-2--text {
+    color: #6946FF !important;
+    caret-color: #6946FF !important;
+}
+
 .neutral {
     background-color: #1B2559;
 }
@@ -244,7 +249,7 @@
 }
 
 .neutral-lighten-5 {
-    color: #E9EDF7;
+    background-color: #E9EDF7;
 }
 
 .neutral--text {
@@ -260,6 +265,7 @@
 
 .neutral-lighten-2--text {
     color: #707EAE !important;
+    caret-color: #707EAE !important;
 }
 
 .neutral-lighten-3--text {
@@ -281,6 +287,10 @@
 }
 
 .fill-lighten-2 {
+    background: #FAFBFF;
+}
+
+.fill-lighten-3 {
     background: #FFFFFF;
 }
 
@@ -388,12 +398,49 @@
     height: 100%;
 }
 
-.m-input {
+.m-input fieldset {
     border-radius: 10px !important;
+    border: 1px solid #E9EDF7 !important;
+    box-sizing: border-box !important;
+}
+
+.m-input .m-input__icon .mdi-menu-down {
+    color: #A3AED0;
+}
+
+.m-input .m-label {
+    /* BUTTON-按钮 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1rem !important;
+    /* default color */
+    color: #A3AED0;
+}
+
+.m-input--checkbox .mdi-checkbox-blank-outline {
+    color: #A3AED0 !important;
+    caret-color: #A3AED0 !important;
+}
+
+.m-radio .mdi-radiobox-blank {
+    color: #A3AED0 !important;
+    caret-color: #A3AED0 !important;
+}
+
+
+.table-header-fill .m-data-table-header tr {
+    background: #FAFBFF;
 }
 
 .table-border-none td, th {
     border-bottom: 0px !important;
+}
+
+.table-border-solid td, th {
+    border-bottom:0 !important;
+    box-shadow: inset 0px -1px 0px #F4F7FE;
 }
 
 .navigation .m-icon {

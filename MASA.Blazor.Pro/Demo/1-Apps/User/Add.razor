@@ -1,31 +1,31 @@
 ﻿@using MASA.Blazor.Pro.Data.User;
 
-<MNavigationDrawer Temporary Absolute Right Value=Visible ValueChanged=VisibleChanged Width="420">
-    <MToolbar Dense Elevation=0 Color="grey lighten-3">
-        <span>Add New User</span>
-        <MSpacer></MSpacer>
-        <MButton Small Icon OnClick="()=>Visible=false">
+<MNavigationDrawer Temporary Fixed Right Value=Visible ValueChanged=VisibleChanged Width="465" Class="pa-6">
+    <div class="block-between mb-12">
+         <span class="text-h6">Add New User</span>
+         <MIcon Color="neutral-lighten-3" Size=24 OnClick="()=>Visible=false">mdi-close</MIcon>
+@*        <MButton Small Icon OnClick="()=>Visible=false">
             <MIcon Small>fas fa-times</MIcon>
-        </MButton>
-    </MToolbar>
+        </MButton>*@
+    </div>
     <MForm Model=_userData EnableDataAnnotationsValidation>
-        <MTextField @bind-Value="_userData.FullName" Label="FullName" HideDetails="@("auto")" Dense Outlined />
-        <MTextField @bind-Value="_userData.UserName" Label="UserName" HideDetails="@("auto")" Dense Outlined />
-        <MTextField @bind-Value="_userData.Email" Label="Email" HideDetails="@("auto")" Dense Outlined />
-        <MTextField @bind-Value="_userData.Contact" Label="Contact" HideDetails="@("auto")" Dense Outlined />
-        <MTextField @bind-Value="_userData.Company" Label="Company" HideDetails="@("auto")" Dense Outlined />
-        <MTextField @bind-Value="_userData.Country" Label="Country" HideDetails="@("auto")" Dense Outlined  />
-        <MSelect HideDetails="@("auto")" Dense Outlined Label="Assignee" @bind-Value=_userData.Role           
+        <MTextField @bind-Value="_userData.FullName" Class="mb-6" Label="FullName" HideDetails="@("auto")" Outlined />
+        <MTextField @bind-Value="_userData.UserName" Class="mb-6" Label="UserName" HideDetails="@("auto")" Outlined />
+        <MTextField @bind-Value="_userData.Email" Class="mb-6" Label="Email" HideDetails="@("auto")" Outlined />
+        <MTextField @bind-Value="_userData.Contact" Class="mb-6" Label="Contact" HideDetails="@("auto")" Outlined />
+        <MTextField @bind-Value="_userData.Company" Class="mb-6" Label="Company" HideDetails="@("auto")" Outlined />
+        <MTextField @bind-Value="_userData.Country" Class="mb-6" Label="Country" HideDetails="@("auto")" Outlined  />
+        <MSelect HideDetails="@("auto")" Class="mb-6" Outlined Label="Assignee" @bind-Value=_userData.Role           
                  Items=@UserService.Roles ItemText="r => r" ItemValue="r => r">
         </MSelect>
-        <MSelect HideDetails="@("auto")" Dense Outlined Label="Assignee" @bind-Value=_userData.Plan
+        <MSelect HideDetails="@("auto")" Class="mb-6" Outlined Label="Assignee" @bind-Value=_userData.Plan
                  Items=@UserService.Plans ItemText="p => p" ItemValue="p => p">
         </MSelect>
 
-        <MRow Class="ml-5">
-            <MButton Color="primary" Dark OnClick="async ()=> await AddData(context)"> Add </MButton>
-            <MButton Outlined Class="ml-5" OnClick="async() => await UpdateVisible(false)"> Cancel </MButton>
-        </MRow>
+        <div Class="mt-6">
+            <MButton MinWidth=80 Height=40 Color="primary" OnClick="async ()=> await AddData(context)"> Add </MButton>
+            <MButton MinWidth=80 Height=40 Outlined Class="ml-6 text-btn" OnClick="async() => await UpdateVisible(false)"> Cancel </MButton>
+        </div>
     </MForm>
 </MNavigationDrawer>
 

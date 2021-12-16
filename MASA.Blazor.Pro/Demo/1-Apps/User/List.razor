@@ -71,14 +71,14 @@
                         <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
                     </PrependInnerContent>
                 </MTextField>
-                <MButton Color="primary" MinWidth=80 Height=38 Class="ml-6" OnClick="()=>_visible=true">
+                <MButton Color="primary" MinWidth=80 Height=32 Class="ml-6" OnClick="()=>_visible=true">
                     Add User
                 </MButton>
             </MCol>
         </MRow>
     </MCardText>
 
-    <MDataTable Headers="_headers" Items="_userPage.GetPageDatas()" TItem="UserData" ItemsPerPage="_userPage.PageSize" HideDefaultFooter Class="ml-2 table-border-none"> @*Page="_userPage.PageIndex"*@
+    <MDataTable Headers="_headers" Items="_userPage.GetPageDatas()" TItem="UserData" ItemsPerPage="_userPage.PageSize" HideDefaultFooter Class="ml-2 table-border-none">
         <HeaderColContent Context="header">
             <span class="text-subtitle">@header.Text</span>
         </HeaderColContent>

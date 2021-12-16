@@ -22,7 +22,7 @@
         </MTabs>
         <MTabsItems @bind-Value="tab" Class="mt-4">
             <MTabItem Value="@("Account")">
-                <div class="d-flex block-center">
+                <div class="d-flex block-center mt-3">
                     @if (string.IsNullOrEmpty(UserData.HeadImg))
                     {
                         string color = UserData.Color;
@@ -82,27 +82,31 @@
                 </MRow>
 
                 <div class="mt-12 mb-3">
-                    <MIcon Size=20 Class="mt-n1">mdi-lock-open-outline</MIcon>
+                    <MIcon Size=20 Color="sample-green" Class="mt-n1">mdi-lock-open-outline</MIcon>
                     <span class="ml-1 text-h6">Permission</span>
                 </div>
-                <MDataTable Stripe HideDefaultFooter Headers="_headers" Items="UserData.Permissions" ItemKey="r=>r.Module" Class="border-solid elevation-1">
+                <MDataTable HideDefaultFooter Headers="_headers" TItem="Permission" Items="UserData.Permissions" ItemKey="r=>r.Module" Class="table-header-fill table-border-solid">
+                    <HeaderColContent Context="header">
+                         <span class="text-body neutral-lighten-1--text">@header.Text</span>
+                    </HeaderColContent>
+
                     <ItemColContent>
                         @switch (context.Header.Value)
                         {
                             case nameof(Permission.Module):
-                                @context.Value
+                                <span class="text-body neutral-lighten-2--text">@context.Value</span>
                                 break;
                             case nameof(Permission.Read):
-                                <MCheckbox Color="primary" @bind-Value="context.Item.Read"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Read"></MCheckbox>
                                 break;
                             case nameof(Permission.Write):
-                                <MCheckbox Color="primary" @bind-Value="context.Item.Write"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Write"></MCheckbox>
                                 break;
                             case nameof(Permission.Create):
-                                <MCheckbox Color="primary" @bind-Value="context.Item.Create"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Create"></MCheckbox>
                                 break;
                             case nameof(Permission.Delete):
-                                <MCheckbox Color="primary" @bind-Value="context.Item.Delete"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Delete"></MCheckbox>
                                 break;
                             default:
                                 @context.Value
@@ -113,16 +117,16 @@
             </MTabItem>
 
             <MTabItem Value="@("Information")">
-                <div>
-                    <MIcon Small Class="mt-n1">far fa-user</MIcon>
-                    <span class="ml-2 text-h6">Personal Information</span>
+                <div class="mt-3">
+                    <MIcon Size=20 Color="sample-green" Class="mt-n1">far fa-user</MIcon>
+                    <span class="ml-1 text-h6">Personal Information</span>
                 </div>
 
-                <MRow Class="mt-4">
+                <MRow Class="mt-3">
                     <MCol Md=4 Sm=12>
                         <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
                             <ActivatorContent Context="menuContext">
-                                <MTextField @bind-Value=UserData.BirthDate Label="BirthDate" Color="primary" Dense Outlined @attributes="menuContext.Attrs"></MTextField>
+                                <MTextField @bind-Value=UserData.BirthDate Label="BirthDate" Color="primary" HideDetails="@("auto")" Outlined @attributes="menuContext.Attrs"></MTextField>
                             </ActivatorContent>
                             <ChildContent>
                                 <MDatePicker Color="primary" @bind-Value=UserData.BirthDate></MDatePicker>
@@ -130,92 +134,92 @@
                         </MMenu>
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Mobile" Label="Mobile" Color="primary" Dense Outlined TValue="string" Class="" />
+                        <MTextField @bind-Value="UserData.Mobile" Label="Mobile" Color="primary" HideDetails="@("auto")" Outlined/>
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Website" Label="Website" Color="primary" Dense Outlined TValue="string" Class="" />
+                        <MTextField @bind-Value="UserData.Website" Label="Website" Color="primary" HideDetails="@("auto")" Outlined/>
                     </MCol>
                 </MRow>
 
-                <MRow Class="mt-n6">
+                <MRow Class="mt-3">
                     <MCol Md=4 Sm=12>
                         <MSelect @bind-Value="UserData.Language"
                                  Color="primary"
                                  Outlined
-                                 Dense
+                                 HideDetails="@("auto")"
                                  Items="@UserService.Languages"
                                  ItemText="u => u"
                                  ItemValue="u => u"
                                  Label="Language">
                         </MSelect>
                     </MCol>
-                    <MCol Md=4 Sm=12 Class="mt-n4">
-                        <span>Gender</span>
-                        <MRadioGroup @bind-Value="UserData.Gender" Color="primary" Row Class="mt-1">
+                    <MCol Md=4 Sm=12>
+                        <span class="text-btn">Gender</span>
+                        <MRadioGroup @bind-Value="UserData.Gender" HideDetails="@("auto")" Color="primary" Row Class="mt-1">
                             <MRadio Color="primary" Label="Male" Value="@("Male")"></MRadio>
                             <MRadio Color="primary" Label="Female" Value="@("Female")"></MRadio>
                         </MRadioGroup>
                     </MCol>
-                    <MCol Md=4 Sm=12 Class="mt-n5">
-                        <span class="mr-2">Contact Options</span>
+                    <MCol Md=4 Sm=12>
+                        <span class="text-btn">Contact Options</span>
                         <div class="d-flex mt-n2">
-                            <MCheckbox Label="Email" HideDetails="true" Color="primary"></MCheckbox>
-                            <MCheckbox Label="Message" HideDetails="true" Color="primary" Class="ml-2"></MCheckbox>
-                            <MCheckbox Label="Phone" HideDetails="true" Color="primary" Class="ml-2"></MCheckbox>
+                            <MCheckbox Label="Email" HideDetails="@("auto")" Color="primary"></MCheckbox>
+                            <MCheckbox Label="Message" HideDetails="@("auto")" Color="primary" Class="ml-2"></MCheckbox>
+                            <MCheckbox Label="Phone" HideDetails="@("auto")" Color="primary" Class="ml-2"></MCheckbox>
                         </div>
 
                     </MCol>
                 </MRow>
 
-                <div>
-                    <MIcon Small Class="mt-n1">fas fa-map-marker-alt</MIcon>
-                    <span class="ml-2 text-h6">Address</span>
-                    <MRow>
+                <div class="mt-12">
+                    <MIcon Size=20  Color="sample-green" Class="mt-n1">mdi-map-marker-outline</MIcon>
+                    <span class="text-h6">Address</span>
+                    <MRow Class="mt-3">
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Address1" Label="Address Line 1" Color="primary" Dense Outlined TValue="string" Class="" />
+                            <MTextField @bind-Value="UserData.Address1" Label="Address Line 1" Color="primary" HideDetails="@("auto")" Outlined/>
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Address2" Label="Address Line 2" Color="primary" Dense Outlined TValue="string" Class="" />
+                            <MTextField @bind-Value="UserData.Address2" Label="Address Line 2" Color="primary" HideDetails="@("auto")" Outlined/>
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Address3" Label="Address Line 3" Color="primary" Dense Outlined TValue="string" Class="" />
+                            <MTextField @bind-Value="UserData.Address3" Label="Address Line 3" Color="primary" HideDetails="@("auto")" Outlined/>
                         </MCol>
                     </MRow>
-                    <MRow Class="mt-n6">
+                    <MRow Class="mt-3">
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.City" Label="City" Color="primary" Dense Outlined TValue="string" Class="" />
+                            <MTextField @bind-Value="UserData.City" Label="City" Color="primary" HideDetails="@("auto")" Outlined/>
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.State" Label="State" Color="primary" Dense Outlined TValue="string" Class="" />
+                            <MTextField @bind-Value="UserData.State" Label="State" Color="primary" HideDetails="@("auto")" Outlined/>
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Country" Label="Country" Color="primary" Dense Outlined TValue="string" Class="" />
+                            <MTextField @bind-Value="UserData.Country" Label="Country" Color="primary" HideDetails="@("auto")" Outlined/>
                         </MCol>
                     </MRow>
                 </div>
             </MTabItem>
 
             <MTabItem Value="@("Social")">
-                <MRow>
+                <MRow class="mt-1">
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Twitter" Label="Twitter" Color="primary" Dense Outlined TValue="string" PrependInnerIcon="fab fa-twitter" />
+                        <MTextField @bind-Value="UserData.Twitter" Label="Twitter" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-twitter" />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Facebook" Label="Facebook" Color="primary" Dense Outlined TValue="string" PrependInnerIcon="fab fa-facebook-f" />
+                        <MTextField @bind-Value="UserData.Facebook" Label="Facebook" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-facebook-f" />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Instagram" Label="Instagram" Color="primary" Dense Outlined TValue="string" PrependInnerIcon="fab fa-instagram" />
+                        <MTextField @bind-Value="UserData.Instagram" Label="Instagram" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-instagram" />
                     </MCol>
                 </MRow>
-                <MRow Class="mt-n6">
+                <MRow Class="mt-3">
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Github" Label="Github" Color="primary" Dense Outlined TValue="string" PrependInnerIcon="fab fa-github" />
+                        <MTextField @bind-Value="UserData.Github" Label="Github" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-github" />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Codepen" Label="Codepen" Color="primary" Dense Outlined TValue="string" PrependInnerIcon="fab fa-codepen" />
+                        <MTextField @bind-Value="UserData.Codepen" Label="Codepen" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-codepen" />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Slack" Label="Slack" Color="primary" Dense Outlined TValue="string" PrependInnerIcon="fab fa-slack" />
+                        <MTextField @bind-Value="UserData.Slack" Label="Slack" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-slack" />
                     </MCol>
                 </MRow>
             </MTabItem>
