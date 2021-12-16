@@ -1,96 +1,95 @@
 ﻿﻿@using MASA.Blazor.Pro.Data
 @using System.Diagnostics
 
+<CascadingValue Value="this">
+    <div>
+        <MToolbar Dense Elevation="0" Class="rounded-2" Height="60">
+            <MTextField TValue="string"
+                        Class="task-search mx-4"
+                        HideDetails=true
+                        Placeholder=@FilterText @bind-Value=InputText>
+                <PrependContent>
+                    <MIcon Small Class="mt-1">fa fa-search</MIcon>
+                </PrependContent>
+                <LabelContent>
+                    <span class="text-caption neutral-lighten-3--text">
+                        Search task
+                    </span>
+                </LabelContent>
+            </MTextField>
+            <MMenu OffsetX Left OffsetY>
+                <ActivatorContent>
+                    <MButton Class="mr-5" Icon Large @attributes="context.Attrs"><MIcon>mdi-dots-horizontal</MIcon></MButton>
+                </ActivatorContent>
+                <ChildContent>
+                    <MList Dense>
+                        <MListItem Link OnClick=ResetSort>
+                            <MListItemContent>
+                                <MListItemTitle>
+                                    Reset Sort
+                                </MListItemTitle>
+                            </MListItemContent>
+                        </MListItem>
+                        <MListItem Link OnClick=SortbyAssignee>
+                            <MListItemContent>
+                                <MListItemTitle>
+                                    Sort Assignee
+                                </MListItemTitle>
+                            </MListItemContent>
+                        </MListItem>
+                        <MListItem Link OnClick=SortbyDueDate>
+                            <MListItemContent>
+                                <MListItemTitle>
+                                    Sort Due Date
+                                </MListItemTitle>
+                            </MListItemContent>
+                        </MListItem>
+                    </MList>
+                </ChildContent>
+            </MMenu>
+        </MToolbar>
 
-<div Style="padding-left:256px;">
+        <MList Dense Class="rounded-4 mt-6" Style="height: calc(100vh - 196px ); overflow-y:auto;">
+            @foreach (var item in ThisList)
+            {
+                <MListItem Style="height:58px;" Dense Link OnClick="() => ShowDetail(item)">
+                    <span @onclick:stopPropagation>
+                        <MCheckbox Class="pa-0 ma-0" @bind-Value=@item.IsChecked Color="pry"></MCheckbox>
+                    </span>
 
-    <MToolbar Dense Elevation="0">
-        <MTextField TValue="string"
-                    Class="mx-4 mt-2"
-                    HideDetails=true
-                    Label="Search task"
-                    PrependIcon="mdi-magnify"
-                    Placeholder=@FilterText Value=InputText ValueChanged="(v)=>InputTextChanged(v)">
-        </MTextField>
-        <MMenu OffsetX Left OffsetY>
-            <ActivatorContent>
-                <MButton Class="mt-3" Icon Large @attributes="context.Attrs"><MIcon>mdi-dots-vertical</MIcon></MButton>
-            </ActivatorContent>
-            <ChildContent>
-                <MList Dense>
-                    <MListItem Link Click=ResetSort>
-                        <MListItemIcon>
-                            <MIcon>fas fa-align-justify</MIcon>
-                        </MListItemIcon>
-                        <MListItemContent>
-                            <MListItemTitle>
-                                Reset Sort
-                            </MListItemTitle>
-                        </MListItemContent>
-                    </MListItem>
-                    <MListItem Link Click=SortbyAssignee>
-                        <MListItemIcon>
-                            <MIcon>fas fa-sort-alpha-down</MIcon>
-                        </MListItemIcon>
-                        <MListItemContent>
-                            <MListItemTitle>
-                                Sort Assignee
-                            </MListItemTitle>
-                        </MListItemContent>
-                    </MListItem>
-                    <MListItem Link Click=SortbyDueDate>
-                        <MListItemIcon>
-                            <MIcon>fas fa-sort-numeric-down</MIcon>
-                        </MListItemIcon>
-                        <MListItemContent>
-                            <MListItemTitle>
-                                Sort Due Date
-                            </MListItemTitle>
-                        </MListItemContent>
-                    </MListItem>
-                </MList>
-            </ChildContent>
-        </MMenu>
-    </MToolbar>
+                    <MListItemContent Class="text-body neutral-lighten-4--text">
+                        @item.Title
+                    </MListItemContent>
 
-    <MList Dense>
-        @foreach (var item in ThisList)
-        {
-            <MDivider></MDivider>
-            <MListItem Link OnClick="() => ShowDetail(item)">
-                <span @onclick:stopPropagation>
-                    <MCheckbox @bind-Value=@item.IsChecked Color="#7367f0"></MCheckbox>
-                </span>
-                @*<MSimpleCheckbox Value=@item.IsChecked OnInput="val=>item.IsChecked=val" Color="#7367f0"></MSimpleCheckbox>*@
+                    <MListItemAction>
+                        @foreach (var tag in item.Tag)
+                        {
+                            <MChip Class="mx-1" Small TextColor=@tcolor[tag] Color=@bcolor[tag]>@tag</MChip>
+                        }
+                        <span class="ml-4 mr-2 text-caption">@item.DueDate</span>
+                    </MListItemAction>
 
-                <MListItemContent>
-                    @item.Title
-                </MListItemContent>
+                    <MListItemAvatar>
+                        <img style="height:32px;width:32px" src=@avas[item.Avatar]>
+                    </MListItemAvatar>
+                </MListItem>
+                <MDivider></MDivider>
+            }
+        </MList>
 
-                <MListItemAction>
-                    <MChip Class="mx-3" Small TextColor=@tcolor[@item.Tag] Color=@bcolor[@item.Tag]>@item.Tag</MChip>
-                    <span>@item.DueDate</span>
-                </MListItemAction>
-
-                <MListItemAvatar>
-                    <img style="height:32px;width:32px" src=@avas[item.Avatar]>
-                </MListItemAvatar>
-            </MListItem>
-        }
-    </MList>
-
-    <TodoDetail Value="_visible" ValueChanged="val=>_visible = val" SelectItem=_selectItem></TodoDetail>
-</div>
-
+        <TodoDetail Value="_visible" ValueChanged="val=>_visible = val" SelectItem=_selectItem></TodoDetail>
+    </div>
+</CascadingValue>
 
 @code {
-    private string? _filterText;
+    private string _filterText = default!;
     private bool _visible = false;
+    private string? _inputText;
 
     public class SelectData
     {
-        public string Label { get; set; }
-        public string Value { get; set; }
+        public string Label { get; set; } = default!;
+        public string Value { get; set; } = default!;
     }
 
     private List<SelectData> _assList = new()
@@ -121,6 +120,46 @@
 
     private TodoData _selectItem = new();
 
+    [Parameter]
+    public string FilterText
+    {
+        get { return _filterText; }
+        set
+        {
+            _filterText = value;
+            switch (_filterText)
+            {
+                case "important":
+                    ThisList = TodoService.List.Where(item => item.IsImportant).ToList();
+                    break;
+                case "completed":
+                    ThisList = TodoService.List.Where(item => item.IsCompleted).ToList();
+                    break;
+                case "deleted":
+                    ThisList = TodoService.List.Where(item => item.IsDeleted).ToList();
+                    break;
+                case "team":
+                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Team")).ToList();
+                    break;
+                case "low":
+                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Low")).ToList();
+                    break;
+                case "medium":
+                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Medium")).ToList();
+                    break;
+                case "high":
+                    ThisList = TodoService.List.Where(item => item.Tag.Contains("High")).ToList();
+                    break;
+                case "update":
+                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Update")).ToList();
+                    break;
+                default:
+                    ThisList = TodoService.List;
+                    break;
+            }
+        }
+    }
+
     private void ShowDetail(TodoData item)
     {
         _visible = true;
@@ -142,64 +181,32 @@
         ThisList = TodoService.List.OrderBy(i => i.DueDate).ToList();
     }
 
-    private void InputTextChanged(string text)
+    private void InputTextChanged(string? text)
     {
         if (!string.IsNullOrWhiteSpace(text))
-        {
             ThisList = TodoService.List.Where(item => item.Title.Contains(text)).ToList();
-        }
+        else
+            ThisList = TodoService.List;
     }
 
-    public string? InputText { get; set; }
-
-    [Parameter]
-    public string FilterText
+    public string? InputText
     {
-        get { return _filterText; }
+        get { return _inputText; }
         set
         {
-            _filterText = value;
-            switch (_filterText)
-            {
-                case "important":
-                    ThisList = TodoService.List.Where(item => item.IsImportant).ToList();
-                    break;
-                case "completed":
-                    ThisList = TodoService.List.Where(item => item.IsCompleted).ToList();
-                    break;
-                case "deleted":
-                    ThisList = TodoService.List.Where(item => item.IsDeleted).ToList();
-                    break;
-                case "team":
-                    ThisList = TodoService.List.Where(item => item.Tag == "Team").ToList();
-                    break;
-                case "low":
-                    ThisList = TodoService.List.Where(item => item.Tag == "Low").ToList();
-                    break;
-                case "medium":
-                    ThisList = TodoService.List.Where(item => item.Tag == "Medium").ToList();
-                    break;
-                case "high":
-                    ThisList = TodoService.List.Where(item => item.Tag == "High").ToList();
-                    break;
-                case "update":
-                    ThisList = TodoService.List.Where(item => item.Tag == "Update").ToList();
-                    break;
-                default:
-                    ThisList = TodoService.List;
-                    break;
-            }
+            _inputText = value;
+            InputTextChanged(_inputText);
         }
     }
 
     private string[] avas = new string[]
-                                                                                    {
+                                                                                                                                            {
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/5.f13458cc.png",
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/1.9cba4a79.png",
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/13-small.d796bffd.png",
         "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/12.03bf9466.png",
         "https://cdn.vuetifyjs.com/images/lists/4.jpg",
-                                                                                    };
+                                                                                                                                            };
 
     private Dictionary<string, string> tcolor = new()
         {
@@ -218,4 +225,10 @@
             { "High", "red lighten-4" },
             { "Update", "cyan lighten-4" },
         };
+
+    public void UpdateData(TodoData data)
+    {
+        var index = ThisList.IndexOf(ThisList.First(d => d.Id == data.Id));
+        ThisList[index] = data;
+    }
 }

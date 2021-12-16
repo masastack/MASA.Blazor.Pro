@@ -13,16 +13,16 @@ public class TodoData
     public bool IsDeleted { get; set; }
 
     [Required]
-    public string? Title { get; set; }
+    public string Title { get; set; } = default!;
 
-    public string? Assignee { get; set; }
+    public string Assignee { get; set; } = default!;
 
     public int Avatar { get; set; }
 
     public DateOnly DueDate { get; set; } = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
 
     [Required]
-    public string Tag { get; set; } = "";
+    public List<string> Tag { get; set; }
 
     public string? Description { get; set; }
 }

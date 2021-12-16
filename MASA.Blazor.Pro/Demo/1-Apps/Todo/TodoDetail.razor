@@ -1,52 +1,66 @@
 ﻿@using MASA.Blazor.Pro.Data
 
-<MNavigationDrawer Temporary Absolute Right Value=Value ValueChanged=ValueChanged Width="420">
-    <MToolbar Dense Elevation=0 Color="indigo lighten-5">
-        <MButton Small Click="() => SelectItem.IsCompleted = !SelectItem.IsCompleted"
-                 Color=@CompletedColor Outlined>@CompletedText</MButton>
+<MNavigationDrawer Fixed Temporary Right Value=Value ValueChanged=ValueChanged Width="465">
+    <MToolbar Elevation=0 Class="px-6">
+        @if (_isEdit)
+        {
+            <MButton Dark OnClick="() => _selectData.IsCompleted = !_selectData.IsCompleted" Color=@CompletedColor>
+                @CompletedText
+            </MButton>
+        }
+        else
+        {
+            <span>Add Task</span>
+        }
         <MSpacer></MSpacer>
-        <MButton Small Icon>
-            <MIcon Small Color="red">fas fa-trash-alt</MIcon>
-        </MButton>
-        <MButton Small Icon Click="() => SelectItem.IsImportant = !SelectItem.IsImportant">
-            @if (SelectItem.IsImportant)
+        @if (_isEdit)
+        {
+            <MButton Icon>
+                <MIcon>mdi-delete-outline</MIcon>
+            </MButton>
+        }
+        <MButton Icon OnClick="() => _selectData.IsImportant = !_selectData.IsImportant">
+            @if (_selectData.IsImportant)
             {
-                <MIcon Small Color="orange">fas fa-star</MIcon>
+                <MIcon Color="orange">mdi-star</MIcon>
             }
             else
             {
-                <MIcon Small Color="orange">far fa-star</MIcon>
+                <MIcon Color="orange">mdi-star-outline</MIcon>
             }
         </MButton>
-        <MButton Small Icon OnClick="()=>UpdateValue(false)">
-            <MIcon Small>fas fa-times</MIcon>
+        <MButton Icon OnClick="HideNavigationDrawer">
+            <MIcon>mdi-close</MIcon>
         </MButton>
     </MToolbar>
-    <MForm Model="SelectItem" EnableDataAnnotationsValidation>
-        <MTextField Dense Class="mx-5 mt-6" @bind-Value=SelectItem.Title Label="Title" Outlined Clearable></MTextField>
+    <MForm Model="_selectData" EnableDataAnnotationsValidation>
+        <MTextField Class="mx-6 mt-6" @bind-Value=_selectData.Title Label="Title" Outlined Clearable></MTextField>
 
-        <MSelect Class="mx-5" Dense Outlined Label="Assignee" @bind-Value=SelectItem.Assignee
+        <MSelect Class="mx-6" Outlined Label="Assignee" @bind-Value=_selectData.Assignee
                  TItem="SelectData" TValue="string" TItemValue="string"
                  Items=@_assList ItemText="i => i.Label" ItemValue="i => i.Value">
         </MSelect>
 
-        <div class="mx-5">
+        <div class="mx-6">
             <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
                 <ActivatorContent Context="menuContext">
-                    <MTextField @bind-Value=SelectItem.DueDate Label="Due Date" Dense Outlined Placeholder="Due Date" @attributes="menuContext.Attrs"></MTextField>
+                    <MTextField @bind-Value=_selectData.DueDate Label="Due Date" Outlined Placeholder="Due Date" @attributes="menuContext.Attrs"></MTextField>
                 </ActivatorContent>
                 <ChildContent>
-                    <MDatePicker @bind-Value=SelectItem.DueDate></MDatePicker>
+                    <MDatePicker @bind-Value=_selectData.DueDate></MDatePicker>
                 </ChildContent>
             </MMenu>
         </div>
 
-        <MSelect Class="mx-5" Dense Outlined Label="Tag" @bind-Value=SelectItem.Tag
-                 TItem="SelectData" TValue="string" TItemValue="string"
+        <MSelect Class="mx-6" SmallChips Outlined Label="Tag" Multiple Value=_selectData.Tag
+                 TItem="SelectData" TValue="List<string>" TItemValue="string"
                  Items=@_tagList ItemText="i => i.Label" ItemValue="i => i.Value">
+            <SelectionContent Context="_context">
+                <MChip Style="height:32px;border-radius:32px;" Outlined Close CloseIcon="mdi-close" OnCloseClick="()=>HandleCloseClick(_context.Item.Label)">@_context.Item.Label</MChip>
+            </SelectionContent>
         </MSelect>
 
-        <MTextarea Class="mx-5" Outlined Label="Description" @bind-Value=SelectItem.Description></MTextarea>
+        <MTextarea Class="mx-6" Outlined Label="Description" @bind-Value=_selectData.Description></MTextarea>
 
         <MRow NoGutters Justify="JustifyTypes.Start" Class="ml-5">
             @if (_isEdit)
@@ -57,7 +71,7 @@
             {
                 <MButton Color="#7367f0" Dark OnClick="()=>Add(context)">Add</MButton>
             }
-            <MButton Outlined Class="ml-5">Reset</MButton>
+            <MButton Outlined Class="ml-5" OnClick="Reset">Reset</MButton>
         </MRow>
     </MForm>
 </MNavigationDrawer>
@@ -68,14 +82,17 @@
         public string Label { get; set; } = default!;
         public string Value { get; set; } = default!;
     }
-    private List<SelectData> _tagList = new()
-        {
-            new SelectData() { Label = "Team", Value = "Team" },
-            new SelectData() { Label = "Low", Value = "Low" },
-            new SelectData() { Label = "Medium", Value = "Medium" },
-            new SelectData() { Label = "High", Value = "High" },
-            new SelectData() { Label = "Update", Value = "Update" }
-        };
+
+    private bool _isEdit;
+    private TodoData _selectData = new TodoData();
+    private List<SelectData> _tagList = new List<SelectData>
+    {
+        new SelectData() { Label = "Team", Value = "Team" },
+        new SelectData() { Label = "Low", Value = "Low" },
+        new SelectData() { Label = "Medium", Value = "Medium" },
+        new SelectData() { Label = "High", Value = "High" },
+        new SelectData() { Label = "Update", Value = "Update" }
+    };
     private List<SelectData> _assList = new()
         {
             new SelectData() { Label = "紫萱", Value = "紫萱" },
@@ -87,31 +104,33 @@
             new SelectData() { Label = "乐萱", Value = "乐萱" },
         };
 
-    private bool _isEdit;
+    private string CompletedColor { get { return _selectData.IsCompleted ? "pry" : "grey"; } }
 
-    private string CompletedColor { get { return SelectItem.IsCompleted ? "grey" : "teal"; } }
+    private string CompletedText { get { return _selectData.IsCompleted ? "Mark Complete" : "Completed"; } }
 
-    private string CompletedText { get { return SelectItem.IsCompleted ? "Mark Complete" : "Completed"; } }
-
-    [Parameter]
-    public bool Value { get; set; } = false;
+    [CascadingParameter]
+    public TodoList TodoList { get; set; } = default!;
 
     [Parameter]
-    public TodoData SelectItem { get; set; }
+    public bool Value { get; set; }
+
+    [Parameter]
+    public TodoData SelectItem { get; set; } = new TodoData();
 
     [Parameter]
     public EventCallback<bool> ValueChanged { get; set; }
 
-    private async Task UpdateValue(bool value)
+    private async Task HideNavigationDrawer()
     {
         if (ValueChanged.HasDelegate)
         {
-            await ValueChanged.InvokeAsync(value);
+            await ValueChanged.InvokeAsync(false);
         }
-        else
-        {
-            Value = value;
-        }
+    }
+
+    private void HandleCloseClick(string lable)
+    {
+        _selectData.Tag.Remove(lable);
     }
 
     protected override void OnParametersSet()
@@ -125,6 +144,21 @@
         {
             _isEdit = true;
         }
+
+        _selectData = new TodoData
+            {
+                Id = SelectItem.Id,
+                IsChecked = SelectItem.IsChecked,
+                Assignee = SelectItem.Assignee,
+                Avatar = SelectItem.Avatar,
+                Description = SelectItem.Description,
+                IsCompleted = SelectItem.IsCompleted,
+                IsDeleted = SelectItem.IsDeleted,
+                IsImportant = SelectItem.IsImportant,
+                DueDate = SelectItem.DueDate,
+                Tag = SelectItem.Tag,
+                Title = SelectItem.Title
+            };
     }
 
     private async Task Add(EditContext context)
@@ -135,7 +169,7 @@
             SelectItem.Id = TodoService.List.Count + 1;
             TodoService.List.Insert(0, SelectItem);
 
-            await UpdateValue(false);
+            await HideNavigationDrawer();
         }
     }
 
@@ -144,7 +178,28 @@
         var success = context.Validate();
         if (success)
         {
-            await UpdateValue(false);
+            var data = (TodoData)context.Model;
+            data.IsChecked = data.IsCompleted;
+            TodoList.UpdateData(data);
+            await HideNavigationDrawer();
         }
+    }
+
+    private void Reset()
+    {
+        _selectData = new TodoData
+            {
+                Id = SelectItem.Id,
+                IsChecked = SelectItem.IsChecked,
+                Assignee = SelectItem.Assignee,
+                Avatar = SelectItem.Avatar,
+                Description = SelectItem.Description,
+                IsCompleted = SelectItem.IsCompleted,
+                IsDeleted = SelectItem.IsDeleted,
+                IsImportant = SelectItem.IsImportant,
+                DueDate = SelectItem.DueDate,
+                Tag = SelectItem.Tag,
+                Title = SelectItem.Title
+            };
     }
 }

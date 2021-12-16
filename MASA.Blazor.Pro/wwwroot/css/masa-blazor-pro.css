@@ -2,6 +2,24 @@
     font-size: 16px;
 }
 
+/*scrollbar*/
+::-webkit-scrollbar-track {
+    border-radius: 15px;
+    margin: 5px 0;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    margin: 5px 0;
+}
+
+::-webkit-scrollbar-thumb {
+    margin: 5px 0;
+    border-radius: 15px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(170 168 168)), color-stop(0.72, rgb(170 168 168)), color-stop(0.86, rgb(170 168 168)));
+}
+
 .h1, .text-h1, h1 {
     /* Headline 1 */
     font-family: Roboto !important;
@@ -332,9 +350,10 @@
 }
 
 /*组件样式全局修改start*/
-.m-radio i{
-    font-size:24px !important;
+.m-radio i {
+    font-size: 24px !important;
 }
+
 .m-input__slot {
     margin-bottom: 0px !important;
 }
@@ -343,12 +362,14 @@
     min-height: 0px !important;
 }
 
-.m-navigation-drawer__border{
-    width:0
+.m-navigation-drawer__border {
+    width: 0
 }
-.m-toolbar__content{
-    padding:0 0 0 0;
+
+.m-toolbar__content {
+    padding: 0 0 0 0;
 }
+
 .m-card {
     box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 12%) !important;
     border-radius: 20px !important;
@@ -577,4 +598,12 @@ m-btn--is-elevated {
 
 .relate-group .m-slide-group__next {
     margin-left:10px;
+}
+
+.task-search.m-text-field > .m-input__control > .m-input__slot:before, .m-text-field > .m-input__control > .m-input__slot:after {
+    width: 0 !important;
+}
+
+.task-search.m-text-field > .m-input__control > .m-input__slot:before, .m-text-field > .m-input__control > .m-input__slot:after {
+    width: 0 !important;
 }
