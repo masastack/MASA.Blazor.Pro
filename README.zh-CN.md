@@ -12,7 +12,7 @@
 
 [![MASA.Blazor.Pro](https://img.shields.io/badge/license-MIT-informational)](https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
 
-
+</div>
 
 [English](./README.md) | 简体中文
 
