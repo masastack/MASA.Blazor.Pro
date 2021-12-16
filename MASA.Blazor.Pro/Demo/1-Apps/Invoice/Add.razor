@@ -233,9 +233,7 @@
 
     public bool IsEdit => Id is not null;
 
-    InvoiceRecord? _invoiceRecord;
-
-    public InvoiceRecord InvoiceRecord => _invoiceRecord ?? (_invoiceRecord = InvoiceService._invoiceRecords.FirstOrDefault(i => i.Id == Id)??new InvoiceRecord());
+    public InvoiceRecord InvoiceRecord = InvoiceService._invoiceRecords.First();
 
     bool _showAddPayment;
 

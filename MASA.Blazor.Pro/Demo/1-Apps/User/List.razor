@@ -3,16 +3,16 @@
 @inherits DemoCompontentBase
 @inject NavigationManager Nav
 
-<MCard Elevation=2>
-    <MCardText>
-        <h3 class="black--text">Filters</h3>
-        <MRow Class="mt-2">
+<MCard>
+    <MCardText Class="pa-6">
+        <h6>Filters</h6>
+        <MRow Class="mt-3">
             <MCol Sm=12 Md=4>
                 <MSelect @bind-Value="_userPage.Role"
-                         Color="deep-purple"
+                         Color="primary"
+                         HideDetails="@("auto")"
                          Clearable
-                         Outlined
-                         Dense
+                         Outlined                         
                          Items="@UserService.Roles"
                          ItemText="u => u"
                          ItemValue="u => u"
@@ -21,10 +21,10 @@
             </MCol>
             <MCol Sm=12 Md=4>
                 <MSelect @bind-Value="_userPage.Plan"
-                         Color="deep-purple"
+                         Color="primary"
+                         HideDetails="@("auto")"
                          Clearable
-                         Outlined
-                         Dense
+                         Outlined                        
                          Items="@UserService.Plans"
                          ItemText="u => u"
                          ItemValue="u => u"
@@ -33,10 +33,10 @@
             </MCol>
             <MCol Sm=12 Md=4>
                 <MSelect @bind-Value="_userPage.Status"
-                         Color="deep-purple"
+                         Color="primary"
+                         HideDetails="@("auto")"
                          Clearable
-                         Outlined
-                         Dense
+                         Outlined                         
                          Items="@UserService.Status"
                          ItemText="u => u"
                          ItemValue="u => u"
@@ -47,64 +47,65 @@
     </MCardText>
 </MCard>
 
-<MCard Elevation=2 Class="mt-7">
-    <MCardText>
-        <div class="d-flex">
-            <div class="mr-auto d-flex">
-                <div class="pt-2">Show</div>
+<MCard Class="mt-6">
+    <MCardText Class="pa-6">
+        <MRow>
+            <MCol Md=6 Sm=12 Class="d-flex block-center">
+                <span class="text-btn neutral-lighten-1--text">Show:</span>
                 <MSelect @bind-Value="_userPage.PageSize"
-                         Color="deep-purple"
-                         Style="width:90px"
-                         Class="mx-2"
-                         Outlined
-                         Dense                         
+                         Color="primary"
+                         Style="max-width:120px;"                          
+                         Dense
+                         Class="mx-6"
+                         HideDetails="@("auto")"
+                         Outlined                                                  
                          Items="@_pageSizes"
                          ItemText="u => u.ToString()"
                          ItemValue="u => u">
                 </MSelect>
-                <span class="pt-2">entries</span>
-            </div>
-            <div class="d-flex">
-                <MTextField @bind-Value="_userPage.Search"
-                            TValue="string"
-                            HideDetails="true"
-                            Color="deep-purple"
-                            Outlined Dense
-                            Style="width:600px"
-                            Placeholder="Search">
+                <span class="text-btn">entries</span>
+            </MCol>
+            <MCol Md=6 Sm=12 Class="d-flex block-center">
+                <MTextField @bind-Value="_userPage.Search" Color="primary" HideDetails="@("auto")" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search">
+                    <PrependInnerContent>
+                        <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
+                    </PrependInnerContent>
                 </MTextField>
-                <MButton Color="deep-purple" Class="white--text ml-3" OnClick="()=>_visible=true">
+                <MButton Color="primary" MinWidth=80 Height=38 Class="ml-6" OnClick="()=>_visible=true">
                     Add User
                 </MButton>
-            </div>
-        </div>
+            </MCol>
+        </MRow>
     </MCardText>
 
-    <MDataTable Headers="_headers" Items="_userPage.GetPageDatas()" ItemsPerPage="_userPage.PageSize" Page="_userPage.PageIndex" HideDefaultFooter Class="border-top-solid mt-n4">
+    <MDataTable Headers="_headers" Items="_userPage.GetPageDatas()" TItem="UserData" ItemsPerPage="_userPage.PageSize" HideDefaultFooter Class="ml-2 table-border-none"> @*Page="_userPage.PageIndex"*@
+        <HeaderColContent Context="header">
+            <span class="text-subtitle">@header.Text</span>
+        </HeaderColContent>
         <ItemColContent>
             @switch (context.Header.Value)
             {
                 case nameof(UserData.UserName):
-                    <MListItem class="d-flex my-2" OnClick="()=>NavigateToDetails(context.Item.Id)">
+                    <div class="hover-pointer d-flex my-2" @onclick="()=>NavigateToDetails(context.Item.Id)">
                         @if (string.IsNullOrEmpty(context.Item.HeadImg))
                         {
                             string color = context.Item.Color;
 
-                            <MAvatar Size=35 Color="@($"{color} lighten-5")" Class="mt-1">
+                            <MAvatar Size=48 Color="@($"{color} lighten-5")" Class="mt-1">
                                 <span class="@($"{color}--text")">@context.Item.SampleName</span>
                             </MAvatar>
                         }
                         else
                         {
-                            <MAvatar Size=35 Class="mt-1">
+                            <MAvatar Size=48 Class="mt-1">
                                 <MImage Contain Src="@context.Item.HeadImg"></MImage>
                             </MAvatar>
                         }
                         <div class="ml-4">
-                            <div class="deep-purple--text">@context.Item.FullName</div>
-                            <div class="grey--text text-caption">@@@context.Item.UserName</div>
+                            <div class="text-subtitle">@context.Item.FullName</div>
+                            <div class="text-caption mt-1">@@@context.Item.UserName</div>
                         </div>
-                    </MListItem>
+                    </div>
                     break;
                 case (nameof(UserData.Email)):
                     <span>@context.Item.Email</span>
@@ -157,13 +158,13 @@
 
     <MCardText>
         <div class="d-flex">
-            <div class="mr-auto pt-3">Showing @((_userPage.PageIndex-1)*_userPage.PageSize+1) to @(_userPage.PageIndex*_userPage.PageSize) of @_userPage.CurrentCount entries</div>        
-            <MPagination @bind-Value="_userPage.PageIndex" Color="deep-purple" Circle Length=@_userPage.PageCount></MPagination>
+            <div class="mr-auto pt-3 text-btn neutral-lighten-1--text">Showing2 @((_userPage.PageIndex-1)*_userPage.PageSize+1) to @(_userPage.PageIndex*_userPage.PageSize) of @_userPage.CurrentCount entries</div>        
+            <MPagination @bind-Value="_userPage.PageIndex" Color="primary" Circle Length=@_userPage.PageCount></MPagination>
         </div>
     </MCardText>
 </MCard>
 
-<Add Visible=_visible ValueChanged="val=>_visible = val" Submit="AddUserData"></Add>
+<Add @bind-Visible=_visible Submit="AddUserData"></Add>
 
 @code {
     public override string Name { get; } = "User-List";
@@ -184,13 +185,13 @@
         new (){ Text= "ROLE", Value= nameof(UserData.Role)},
         new (){ Text= "PLAN", Value= nameof(UserData.Plan)},
         new (){ Text= "STATUS", Value= nameof(UserData.Status)},
-        new (){ Text= "ACTIONS", Value= "Action"}
+        new (){ Text= "ACTIONS", Value= "Action",Sortable=false}
     };
 
     Dictionary<string, string> _roleIconMap = new Dictionary<string, string>
     {
         ["Editor"]="mdi-pencil,cyan",
-        ["Subscriber"]="far fa-user,deep-purple",
+        ["Subscriber"]="far fa-user,primary",
         ["Admin"]="fas fa-user-cog,red",
         ["Maintainer"]="fas fa-database,green",
         ["Author"]="fas fa-cog,orange",

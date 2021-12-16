@@ -8,18 +8,24 @@
 
 <MApp Dark="GlobalConfig.IsDark">
 
-    <MAppBar Elevation=0 App MaxHeight=60 Class="px-6">
+    <MAppBar Elevation=0 App MaxHeight=60 Class="mx-6">
         <MToolbar Elevation=0 Class="rounded-b-4">
-            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-heart</MIcon>
-             <MAppBarNavIcon @onclick="()=>GlobalConfig.NavigationMini=!GlobalConfig.NavigationMini"></MAppBarNavIcon>
+            <Keep></Keep>
             <MSpacer></MSpacer>
 
-          @*  <MMenu OffsetY Bottom>
+            <Search></Search>
+
+            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-4">mdi-message-processing</MIcon>
+
+            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-cart-outline</MIcon>
+
+            @*<MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-google-translate</MIcon>*@
+
+            <MMenu OffsetY Bottom>
                 <ActivatorContent>
-                    <MChip Label Color="white" @attributes="@context.Attrs">
+                    <MChip Label Color="white" @attributes="@context.Attrs" Class="hover-pointer ml-6 neutral-lighten-4--text">
                         @_currentLanguageSetting?.Text
                     </MChip>
-
                 </ActivatorContent>
                 <ChildContent>
                     <MList>
@@ -28,9 +34,9 @@
                             {
                                 <MListItem OnClick="()=> OnLanguageChange(option)" Value="(StringNumber)option.Value">
                                     <MListItemContent>
-                                        <MListItemTitle>
+                                        <span Class="neutral-lighten-4--text text-btn">
                                             @option.Text
-                                        </MListItemTitle>
+                                        </span>
                                     </MListItemContent>
                                 </MListItem>
                             }
@@ -38,39 +44,40 @@
                     </MList>
                 </ChildContent>
             </MMenu>
-*@
-            <div style="width:340px;height:40px;">
-                <MTextField TValue="string" Class="rounded-2" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search">
-                    <PrependInnerContent>
-                        <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
-                    </PrependInnerContent>
-                </MTextField>
-            </div>
 
-            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-4">mdi-message-processing</MIcon>
-
-            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-cart-outline</MIcon>
-
-            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-google-translate</MIcon>
-
-            <div class="ml-5 text-center" style="width:88px;">
-                <MAvatar Size=40>
-                    <MImage Src="/img/avatar/avatar-s-20.jpg"></MImage>
-                </MAvatar>
-            </div>
-           @* <Login />*@
+            <Login />
         </MToolbar>
     </MAppBar> 
 
-    <MNavigationDrawer MiniVariantWidth=80 Width=300 @bind-MiniVariant="GlobalConfig.NavigationMini" App>
-        <Navigation />
-    </MNavigationDrawer>
+@*    <MHover>
+        @{
+            GlobalConfig.NavigationMini = (GlobalConfig.ExpandOnHover || GlobalConfig.NavigationMini) && context.Hover == false;
+        }
+        <MNavigationDrawer @attributes="context.Attrs" Width=300 MiniVariantWidth=80 Permanent ExpandOnHover="GlobalConfig.ExpandOnHover" MiniVariant="GlobalConfig.NavigationMini" App>
+           
+            <Navigation IsMini="GlobalConfig.NavigationMini" />
+        </MNavigationDrawer>           
+    </MHover>*@
+    @{
+        GlobalConfig.NavigationMini = GlobalConfig.ExpandOnHover || GlobalConfig.NavigationMini;
+    }
+    <MNavigationDrawer Width=300 MiniVariantWidth=80 Permanent Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>          
+        <Navigation IsMini="GlobalConfig.NavigationMini" />
+    </MNavigationDrawer> 
+    @{
+        string style = $"{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}bottom:160px;z-index:10;position: fixed;";
+    }
+    <MButton Small Fab Color="primary" Style="@style" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;GlobalConfig.NavigationMini=!GlobalConfig.NavigationMini;}">@*GlobalConfig.NavigationMini=!GlobalConfig.NavigationMini;*@
+        <MIcon Class="white--text">
+            @(GlobalConfig.NavigationMini?"mdi-chevron-right":"mdi-chevron-left")
+        </MIcon>
+    </MButton>
 
-    <MMain Class="fill-lighten-1" Style="padding-left:300px;padding-top:60px">
-        <div class="pa-6">
-             @*@RenderCurrentBreadcrumbItem*@
-             @Body
-        </div>      
+    <MMain Class="fill-lighten-1" Style="padding-top:60px">
+        <div class="pa-6 max-width">
+            @*@RenderCurrentBreadcrumbItem*@
+            @Body
+        </div>
     </MMain>
 </MApp>
 
@@ -84,7 +91,7 @@
     {
         _currentLanguageSetting = LanguageSettings.FirstOrDefault(o => o.Value == (GlobalConfig.Language ?? LanguageProvider.CurrentLanguage));
         LanguageProvider.SetLang(_currentLanguageSetting?.Value ?? LanguageProvider.CurrentLanguage);
-        foreach(var navCategory in NavCategorys)
+        foreach (var navCategory in NavCategorys)
         {
             foreach (var nav in navCategory.Navs)
             {
@@ -102,7 +109,7 @@
         _currentLanguageSetting = setting;
         LanguageProvider.SetLang(setting.Value);
         GlobalConfig.Language = setting.Value;
-        GlobalConfig.SaveChanges();      
+        GlobalConfig.SaveChanges();
     }
 
     void RenderCurrentBreadcrumbItem(RenderTreeBuilder __builder)

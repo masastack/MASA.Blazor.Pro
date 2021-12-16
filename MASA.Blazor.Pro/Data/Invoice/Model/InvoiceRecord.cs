@@ -4,9 +4,14 @@ namespace MASA.Blazor.Pro.Data.Invoice;
 
 public class InvoiceRecord
 {
+    public InvoiceRecord(UserData client)
+    {
+        Client = client;
+    }
+
     public int Id { get; set; }
 
-    public UserData? Client { get; set; }
+    public UserData Client { get; set; }
 
     public int Total { get; set; }
 

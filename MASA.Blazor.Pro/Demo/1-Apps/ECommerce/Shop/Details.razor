@@ -19,20 +19,20 @@
     <MCardText>
         <MRow style="height:600px;">
             <MCol Md="6" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
-                <MImage src="@_shopDataItem.PictureFile" class="full-width" Height="@("auto")"/>
+                <MImage src="@ShopDataItem.PictureFile" class="full-width" Height="@("auto")"/>
             </MCol>
             <MCol Md="6" class="d-flex flex-column">
                 <div class="mb-6">
-                    <p class="text-caption mb-0">By<span class="sample-green--text  ml-px-10">@_shopDataItem.Brand</span></p>
-                    <h5 class="neutral-lighten-1--text">@_shopDataItem.Name</h5>
+                    <p class="text-caption mb-0">By<span class="sample-green--text  ml-px-10">@ShopDataItem.Brand</span></p>
+                    <h5 class="neutral-lighten-1--text">@ShopDataItem.Name</h5>
                 </div>
                 <div class="mb-6">
                     <p class="mb-0 text-caption"> Available - InStock</p>
-                    <MRating Readonly Value="_shopDataItem.Rating" Size=20 Color="remind" BackgroundColor="remind" Dense></MRating>
-                    <h6 class="neutral--text">$@_shopDataItem.Price</h6>
+                    <MRating Readonly Value="ShopDataItem.Rating" Size=20 Color="remind" BackgroundColor="remind" Dense></MRating>
+                    <h6 class="neutral--text">$@ShopDataItem.Price</h6>
                 </div>
                 <p class="mb-6 text-body neutral-lighten-4--text justify-text-align">
-                    @_shopDataItem.Description
+                    @ShopDataItem.Description
                 </p>
                 <div class="mb-6 d-flex justify-space-between">
                     <span class="text-caption neutral-lighten-1--text">Free Shipping</span><span class="text-caption neutral-lighten-4--text">Shipping</span>
@@ -116,14 +116,11 @@
 @code {
     public override string Name => "Apps-ECommerce-Details";
 
-    ShopDataItem _shopDataItem = new();
+    ShopDataItem? _shopDataItem;
+
+    ShopDataItem ShopDataItem => _shopDataItem ?? (_shopDataItem= new ShopPage(ShopDataService.ShopDataItems).GetDetailItem(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8"));
 
     [Parameter]
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
-    protected override Task OnInitializedAsync()
-    {
-        _shopDataItem = ShopDataService.ShopData.GetDetailItem(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8");
-        return base.OnInitializedAsync();
-    }
 }

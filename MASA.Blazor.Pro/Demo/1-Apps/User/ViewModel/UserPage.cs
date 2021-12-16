@@ -34,7 +34,7 @@ namespace MASA.Blazor.Pro.Demo
             
             if(Search is not null)
             {
-                datas = datas.Where(d => d.FullName.Contains(Search) || d.Email.Contains(Search));
+                datas = datas.Where(d => d.FullName.Contains(Search) || d.Email?.Contains(Search)==true);
             }
 
             if(Role is not null)

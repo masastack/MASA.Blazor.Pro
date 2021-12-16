@@ -24,6 +24,8 @@ namespace MASA.Blazor.Pro.Global
 
         public bool NavigationMini { get; set; }
 
+        public bool ExpandOnHover { get; set; }
+
         public void Initialize(IRequestCookieCollection cookies)
         {
             Language = cookies[LanguageCookieKey];

@@ -1,96 +1,9 @@
 ﻿using BlazorComponent;
 
-namespace MASA.Blazor.Pro.Demo
+namespace MASA.Blazor.Pro.Data
 {
-    public class ShopData
-    {
-        public ShopData(List<ShopDataItem> datas)
-        {
-            Datas = datas;
-        }
-
-        public List<ShopDataItem> Datas { get; set; }
-
-        private IEnumerable<ShopDataItem> GetFilterDatas()
-        {
-            IEnumerable<ShopDataItem> datas = Datas;
-
-            if (MultiRange is not null)
-            {
-                datas = MultiRange.RangeType switch
-                {
-                    RangeType.All => datas,
-                    RangeType.Range => datas.Where(d => d.Price >= MultiRange.LeftNumber && d.Price <= MultiRange.RightNumber),
-                    RangeType.Less => datas.Where(d => d.Price < MultiRange.LeftNumber),
-                    RangeType.LessEqual => datas.Where(d => d.Price <= MultiRange.LeftNumber),
-                    RangeType.More => datas.Where(d => d.Price > MultiRange.LeftNumber),
-                    RangeType.MoreEqual => datas.Where(d => d.Price >= MultiRange.LeftNumber),
-                    _ => datas
-                };
-            }
-            if (Category is not null)
-            {
-                datas = datas.Where(d => d.Category == Category);
-            }
-            if (Brand is not null)
-            {
-                datas = datas.Where(d => d.Brand == Brand);
-            }
-            if (SortType is not null)
-            {
-                if (SortType == "Lowest")
-                {
-                    datas = datas.OrderBy(d => d.Price);
-                }
-                else if (SortType == "Highest")
-                {
-                    datas = datas.OrderByDescending(d => d.Price);
-                }
-            }
-            if (Search is not null)
-            {
-                datas = datas.Where(d => d.Name.ToUpper().Contains(Search.ToUpper()));
-            }
-
-            return datas;
-        }
-
-        public List<ShopDataItem> GetPageDatas()
-        {
-            return GetFilterDatas().Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
-        }
-
-        public int CurrentCount => GetFilterDatas().Count();
-
-        public int PageIndex { get; set; } = 1;
-
-        public int PageSize { get; set; } = 9;
-
-        public int PageCount => (int)Math.Ceiling(CurrentCount / (double)PageSize);
-
-        public MultiRange? MultiRange { get; set; }
-
-        public string? Category { get; set; }
-
-        public string? Brand { get; set; }
-
-        public StringNumber SortType { get; set; } = "Featured";
-
-        public string? Search { get; set; }
-
-        public ShopDataItem GetDetailItem(string guid)
-        {
-            return Datas.FirstOrDefault(a => a.Id == Guid.Parse(guid)) ?? Datas.First();
-        }
-    }
-
     public class ShopDataItem
     {
-        public ShopDataItem()
-        {
-
-        }
-
         public ShopDataItem(string name, double price, string pictureFile, string category, int rating, string brand, string description, Guid? guid = null)
         {
             Id = guid ?? Guid.NewGuid();
@@ -122,7 +35,7 @@ namespace MASA.Blazor.Pro.Demo
 
     public static class ShopDataService
     {
-        private static List<ShopDataItem> _shopDataItems = new List<ShopDataItem>
+        public static List<ShopDataItem> ShopDataItems = new List<ShopDataItem>
         {
             new("Apple Watch Series 5",339.99,"/img/apps-eCommerce/1.png","Cell Phones",4,"Apple","On Retina display that never sleeps, so it’s easy to see the time and other important information, without raising or tapping the display. New location features, from a built-in compass to current elevation, help users better navigate their day, while international emergency calling1 allows customers to call emergency services directly from Apple Watch in over 150 countries, even without iPhone nearby. Apple Watch Series 5 is available in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.",Guid.Parse("2d1e3440-5134-40c8-836f-f988bfef91c8")),
             new("Apple iPhone 11 (64GB, Black)",669.99,"/img/apps-eCommerce/2.png","Cell Phones",5,"Apple","The Apple iPhone 11 is a great smartphone, which was loaded with a lot of quality features. It comes with a waterproof and dustproof body which is the key attraction of the device. The excellent set of cameras offer excellent images as well as capable of recording crisp videos. However, expandable storage and a fingerprint scanner would have made it a perfect option to go for around this price range."),
@@ -152,6 +65,5 @@ namespace MASA.Blazor.Pro.Demo
             new("Rectangular Polarized, Bluetooth Audio Sunglasses",249,"/img/apps-eCommerce/26.png","Health, Fitness & Beauty",4,"Bose","Redesigned for luxury — Thoughtfully refined and strikingly elegant, the latest Bose sunglasses blend enhanced features and designs for an elevated way to listen."),
             new("VicTsing Wireless Mouse",10.99,"/img/apps-eCommerce/27.png","Computers & Tablets",3,"VicTsing","After thousands of samples of palm data, we designed this ergonomic mouse. The laptop mouse has a streamlined arc and thumb rest to help reduce the stress caused by prolonged use of the laptop mouse."),
         };
-        public static ShopData ShopData => new ShopData(_shopDataItems);
     }
 }

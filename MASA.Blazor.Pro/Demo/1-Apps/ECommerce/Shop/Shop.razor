@@ -12,9 +12,9 @@
             @foreach (var multiRange in _multiRanges)
             {
                 <div class="block-center" style="height:40px;">
-                    <MRadio Color="pry" Value="@multiRange">
+                    <MRadio Color="primary" Value="@multiRange">
                         <LabelContent>
-                            <span class="@($"{(_shopData.MultiRange==multiRange?"text-subtitle pry--text":"text-body neutral-lighten-4--text")}")">@multiRange.Text</span>
+                            <span class="@($"{(_shopData.MultiRange==multiRange?"text-subtitle primary--text":"text-body neutral-lighten-4--text")}")">@multiRange.Text</span>
                         </LabelContent>
                     </MRadio>
                 </div>
@@ -28,9 +28,9 @@
             @foreach (var categorie in _categories)
             {
                 <div class="block-center" style="height:40px;">
-                    <MRadio Color="pry" Value="@categorie">
+                    <MRadio Color="primary" Value="@categorie">
                         <LabelContent>
-                            <span class="@($"{(_shopData.Category==categorie?"text-subtitle pry--text":"text-body neutral-lighten-4--text")}")">@categorie</span>
+                            <span class="@($"{(_shopData.Category==categorie?"text-subtitle primary--text":"text-body neutral-lighten-4--text")}")">@categorie</span>
                         </LabelContent>
                     </MRadio>
                 </div>
@@ -44,9 +44,9 @@
             @foreach (var brand in _brands)
             {
                 <div class="block-center" style="height:40px;">
-                    <MRadio Color="pry" Value="@brand">
+                    <MRadio Color="primary" Value="@brand">
                         <LabelContent>
-                            <span class="@($"text-subtitle {(_shopData.Category==brand?"pry--text":"text-body neutral-lighten-4--text")}")">@brand</span>
+                            <span class="@($"text-subtitle {(_shopData.Category==brand?"primary--text":"text-body neutral-lighten-4--text")}")">@brand</span>
                         </LabelContent>
                     </MRadio>
                 </div>
@@ -57,7 +57,7 @@
 
 <MRow>
     <MCol Md=4 Sm=12>
-        <MCard Elevation=0 Class="rounded-2 px-6 py-3 block-between">
+        <MCard Elevation=0 Class="line px-6 py-3 block-between">
             <h6>@_shopData.CurrentCount results found</h6>
                 <MMenu OffsetY>
                     <ActivatorContent>
@@ -68,7 +68,7 @@
                     </ActivatorContent>
                     <ChildContent>
                         <MList>
-                            <MListItemGroup @bind-Value="_shopData.SortType" ActiveClass="pry white--text">
+                            <MListItemGroup @bind-Value="_shopData.SortType" ActiveClass="primary white--text">
                                 <MListItem Value="@("Featured")">Featured </MListItem>
                                 <MListItem Value="@("Lowest")"> Lowest </MListItem>
                                 <MListItem Value="@("Highest")"> Highest </MListItem>
@@ -102,17 +102,17 @@
                         </MCardText>
                         <div class="block-between text-center">
                             <div style="width:50%;height:56px;line-height: 56px;box-shadow: inset 0px 0.5px 0px #F4F7FE;">
-                                 <MIcon Size=24 Class="my-auto">mdi-heart-outline</MIcon>
+                                 <MIcon Size=24 Class="my-auto hover-pointer">mdi-heart-outline</MIcon>
                             </div>
-                            <div @onclick="NavigateToOrder" style="width:50%;height:56px;line-height: 56px;box-shadow: inset 0px 0.5px 0px #F4F7FE;">
-                                 <MIcon Size=24>mdi-cart-outline</MIcon>                            
+                            <div style="width:50%;height:56px;line-height: 56px;box-shadow: inset 0px 0.5px 0px #F4F7FE;">
+                                 <MIcon OnClick="NavigateToOrder" Size=24>mdi-cart-outline</MIcon>                            
                             </div>
                         </div>
                     </MCard>
                 </MCol>
             }
         </MRow>
-        <MPagination @bind-Value="_shopData.PageIndex" Color="pry" Circle Length=@_shopData.PageCount Class="mt-4"></MPagination>
+        <MPagination @bind-Value="_shopData.PageIndex" Color="primary" Circle Length=@_shopData.PageCount Class="mt-4 elevation-0"></MPagination>
     </MCol>
 </MRow>
 
@@ -128,8 +128,6 @@
         new(RangeType.Range,"$100 - $500",100,500),
         new(RangeType.MoreEqual,">=$500",500),
     };
-
-    double _priceRange = 0;
 
     List<string> _categories = new List<string>
     {
@@ -150,7 +148,7 @@
 
     StringNumber showType = 0;
 
-    ShopData _shopData = ShopDataService.ShopData;
+    ShopPage _shopData =new ShopPage(ShopDataService.ShopDataItems);
 
     protected override void OnInitialized()
     {

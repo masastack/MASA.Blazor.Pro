@@ -2,6 +2,7 @@
 @page "/apps/user/view/{Id}"
 @inherits DemoCompontentBase
 @using MASA.Blazor.Pro.Data.User
+@using System.Diagnostics.CodeAnalysis
 
 <MRow>
     <MCol Md="9">
@@ -10,25 +11,25 @@
                 <MRow>
                     <MCol Md="6">
                         <div class="d-flex justify-content-start">
-                            @if (string.IsNullOrEmpty(_userData.HeadImg))
+                            @if (string.IsNullOrEmpty(UserData.HeadImg))
                             {
-                                string color = _userData.Color;
+                                string color = UserData.Color;
                                 <MAvatar Size="104" Tile Color="@($"{color} lighten-5")">
-                                    <span class="@($"{color}--text text-h3")">@_userData.SampleName</span>
+                                    <span class="@($"{color}--text text-h3")">@UserData.SampleName</span>
                                 </MAvatar>
                             }
                             else
                             {
                                 <MAvatar Size="104" Tile>
-                                    <MImage Src="@_userData.HeadImg" />
+                                    <MImage Src="@UserData.HeadImg" />
                                 </MAvatar>
                             }
                             <div class="d-flex flex-column ml-2">
                                 <div class="mb-1">
                                     <MListItem TwoLine class="pl-0 mt-n3">
                                         <MListItemContent>
-                                            <MListItemTitle>@_userData.FullName</MListItemTitle>
-                                            <MListItemSubtitle>@_userData.Email</MListItemSubtitle>
+                                            <MListItemTitle>@UserData.FullName</MListItemTitle>
+                                            <MListItemSubtitle>@UserData.Email</MListItemSubtitle>
                                         </MListItemContent>
                                     </MListItem>
                                 </div>
@@ -46,7 +47,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                                 </span>
                                 <div class="ml-1">
-                                    <h5 class="mb-0 font-weight-medium">@_userData.Sales</h5>
+                                    <h5 class="mb-0 font-weight-medium">@UserData.Sales</h5>
                                     <small>Monthly Sales</small>
                                 </div>
                             </div>
@@ -55,7 +56,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
                                 </span>
                                 <div class="ml-1">
-                                    <h5 class="mb-0 font-weight-medium">@_userData.Profit</h5>
+                                    <h5 class="mb-0 font-weight-medium">@UserData.Profit</h5>
                                     <small>Annual Profit</small>
                                 </div>
                             </div>
@@ -66,23 +67,23 @@
                             <tbody>
                                 <tr>
                                     <td>Username</td>
-                                    <td>@_userData.UserName</td>
+                                    <td>@UserData.UserName</td>
                                 </tr>
                                 <tr>
                                     <td>Status</td>
-                                    <td>@_userData.Status</td>
+                                    <td>@UserData.Status</td>
                                 </tr>
                                 <tr>
                                     <td>Role</td>
-                                    <td>@_userData.Role</td>
+                                    <td>@UserData.Role</td>
                                 </tr>
                                 <tr>
                                     <td>Country</td>
-                                    <td>@_userData.Country</td>
+                                    <td>@UserData.Country</td>
                                 </tr>
                                 <tr>
                                     <td>Contact</td>
-                                    <td>@_userData.Contact</td>
+                                    <td>@UserData.Contact</td>
                                 </tr>
                             </tbody>
                         </MSimpleTable>
@@ -105,7 +106,7 @@
                     </MCol>
                     <MSpacer />
                     <MCol Md="@("auto")">
-                        <MChip Small class="primary--text"> @_userData.Plan </MChip>
+                        <MChip Small class="primary--text"> @UserData.Plan </MChip>
                     </MCol>
                 </MRow>
                 <ul class="list-unstyled pl-0">
@@ -227,11 +228,23 @@
     [Parameter]
     public string? Id { get; set; }
 
-    public UserData _userData;
+    UserData? _userData;
+    [AllowNull]
+    public UserData UserData
+    {
+        get
+        {
+            return _userData ?? UserService.UserDatas.First();
+        }
+        set
+        {
+            _userData = value;
+        }
+    }
 
     protected override void OnParametersSet()
     {
-        _userData = UserService.UserDatas.FirstOrDefault(u => u.Id == Id) ?? UserService.UserDatas.First();
+        UserData = UserService.UserDatas.FirstOrDefault(u => u.Id == Id);
     }
 
     private List<DataTableHeader<Permission>> _headers = new List<DataTableHeader<Permission>>

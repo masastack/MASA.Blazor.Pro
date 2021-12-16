@@ -1,6 +1,6 @@
 ﻿@using MASA.Blazor.Pro.Data.User;
 
-<MNavigationDrawer Temporary Absolute Right Value=Visible ValueChanged=ValueChanged Width="420">
+<MNavigationDrawer Temporary Absolute Right Value=Visible ValueChanged=VisibleChanged Width="420">
     <MToolbar Dense Elevation=0 Color="grey lighten-3">
         <span>Add New User</span>
         <MSpacer></MSpacer>
@@ -9,23 +9,21 @@
         </MButton>
     </MToolbar>
     <MForm Model=_userData EnableDataAnnotationsValidation>
-        <MTextField @bind-Value="_userData.FullName" Label="FullName" Dense Outlined TValue="string" Class="mx-5 mt-6" />
-        <MTextField @bind-Value="_userData.UserName" Label="UserName" Dense Outlined TValue="string" Class="mx-5" />
-        <MTextField @bind-Value="_userData.Email" Label="Email" Dense Outlined TValue="string" Class="mx-5" />
-        <MTextField @bind-Value="_userData.Contact" Label="Contact" Dense Outlined TValue="string" Class="mx-5" />
-        <MTextField @bind-Value="_userData.Company" Label="Company" Dense Outlined TValue="string" Class="mx-5" />
-        <MTextField @bind-Value="_userData.Country" Label="Country" Dense Outlined TValue="string" Class="mx-5" />
-        <MSelect Class="mx-5" Dense Outlined Label="Assignee" @bind-Value=_userData.Role
-                 TItem="string" TValue="string" TItemValue="string"
+        <MTextField @bind-Value="_userData.FullName" Label="FullName" HideDetails="@("auto")" Dense Outlined />
+        <MTextField @bind-Value="_userData.UserName" Label="UserName" HideDetails="@("auto")" Dense Outlined />
+        <MTextField @bind-Value="_userData.Email" Label="Email" HideDetails="@("auto")" Dense Outlined />
+        <MTextField @bind-Value="_userData.Contact" Label="Contact" HideDetails="@("auto")" Dense Outlined />
+        <MTextField @bind-Value="_userData.Company" Label="Company" HideDetails="@("auto")" Dense Outlined />
+        <MTextField @bind-Value="_userData.Country" Label="Country" HideDetails="@("auto")" Dense Outlined  />
+        <MSelect HideDetails="@("auto")" Dense Outlined Label="Assignee" @bind-Value=_userData.Role           
                  Items=@UserService.Roles ItemText="r => r" ItemValue="r => r">
         </MSelect>
-        <MSelect Class="mx-5" Dense Outlined Label="Assignee" @bind-Value=_userData.Plan
-                 TItem="string" TValue="string" TItemValue="string"
+        <MSelect HideDetails="@("auto")" Dense Outlined Label="Assignee" @bind-Value=_userData.Plan
                  Items=@UserService.Plans ItemText="p => p" ItemValue="p => p">
         </MSelect>
 
-        <MRow NoGutters Justify="JustifyTypes.Start" Class="ml-5">
-            <MButton Color="#7367f0" Dark OnClick="async ()=> await AddData(context)"> Add </MButton>
+        <MRow Class="ml-5">
+            <MButton Color="primary" Dark OnClick="async ()=> await AddData(context)"> Add </MButton>
             <MButton Outlined Class="ml-5" OnClick="async() => await UpdateVisible(false)"> Cancel </MButton>
         </MRow>
     </MForm>
@@ -36,12 +34,17 @@
     public bool Visible { get; set; }
 
     [Parameter]
-    public EventCallback<bool> ValueChanged { get; set; }
+    public EventCallback<bool> VisibleChanged { get; set; }
 
     [Parameter]
-    public Action<UserData> Submit { get; set; }
+    public EventCallback<UserData> Submit { get; set; }
 
     UserData _userData = new UserData();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
 
     protected override void OnParametersSet()
     {
@@ -50,9 +53,9 @@
 
     async Task UpdateVisible(bool visible)
     {
-        if (ValueChanged.HasDelegate)
+        if (VisibleChanged.HasDelegate)
         {
-            await ValueChanged.InvokeAsync(visible);
+            await VisibleChanged.InvokeAsync(visible);
         }
         else
         {
@@ -64,7 +67,7 @@
     {
         if (context.Validate())
         {
-            Submit(_userData);
+            if(Submit.HasDelegate) await Submit.InvokeAsync(_userData);
 
             await UpdateVisible(false);
         }

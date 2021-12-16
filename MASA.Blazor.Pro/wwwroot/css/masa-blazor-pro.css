@@ -262,6 +262,11 @@
     background: #FFFFFF;
 }
 
+.fill--text {
+    color: #E9EDF7 !important;
+    caret-color: #E9EDF7 !important;
+}
+
 .sample-green {
     background: #05CD99;
 }
@@ -348,15 +353,47 @@
     box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 12%) !important;
     border-radius: 20px !important;
 }
-.m-card__text{
-    padding: 16px 24px;
-    height:100%;
+
+.m-card.line {
+    border-radius: 10px !important;
 }
-.table-border-none td,th {
+
+.m-card__text {
+    padding: 16px 24px;
+    height: 100%;
+}
+
+.m-input {
+    border-radius: 10px !important;
+}
+
+.table-border-none td, th {
     border-bottom: 0px !important;
 }
-/*组件样式全局修改end*/
 
+.navigation .m-icon {
+    font-size: 18px;
+    color: #A3AED0;
+    caret-color: #A3AED0;
+}
+
+.navigation .m-list-item__icon:first-child {
+    margin-right: 4px !important;
+}
+
+.primary .whiteText {
+    color: #FFFFFF !important;
+    caret-color: #FFFFFF !important;
+}
+
+.m-pagination__navigation, .m-pagination__item {
+    box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 12%) !important;
+}
+
+m-btn--is-elevated {
+    box-shadow: none !important;
+}
+/*组件样式全局修改end*/
 .coupons.m-text-field > .m-input__control > .m-input__slot:before {
     border-color: transparent;
     border-style: hidden;
@@ -417,6 +454,10 @@
 
 .border-right-solid {
     border-right: 1px solid #ebe9f1;
+}
+
+.border-left-solid {
+    border-left: 1px solid #ebe9f1;
 }
 
 .congratulation-medal {
@@ -493,12 +534,6 @@
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
-}
-
-.navigation .m-icon {
-    font-size: 18px;
-    color: #A3AED0;
-    caret-color: #A3AED0;
 }
 
 .linear-gradient-purple {

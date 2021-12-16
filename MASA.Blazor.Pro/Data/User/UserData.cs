@@ -75,11 +75,7 @@ public class UserData
 
     public string Gender { get; set; } = "Male";
 
-    public string ContactOptions
-    {
-        get;
-        set;
-    }
+    public string? ContactOptions { get; set; }
 
     public string? Address1 { get; set; }
 

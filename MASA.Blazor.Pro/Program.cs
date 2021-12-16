@@ -17,7 +17,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddMasaBlazor();
+builder.Services.AddMasaBlazor(builder => 
+{
+    builder.UseTheme(new ThemeOptions
+    {
+        Primary= "#4318FF",
+    });
+});
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddGlobal();
 builder.Services.AddScoped<CookieStorage>();
