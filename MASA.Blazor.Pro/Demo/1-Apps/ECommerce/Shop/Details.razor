@@ -17,14 +17,14 @@
 
 <MCard>
     <MCardText>
-        <MRow style="height:600px;">
+        <MRow style="min-height:600px;">
             <MCol Md="6" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
                 <MImage src="@ShopDataItem.PictureFile" class="full-width" Height="@("auto")"/>
             </MCol>
             <MCol Md="6" class="d-flex flex-column">
                 <div class="mb-6">
-                    <p class="text-caption mb-0">By<span class="sample-green--text  ml-px-10">@ShopDataItem.Brand</span></p>
-                    <h5 class="neutral-lighten-1--text">@ShopDataItem.Name</h5>
+                    <p class="text-caption mb-0">By<span class="sample-green--text ml-2">@_shopDataItem.Brand</span></p>
+                    <h5 class="neutral-lighten-1--text">@_shopDataItem.Name</h5>
                 </div>
                 <div class="mb-6">
                     <p class="mb-0 text-caption"> Available - InStock</p>
@@ -54,10 +54,10 @@
                     <span class="text-caption neutral-lighten-4--text">Colors</span>
                 </div>
                 <div class="flex-grow-1 d-flex align-end">
-                    <MButton Depressed Outlined class="pry--text">
+                    <MButton Depressed Outlined class="primary--text">
                         Wishlist
                     </MButton>
-                    <MButton Depressed class="pry white--text ml-6 mr-6">
+                    <MButton Depressed class="primary ml-6 mr-6">
                         View In Cart
                     </MButton>
                     <MButton Depressed Width="24" MinWidth="24" class="transparent">
@@ -71,17 +71,17 @@
 
 <MRow class="mt-6">
     <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
-        <MIcon class="pry--text">mdi-trophy</MIcon>
+        <MIcon class="primary--text">mdi-trophy</MIcon>
         <h5 class="neutral-lighten-1--text mt-2 mb-2"> 100% Original </h5>
         <p class="text-center text-body neutral-lighten-3--text"> Chocolate bar candy canes ice cream toffee. Croissant pie cookie halvah. </p>
     </MCol>
     <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
-        <MIcon class="pry--text">mdi-timelapse</MIcon>
+        <MIcon class="primary--text">mdi-timelapse</MIcon>
         <h5 class="neutral-lighten-1--text mt-2 mb-2"> 10 Day Replacement </h5>
         <p class="text-center text-body neutral-lighten-3--text"> Marshmallow biscuit donut dragée fruitcake. Jujubes wafer cupcake. </p>
     </MCol>
     <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
-        <MIcon class="pry--text">mdi-shield</MIcon>
+        <MIcon class="primary--text">mdi-shield</MIcon>
         <h5 class="neutral-lighten-1--text mt-2 mb-2"> 1 Year Warranty</h5>
         <p class="text-center text-body neutral-lighten-3--text"> Cotton candy gingerbread cake I love sugar plum I love sweet croissant. </p>
     </MCol>

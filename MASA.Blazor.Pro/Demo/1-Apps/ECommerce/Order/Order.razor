@@ -1,27 +1,41 @@
 ﻿@page "/apps/ecommerce/order"
 @inherits DemoCompontentBase
 
-<MTabs @bind-Value="_curTab" SliderColor="transparent" class="pro-nav">
-    <MTab class="text-capitalize">
-        <MIcon>mdi-cart</MIcon>
-        <span class="pro-nav-title">Card</span>
+<MBreadcrumbs Divider="|" class="pa-0">
+    <MBreadcrumbsItem class="text-subtitle">Checkout</MBreadcrumbsItem>
+    <MBreadcrumbsItem class="text-subtitle2 neutral-lighten-2--text">eCommerce</MBreadcrumbsItem>
+    <MBreadcrumbsItem class="text-subtitle2 neutral-lighten-2--text" Disabled>Checkout</MBreadcrumbsItem>
+</MBreadcrumbs>
+<MTabs @bind-Value="_curTab" SliderColor="transparent" class="pro-nav mt-6">
+    <MTab class="text-capitalize pa-0">
+        <ChildContent>
+            <span class="mtab-tab-line mtab-tab-linear-primary"></span>
+            <span class="rounded-circle mtab-tab-indicator mtab-tab-indicator-primary"></span>
+            <span class="mtab-tab-title">Card</span>
+        </ChildContent>
     </MTab>
-    <MTab class="text-capitalize" Disabled="_addressDisabled">
-        <MIcon>mdi-home</MIcon>
-        <span class="pro-nav-title">Address</span>
+    <MTab class="text-capitalize pa-0" Disabled="_addressDisabled">
+        <ChildContent>
+            <span class="mtab-tab-line @(_curTab.ToInt32()>0?"mtab-tab-linear-primary":"mtab-tab-linear-neutral")"></span>
+            <span class="rounded-circle mtab-tab-indicator @(_curTab.ToInt32()>0?"mtab-tab-indicator-primary":"mtab-tab-indicator-neutral")"></span>
+            <span class="mtab-tab-title">Address</span>
+        </ChildContent>
     </MTab>
-    <MTab class="text-capitalize" Disabled="_paymentDisabled">
-        <MIcon>mdi-credit-card-outline</MIcon>
-        <span class="pro-nav-title">Payment</span>
+    <MTab class="text-capitalize pa-0" Disabled="_paymentDisabled">
+        <ChildContent>
+            <span class="mtab-tab-line @(_curTab.ToInt32()>1?"mtab-tab-linear-primary":"mtab-tab-linear-neutral")"></span>
+            <span class="rounded-circle mtab-tab-indicator @(_curTab.ToInt32()>1?"mtab-tab-indicator-primary":"mtab-tab-indicator-neutral")"></span>
+            <span class="mtab-tab-title">Payment</span>
+        </ChildContent>
     </MTab>
 </MTabs>
 
-<MTabsItems Value="_curTab">
+<MTabsItems Value="_curTab" class="mt-6">
     <MTabItem>
-        <Cart @bind-Step="_curTab" @bind-Disabled="_addressDisabled"/>
+        <Cart @bind-Step="_curTab" @bind-Disabled="_addressDisabled" />
     </MTabItem>
     <MTabItem>
-        <Address @bind-Step="_curTab" @bind-Disabled="_paymentDisabled"/>
+        <Address @bind-Step="_curTab" @bind-Disabled="_paymentDisabled" />
     </MTabItem>
     <MTabItem>
         <Payment />

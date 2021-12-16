@@ -258,6 +258,10 @@
     caret-color: #2B3674 !important;
 }
 
+.neutral-lighten-2--text {
+    color: #707EAE !important;
+}
+
 .neutral-lighten-3--text {
     color: #8F9BBA !important;
     caret-color: #8F9BBA !important;
@@ -513,30 +517,6 @@ m-btn--is-elevated {
     background-color: transparent !important;
 }
 
-.pro-nav .m-tabs-bar__content .m-tab:not(:first-child) {
-    padding-left: 0px;
-}
-
-.pro-nav .m-tabs-bar__content .m-tab span {
-    margin-left: 10px;
-}
-
-.pro-nav .m-tabs-bar__content .m-tab:not(:last-child) .pro-nav-title::after {
-    content: ">";
-    speak: none;
-    font-style: normal;
-    font-weight: 400;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    font-size: 1.14rem;
-    margin-left: 10px;
-}
-
-.pro-nav .m-tab:before {
-    background-color: transparent;
-}
-
 .m-btn {
     text-transform: none !important;
 }
@@ -583,11 +563,6 @@ m-btn--is-elevated {
     background-color: rgb(252, 252, 252);
 }
 
-
-.ml-px-10 {
-    margin-left: 10px !important;
-}
-
 .justify-text-align {
     text-align: justify !important;
 }
@@ -598,6 +573,91 @@ m-btn--is-elevated {
 
 .relate-group .m-slide-group__next {
     margin-left:10px;
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
+.text-btn .m-label {
+    color: #2B3674;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.mtab-tab-linear-primary {
+    background: linear-gradient(270deg, #4318FF 5.56%, rgba(67, 24, 255, 0) 100%);
+}
+
+.mtab-tab-linear-neutral {
+    background: linear-gradient(270deg, #E9EDF7 0%, rgba(233, 237, 247, 0) 100%);
+}
+
+.mtab-tab-line {
+    align-self: stretch;
+    margin: 10px 0px;
+    width: 87px;
+    height: 6px;
+    border-radius: 60px;
+}
+
+.mtab-tab-indicator {
+    margin-top: 3px;
+    margin-left: -1px;
+    align-self: stretch;
+    width: 22px;
+    height: 22px;
+}
+
+.mtab-tab-indicator-primary {
+    border: 4px solid #4318FF;
+    box-sizing: border-box;
+}
+
+.mtab-tab-indicator-neutral {
+    background: #F4F7FE;
+    border: 4px solid #A3AED0;
+    box-sizing: border-box;
+}
+
+.mtab-tab-title {
+    position: absolute;
+    top: 29px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #1B2559;
+}
+
+.auto-width {
+    width: auto;
+    margin: 0px 8px;
+}
+
+.hidden-webkit-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hidden-webkit-scrollbar {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+}
+
+.neutral-lighten-1--text .m-label {
+    color: #2B3674 !important;
+}
+
+.neutral-lighten-4--text .m-label {
+    color: #A3AED0 !important;
+}
+
+.theme--light.m-text-field--outlined.neutral-lighten-4--text > .m-input__control > .m-input__slot fieldset {
+    color: #A3AED0 !important;
 }
 
 .task-search.m-text-field > .m-input__control > .m-input__slot:before, .m-text-field > .m-input__control > .m-input__slot:after {
