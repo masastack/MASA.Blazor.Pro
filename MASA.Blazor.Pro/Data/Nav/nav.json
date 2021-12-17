@@ -195,6 +195,12 @@
             "Title": "401",
             "Icon": "mdi-circle",
             "Href": "/pages/others/401"
+          },
+          {
+            "Id": 31,
+            "Title": "404",
+            "Icon": "mdi-circle",
+            "Href": "/pages/others/404"
           }
         ]
       }
