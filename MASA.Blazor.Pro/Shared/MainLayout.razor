@@ -49,16 +49,13 @@
         </MToolbar>
     </MAppBar> 
 
-    @{
-        GlobalConfig.NavigationMini = GlobalConfig.ExpandOnHover || GlobalConfig.NavigationMini;
-    }
     <MNavigationDrawer Width=300 MiniVariantWidth=80 Permanent Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>          
         <Navigation IsMini="GlobalConfig.NavigationMini" />
     </MNavigationDrawer> 
     @{
-        string style = $"{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}bottom:160px;z-index:10;position: fixed;";
+        string style = $"{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}bottom:58px;z-index:10;position: fixed;";
     }
-    <MButton Small Fab Color="primary" Style="@style" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;GlobalConfig.NavigationMini=!GlobalConfig.NavigationMini;}">@*GlobalConfig.NavigationMini=!GlobalConfig.NavigationMini;*@
+    <MButton Small Fab Color="primary" Style="@style" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;}">
         <MIcon Class="white--text">
             @(GlobalConfig.NavigationMini?"mdi-chevron-right":"mdi-chevron-left")
         </MIcon>
