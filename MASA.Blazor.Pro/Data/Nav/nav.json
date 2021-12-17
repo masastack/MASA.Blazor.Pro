@@ -15,6 +15,7 @@
           },
           {
             "Id": 3,
+            "Hide": true,
             "Title": "Analytics",
             "Icon": "mdi-circle",
             "Href": "/dashboards/analytics"
@@ -61,6 +62,7 @@
         "Id": 9,
         "Title": "Invoice",
         "Icon": "mdi-content-paste",
+        "Hide": true,
         "Childs": [
           {
             "Id": 10,
@@ -137,36 +139,42 @@
           },
           {
             "Id": 21,
+            "Hide": true,
             "Title": "Register v1",
             "Icon": "mdi-circle",
             "Href": "/pages/authentication/register-v1"
           },
           {
             "Id": 22,
+            "Hide": true,
             "Title": "Register v2",
             "Icon": "mdi-circle",
             "Href": "/pages/authentication/register-v2"
           },
           {
             "Id": 23,
+            "Hide": true,
             "Title": "Forgot Password v1",
             "Icon": "mdi-circle",
             "Href": "/pages/authentication/forgot-password-v1"
           },
           {
             "Id": 24,
+            "Hide": true,
             "Title": "Forgot Password v2",
             "Icon": "mdi-circle",
             "Href": "/pages/authentication/forgot-password-v2"
           },
           {
             "Id": 25,
+            "Hide": true,
             "Title": "Reset Password v1",
             "Icon": "mdi-circle",
             "Href": "/pages/authentication/reset-password-v1"
           },
           {
             "Id": 26,
+            "Hide": true,
             "Title": "Reset Password v2",
             "Icon": "mdi-circle",
             "Href": "/pages/authentication/reset-password-v2"
@@ -180,6 +188,7 @@
         "Childs": [
           {
             "Id": 28,
+            "Hide": true,
             "Title": "Account Settings",
             "Icon": "mdi-circle",
             "Href": "/pages/others/account-settings"

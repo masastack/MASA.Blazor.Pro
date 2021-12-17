@@ -58,7 +58,7 @@
                     }
                     else
                     {
-                        var searchNavs = nav.Childs.Where(n => T(n.Title).ToUpper().Contains(search.ToUpper()));
+                        var searchNavs = nav.Childs.Where(n => T(n.FullTitle).ToUpper().Contains(search.ToUpper()));
                         output.AddRange(searchNavs);
                     }
                 }

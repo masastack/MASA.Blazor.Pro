@@ -40,6 +40,8 @@
 
         public string FullTitle { get; set; }
 
+        public bool Hide { get; set; }
+
         public Nav[]? Childs { get; set; }
     }
 }

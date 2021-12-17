@@ -30,7 +30,7 @@
     /* identical to box height */
     letter-spacing: -0.093755em !important;
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .h2, .text-h2, h2 {
@@ -43,7 +43,7 @@
     /* identical to box height */
     letter-spacing: -0.03125em !important;
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .h3, .text-h3, h3 {
@@ -54,7 +54,7 @@
     font-size: 3rem !important;
     line-height: 9.33rem !important;
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .h4, .text-h4, h4 {
@@ -67,7 +67,7 @@
     /* identical to box height */
     letter-spacing: 0.02em !important;
     /* default color */
-    color: #2B3674 !important;
+    color: #2B3674;
 }
 
 .h5, .text-h5, h5 {
@@ -79,7 +79,7 @@
     line-height: 2.25rem !important;
     /* identical to box height */
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .h6, .text-h6, h6 {
@@ -92,7 +92,7 @@
     /* identical to box height */
     letter-spacing: 0.01em !important;
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .h7, .text-h7, h7 {
@@ -105,7 +105,7 @@
     /* identical to box height */
     letter-spacing: 0.01em !important;
     /* default color */
-    color: #2B3674 !important;
+    color: #2B3674;
 }
 
 .text-subtitle {
@@ -118,7 +118,7 @@
     /* identical to box height */
     letter-spacing: 0.009375rem !important;
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .text-subtitle2 {
@@ -131,7 +131,7 @@
     /* identical to box height */
     letter-spacing: 0.00625rem !important;
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .text-body {
@@ -143,7 +143,7 @@
     /* identical to box height */
     line-height: 1.75rem !important;
     /* default color */
-    color: #1B2559 !important;
+    color: #1B2559;
 }
 
 .text-body2 {
@@ -156,7 +156,7 @@
     /* identical to box height */
     letter-spacing: 0.015625rem !important;
     /* default color */
-    color: #A3AED0 !important;
+    color: #A3AED0;
 }
 
 .text-btn {
@@ -167,7 +167,7 @@
     font-size: 0.875rem !important;
     line-height: 1rem !important;
     /* default color */
-    color: #A3AED0 !important;
+    color: #A3AED0;
 }
 
 .text-caption {
@@ -178,7 +178,7 @@
     font-size: 0.75rem !important;
     line-height: 1.125rem !important;
     /* default color */
-    color: #A3AED0 !important;
+    color: #A3AED0;
 }
 
 .text-overline {
@@ -191,7 +191,7 @@
     /* identical to box height */
     letter-spacing: 0.09375rem !important;
     /* default color */
-    color: #A3AED0 !important;
+    color: #A3AED0;
 }
 
 .pry {
@@ -457,16 +457,16 @@
     margin-right: 4px !important;
 }
 
-.primary .whiteText {
-    color: #FFFFFF !important;
-    caret-color: #FFFFFF !important;
+.primaryText .primaryText {
+    color: #4318FF !important;
+    caret-color: #4318FF !important;
 }
 
 .m-pagination__navigation, .m-pagination__item {
     box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 12%) !important;
 }
 
-m-btn--is-elevated {
+.m-btn--is-elevated {
     box-shadow: none !important;
 }
 /*组件样式全局修改end*/

@@ -3,6 +3,8 @@
 @inherits DemoCompontentBase
 @inject NavigationManager Nav
 
+<MASA.Blazor.Pro.Components.Breadcrumb></MASA.Blazor.Pro.Components.Breadcrumb>
+
 <MCard>
     <MCardText Class="pa-6">
         <h6>Filters</h6>
@@ -66,7 +68,7 @@
                 <span class="text-btn">entries</span>
             </MCol>
             <MCol Md=6 Sm=12 Class="d-flex block-center">
-                <MTextField @bind-Value="_userPage.Search" Color="primary" HideDetails="@("auto")" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search">
+                <MTextField @bind-Value="_userPage.Search" Color="primary" Class="rounded-2" HideDetails="@("auto")" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search">
                     <PrependInnerContent>
                         <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
                     </PrependInnerContent>

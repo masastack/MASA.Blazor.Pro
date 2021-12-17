@@ -10,14 +10,35 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             var navCategorys = JsonSerializer.Deserialize<List<NavCategory>>(File.ReadAllText(NavSettingsFile));
             if (navCategorys is null) throw new Exception("please config Navigation");
-            foreach(var nav in navCategorys.SelectMany(nc=>nc.Navs))
+            var navs = navCategorys.SelectMany(nc => nc.Navs).ToList();
+            foreach(var navCategory in navCategorys)
             {
-                if (nav.Childs is not null) nav.Childs.ForEach(child=> 
+                navCategory.Navs = navCategory.Navs.Where(n => n.Hide == false).ToArray();
+                foreach (var nav in navs)
                 {
-                    child.ParentId = nav.Id;
-                    child.FullTitle = $"{nav.Title} {child.Title}";
-                    child.ParentIcon = nav.Icon;
-                });
+                    if (nav.Childs is not null)
+                    {
+                        nav.Childs = nav.Childs.Where(child => child.Hide == false).ToArray();
+                        nav.Childs.ForEach(child =>
+                        {
+                            child.ParentId = nav.Id;
+                            child.FullTitle = $"{nav.Title} {child.Title}";
+                            child.ParentIcon = nav.Icon;
+                        });
+                    }
+                }
+            }
+            foreach (var nav in navs)
+            {
+                if (nav.Childs is not null)
+                {
+                    nav.Childs.ForEach(child =>
+                    {
+                        child.ParentId = nav.Id;
+                        child.FullTitle = $"{nav.Title} {child.Title}";
+                        child.ParentIcon = nav.Icon;
+                    });
+                }
             }
             services.AddSingleton(navCategorys);
 

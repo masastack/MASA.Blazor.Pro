@@ -7,7 +7,7 @@
     {
          <MTooltip Color="primary" Bottom>
             <ActivatorContent>
-                 <MIcon @attributes="@context.Attrs" Size=20  Class="mr-2" Color="neutral-lighten-4" OnClick="()=>NavigateToKeepMenu(menu.Href)">@menu.ParentIcon</MIcon>
+                 <MIcon @attributes="@context.Attrs" Size=20  Class="mr-8" Color="neutral-lighten-4" OnClick="()=>NavigateToKeepMenu(menu.Href)">@menu.ParentIcon</MIcon>
             </ActivatorContent>
             <ChildContent>
                 <span>@GetI18nFullTitle(menu.FullTitle)</span>
@@ -47,7 +47,7 @@
 </div>
 
 @code {
-    List<int> _keepMenus = new List<int> {5,8,15};
+    List<int> _keepMenus = new List<int> {5,2,15};
     string? _search;
 
     List<Nav> GetNavs(string? search)
@@ -71,7 +71,7 @@
                 } 
                 else if(nav.Childs is not null)
                 {
-                    var searchNavs = nav.Childs.Where(n=>T(n.Title).ToUpper().Contains(search.ToUpper()));
+                    var searchNavs = nav.Childs.Where(n=>T(n.FullTitle).ToUpper().Contains(search.ToUpper()));
                     output.AddRange(searchNavs);
                 }
             }
