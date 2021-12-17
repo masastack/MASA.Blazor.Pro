@@ -11,8 +11,8 @@ public partial class InvoiceList
     private List<DataTableHeader<InvoiceRecord>> _headers = new List<DataTableHeader<InvoiceRecord>>
     {
         new (){ Text="#" , Value= nameof(InvoiceRecord.Id)},
-        new (){ Text="State" , Value= nameof(InvoiceRecord.State)},
         new (){ Text="Client" , Value= nameof(InvoiceRecord.Client)},
+        new (){ Text="State" , Value= nameof(InvoiceRecord.State)},
         new (){ Text="Total" , Value= nameof(InvoiceRecord.Total)},
         new (){ Text="Issued Date" , Value= nameof(InvoiceRecord.Date)},
         new (){ Text="Balance" , Value= nameof(InvoiceRecord.Balance)},

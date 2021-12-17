@@ -303,6 +303,10 @@
     background: #05CD99;
 }
 
+.lighten-green {
+    background: #E6FAF5 !important;
+}
+
 .sample-green--text {
     color: #05CD99 !important;
     caret-color: #05CD99 !important;
@@ -568,10 +572,6 @@ m-btn--is-elevated {
     text-transform: none !important;
 }
 
-.align-bottom {
-    vertical-align: bottom !important;
-}
-
 .list-unstyled {
     list-style: none;
 }
@@ -713,4 +713,17 @@ m-btn--is-elevated {
 
 .task-search.m-text-field > .m-input__control > .m-input__slot:before, .m-text-field > .m-input__control > .m-input__slot:after {
     width: 0 !important;
+}
+
+.hide-timeline-before.m-timeline:before {
+    content: none;
+}
+
+.divider-align-start .m-timeline-item__divider {
+    align-items: start;
+    margin-top:8px;
+}
+
+td.text-center .m-input--checkbox .m-input__slot {
+    justify-content: center !important;
 }
