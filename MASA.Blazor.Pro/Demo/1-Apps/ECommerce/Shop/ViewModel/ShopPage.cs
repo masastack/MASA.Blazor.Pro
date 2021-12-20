@@ -1,4 +1,6 @@
-﻿namespace MASA.Blazor.Pro.Demo
+﻿using MASA.Blazor.Pro.Data.ECommerce;
+
+namespace MASA.Blazor.Pro.Demo
 {
     public class ShopPage
     {
@@ -79,6 +81,18 @@
         public ShopDataItem GetDetailItem(string guid)
         {
             return Datas.FirstOrDefault(a => a.Id == Guid.Parse(guid)) ?? Datas.First();
+        }
+
+        public List<RelatedProduct> GetRelatedProducts()
+        {
+            return new List<RelatedProduct>
+            {
+                new(){Name="GA406B 温热管线饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1593360117.jpg",Price=9999,Rating=5 },
+                new(){Name="G1管线饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1593360094.jpg",Price=9999,Rating=5 },
+                new(){Name="GA406K 速热管线饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1555404598.jpg",Price=9999,Rating=5 },
+                new(){Name="GT3桌面即热饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1560130226.jpg",Price=9999,Rating=5 },
+                new(){Name="GR320RB冷热型饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1603728000ddBMgnpYFmMWTlAl3bAX179.jpg",Price=9999,Rating=5 }
+            };
         }
     }
 }

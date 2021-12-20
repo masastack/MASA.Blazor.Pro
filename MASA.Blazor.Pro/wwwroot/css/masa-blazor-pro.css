@@ -418,7 +418,6 @@
     font-style: normal !important;
     font-weight: 500 !important;
     font-size: 0.875rem !important;
-    line-height: 1rem !important;
     /* default color */
     color: #A3AED0;
 }
@@ -568,6 +567,10 @@
     background-color: transparent !important;
 }
 
+.pro-nav .m-tab:before {
+    background-color: transparent;
+}
+
 .m-btn {
     text-transform: none !important;
 }
@@ -691,7 +694,6 @@
 }
 .hidden-webkit-scrollbar {
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
     overflow-y: scroll;
 }
 
@@ -726,4 +728,8 @@
 
 td.text-center .m-input--checkbox .m-input__slot {
     justify-content: center !important;
+}
+
+.m-divider {
+    border-color: #A3AED0;
 }

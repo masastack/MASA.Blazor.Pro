@@ -18,21 +18,21 @@
 <MCard>
     <MCardText>
         <MRow style="min-height:600px;">
-            <MCol Md="6" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
-                <MImage src="@ShopDataItem.PictureFile" class="full-width" Height="@("auto")"/>
+            <MCol Md="5" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
+                <MImage src="@_shopDataItem.PictureFile" AspectRatio="1" class="full-width" Height="@("auto")"/>
             </MCol>
-            <MCol Md="6" class="d-flex flex-column">
+            <MCol Md="7" class="d-flex flex-column pa-12 pl-0">
                 <div class="mb-6">
                     <p class="text-caption mb-0">By<span class="sample-green--text ml-2">@_shopDataItem.Brand</span></p>
                     <h5 class="neutral-lighten-1--text">@_shopDataItem.Name</h5>
                 </div>
                 <div class="mb-6">
                     <p class="mb-0 text-caption"> Available - InStock</p>
-                    <MRating Readonly Value="ShopDataItem.Rating" Size=20 Color="remind" BackgroundColor="remind" Dense></MRating>
-                    <h6 class="neutral--text">$@ShopDataItem.Price</h6>
+                    <MRating Readonly Value="_shopDataItem.Rating" Size=20 Color="remind" BackgroundColor="remind" Dense></MRating>
+                    <h6 class="neutral--text">$@_shopDataItem.Price</h6>
                 </div>
                 <p class="mb-6 text-body neutral-lighten-4--text justify-text-align">
-                    @ShopDataItem.Description
+                    @_shopDataItem.Description
                 </p>
                 <div class="mb-6 d-flex justify-space-between">
                     <span class="text-caption neutral-lighten-1--text">Free Shipping</span><span class="text-caption neutral-lighten-4--text">Shipping</span>
@@ -54,10 +54,10 @@
                     <span class="text-caption neutral-lighten-4--text">Colors</span>
                 </div>
                 <div class="flex-grow-1 d-flex align-end">
-                    <MButton Depressed Outlined class="primary--text">
+                    <MButton Depressed Outlined class="primary--text rounded-pill">
                         Wishlist
                     </MButton>
-                    <MButton Depressed class="primary ml-6 mr-6">
+                    <MButton Depressed class="primary ml-6 mr-6 rounded-pill">
                         View In Cart
                     </MButton>
                     <MButton Depressed Width="24" MinWidth="24" class="transparent">
@@ -72,18 +72,18 @@
 <MRow class="mt-6">
     <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
         <MIcon class="primary--text">mdi-trophy</MIcon>
-        <h5 class="neutral-lighten-1--text mt-2 mb-2"> 100% Original </h5>
-        <p class="text-center text-body neutral-lighten-3--text"> Chocolate bar candy canes ice cream toffee. Croissant pie cookie halvah. </p>
+        <h5 class="neutral-lighten-1--text mt-2 mb-2"> 五级滤芯 </h5>
+        <p class="text-center text-body neutral-lighten-3--text"> 五级过滤，层层过滤，健康饮水 </p>
     </MCol>
     <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
         <MIcon class="primary--text">mdi-timelapse</MIcon>
-        <h5 class="neutral-lighten-1--text mt-2 mb-2"> 10 Day Replacement </h5>
-        <p class="text-center text-body neutral-lighten-3--text"> Marshmallow biscuit donut dragée fruitcake. Jujubes wafer cupcake. </p>
+        <h5 class="neutral-lighten-1--text mt-2 mb-2"> 阻菌龙头 </h5>
+        <p class="text-center text-body neutral-lighten-3--text"> 阻菌龙头呵护到口，确保最后一厘米的纯净，保证你入口放心水 </p>
     </MCol>
     <MCol Md="4" Align="AlignTypes.Center" class="pa-15 d-flex flex-column align-center">
         <MIcon class="primary--text">mdi-shield</MIcon>
-        <h5 class="neutral-lighten-1--text mt-2 mb-2"> 1 Year Warranty</h5>
-        <p class="text-center text-body neutral-lighten-3--text"> Cotton candy gingerbread cake I love sugar plum I love sweet croissant. </p>
+        <h5 class="neutral-lighten-1--text mt-2 mb-2"> 智能监控 </h5>
+        <p class="text-center text-body neutral-lighten-3--text"> 直观显示滤芯寿命，触摸控制方便快捷 </p>
     </MCol>
 </MRow>
 <MRow class="mt-6">
@@ -91,19 +91,19 @@
         <h5 class="text-center neutral-lighten-1--text">Related Products</h5>
         <p class="text-center text-body neutral-lighten-3--text mb-0">People also search for this items</p>
         <MSlideGroup ShowArrows="@(true)" class="mt-6 relate-group">
-            @foreach (var item in Enumerable.Range(1, 5))
+            @foreach (var item in _relatedProducts)
             {
-                <a target="_self">
+                <a>
                     <MSlideItem>
                         <MCard RefBack="@context.Ref" Color="@("#f8f8f8")" class="ma-3 white" Height="428" Width="333" Click="@context.Toggle">
-                            <MImage Height=333 Width=333 Src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" Class="hover-pointer"></MImage>
+                            <MImage Height=333 Width=333 Src="@item.ImgUrl" Class="hover-pointer"></MImage>
                             <MCardText class="pa-3">
                                 <div class="d-flex justify-space-between">
                                     <MRating Value="4" Size=20 Dense Readonly Length=5 Color="remind" BackgroundColor="remind"></MRating>
-                                    <h6>$2449</h6>
+                                    <h6>$@item.Price</h6>
                                 </div>
-                                <div class="text-subtitle text-truncate">Apple HomePod (Space Grey)</div>
-                                <div class="text-truncate text-caption">by Apple</div>
+                                <div class="text-subtitle text-truncate">@item.Name</div>
+                                <div class="text-truncate text-caption">@item.Brand</div>
                             </MCardText>
                         </MCard>
                     </MSlideItem>
@@ -115,10 +115,9 @@
 
 @code {
     public override string Name => "Apps-ECommerce-Details";
-
-    ShopDataItem? _shopDataItem;
-
-    ShopDataItem ShopDataItem => _shopDataItem ?? (_shopDataItem= new ShopPage(ShopDataService.ShopDataItems).GetDetailItem(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8"));
+    ShopPage _shopPage = new ShopPage(ShopDataService.ShopDataItems);
+    ShopDataItem _shopDataItem => _shopPage.GetDetailItem(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8");
+    List<RelatedProduct> _relatedProducts => _shopPage.GetRelatedProducts();
 
     [Parameter]
     public string? Id { get; set; }

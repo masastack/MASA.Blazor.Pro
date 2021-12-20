@@ -11,37 +11,30 @@
                 <MForm Model="_address" @bind-Value="_valid" @ref="_form" EnableDataAnnotationsValidation>
                     <MRow>
                         <MCol Md="6" class="pb-0">
-                            <MTextField @bind-Value="_address.FullName" class="neutral-lighten-4--text"
-                                        Label="Full Name" Outlined Dense></MTextField>
+                            <MTextField @bind-Value="_address.FullName" Label="Full Name" Outlined></MTextField>
                         </MCol>
                         <MCol Md="6" class="pl-3">
-                            <MTextField @bind-Value="_address.MobileNumber" class="neutral-lighten-4--text"
-                                        Label="Mobile Number" Outlined Dense></MTextField>
+                            <MTextField @bind-Value="_address.MobileNumber" Label="Mobile Number" Outlined></MTextField>
                         </MCol>
                         <MCol Md="6">
-                            <MTextField @bind-Value="_address.HouseNo" class="neutral-lighten-4--text"
-                                        Label="Flat, House No" Outlined Dense></MTextField>
+                            <MTextField @bind-Value="_address.HouseNo" Label="Flat, House No" Outlined></MTextField>
                         </MCol>
                         <MCol Md="6" class="pl-3">
-                            <MTextField @bind-Value="_address.Landmark" class="neutral-lighten-4--text"
-                                        Label="Landmark" Outlined Dense></MTextField>
+                            <MTextField @bind-Value="_address.Landmark" Label="Landmark" Outlined></MTextField>
                         </MCol>
                         <MCol Md="6">
-                            <MTextField @bind-Value="_address.City" class="neutral-lighten-4--text"
-                                        Label="Town/City" Outlined Dense></MTextField>
+                            <MTextField @bind-Value="_address.City" Label="Town/City" Outlined></MTextField>
                         </MCol>
                         <MCol Md="6" class="pl-3">
-                            <MTextField @bind-Value="_address.Pincode" class="neutral-lighten-4--text"
-                                        Label="Pincode" Outlined Dense></MTextField>
+                            <MTextField @bind-Value="_address.Pincode" Label="Pincode" Outlined></MTextField>
                         </MCol>
                         <MCol Md="6">
-                            <MTextField @bind-Value="_address.State" class="neutral-lighten-4--text"
-                                        Label="State" Outlined Dense></MTextField>
+                            <MTextField @bind-Value="_address.State" Label="State" Outlined></MTextField>
                         </MCol>
                         <MCol Md="6" class="pl-3">
-                            <MSelect @bind-Value="@_address.AddressType" class="neutral-lighten-4--text"
+                            <MSelect @bind-Value="@_address.AddressType"
                                      Label="Address Type"
-                                     Outlined Dense
+                                     Outlined
                                      Items="@_items"
                                      ItemText="u => u.Label"
                                      ItemValue="u => u.Value">
@@ -77,9 +70,20 @@
     </MCol>
 </MRow>
 
+<MSnackbar @bind-Value="_show" Dark>
+    <ChildContent>
+        Saved successfully
+    </ChildContent>
+    <ActionContent>
+        <MButton Color="pink" Text OnClick="()=>{_show = false;}">
+            Close
+        </MButton>
+    </ActionContent>
+</MSnackbar>
+
 @code {
-    bool _valid = true;
-    MForm _form;
+    bool _valid = true, _show = false;
+    MForm _form = default!;
     AddressModel _address = new();
     List<AddressType> _items = new()
         {
@@ -100,7 +104,8 @@
         await _form.ValidateAsync();
         if (_valid)
         {
-            StepChanged.InvokeAsync(3);
+            _show = true;
+            await _form.ResetAsync();
         }
     }
 }
