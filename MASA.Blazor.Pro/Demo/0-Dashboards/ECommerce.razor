@@ -170,14 +170,7 @@
                             HideDefaultFooter
                             Class="ml-2 table-border-none">
                      <HeaderColContent Context="header">
-                        @if (header.Value == nameof(CompanyData.CompanyName))
-                        {
-                            <span class="text-subtitle">@header.Text</span>
-                        }
-                        else
-                        {
-                            <span class="text-caption">@header.Text</span>
-                        }
+                       <span class="text-caption neutral-lighten-2--text">@header.Text</span>
                     </HeaderColContent>
                     <ItemColContent>
                         @switch (context.Header.Value)
@@ -230,9 +223,7 @@
     <MCol Md=4 Sm=12>
         <MCard Class="max-height">
             <MCardText>
-                <div Class="rounded-4" style="height:186px;">
-                    <MImage Src="/img/eCommerce/rectangle.png"></MImage>
-                </div>
+                <MImage Class="rounded-4" Height=186 src="/img/eCommerce/rectangle.png"/>
                 <div class="d-flex my-4">
                     <MAvatar Size=48 Color="fill-lighten-1">
                         <MIcon Color="primary" Size=20>far fa-calendar-check</MIcon>
@@ -591,7 +582,7 @@
         new (){ Text= "CATEGORY", Value= nameof(CompanyData.Category)},
         new (){ Text= "VIEWS", Value= nameof(CompanyData.Views)},
         new (){ Text= "REVENUE", Value= nameof(CompanyData.Revenue)},
-        new (){ Text= "Sales", Value= nameof(CompanyData.Sales)},
+        new (){ Text= "SALES", Value= nameof(CompanyData.Sales)},
     };
 
     List<CompanyData> _companyDatas = new List<CompanyData>

@@ -4,21 +4,19 @@
 @using MASA.Blazor.Pro.Data.User
 @using System.Diagnostics.CodeAnalysis
 
-<MASA.Blazor.Pro.Components.Breadcrumb></MASA.Blazor.Pro.Components.Breadcrumb>
-
 <MCard>
     <MCardText Class="px-6 pb-6">
         <MTabs @bind-Value="tab" HideSlider Height=10 Color="sample-green">     
             <MTab Value="@("Account")">
-                <MIcon Size=13 Color="@(tab=="Account"?"sample-green":"fill")">mdi-circle</MIcon>
+                <MIcon Size=16 Color="@(tab=="Account"?"sample-green":"fill")">mdi-circle</MIcon>
                 <span class="ml-2 text-btn @(tab=="Account"?"neutral--text":"")">Account</span>
             </MTab>
             <MTab Class="ml-2" Value="@("Information")">
-                <MIcon Size=13 Color="@(tab=="Information"?"sample-green":"fill")">mdi-circle</MIcon>
+                <MIcon Size=16 Color="@(tab=="Information"?"sample-green":"fill")">mdi-circle</MIcon>
                 <span class="ml-2 text-btn @(tab=="Information"?"neutral--text":"")">Information</span>
             </MTab>
             <MTab Class="ml-2" Value="@("Social")">
-                <MIcon Size=13 Color="@(tab=="Social"?"sample-green":"fill")">mdi-circle</MIcon>
+                <MIcon Size=16 Color="@(tab=="Social"?"sample-green":"fill")">mdi-circle</MIcon>
                 <span class="ml-2 text-btn @(tab=="Social"?"neutral--text":"")">Social</span>
             </MTab>
         </MTabs>
@@ -40,8 +38,8 @@
                     }
                     <div Class="ml-6">
                         <h5 class="mb-6">@UserData.FullName</h5>
-                        <MButton Color="primary" MinWidth=80 Height=30> Update </MButton>
-                        <MButton Outlined MinWidth=80 Height=30 Class="ml-6 text-btn"> Remove </MButton>
+                        <MButton Color="primary" MinWidth=80 Height=32 Class="rounded-pill"> Update </MButton>
+                        <MButton Outlined MinWidth=80 Height=32 Class="ml-6 text-btn rounded-pill"> Remove </MButton>
                     </div>
                 </div>
                 <MRow Class="my-3">
@@ -207,7 +205,7 @@
                         <MTextField @bind-Value="UserData.Twitter" Label="Twitter" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-twitter" />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Facebook" Label="Facebook" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-facebook-f" />
+                        <MTextField @bind-Value="UserData.Facebook" Label="Facebook" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="mdi-facebook" />
                     </MCol>
                     <MCol Md=4 Sm=12>
                         <MTextField @bind-Value="UserData.Instagram" Label="Instagram" Color="primary" HideDetails="@("auto")" Outlined PrependInnerIcon="fab fa-instagram" />
@@ -229,8 +227,8 @@
 
         <div class="mt-10 d-flex">
             <MSpacer></MSpacer>
-            <MButton MinWidth=80 Height=40 Color="primary"> Save Changes </MButton>
-            <MButton MinWidth=80 Height=40 Outlined Class="ml-6 text-btn"> Reset </MButton>
+            <MButton MinWidth=80 Height=40 Color="primary" Class="rounded-pill"> Save Changes </MButton>
+            <MButton MinWidth=80 Height=40 Outlined Class="ml-6 text-btn rounded-pill"> Reset </MButton>
         </div>
     </MCardText>
 </MCard>
@@ -264,10 +262,10 @@
     private List<DataTableHeader<Permission>> _headers = new List<DataTableHeader<Permission>>
     {
         new (){ Text= "MODULE", Sortable= false, Value= nameof(Permission.Module)},
-        new (){ Text= "READ", Sortable= false, Value= nameof(Permission.Read)},
-        new (){ Text= "WRITE", Sortable= false, Value= nameof(Permission.Write)},
-        new (){ Text= "CREATE", Sortable= false, Value= nameof(Permission.Create)},
-        new (){ Text= "DELETE", Sortable= false, Value= nameof(Permission.Delete)}
+        new (){ Text= "READ", Sortable= false, Value= nameof(Permission.Read),Align="center"},
+        new (){ Text= "WRITE", Sortable= false, Value= nameof(Permission.Write),Align="center"},
+        new (){ Text= "CREATE", Sortable= false, Value= nameof(Permission.Create),Align="center"},
+        new (){ Text= "DELETE", Sortable= false, Value= nameof(Permission.Delete),Align="center"}
     };
 
     StringNumber? tab;

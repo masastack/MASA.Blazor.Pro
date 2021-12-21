@@ -64,7 +64,7 @@ namespace MASA.Blazor.Pro.Demo
 
         public int PageIndex { get; set; } = 1;
 
-        public int PageSize { get; set; } = 9;
+        public int PageSize { get; set; } = 6;
 
         public int PageCount => (int)Math.Ceiling(CurrentCount / (double)PageSize);
 

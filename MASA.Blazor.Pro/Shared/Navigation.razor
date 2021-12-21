@@ -5,39 +5,39 @@
 <div style="height:132px" class="@($"block-center {(IsMini?"px-4":"px-12")}")" @onclick="()=>Nav.NavigateTo(GlobalVariables.DefaultRoute)">  
     @if(IsMini)
     {
-        <image class="hover-pointer" src="https://cdn.masastack.com/stack/images/logo/MASAStack/logo48_48.png"></image>
+        <img class="hover-pointer" src="https://cdn.masastack.com/stack/images/logo/MASAStack/logo48_48.png"/>
     }
     else
     {
-        <image class="hover-pointer" src="https://cdn.masastack.com/stack/images/logo/MASAStack/logo-h-en.png?x-oss-process=image/resize,w_200"></image>
+        <img class="hover-pointer" src="https://cdn.masastack.com/stack/images/logo/MASAStack/logo-h-en.png?x-oss-process=image/resize,w_200"/>
     }  
 </div>
 
 <MList Nav Linkage Dense Class="@($"navigation py-0 {(IsMini?"":"px-7")}")">
-    <MListItemGroup Mandatory>
+    <MListItemGroup>
         @foreach (var navCategory in NavCategorys)
         {
             @foreach (var nav in navCategory.Navs)
             {
                 if(nav.Childs is null)
                 {
-                    <MListItem ActiveClass="primary" Style="border-radius: 4px;" Link Href="@nav.Href">
+                    <MListItem ActiveClass="primary" Style="border-radius: 4px;" Class="mb-4" Link Href="@nav.Href">
                         <ItemContent>
                             <MListItemIcon>
-                                <MIcon class="@(context.Active?"white--text":"neutral-lighten-4--text")" Size=18>@nav.Icon</MIcon>
+                                <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=18>@nav.Icon</MIcon>
                             </MListItemIcon>
                             <MListItemContent Class="py-0 ml-2">
-                                <h7 class="@(context.Active?"white--text":"neutral-lighten-4--text")">@T(nav.Title)</h7>
+                                <h7 class="@(context.Active?"white--text":"neutral-lighten-2--text")">@T(nav.Title)</h7>
                             </MListItemContent>
                         </ItemContent>
                     </MListItem>
                 }
                 else
                 {
-                    <MListGroup Group="@string.Join(",",nav.Childs.Select(n=>n.Href))" Style="border-radius: 4px;" Class="my-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">                    
+                    <MListGroup Group="@string.Join(",",nav.Childs.Select(n=>n.Href))" Style="border-radius: 4px;" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">                    
                         <ActivatorContent>
                             <MListItemContent>
-                                <h7 class="ml-2 neutral-lighten-4--text primaryText">@T(nav.Title)</h7>                  
+                                <h7 class="ml-2 neutral-lighten-2--text primaryText">@T(nav.Title)</h7>                  
                             </MListItemContent>                            
                         </ActivatorContent>
                         <ChildContent>
@@ -46,10 +46,10 @@
                                 <MListItem ActiveClass="primary white--text" Class="my-1" Style="border-radius: 4px;"  Link Href="@navChild.Href">
                                     <ItemContent>
                                         <MListItemIcon Class="ml-n5">
-                                            <MIcon class="@(context.Active?"white--text":"neutral-lighten-4--text")" Size=10>@navChild.Icon</MIcon>
+                                            <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=10>@navChild.Icon</MIcon>
                                         </MListItemIcon>
                                         <MListItemContent Class="py-0 ml-n2">
-                                            <div class="text-btn @(context.Active?"white--text":"neutral-lighten-4--text")">@T(navChild.Title)</div>
+                                            <div class="text-btn @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
                                         </MListItemContent>
                                     </ItemContent>
                                 </MListItem>

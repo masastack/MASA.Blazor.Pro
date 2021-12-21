@@ -2,7 +2,10 @@
 @inject NavigationManager Nav
 @inject List<NavCategory> NavCategorys
 
-<MMenu OffsetY Bottom Right CloseOnContentClick="false" MinWidth=340>
+@{
+    var navs = GetNavs(_search);
+}
+<MMenu OffsetY Bottom Right CloseOnContentClick="false" Value="@(_search!=null)" MinWidth=340>
     <ActivatorContent>
         <div @attributes="@context.Attrs" style="width:340px;height:40px;">
             <MTextField @bind-Value="_search" Class="rounded-2" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search">
@@ -13,13 +16,10 @@
         </div>
     </ActivatorContent>
     <ChildContent>
-        @{
-            var navs = GetNavs(_search);
-        }
-        @if (navs.Count > 0)
+        @if(navs.Count>0)
         {
-            <MList>
-                @foreach (var nav in GetNavs(_search))
+           <MList>
+                @foreach (var nav in navs)
                 {
                     <MListItem OnClick="()=>NavigateToSearchMenu(nav.Href)">
                         <MListItemAction>
@@ -32,6 +32,15 @@
                 }
             </MList>
         }
+        else if(string.IsNullOrEmpty(_search) is false)
+        {
+            <MCard Class="text-center">
+                <MCardText>
+                      <span class="text-btn">No data available</span>
+                </MCardText>
+            </MCard>
+        }
+
     </ChildContent>
 </MMenu>
 
@@ -43,24 +52,19 @@
     {
         var output = new List<Nav>();
         var navs = NavCategorys.SelectMany(nc => nc.Navs);
-        if (search is null || search == "") output.AddRange(navs.First(n => n.Id == 1).Childs ?? new Global.Nav[] { });
-        else
+        if (search is not null && search!="")
         {
             foreach (var nav in navs)
             {
-                if (nav.Childs is not null)
+                if (T(nav.Title).Contains(search,StringComparison.OrdinalIgnoreCase))
                 {
-                    if (T(nav.Title).ToUpper().Contains(search.ToUpper()))
-                    {
-                        if (nav.Href is not null) output.Add(nav);
-
-                        output.AddRange(nav.Childs);
-                    }
-                    else
-                    {
-                        var searchNavs = nav.Childs.Where(n => T(n.FullTitle).ToUpper().Contains(search.ToUpper()));
-                        output.AddRange(searchNavs);
-                    }
+                    if (nav.Href is not null) output.Add(nav);
+                    if(nav.Childs is not null) output.AddRange(nav.Childs);
+                } 
+                else if(nav.Childs is not null)
+                {
+                    var searchNavs = nav.Childs.Where(n=>T(n.FullTitle).Contains(search,StringComparison.OrdinalIgnoreCase));
+                    output.AddRange(searchNavs);
                 }
             }
         }
@@ -74,9 +78,14 @@
 
     string GetI18nFullTitle(string fullTitle)
     {
-        var arr = fullTitle.Split(' ');
-        if (arr.Length == 1) return T(fullTitle);
-        else return $"{T(arr[0])} {T(arr[1])}";
+        var arr = fullTitle.Split(' ').ToList();
+        if (arr.Count == 1) return T(fullTitle);
+        else
+        {
+            var parent = arr[0];
+            arr.RemoveAt(0);
+            return $"{T(parent)} {T(string.Join(' ',arr))}";
+        }
     }
 
     public override string Name => nameof(Search);

@@ -2,11 +2,11 @@
 
 <MNavigationDrawer Temporary Fixed Right Value=Visible ValueChanged=VisibleChanged Width="465" Class="pa-6">
     <div class="block-between mb-12">
-         <span class="text-h6">Add New User</span>
-         <MIcon Color="neutral-lighten-3" Size=24 OnClick="()=>Visible=false">mdi-close</MIcon>
-@*        <MButton Small Icon OnClick="()=>Visible=false">
+        <span class="text-h6">Add New User</span>
+        <MIcon Color="neutral-lighten-3" Size=24 OnClick="()=>Visible=false">mdi-close</MIcon>
+        @*        <MButton Small Icon OnClick="()=>Visible=false">
             <MIcon Small>fas fa-times</MIcon>
-        </MButton>*@
+            </MButton>*@
     </div>
     <MForm Model=_userData EnableDataAnnotationsValidation>
         <MTextField @bind-Value="_userData.FullName" Class="mb-6" Label="FullName" HideDetails="@("auto")" Outlined />
@@ -14,17 +14,17 @@
         <MTextField @bind-Value="_userData.Email" Class="mb-6" Label="Email" HideDetails="@("auto")" Outlined />
         <MTextField @bind-Value="_userData.Contact" Class="mb-6" Label="Contact" HideDetails="@("auto")" Outlined />
         <MTextField @bind-Value="_userData.Company" Class="mb-6" Label="Company" HideDetails="@("auto")" Outlined />
-        <MTextField @bind-Value="_userData.Country" Class="mb-6" Label="Country" HideDetails="@("auto")" Outlined  />
-        <MSelect HideDetails="@("auto")" Class="mb-6" Outlined Label="Assignee" @bind-Value=_userData.Role           
+        <MTextField @bind-Value="_userData.Country" Class="mb-6" Label="Country" HideDetails="@("auto")" Outlined />
+        <MSelect HideDetails="@("auto")" Class="mb-6" Outlined Label="Assignee" @bind-Value=_userData.Role
                  Items=@UserService.Roles ItemText="r => r" ItemValue="r => r">
         </MSelect>
         <MSelect HideDetails="@("auto")" Class="mb-6" Outlined Label="Assignee" @bind-Value=_userData.Plan
                  Items=@UserService.Plans ItemText="p => p" ItemValue="p => p">
         </MSelect>
 
-        <div Class="mt-6">
-            <MButton MinWidth=80 Height=40 Color="primary" OnClick="async ()=> await AddData(context)"> Add </MButton>
-            <MButton MinWidth=80 Height=40 Outlined Class="ml-6 text-btn" OnClick="async() => await UpdateVisible(false)"> Cancel </MButton>
+        <div style="bottom:48px;right:24px;position:absolute">
+            <MButton MinWidth=80 Height=40 Color="primary" Class="rounded-pill" OnClick="async ()=> await AddData(context)"> Add </MButton>
+            <MButton MinWidth=80 Height=40 Outlined Class="ml-6 text-btn rounded-pill" OnClick="async() => await UpdateVisible(false)"> Cancel </MButton>
         </div>
     </MForm>
 </MNavigationDrawer>
@@ -40,16 +40,6 @@
     public EventCallback<UserData> Submit { get; set; }
 
     UserData _userData = new UserData();
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-    }
-
-    protected override void OnParametersSet()
-    {
-       _userData= new UserData();
-    }
 
     async Task UpdateVisible(bool visible)
     {
@@ -67,7 +57,7 @@
     {
         if (context.Validate())
         {
-            if(Submit.HasDelegate) await Submit.InvokeAsync(_userData);
+            if (Submit.HasDelegate) await Submit.InvokeAsync(_userData);
 
             await UpdateVisible(false);
         }

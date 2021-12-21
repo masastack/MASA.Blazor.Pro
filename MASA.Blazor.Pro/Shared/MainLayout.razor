@@ -1,50 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Components.Rendering
 @inherits LayoutComponentBase
+@inject GlobalConfigs GlobalConfig;
 @inject I18n LanguageProvider
-@inject GlobalConfigs GlobalConfig
-@inject NavigationManager NavigationManager
-@inject List<NavCategory> NavCategorys
-@inject List<LanguageSetting> LanguageSettings
 
 <MApp Dark="GlobalConfig.IsDark">
-
     <MAppBar Elevation=0 App MaxHeight=60 Class="mx-6">
         <MToolbar Elevation=0 Class="rounded-b-4">
-            <Keep></Keep>
-            <MSpacer></MSpacer>
-
-            <Search></Search>
-
-            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-4">mdi-message-processing</MIcon>
-
-            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-cart-outline</MIcon>
-
-            @*<MIcon Size=20 Class="ml-10" Color="neutral-lighten-4">mdi-google-translate</MIcon>*@
-
-            <MMenu OffsetY Bottom>
-                <ActivatorContent>
-                    <MChip Label Color="white" @attributes="@context.Attrs" Class="hover-pointer ml-6 neutral-lighten-4--text">
-                        <span style="min-width:56px">@_currentLanguageSetting?.Text</span>
-                    </MChip>
-                </ActivatorContent>
-                <ChildContent>
-                    <MList>
-                        <MListItemGroup>
-                            @foreach (var option in LanguageSettings)
-                            {
-                                <MListItem OnClick="()=> OnLanguageChange(option)" Value="(StringNumber)option.Value">
-                                    <MListItemContent>
-                                        <span Class="neutral-lighten-4--text text-btn">
-                                            @option.Text
-                                        </span>
-                                    </MListItemContent>
-                                </MListItem>
-                            }
-                        </MListItemGroup>
-                    </MList>
-                </ChildContent>
-            </MMenu>
-
+            <Favorite />
+            <MSpacer />
+            <Search />
+            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-3">mdi-message-processing</MIcon>
+            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-3">mdi-cart-outline</MIcon>  
+            <Language Onchange="()=>{}" />
             <Login />
         </MToolbar>
     </MAppBar> 
@@ -52,10 +19,8 @@
     <MNavigationDrawer Width=300 MiniVariantWidth=80 Permanent Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>          
         <Navigation IsMini="GlobalConfig.NavigationMini" />
     </MNavigationDrawer> 
-    @{
-        string style = $"{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}bottom:58px;z-index:10;position: fixed;";
-    }
-    <MButton Small Fab Color="primary" Style="@style" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;}">
+
+     <MButton Small Fab Color="primary" Style="@($"bottom:58px;z-index:7;position: fixed;{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}")" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;}">
         <MIcon Class="white--text">
             @(GlobalConfig.NavigationMini?"mdi-chevron-right":"mdi-chevron-left")
         </MIcon>
@@ -63,6 +28,7 @@
 
     <MMain Class="fill-lighten-1" Style="padding-top:60px">
         <div class="pa-6 max-width">
+            <Breadcrumb Render="@Guid.NewGuid().ToString()"></Breadcrumb>
             @Body
         </div>
     </MMain>
@@ -70,21 +36,11 @@
 
 
 @code {
-    LanguageSetting? _currentLanguageSetting;
-    List<BreadcrumbItem> _breadcrumbItems = new List<BreadcrumbItem>();
-    
-
     protected override void OnInitialized()
     {
-        _currentLanguageSetting = LanguageSettings.FirstOrDefault(o => o.Value == (GlobalConfig.Language ?? LanguageProvider.CurrentLanguage));
-        LanguageProvider.SetLang(_currentLanguageSetting?.Value ?? LanguageProvider.CurrentLanguage);
+        if (GlobalConfig.Language is not null)
+        {
+             LanguageProvider.SetLang(GlobalConfig.Language);
+        }
     }
-
-    void OnLanguageChange(LanguageSetting setting)
-    {
-        _currentLanguageSetting = setting;
-        LanguageProvider.SetLang(setting.Value);
-        GlobalConfig.Language = setting.Value;
-        GlobalConfig.SaveChanges();
-    } 
 }

@@ -14,7 +14,7 @@ namespace MASA.Blazor.Pro.Middleware
         public async Task InvokeAsync(HttpContext context, GlobalConfigs globalConfig)
         {
             var cookies = context.Request.Cookies;
-            globalConfig.Initialize(cookies);
+            globalConfig.Initialization(cookies);
 
             await _next(context);
         }

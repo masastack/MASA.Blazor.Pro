@@ -3,8 +3,6 @@
 @inherits DemoCompontentBase
 @inject NavigationManager Nav
 
-<MASA.Blazor.Pro.Components.Breadcrumb></MASA.Blazor.Pro.Components.Breadcrumb>
-
 <MCard>
     <MCardText Class="pa-6">
         <h6>Filters</h6>
@@ -73,7 +71,7 @@
                         <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
                     </PrependInnerContent>
                 </MTextField>
-                <MButton Color="primary" MinWidth=80 Height=32 Class="ml-6" OnClick="()=>_visible=true">
+                <MButton Color="primary" MinWidth=80 Height=32 Class="ml-6 rounded-pill" OnClick="()=>_visible=true">
                     Add User
                 </MButton>
             </MCol>
@@ -160,8 +158,11 @@
 
     <MCardText>
         <div class="d-flex">
-            <div class="mr-auto pt-3 text-btn neutral-lighten-1--text">Showing2 @((_userPage.PageIndex-1)*_userPage.PageSize+1) to @(_userPage.PageIndex*_userPage.PageSize) of @_userPage.CurrentCount entries</div>        
-            <MPagination @bind-Value="_userPage.PageIndex" Color="primary" Circle Length=@_userPage.PageCount></MPagination>
+            <div class="mr-auto pt-3 text-btn neutral-lighten-1--text">Showing @((_userPage.PageIndex-1)*_userPage.PageSize+1) to @(_userPage.PageIndex*_userPage.PageSize) of @_userPage.CurrentCount entries</div>        
+            @if(_userPage.PageCount>0)
+            {
+               <MPagination @bind-Value="_userPage.PageIndex" Color="primary" Circle Length=@_userPage.PageCount></MPagination>    
+            }          
         </div>
     </MCardText>
 </MCard>
@@ -200,7 +201,7 @@
     };
 
     void NavigateToDetails(string id)
-    {
+    {       
         Nav.NavigateTo($"/apps/user/view/{id}");
     }
 
@@ -212,6 +213,5 @@
     void AddUserData(UserData userData)
     {
         _userPage.UserDatas.Insert(0,userData);
-        base.InvokeAsync(base.StateHasChanged);
     }
 }

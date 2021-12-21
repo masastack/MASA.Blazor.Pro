@@ -167,7 +167,7 @@
     font-size: 0.875rem !important;
     line-height: 1rem !important;
     /* default color */
-    color: #A3AED0;
+    color: #A3AED0 !important;
 }
 
 .text-caption {
@@ -418,8 +418,9 @@
     font-style: normal !important;
     font-weight: 500 !important;
     font-size: 0.875rem !important;
+    /*    line-height: 1rem !important;*/
     /* default color */
-    color: #A3AED0;
+    color: #8F9BBA;
 }
 
 .m-input--checkbox .mdi-checkbox-blank-outline {
@@ -448,8 +449,8 @@
 
 .navigation .m-icon {
     font-size: 18px;
-    color: #A3AED0;
-    caret-color: #A3AED0;
+    color: #707EAE;
+    caret-color: #707EAE;
 }
 
 .navigation .m-list-item__icon:first-child {
@@ -469,6 +470,13 @@
     box-shadow: none !important;
 }
 /*组件样式全局修改end*/
+
+/*shop*/
+.ml300{
+    margin-left:300px;
+}
+/*shop*/
+
 .coupons.m-text-field > .m-input__control > .m-input__slot:before {
     border-color: transparent;
     border-style: hidden;

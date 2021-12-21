@@ -1,0 +1,65 @@
+﻿@inherits DemoCompontentBase
+@inject NavigationManager NavigationManager
+@inject List<NavCategory> NavCategorys
+
+@{
+    var items = GetBreadcrumbItems();
+}
+@if(items.Count>0)
+{
+    <div class="d-flex block-center pb-6 pt-1">
+    <div class="text-subtitle">
+        @items.Last().Text
+    </div>
+    <div class="mx-4 border-solid" style="height:16px;width:0.5px;" />
+    <MIcon Small Color="primary" OnClick="()=>NavigationManager.NavigateTo(GlobalVariables.DefaultRoute)">fas fa-home</MIcon>
+    <MIcon Small Class="mx-3">mdi-chevron-right</MIcon>
+    <MBreadcrumbs Linkage Items=items Class="pa-0">
+        <DividerContent>
+            <MIcon Small>mdi-chevron-right</MIcon>
+        </DividerContent>
+    </MBreadcrumbs>
+</div>
+}
+
+
+@code {
+    public override string Name { get; } = "Breadcrumb";
+
+    [Parameter]
+    public string Render{ get; set; }
+
+    List<Nav> _navs = new List<Nav>();
+
+    protected override void OnInitialized()
+    {
+        foreach (var navCategory in NavCategorys)
+        {
+            foreach (var nav in navCategory.Navs)
+            {
+                _navs.Add(nav);
+                if (nav.Childs is not null)
+                {
+                    _navs.AddRange(nav.Childs);
+                }
+            }
+        }
+    }
+
+    List<BreadcrumbItem> GetBreadcrumbItems()
+    {
+        var items = new List<BreadcrumbItem>();
+        var currentNav = _navs.FirstOrDefault(n => n.Href is not null && NavigationManager.Uri.Contains(n.Href));
+        if (currentNav is not null)
+        {           
+            if (currentNav.ParentId != 0)
+            {
+                var parentNav = _navs.First(n => n.Id == currentNav.ParentId);
+                items.Add(new BreadcrumbItem { Text = T(parentNav.Title), Href = "javascript:void(0);" });
+            }
+            items.Add(new BreadcrumbItem { Text = T(currentNav.Title), Href = "javascript:void(0);" });
+            items.Last().Href = currentNav.Href;
+        }        
+        return items;
+    }   
+}

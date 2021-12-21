@@ -1,0 +1,40 @@
+﻿@inject GlobalConfigs GlobalConfig;
+@inject I18n LanguageProvider
+@inject List<LanguageSetting> LanguageSettings
+
+<MMenu OffsetY Bottom>
+    <ActivatorContent>
+        <div Color="white" @attributes="@context.Attrs" style="min-width:64px" Class="hover-pointer ml-6 mr-5 neutral-lighten-4--text text-center">
+            <span style="min-width:64px">@(LanguageSettings.First(ls=>ls.Value== LanguageProvider.CurrentLanguage).Text)</span>
+        </div>
+    </ActivatorContent>
+    <ChildContent>
+        <MList>
+            <MListItemGroup>
+                @foreach (var option in LanguageSettings)
+                {
+                    <MListItem OnClick="async()=> await OnLanguageChange(option)" Value="(StringNumber)option.Value">
+                        <MListItemContent>
+                            <span Class="neutral-lighten-4--text text-btn">
+                                @option.Text
+                            </span>
+                        </MListItemContent>
+                    </MListItem>
+                }
+            </MListItemGroup>
+        </MList>
+    </ChildContent>
+</MMenu>
+
+@code {
+
+    [Parameter]
+    public EventCallback Onchange { get; set; }
+
+    async Task OnLanguageChange(LanguageSetting setting)
+    {
+        GlobalConfig.Language = setting.Value;
+        LanguageProvider.SetLang(setting.Value);
+        await Onchange.InvokeAsync();
+    } 
+}

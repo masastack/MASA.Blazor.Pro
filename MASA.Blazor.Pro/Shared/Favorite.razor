@@ -1,0 +1,152 @@
+﻿@inherits DemoCompontentBase
+@inject GlobalConfigs GlobalConfig;
+@inject NavigationManager Nav
+@inject List<NavCategory> NavCategorys
+
+<div class="ml-10">
+    @foreach (var menu in GetFavoriteMenus())
+    {
+        <MTooltip Color="primary" Bottom>
+            <ActivatorContent>
+                <MIcon @attributes="@context.Attrs" Size=20 Class="mr-8" Color="neutral-lighten-3" OnClick="()=>NavigateToFavoriteMenu(menu.Href)">@menu.ParentIcon</MIcon>
+            </ActivatorContent>
+            <ChildContent>
+                <span>@GetI18nFullTitle(menu.FullTitle)</span>
+            </ChildContent>
+        </MTooltip>
+    }
+    <MMenu OffsetY Bottom Right CloseOnContentClick="false" ValueChanged="OnOpen" Value="_open" MinWidth="@("auto")">
+        <ActivatorContent>
+             <MTooltip Color="primary" Bottom>
+                <ActivatorContent Context="tooltipContext">
+                    @{
+                        var attrs = new Dictionary<string, object>();
+                        foreach (var (key,value) in context.Attrs)
+                        {
+                            attrs.Add(key,value);
+                        }
+                        foreach (var (key,value) in tooltipContext.Attrs)
+                        {
+                            if(attrs.ContainsKey(key) is false) attrs.Add(key,value);
+                        }
+                    }
+                    <MIcon @attributes="@attrs" Size=20 Color="neutral-lighten-3">mdi-star-outline</MIcon>
+                </ActivatorContent>
+                <ChildContent>
+                    <span>@T("Favorite")</span>
+                </ChildContent>
+            </MTooltip>
+        </ActivatorContent>
+        <ChildContent>           
+            <MList Class="pb-0" Style="min-width:320px;">
+                    <MListItem Class="mb-1">
+                        <MTextField @bind-Value="_search" Class="rounded-2" HideDetails="@("auto")" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search"></MTextField>     
+                    </MListItem>
+                    <MListItemGroup>
+                        @foreach (var nav in GetNavs(_search))
+                        {
+                            <MListItem Dense OnClick="()=>NavigateToFavoriteMenu(nav.Href)" Class="px-4">
+                                <MListItemAction Class="mr-3">
+                                    <MIcon Size=20 Color="neutral-lighten-3">@nav.ParentIcon</MIcon>
+                                </MListItemAction>
+                                <MListItemContent>
+                                    <span Class="text-btn">@GetI18nFullTitle(nav.FullTitle)</span>
+                                </MListItemContent>
+                                <MListItemIcon Class="my-1">
+                                    <MButton Icon Text Color="neutral-lighten-3" OnClick="()=>AddOrRemoveFavoriteMenu(nav.Id)">
+                                        <MIcon Size=20>@(_FavoriteMenus.Contains(nav.Id)?" mdi-star":"mdi-star-outline")</MIcon>
+                                    </MButton>
+                                </MListItemIcon>
+                            </MListItem>
+                        }
+                    </MListItemGroup>
+                </MList>
+        </ChildContent>
+    </MMenu>
+</div>
+
+@code {
+    List<int> _FavoriteMenus = new List<int> { 5, 2, 15 };
+
+    protected override void OnInitialized()
+    {
+        if (GlobalConfig.Favorite == "")
+        {
+            _FavoriteMenus.Clear();
+        }
+        if (GlobalConfig.Favorite is not null)
+        {
+            _FavoriteMenus = GlobalConfig.Favorite.Split('|').Select(v => Convert.ToInt32(v)).ToList();
+        }
+    }
+
+    bool _open;
+    string? _search;
+
+    void OnOpen(bool open)
+    {
+        _open = open;
+        if (open is true)
+        {
+            _search = null;
+        }
+    }
+
+    List<Nav> GetNavs(string? search)
+    {
+        var output = new List<Nav>();
+        var navs = NavCategorys.SelectMany(nc => nc.Navs);
+
+        if (search is null || search == "")
+        {
+            output.AddRange(navs.Where(n => _FavoriteMenus.Contains(n.Id)));
+            output.AddRange(navs.Where(n => n.Childs is not null).SelectMany(n => n.Childs!).Where(n => _FavoriteMenus.Contains(n.Id)));
+        }
+        else
+        {
+            foreach (var nav in navs)
+            {
+                if (T(nav.Title).ToUpper().Contains(search.ToUpper()))
+                {
+                    if (nav.Href is not null) output.Add(nav);
+                    if (nav.Childs is not null) output.AddRange(nav.Childs);
+                }
+                else if (nav.Childs is not null)
+                {
+                    var searchNavs = nav.Childs.Where(n => T(n.FullTitle).ToUpper().Contains(search.ToUpper()));
+                    output.AddRange(searchNavs);
+                }
+            }
+        }
+
+        return output;
+    }
+
+    List<Nav> GetFavoriteMenus() => GetNavs(null);
+
+    void NavigateToFavoriteMenu(string href)
+    {
+        Nav.NavigateTo(href);
+    }
+
+    void AddOrRemoveFavoriteMenu(int id)
+    {
+        if (_FavoriteMenus.Contains(id)) _FavoriteMenus.Remove(id);
+        else _FavoriteMenus.Add(id);
+        GlobalConfig.Favorite = string.Join("|", _FavoriteMenus);
+    }
+
+    string GetI18nFullTitle(string fullTitle)
+    {
+        var arr = fullTitle.Split(' ').ToList();
+        if (arr.Count == 1) return T(fullTitle);
+        else
+        {
+            var parent = arr[0];
+            arr.RemoveAt(0);
+            return $"{T(parent)} {T(string.Join(' ',arr))}";
+        }
+    }
+
+    public override string Name => nameof(Favorite);
+}
