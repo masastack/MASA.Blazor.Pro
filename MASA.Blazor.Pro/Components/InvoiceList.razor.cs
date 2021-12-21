@@ -19,9 +19,9 @@ public partial class InvoiceList
         new (){ Text="Actions" , Value = "Action", Sortable = false},
     };
 
-    List<StateItem> _stateItems = InvoiceService.GetStateItems();
+    private List<StateItem> _stateItems = InvoiceService.GetStateItems();
 
-    PagingData<InvoiceRecord> _records = new(0, 0, 0, Enumerable.Empty<InvoiceRecord>());
+    private PagingData<InvoiceRecord> _records = new(0, 0, 0, Enumerable.Empty<InvoiceRecord>());
 
     private PagingData<InvoiceRecord> LoadPagingData() => InvoiceService.GetInvoiceRecords(_page, _itemsPerPage, _state, _search);
 

@@ -83,13 +83,13 @@
 
 @code {
     bool _valid = true, _show = false;
-    MForm _form = default!;
-    AddressModel _address = new();
-    List<AddressType> _items = new()
-        {
-            new AddressType("Home", "1"),
-            new AddressType("Work", "2")
-        };
+    private MForm _form = default!;
+    private AddressModel _address = new();
+    private List<AddressType> _items = new()
+    {
+        new AddressType("Home", "1"),
+        new AddressType("Work", "2")
+    };
     [Parameter]
     public StringNumber Step { get; set; } = default!;
     [Parameter]

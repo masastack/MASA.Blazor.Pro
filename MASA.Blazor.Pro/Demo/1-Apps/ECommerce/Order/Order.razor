@@ -30,7 +30,7 @@
     </MTab>
 </MTabs>
 
-<MTabsItems Value="_curTab" class="mt-6">
+<MTabsItems Value="_curTab" class="pt-6">
     <MTabItem>
         <Cart @bind-Step="_curTab" @bind-Disabled="_addressDisabled" />
     </MTabItem>
@@ -44,7 +44,7 @@
 
 @code {
     public override string Name => "Apps-ECommerce-Checkout";
-    StringNumber _curTab = 0;
-    bool _addressDisabled = true;
-    bool _paymentDisabled = true;
+    private StringNumber _curTab = 0;
+    private bool _addressDisabled = true;
+    private bool _paymentDisabled = true;
 }

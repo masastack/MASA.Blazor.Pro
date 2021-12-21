@@ -101,7 +101,7 @@
     <MCol Md="8">
         <MCard>
             <MCardTitle class="text-h8">
-                <MIcon Size=20 Color="sample-green" Class="mt-n1 ml-1">mdi-lock-open-outline</MIcon>
+                <MIcon Size=20 Color="sample-green" Class="ml-1">mdi-lock-open-outline</MIcon>
                 Permissions
             </MCardTitle>
             <MCardSubtitle class="ml-6 text-btn neutral-lighten-4--text">
@@ -229,7 +229,8 @@
     [Parameter]
     public string? Id { get; set; }
 
-    UserData? _userData;
+    private UserData? _userData;
+
     [AllowNull]
     public UserData UserData
     {

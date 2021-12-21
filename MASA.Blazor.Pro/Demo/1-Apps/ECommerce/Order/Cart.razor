@@ -1,10 +1,10 @@
-﻿<MRow style="height: calc(100vh - 204px);">
+﻿<MRow style="height: calc(100vh - 204px);" NoGutters>
     <MCol Md="8">
-        <MVirtualScroll style="height: calc(100vh - 228px);" class="hidden-webkit-scrollbar" Items="_basketItems">
+        <MVirtualScroll style="height: calc(100vh - 228px);" class="hidden-webkit-scrollbar pr-6" Items="_basketItems">
             <ItemContent>
-                <MHover Context="hoverContext" class="full-width mb-6 pa-3" >
-                    <MCard Height="270" Class="@($"{hoverContext.Class} {(hoverContext.Hover ? "on-hover" : "")}")" @attributes="hoverContext.Attrs" Elevation="@(hoverContext.Hover ? 6 : 0)">
-                        <MRow>
+                <MHover Context="hoverContext" class="full-width mb-6" >
+                    <MCard Height="270" Class="@($"{hoverContext.Class} {(hoverContext.Hover ? "pro-elevation" : "")}")" @attributes="hoverContext.Attrs" Elevation="@(hoverContext.Hover ? 6 : 0)">
+                        <MRow class="ma-0">
                             <MCol Md="@("auto")" Align="AlignTypes.Center" class="d-flex flex-column align-center">
                                 <MImage src="@context.GetPictureUrl()" Width='222' Height="222" />
                             </MCol>
@@ -105,7 +105,7 @@
 </MRow>
 
 @code {
-    List<BasketItem> _basketItems = BasketService.GetUserBasket().Items;
+    private List<BasketItem> _basketItems = BasketService.GetUserBasket().Items;
 
     [Parameter]
     public StringNumber Step { get; set; } = default!;

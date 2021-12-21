@@ -19,7 +19,7 @@
     <MCardText>
         <MRow style="min-height:600px;">
             <MCol Md="5" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
-                <MImage src="@_shopDataItem.PictureFile" AspectRatio="1" class="full-width" Height="@("auto")"/>
+                <MImage src="@_shopDataItem.PictureFile" AspectRatio="1" class="full-width" Height="@("auto")" />
             </MCol>
             <MCol Md="7" class="d-flex flex-column pa-12 pl-0">
                 <div class="mb-6">
@@ -97,9 +97,10 @@
                     <MSlideItem>
                         <MCard RefBack="@context.Ref" Color="@("#f8f8f8")" class="ma-3 white" Height="428" Width="333" Click="@context.Toggle">
                             <MImage Height=333 Width=333 Src="@item.ImgUrl" Class="hover-pointer"></MImage>
+                            <MDivider/>
                             <MCardText class="pa-3">
                                 <div class="d-flex justify-space-between">
-                                    <MRating Value="4" Size=20 Dense Readonly Length=5 Color="remind" BackgroundColor="remind"></MRating>
+                                    <MRating Value="@item.Rating" Size=20 Dense Readonly Length=5 Color="remind" BackgroundColor="remind"></MRating>
                                     <h6>$@item.Price</h6>
                                 </div>
                                 <div class="text-subtitle text-truncate">@item.Name</div>
