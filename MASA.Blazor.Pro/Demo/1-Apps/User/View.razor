@@ -4,13 +4,6 @@
 @using MASA.Blazor.Pro.Data.User
 @using System.Diagnostics.CodeAnalysis
 
-@*
-<MBreadcrumbs Divider="|" class="pa-0">
-    <MBreadcrumbsItem class="text-subtitle">User</MBreadcrumbsItem>
-    <MBreadcrumbsItem class="text-subtitle2 neutral-lighten-2--text"> View </MBreadcrumbsItem>
-    <MBreadcrumbsItem class="text-subtitle2 neutral-lighten-2--text" Disabled>User</MBreadcrumbsItem>
-</MBreadcrumbs>*@
-
 <MRow>
     <MCol Md="8">
         <MCard Height="298" class="pt-2 pb-2">
@@ -92,7 +85,7 @@
             </MCardText>
             <MCardActions class="d-flex justify-center">
                 <MButton Width="340" class="primary text-capitalize rounded-pill">Upgrade Plan</MButton>
-            </MCardActions> 
+            </MCardActions>
         </MCard>
     </MCol>
 </MRow>
@@ -108,9 +101,9 @@
                 Permission according to roles
             </MCardSubtitle>
             <MCardText>
-                 <MDataTable HideDefaultFooter Headers="_headers" TItem="Permission" Items="_permissions" ItemKey="r=>r.Module" Class="table-header-fill table-border-solid">
+                <MDataTable HideDefaultFooter Headers="_headers" TItem="Permission" Items="_permissions" ItemKey="r=>r.Module" Class="table-header-fill table-border-solid">
                     <HeaderColContent Context="header">
-                         <span class="text-body neutral-lighten-1--text">@header.Text</span>
+                        <span class="text-body neutral-lighten-1--text">@header.Text</span>
                     </HeaderColContent>
                     <ItemColContent>
                         @switch (context.Header.Value)
@@ -171,7 +164,7 @@
                     <MTimelineItem Class="mb-4" Small Color="orange lighten-1">
                         <IconContent>
                             <MIcon>mdi-adjust</MIcon>
-                        </IconContent> 
+                        </IconContent>
                         <ChildContent>
                             <div class="d-flex justify-space-between align-center">
                                 <span class="text-body">
@@ -210,8 +203,8 @@
                                     2 days ago
                                 </span>
                             </div>
-                             <span class="text-body2 mt-1">
-                               Add files to new design folder
+                            <span class="text-body2 mt-1">
+                                Add files to new design folder
                             </span>
                         </ChildContent>
                     </MTimelineItem>
@@ -221,10 +214,12 @@
     </MCol>
 </MRow>
 
-<MASA.Blazor.Pro.Components.InvoiceList/>
+<MASA.Blazor.Pro.Components.InvoiceList />
 
 @code {
     public override string Name { get; } = "User-View";
+    
+    private List<Permission> _permissions = UserService.Permissions;
 
     [Parameter]
     public string? Id { get; set; }
@@ -257,6 +252,4 @@
         new (){ Text= "CREATE", Sortable= false, Value= nameof(Permission.Create),Align="center"},
         new (){ Text= "DELETE", Sortable= false, Value= nameof(Permission.Delete),Align="center"}
     };
-
-    private List<Permission> _permissions = UserService.Permissions;
 }

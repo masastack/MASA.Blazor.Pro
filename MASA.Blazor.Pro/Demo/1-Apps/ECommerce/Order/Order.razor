@@ -1,12 +1,7 @@
 ﻿@page "/apps/ecommerce/order"
 @inherits DemoCompontentBase
 
-<MBreadcrumbs Divider="|" class="pa-0">
-    <MBreadcrumbsItem class="text-subtitle">Checkout</MBreadcrumbsItem>
-    <MBreadcrumbsItem class="text-subtitle2 neutral-lighten-2--text">eCommerce</MBreadcrumbsItem>
-    <MBreadcrumbsItem class="text-subtitle2 neutral-lighten-2--text" Disabled>Checkout</MBreadcrumbsItem>
-</MBreadcrumbs>
-<MTabs @bind-Value="_curTab" SliderColor="transparent" class="pro-nav mt-6">
+<MTabs @bind-Value="_curTab" SliderColor="transparent" class="pro-nav">
     <MTab class="text-capitalize pa-0">
         <ChildContent>
             <span class="mtab-tab-line mtab-tab-linear-primary"></span>
@@ -30,14 +25,14 @@
     </MTab>
 </MTabs>
 
-<MTabsItems Value="_curTab" class="pt-6">
+<MTabsItems Value="_curTab" class="pt-6 ml-n6">
     <MTabItem>
         <Cart @bind-Step="_curTab" @bind-Disabled="_addressDisabled" />
     </MTabItem>
-    <MTabItem>
+    <MTabItem class="pl-6">
         <Address @bind-Step="_curTab" @bind-Disabled="_paymentDisabled" />
     </MTabItem>
-    <MTabItem>
+    <MTabItem class="pl-6">
         <Payment />
     </MTabItem>
 </MTabsItems>

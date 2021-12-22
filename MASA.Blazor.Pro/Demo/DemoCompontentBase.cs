@@ -1,30 +1,27 @@
-﻿using BlazorComponent.Components;
-using Microsoft.AspNetCore.Components;
+﻿namespace MASA.Blazor.Pro.Demo;
 
-namespace MASA.Blazor.Pro.Demo
+public abstract class DemoCompontentBase : ComponentBase
 {
-    public abstract class DemoCompontentBase : ComponentBase
+    private I18n? _languageProvider;
+
+    [Inject]
+    public I18n LanguageProvider
     {
-        private I18n? _languageProvider;
-
-        [Inject]
-        public I18n LanguageProvider
+        get
         {
-            get
-            {
-                return _languageProvider ?? throw new Exception("please Inject LanguageProvider!");
-            }
-            set
-            {
-                _languageProvider = value;
-            }
+            return _languageProvider ?? throw new Exception("please Inject LanguageProvider!");
         }
-
-        public abstract string Name { get; }
-
-        public string T(string key)
+        set
         {
-            return LanguageProvider.T(key) ?? key;
+            _languageProvider = value;
         }
     }
+
+    public abstract string Name { get; }
+
+    public string T(string key)
+    {
+        return LanguageProvider.T(key) ?? key;
+    }
 }
+

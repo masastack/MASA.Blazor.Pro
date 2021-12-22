@@ -2,19 +2,6 @@
 @page "/apps/ecommerce/details/{Id}"
 @inherits DemoCompontentBase
 
-@*<div class="d-inline-flex d-flex align-center">
-    <h2 class="auto-width">Product Details</h2>
-    <MDivider Vertical class="ml-4 mt-3" style="height:40px;" />
-    <MBreadcrumbs Large class="auto-width" TItem="BreadcrumbItem">
-    <MBreadcrumbsItem Disabled="false">
-    <MIcon Large class='head-bread-icon'>mdi-home</MIcon>
-    </MBreadcrumbsItem>
-    <MBreadcrumbsItem Href="">ECommerce</MBreadcrumbsItem>
-    <MBreadcrumbsItem Text="Shop"></MBreadcrumbsItem>
-    <MBreadcrumbsItem Text="Product Details"></MBreadcrumbsItem>
-    </MBreadcrumbs>
-    </div>*@
-
 <MCard>
     <MCardText>
         <MRow style="min-height:600px;">
@@ -93,22 +80,22 @@
         <MSlideGroup ShowArrows="@(true)" class="mt-6 relate-group">
             @foreach (var item in _relatedProducts)
             {
-                <a>
-                    <MSlideItem>
-                        <MCard RefBack="@context.Ref" Color="@("#f8f8f8")" class="ma-3 white" Height="428" Width="333" Click="@context.Toggle">
-                            <MImage Height=333 Width=333 Src="@item.ImgUrl" Class="hover-pointer"></MImage>
-                            <MDivider/>
-                            <MCardText class="pa-3">
-                                <div class="d-flex justify-space-between">
-                                    <MRating Value="@item.Rating" Size=20 Dense Readonly Length=5 Color="remind" BackgroundColor="remind"></MRating>
-                                    <h6>$@item.Price</h6>
-                                </div>
-                                <div class="text-subtitle text-truncate">@item.Name</div>
-                                <div class="text-truncate text-caption">@item.Brand</div>
-                            </MCardText>
-                        </MCard>
-                    </MSlideItem>
-                </a>
+                    <a>
+                        <MSlideItem>
+                            <MCard RefBack="@context.Ref" Color="@("#f8f8f8")" class="ma-3 white" Height="428" Width="333" Click="@context.Toggle">
+                                <MImage Height=333 Width=333 Src="@item.ImgUrl" Class="hover-pointer"></MImage>
+                                <MDivider/>
+                                <MCardText class="pa-3">
+                                    <div class="d-flex justify-space-between">
+                                        <MRating Value="@item.Rating" Size=20 Dense Readonly Length=5 Color="remind" BackgroundColor="remind"></MRating>
+                                        <h6>$@item.Price</h6>
+                                    </div>
+                                    <div class="text-subtitle text-truncate">@item.Name</div>
+                                    <div class="text-truncate text-caption">@item.Brand</div>
+                                </MCardText>
+                            </MCard>
+                        </MSlideItem>
+                    </a>
             }
         </MSlideGroup>
     </MSheet>
@@ -116,9 +103,9 @@
 
 @code {
     public override string Name => "Apps-ECommerce-Details";
-    ShopPage _shopPage = new ShopPage(ShopDataService.ShopDataItems);
-    ShopDataItem _shopDataItem => _shopPage.GetDetailItem(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8");
-    List<RelatedProduct> _relatedProducts => _shopPage.GetRelatedProducts();
+    private ShopPage _shopPage = new ShopPage(ShopDataService.ShopDataItems);
+    private ShopDataItem _shopDataItem => _shopPage.GetDetailItem(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8");
+    private List<RelatedProduct> _relatedProducts => _shopPage.GetRelatedProducts();
 
     [Parameter]
     public string? Id { get; set; }

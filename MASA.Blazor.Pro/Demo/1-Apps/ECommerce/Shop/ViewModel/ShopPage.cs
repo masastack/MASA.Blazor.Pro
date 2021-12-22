@@ -1,91 +1,89 @@
-﻿using MASA.Blazor.Pro.Data.ECommerce;
+﻿namespace MASA.Blazor.Pro.Demo;
 
-namespace MASA.Blazor.Pro.Demo
+public class ShopPage
 {
-    public class ShopPage
+    public ShopPage(List<ShopDataItem> datas)
     {
-        public ShopPage(List<ShopDataItem> datas)
+        Datas = datas;
+    }
+
+    public List<ShopDataItem> Datas { get; set; }
+
+    private IEnumerable<ShopDataItem> GetFilterDatas()
+    {
+        IEnumerable<ShopDataItem> datas = Datas;
+
+        if (MultiRange is not null)
         {
-            Datas = datas;
+            datas = MultiRange.RangeType switch
+            {
+                RangeType.All => datas,
+                RangeType.Range => datas.Where(d => d.Price >= MultiRange.LeftNumber && d.Price <= MultiRange.RightNumber),
+                RangeType.Less => datas.Where(d => d.Price < MultiRange.LeftNumber),
+                RangeType.LessEqual => datas.Where(d => d.Price <= MultiRange.LeftNumber),
+                RangeType.More => datas.Where(d => d.Price > MultiRange.LeftNumber),
+                RangeType.MoreEqual => datas.Where(d => d.Price >= MultiRange.LeftNumber),
+                _ => datas
+            };
+        }
+        if (Category is not null)
+        {
+            datas = datas.Where(d => d.Category == Category);
+        }
+        if (Brand is not null)
+        {
+            datas = datas.Where(d => d.Brand == Brand);
+        }
+        if (SortType is not null)
+        {
+            if (SortType == "Lowest")
+            {
+                datas = datas.OrderBy(d => d.Price);
+            }
+            else if (SortType == "Highest")
+            {
+                datas = datas.OrderByDescending(d => d.Price);
+            }
+        }
+        if (Search is not null)
+        {
+            datas = datas.Where(d => d.Name.ToUpper().Contains(Search.ToUpper()));
         }
 
-        public List<ShopDataItem> Datas { get; set; }
+        return datas;
+    }
 
-        private IEnumerable<ShopDataItem> GetFilterDatas()
-        {
-            IEnumerable<ShopDataItem> datas = Datas;
+    public List<ShopDataItem> GetPageDatas()
+    {
+        return GetFilterDatas().Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
+    }
 
-            if (MultiRange is not null)
-            {
-                datas = MultiRange.RangeType switch
-                {
-                    RangeType.All => datas,
-                    RangeType.Range => datas.Where(d => d.Price >= MultiRange.LeftNumber && d.Price <= MultiRange.RightNumber),
-                    RangeType.Less => datas.Where(d => d.Price < MultiRange.LeftNumber),
-                    RangeType.LessEqual => datas.Where(d => d.Price <= MultiRange.LeftNumber),
-                    RangeType.More => datas.Where(d => d.Price > MultiRange.LeftNumber),
-                    RangeType.MoreEqual => datas.Where(d => d.Price >= MultiRange.LeftNumber),
-                    _ => datas
-                };
-            }
-            if (Category is not null)
-            {
-                datas = datas.Where(d => d.Category == Category);
-            }
-            if (Brand is not null)
-            {
-                datas = datas.Where(d => d.Brand == Brand);
-            }
-            if (SortType is not null)
-            {
-                if (SortType == "Lowest")
-                {
-                    datas = datas.OrderBy(d => d.Price);
-                }
-                else if (SortType == "Highest")
-                {
-                    datas = datas.OrderByDescending(d => d.Price);
-                }
-            }
-            if (Search is not null)
-            {
-                datas = datas.Where(d => d.Name.ToUpper().Contains(Search.ToUpper()));
-            }
+    public int CurrentCount => GetFilterDatas().Count();
 
-            return datas;
-        }
+    public int PageIndex { get; set; } = 1;
 
-        public List<ShopDataItem> GetPageDatas()
-        {
-            return GetFilterDatas().Skip((PageIndex - 1) * PageSize).Take(PageSize).ToList();
-        }
+    public int PageSize { get; set; } = 6;
 
-        public int CurrentCount => GetFilterDatas().Count();
+    public int PageCount => (int)Math.Ceiling(CurrentCount / (double)PageSize);
 
-        public int PageIndex { get; set; } = 1;
+    public MultiRange? MultiRange { get; set; }
 
-        public int PageSize { get; set; } = 6;
+    public string? Category { get; set; }
 
-        public int PageCount => (int)Math.Ceiling(CurrentCount / (double)PageSize);
+    public string? Brand { get; set; }
 
-        public MultiRange? MultiRange { get; set; }
+    public StringNumber SortType { get; set; } = "Featured";
 
-        public string? Category { get; set; }
+    public string? Search { get; set; }
 
-        public string? Brand { get; set; }
+    public ShopDataItem GetDetailItem(string guid)
+    {
+        return Datas.FirstOrDefault(a => a.Id == Guid.Parse(guid)) ?? Datas.First();
+    }
 
-        public StringNumber SortType { get; set; } = "Featured";
-
-        public string? Search { get; set; }
-
-        public ShopDataItem GetDetailItem(string guid)
-        {
-            return Datas.FirstOrDefault(a => a.Id == Guid.Parse(guid)) ?? Datas.First();
-        }
-
-        public List<RelatedProduct> GetRelatedProducts()
-        {
-            return new List<RelatedProduct>
+    public List<RelatedProduct> GetRelatedProducts()
+    {
+        return new List<RelatedProduct>
             {
                 new(){Name="GA406B 温热管线饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1593360117.jpg",Price=9999,Rating=5 },
                 new(){Name="G1管线饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1593360094.jpg",Price=9999,Rating=5 },
@@ -93,6 +91,6 @@ namespace MASA.Blazor.Pro.Demo
                 new(){Name="GT3桌面即热饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1560130226.jpg",Price=9999,Rating=5 },
                 new(){Name="GR320RB冷热型饮水机",Brand="Lonsid",ImgUrl="https://img-cdn.lonsid.co/image/1603728000ddBMgnpYFmMWTlAl3bAX179.jpg",Price=9999,Rating=5 }
             };
-        }
     }
 }
+
