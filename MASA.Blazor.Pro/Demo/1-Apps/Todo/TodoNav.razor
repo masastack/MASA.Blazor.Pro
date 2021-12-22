@@ -1,8 +1,10 @@
-﻿<MNavigationDrawer Permanent Class="rounded-4" Width="300">
-    <MButton Class="ma-6" Style="width:-webkit-fill-available;" Dark Color="pry" OnClick="()=>_visible = true">Add Task</MButton>
-    <MList Dense>
+﻿@namespace MASA.Blazor.Pro.Demo
+
+<MNavigationDrawer Permanent Class="rounded-4" Width="300">
+    <MButton Class="ma-6 rounded-pill" Style="width:-webkit-fill-available;" Dark Color="pry" OnClick="()=>_visible = true">Add Task</MButton>
+    <MList Linkage Dense>
         <MListItemGroup>
-            <MListItem Class="px-6" Link Href="/apps/todo">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon>mdi-email-outline</MIcon>
@@ -12,7 +14,7 @@
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Class="px-6" Link Href="/apps/todo/important">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/important">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon>mdi-star-outline</MIcon>
@@ -22,7 +24,7 @@
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Class="px-6" Link Href="/apps/todo/completed">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/completed">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon>mdi-check</MIcon>
@@ -32,7 +34,7 @@
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Class="px-6" Link Href="/apps/todo/deleted">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/deleted">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon>mdi-delete-outline</MIcon>
@@ -45,10 +47,10 @@
 
             <MRow NoGutters Justify="JustifyTypes.SpaceBetween">
                 <MSubheader Class="px-6 my-6 text-subtitle neutral-lighten-4--text">Tags</MSubheader>
-                <MSubheader Class="px-6 my-6">➕</MSubheader>
+                <MIcon Class="px-6 my-6" Small Color="#A3AED0">fas fa-plus</MIcon>
             </MRow>
 
-            <MListItem Class="px-6" Link Href="/apps/todo/team">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/team">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon XSmall Color="purple">fas fa-circle</MIcon>
@@ -58,7 +60,7 @@
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Class="px-6" Link Href="/apps/todo/low">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/low">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon XSmall Color="teal">fas fa-circle</MIcon>
@@ -68,7 +70,7 @@
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Class="px-6" Link Href="/apps/todo/medium">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/medium">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon XSmall Color="orange">fas fa-circle</MIcon>
@@ -78,7 +80,7 @@
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Class="px-6" Link Href="/apps/todo/high">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/high">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon XSmall Color="red">fas fa-circle</MIcon>
@@ -88,7 +90,7 @@
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Class="px-6" Link Href="/apps/todo/update">
+            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/update">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
                         <MIcon XSmall Color="cyan">fas fa-circle</MIcon>

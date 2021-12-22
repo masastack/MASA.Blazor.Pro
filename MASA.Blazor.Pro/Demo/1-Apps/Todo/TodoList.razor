@@ -1,5 +1,6 @@
 ﻿﻿@using MASA.Blazor.Pro.Data
 @using System.Diagnostics
+@namespace MASA.Blazor.Pro.Demo
 
 <CascadingValue Value="this">
     <div>
@@ -7,15 +8,11 @@
             <MTextField TValue="string"
                         Class="task-search mx-4"
                         HideDetails=true
-                        Placeholder=@FilterText @bind-Value=InputText>
+                        Placeholder="Search Task" @bind-Value=InputText>
                 <PrependContent>
                     <MIcon Small Class="mt-1">fa fa-search</MIcon>
                 </PrependContent>
-                <LabelContent>
-                    <span class="text-caption neutral-lighten-3--text">
-                        Search task
-                    </span>
-                </LabelContent>
+
             </MTextField>
             <MMenu OffsetX Left OffsetY>
                 <ActivatorContent>
@@ -50,7 +47,7 @@
         </MToolbar>
 
         <MList Dense Class="rounded-4 mt-6" Style="height: calc(100vh - 196px ); overflow-y:auto;">
-            @foreach (var item in ThisList)
+            @foreach (var item in _thisList)
             {
                 <MListItem Style="height:58px;" Dense Link OnClick="() => ShowDetail(item)">
                     <span @onclick:stopPropagation>
@@ -64,13 +61,13 @@
                     <MListItemAction>
                         @foreach (var tag in item.Tag)
                         {
-                            <MChip Class="mx-1" Small TextColor=@tcolor[tag] Color=@bcolor[tag]>@tag</MChip>
+                            <MChip Class="mx-1" Small TextColor=@_chipTextColor[tag] Color=@_chipColor[tag]>@tag</MChip>
                         }
                         <span class="ml-4 mr-2 text-caption">@item.DueDate</span>
                     </MListItemAction>
 
                     <MListItemAvatar>
-                        <img style="height:32px;width:32px" src=@avas[item.Avatar]>
+                        <img style="height:32px;width:32px" src=@_avas[item.Avatar]>
                     </MListItemAvatar>
                 </MListItem>
                 <MDivider></MDivider>
@@ -80,155 +77,3 @@
         <TodoDetail Value="_visible" ValueChanged="val=>_visible = val" SelectItem=_selectItem></TodoDetail>
     </div>
 </CascadingValue>
-
-@code {
-    private string _filterText = default!;
-    private bool _visible = false;
-    private string? _inputText;
-
-    public class SelectData
-    {
-        public string Label { get; set; } = default!;
-        public string Value { get; set; } = default!;
-    }
-
-    private List<SelectData> _assList = new()
-        {
-            new SelectData() { Label = "紫萱", Value = "紫萱" },
-            new SelectData() { Label = "若芹", Value = "若芹" },
-            new SelectData() { Label = "思菱", Value = "思菱" },
-            new SelectData() { Label = "向秋", Value = "向秋" },
-            new SelectData() { Label = "雨珍", Value = "雨珍" },
-            new SelectData() { Label = "海瑶", Value = "海瑶" },
-            new SelectData() { Label = "乐萱", Value = "乐萱" },
-        };
-
-    private List<SelectData> _tagList = new()
-        {
-            new SelectData() { Label = "Team", Value = "Team" },
-            new SelectData() { Label = "Low", Value = "Low" },
-            new SelectData() { Label = "Medium", Value = "Medium" },
-            new SelectData() { Label = "High", Value = "High" },
-            new SelectData() { Label = "Update", Value = "Update" }
-        };
-
-    private string CompletedColor { get { return _selectItem.IsCompleted ? "grey" : "teal"; } }
-
-    private string CompletedText { get { return _selectItem.IsCompleted ? "Mark Complete" : "Completed"; } }
-
-    private List<TodoData> ThisList = new();
-
-    private TodoData _selectItem = new();
-
-    [Parameter]
-    public string FilterText
-    {
-        get { return _filterText; }
-        set
-        {
-            _filterText = value;
-            switch (_filterText)
-            {
-                case "important":
-                    ThisList = TodoService.List.Where(item => item.IsImportant).ToList();
-                    break;
-                case "completed":
-                    ThisList = TodoService.List.Where(item => item.IsCompleted).ToList();
-                    break;
-                case "deleted":
-                    ThisList = TodoService.List.Where(item => item.IsDeleted).ToList();
-                    break;
-                case "team":
-                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Team")).ToList();
-                    break;
-                case "low":
-                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Low")).ToList();
-                    break;
-                case "medium":
-                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Medium")).ToList();
-                    break;
-                case "high":
-                    ThisList = TodoService.List.Where(item => item.Tag.Contains("High")).ToList();
-                    break;
-                case "update":
-                    ThisList = TodoService.List.Where(item => item.Tag.Contains("Update")).ToList();
-                    break;
-                default:
-                    ThisList = TodoService.List;
-                    break;
-            }
-        }
-    }
-
-    private void ShowDetail(TodoData item)
-    {
-        _visible = true;
-        _selectItem = item;
-    }
-
-    private void ResetSort()
-    {
-        ThisList = TodoService.List;
-    }
-
-    private void SortbyAssignee()
-    {
-        ThisList = TodoService.List.OrderBy(i => i.Assignee).ToList();
-    }
-
-    private void SortbyDueDate()
-    {
-        ThisList = TodoService.List.OrderBy(i => i.DueDate).ToList();
-    }
-
-    private void InputTextChanged(string? text)
-    {
-        if (!string.IsNullOrWhiteSpace(text))
-            ThisList = TodoService.List.Where(item => item.Title.Contains(text)).ToList();
-        else
-            ThisList = TodoService.List;
-    }
-
-    public string? InputText
-    {
-        get { return _inputText; }
-        set
-        {
-            _inputText = value;
-            InputTextChanged(_inputText);
-        }
-    }
-
-    private string[] avas = new string[]
-                                                                                                                                            {
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/5.f13458cc.png",
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/1.9cba4a79.png",
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/13-small.d796bffd.png",
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/12.03bf9466.png",
-        "https://cdn.vuetifyjs.com/images/lists/4.jpg",
-                                                                                                                                            };
-
-    private Dictionary<string, string> tcolor = new()
-        {
-            { "Team", "purple" },
-            { "Low", "teal" },
-            { "Medium", "orange" },
-            { "High", "red" },
-            { "Update", "cyan" },
-        };
-
-    private Dictionary<string, string> bcolor = new()
-        {
-            { "Team", "purple lighten-4" },
-            { "Low", "teal lighten-4" },
-            { "Medium", "orange lighten-4" },
-            { "High", "red lighten-4" },
-            { "Update", "cyan lighten-4" },
-        };
-
-    public void UpdateData(TodoData data)
-    {
-        var index = ThisList.IndexOf(ThisList.First(d => d.Id == data.Id));
-        ThisList[index] = data;
-    }
-}

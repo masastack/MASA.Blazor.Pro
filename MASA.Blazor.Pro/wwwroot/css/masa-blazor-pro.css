@@ -393,9 +393,9 @@
     border-radius: 20px !important;
 }
 
-.m-card.line {
-    border-radius: 10px !important;
-}
+    .m-card.line {
+        border-radius: 10px !important;
+    }
 
 .m-card__text {
     padding: 16px 24px;
@@ -443,7 +443,7 @@
 }
 
 .table-border-solid td, th {
-    border-bottom:0 !important;
+    border-bottom: 0 !important;
     box-shadow: inset 0px -1px 0px #F4F7FE;
 }
 
@@ -626,11 +626,11 @@
 }
 
 .relate-group .m-icon {
-    font-size:40px;
+    font-size: 40px;
 }
 
 .relate-group .m-slide-group__next {
-    margin-left:10px;
+    margin-left: 10px;
 }
 
 .pointer-events-none {
@@ -700,6 +700,7 @@
 .hidden-webkit-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
 .hidden-webkit-scrollbar {
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     overflow-y: scroll;
@@ -731,7 +732,7 @@
 
 .divider-align-start .m-timeline-item__divider {
     align-items: start;
-    margin-top:8px;
+    margin-top: 8px;
 }
 
 td.text-center .m-input--checkbox .m-input__slot {
@@ -744,4 +745,13 @@ td.text-center .m-input--checkbox .m-input__slot {
 
 .m-application .elevation-6 {
     box-shadow: 0 18px 40px 0 rgb(112 144 176 / 12%) !important;
+}
+
+.task-datepicker {
+    border-radius: 0px !important;
+}
+
+input::-webkit-input-placeholder {
+    color: #8F9BBA !important;
+    font-size: 12px !important;
 }
