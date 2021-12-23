@@ -15,7 +15,7 @@
             </ChildContent>
         </MTooltip>
     }
-    <MMenu OffsetY Bottom Right CloseOnContentClick="false" ValueChanged="OnOpen" Value="_open" MinWidth="@("auto")">
+    <MMenu OffsetY Bottom Right CloseOnContentClick="false" ValueChanged="OnOpen" Value="_open" MinWidth="@("auto")" Style="border: 0.5px solid #E9EDF7;box-sizing: border-box;" Class="rounded-2">
         <ActivatorContent>
              <MTooltip Color="primary" Bottom>
                 <ActivatorContent Context="tooltipContext">
@@ -54,7 +54,7 @@
                                 </MListItemContent>
                                 <MListItemIcon Class="my-1">
                                     <MButton Icon Text Color="neutral-lighten-3" OnClick="()=>AddOrRemoveFavoriteMenu(nav.Id)">
-                                        <MIcon Size=20>@(_FavoriteMenus.Contains(nav.Id)?" mdi-star":"mdi-star-outline")</MIcon>
+                                        <MIcon Size=20>@(_favoriteMenus.Contains(nav.Id)?" mdi-star":"mdi-star-outline")</MIcon>
                                     </MButton>
                                 </MListItemIcon>
                             </MListItem>
@@ -66,17 +66,17 @@
 </div>
 
 @code {
-    List<int> _FavoriteMenus = new List<int> { 5, 2, 15 };
+    List<int> _favoriteMenus = new List<int> { 5, 2, 15 };
 
     protected override void OnInitialized()
     {
         if (GlobalConfig.Favorite == "")
         {
-            _FavoriteMenus.Clear();
+            _favoriteMenus.Clear();
         }
         if (GlobalConfig.Favorite is not null)
         {
-            _FavoriteMenus = GlobalConfig.Favorite.Split('|').Select(v => Convert.ToInt32(v)).ToList();
+            _favoriteMenus = GlobalConfig.Favorite.Split('|').Select(v => Convert.ToInt32(v)).ToList();
         }
     }
 
@@ -99,8 +99,8 @@
 
         if (search is null || search == "")
         {
-            output.AddRange(navs.Where(n => _FavoriteMenus.Contains(n.Id)));
-            output.AddRange(navs.Where(n => n.Childs is not null).SelectMany(n => n.Childs!).Where(n => _FavoriteMenus.Contains(n.Id)));
+            output.AddRange(navs.Where(n => _favoriteMenus.Contains(n.Id)));
+            output.AddRange(navs.Where(n => n.Childs is not null).SelectMany(n => n.Childs!).Where(n => _favoriteMenus.Contains(n.Id)));
         }
         else
         {
@@ -131,9 +131,9 @@
 
     void AddOrRemoveFavoriteMenu(int id)
     {
-        if (_FavoriteMenus.Contains(id)) _FavoriteMenus.Remove(id);
-        else _FavoriteMenus.Add(id);
-        GlobalConfig.Favorite = string.Join("|", _FavoriteMenus);
+        if (_favoriteMenus.Contains(id)) _favoriteMenus.Remove(id);
+        else _favoriteMenus.Add(id);
+        GlobalConfig.Favorite = string.Join("|", _favoriteMenus);
     }
 
     string GetI18nFullTitle(string fullTitle)

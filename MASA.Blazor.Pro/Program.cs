@@ -19,10 +19,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor(builder => 
 {
-    builder.UseTheme(new ThemeOptions
-    {
-        Primary= "#4318FF",
-    });
+    builder.UseTheme(option=>
+        option.Primary = "#4318FF"
+    );
 });
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddGlobal();

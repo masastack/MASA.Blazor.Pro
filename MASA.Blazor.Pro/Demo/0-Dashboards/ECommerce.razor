@@ -1,5 +1,7 @@
 ﻿@page "/dashboards/ecommerce"
 @inherits DemoCompontentBase
+@inject MasaBlazor MasaBlazor
+@inject GlobalConfigs GlobalConfig;
 @using BlazorComponent
 @using MASA.Blazor.Pro.Data.ECommerce
 
@@ -29,7 +31,7 @@
                         <h5 class="mt-1">$230k</h5>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts Height=100 Class="max-width mt-1" Option=_chart1></MECharts>
+                         <MECharts @key="@GetEchartKey()" Height=100 Class="max-width mt-1" Option=_chart1></MECharts>                  
                     </MCol>
                 </MRow>
             </MCardText>
@@ -44,7 +46,7 @@
                         <h5 class="mt-1">$682.5k</h5>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts Height=100 Class="max-width mt-1" Option=_chart2></MECharts>
+                        <MECharts @key="@GetEchartKey()" Height=100 Class="max-width mt-1" Option=_chart2></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -57,10 +59,10 @@
                     <MCol>
                         <span class="text-btn">Earnings</span>
                         <h5 class="my-1">$9745</h5>
-                        <span class="text-caption">68% more earning than last month.</span>
+                        <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts Height=100 Class="max-width mt-1" Option=_chart3></MECharts>
+                        <MECharts @key="@GetEchartKey()" Height=100 Class="max-width mt-1" Option=_chart3></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -74,7 +76,7 @@
             <MCol Md=8 Sm=12>
                 <MCard Class="max-height" Style="border-radius:20px 0px 0px 20px !important;">
                     <MCardText>
-                       <MECharts Height=326 Class="max-width" Option=_chart4></MECharts>
+                        <MECharts @key="@GetEchartKey()" Height=326 Class="max-width" Option=_chart4></MECharts>
                     </MCardText>
                 </MCard>
             </MCol>
@@ -95,7 +97,7 @@
                             <span>Budget:56,800</span>
                         </div>
                         <div class="mt-5" style="height:200px;">
-                            <MECharts Height=200 Class="max-width" Option=_chart5></MECharts>
+                            <MECharts @key="@GetEchartKey()" Height=200 Class="max-width" Option=_chart5></MECharts>
                         </div>
                         <MButton Color="primary" Height=30 Class="white--text text-btn" Style="bottom:24px;right:24px;position:absolute">View all</MButton>
                     </MCardText>
@@ -108,7 +110,7 @@
             <MCardText Class="pb-0">
                 <div class="block-between mb-4">
                     <h6>Statistics</h6>
-                    <span class="text-btn">Updated 1 month ago</span>
+                    <span class="text-btn neutral-lighten-2--text">Updated 1 month ago</span>
                 </div>
                 <MRow NoGutters>
                     <MCol Md=6 Sm=12 Class="py-12">
@@ -164,66 +166,66 @@
 <MRow>
     <MCol Md=8 Sm=12>
         <MCard Class="max-height">
-                <MDataTable Headers="_headers"
-                            TItem="CompanyData"
-                            Items="_companyDatas"
-                            HideDefaultFooter
-                            Class="ml-2 table-border-none">
-                     <HeaderColContent Context="header">
-                       <span class="text-caption neutral-lighten-2--text">@header.Text</span>
-                    </HeaderColContent>
-                    <ItemColContent>
-                        @switch (context.Header.Value)
-                        {
-                            case nameof(CompanyData.CompanyName):
-                                <div Class="py-2">
-                                    <div class="d-flex">
-                                        <MAvatar>
-                                             <MImage Height=48 MaxWidth=48 Contain src="@context.Item.CompanyIcon"></MImage>
-                                        </MAvatar>                                     
-                                        <div class="ml-4">
-                                            <span class="text-subtitle">@context.Item.CompanyName</span>
-                                            <br />
-                                            <span class="text-caption">@context.Item.CompanyEmail</span>
-                                        </div>
+            <MDataTable Headers="_headers"
+                        TItem="CompanyData"
+                        Items="_companyDatas"
+                        HideDefaultFooter
+                        Class="table-border-none pt-2">
+                <HeaderColContent Context="header">
+                    <span class="text-caption neutral-lighten-2--text ml-2">@header.Text</span>
+                </HeaderColContent>
+                <ItemColContent>
+                    @switch (context.Header.Value)
+                    {
+                        case nameof(CompanyData.CompanyName):
+                            <div Class="py-2 ml-2">
+                                <div class="d-flex">
+                                    <MAvatar>
+                                        <MImage Height=48 MaxWidth=48 Contain src="@context.Item.CompanyIcon"></MImage>
+                                    </MAvatar>
+                                    <div class="ml-4">
+                                        <span class="text-subtitle">@context.Item.CompanyName</span>
+                                        <br />
+                                        <span class="text-caption">@context.Item.CompanyEmail</span>
                                     </div>
                                 </div>
-                                break;
-                            case nameof(CompanyData.Category):
-                                <span class="text-subtitle">@context.Item.Category</span>
-                                break;
-                            case nameof(CompanyData.Views):
-                                <span class="text-subtitle">@context.Item.Views</span>
-                                <br />
-                                <span class="text-caption">@context.Item.ViewTime</span>
-                                break;
-                            case nameof(CompanyData.Revenue):
-                                <span class="text-subtitle">@context.Item.Revenue</span>
-                                break;
-                            case nameof(CompanyData.Sales):                               
-                                <span class="text-subtitle">@context.Item.Sales</span>
-                                if (context.Item.Rise)
-                                {
-                                    <MIcon Class="ml-3" Color="green">mdi-trending-up</MIcon>
-                                }
-                                else
-                                {
-                                    <MIcon Class="ml-3" Color="red">mdi-trending-down</MIcon>
-                                }
+                            </div>
+                            break;
+                        case nameof(CompanyData.Category):
+                            <span class="text-subtitle">@context.Item.Category</span>
+                            break;
+                        case nameof(CompanyData.Views):
+                            <span class="text-subtitle">@context.Item.Views</span>
+                            <br />
+                            <span class="text-caption">@context.Item.ViewTime</span>
+                            break;
+                        case nameof(CompanyData.Revenue):
+                            <span class="text-subtitle">@context.Item.Revenue</span>
+                            break;
+                        case nameof(CompanyData.Sales):
+                            <span class="text-subtitle">@context.Item.Sales</span>
+                            if (context.Item.Rise)
+                            {
+                                <MIcon Class="ml-3" Color="green">mdi-trending-up</MIcon>
+                            }
+                            else
+                            {
+                                <MIcon Class="ml-3" Color="red">mdi-trending-down</MIcon>
+                            }
 
-                                break;
-                            default:
-                                @context.Value
-                                break;
-                        }
-                    </ItemColContent>
-                </MDataTable>
+                            break;
+                        default:
+                            @context.Value
+                            break;
+                    }
+                </ItemColContent>
+            </MDataTable>
         </MCard>
     </MCol>
     <MCol Md=4 Sm=12>
         <MCard Class="max-height">
             <MCardText>
-                <MImage Class="rounded-4" Height=186 src="/img/eCommerce/rectangle.png"/>
+                <MImage Class="rounded-4" Height=186 src="/img/eCommerce/rectangle.png" />
                 <div class="d-flex my-4">
                     <MAvatar Size=48 Color="fill-lighten-1">
                         <MIcon Color="primary" Size=20>far fa-calendar-check</MIcon>
@@ -299,7 +301,7 @@
             },
         },
         Series = new[]
-                    {
+                        {
             new
             {
                 name="series-1",
@@ -369,7 +371,7 @@
             },
         },
         Series = new[]
-                            {
+                                {
             new
             {
                 Type= "bar",
@@ -393,7 +395,7 @@
             Trigger = "item",
         },
         Series = new[]
-            {
+                {
            new
            {
                Type="pie",
@@ -440,7 +442,11 @@
     {
         Title = new
         {
-            Text = "Revenue Report"
+            Text = "Revenue Report",
+            TextStyle=new
+            {
+                Color = "#1B2559"
+            }
         },
         Tooltip = new
         {
@@ -448,19 +454,27 @@
             axisPointer = new
             {
                 Type = "shadow"
-            }
+            }        
         },
         Legend = new
         {
             Data = new[] { "Earning", "Expense" },
-            Right = "1px"
+            Right = "5px",
+            TextStyle=new
+            {
+                Color = "#707EAE",
+            }
         },
         XAxis = new
         {
             Data = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep" },
             axisLine = new
             {
-                Show = false
+                Show = false,
+                LineStyle=new 
+                {
+                    Color = "#707EAE"
+                }
             },
             axisTick = new
             {
@@ -470,12 +484,20 @@
             {
                 Show = false
             },
+            TextStyle=new
+            {
+                Color = "#707EAE"
+            }
         },
         YAxis = new
         {
             axisLine = new
             {
-                Show = false
+                Show = false,
+                LineStyle=new 
+                {
+                    Color = "#707EAE"
+                }
             },
             axisTick = new
             {
@@ -484,10 +506,10 @@
             splitLine = new
             {
                 Show = false
-            },
+            }
         },
         Series = new[]
-                    {
+        {
             new
             {
                 Name="Earning",
@@ -516,7 +538,7 @@
     private dynamic _chart5 = new
     {
         Radar = new[]
-        {
+            {
             new
             {
                 Indicator=new []
@@ -558,7 +580,7 @@
             }
         },
         Series = new[]
-        {
+            {
             new
             {
                 Type= "radar",
@@ -566,7 +588,7 @@
                 {
                     new
                     {
-                      Value=new []{ 150, 260, 160, 200, 150,100,200,140},  
+                      Value=new []{ 150, 260, 160, 200, 150,100,200,140},
                     }
                 },
                 Color="#4318FF",
@@ -575,6 +597,12 @@
             }
         }
     };
+
+    string GetEchartKey()
+    {
+        //Task.Delay(1).Wait();
+        return GlobalConfig.NavigationMini.ToString()+MasaBlazor.Breakpoint.Width.ToString();
+    }
 
     List<DataTableHeader<CompanyData>> _headers = new List<DataTableHeader<CompanyData>>
     {

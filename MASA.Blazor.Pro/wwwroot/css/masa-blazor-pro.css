@@ -159,6 +159,18 @@
     color: #A3AED0;
 }
 
+.text-body3 {
+    /* Body 1-内容 1 */
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-size: 1rem !important;
+    /* identical to box height */
+    line-height: 1.75rem !important;
+    /* default color */
+    color: #1B2559;
+}
+
 .text-btn {
     /* BUTTON-按钮 */
     font-family: Roboto !important;
@@ -303,6 +315,10 @@
     background: #05CD99;
 }
 
+.sample-green-lighten-5 {
+    background: #E6FAF5 !important;
+}
+
 .lighten-green {
     background: #E6FAF5 !important;
 }
@@ -310,6 +326,11 @@
 .sample-green--text {
     color: #05CD99 !important;
     caret-color: #05CD99 !important;
+}
+
+.sample-green-lighten-5--text {
+    color: #E6FAF5 !important;
+    caret-color: #E6FAF5 !important;
 }
 
 .dark-yellow {
@@ -321,9 +342,22 @@
     caret-color: #FFB547 !important;
 }
 
+.remind {
+    background: #FF7D00;
+}
+
+.remind-lighten-5 {
+    background: #FFF7E8 !important;
+}
+
 .remind--text {
     color: #FF7D00 !important;
     caret-color: #FF7D00 !important;
+}
+
+.remind-lighten-5--text {
+    color: #FFF7E8 !important;
+    caret-color: #FFF7E8 !important;
 }
 
 .remind-light {
@@ -331,12 +365,39 @@
 }
 
 .error {
-    background: #FF5252;
+    background: #FF5252 !important;
+}
+
+.error-lighten-5 {
+    background: #FFECE8 !important;
 }
 
 .error--text {
     color: #FF5252 !important;
     caret-color: #FF5252 !important;
+}
+
+.error-lighten-5 {
+    color: #FFECE8 !important;
+    caret-color: #FFECE8 !important;
+}
+
+.info {
+    background: #37A7FF;
+}
+
+.info-lighten-5 {
+    background: #EBF6FF !important;
+}
+
+.info--text {
+    color: #37A7FF !important;
+    caret-color: #37A7FF !important;
+}
+
+.info-lighten-5--text {
+    color: #EBF6FF !important;
+    caret-color: #EBF6FF !important;
 }
 
 .error-light {
@@ -448,11 +509,12 @@
 
 .table-border-none td, th {
     border-bottom: 0px !important;
+    box-shadow:none;
 }
 
 .table-border-solid td, th {
     border-bottom: 0 !important;
-    box-shadow: inset 0px -1px 0px #F4F7FE;
+    box-shadow: none;
 }
 
 .navigation .m-icon {

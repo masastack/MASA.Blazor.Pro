@@ -14,7 +14,6 @@
 </div>
 
 <MList Nav Linkage Dense Class="@($"navigation py-0 {(IsMini?"mini-navigation":"px-7")}")">
-    <MListItemGroup>
         @foreach (var navCategory in NavCategorys)
         {
             @foreach (var nav in navCategory.Navs)
@@ -49,7 +48,7 @@
                                             <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=10>@navChild.Icon</MIcon>
                                         </MListItemIcon>
                                         <MListItemContent Class="py-0 ml-n2">
-                                            <div class="text-btn @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
+                                           <div class="text-btn @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
                                         </MListItemContent>
                                     </ItemContent>
                                 </MListItem>
@@ -59,7 +58,6 @@
                 }             
             }
         }
-        </MListItemGroup>
 </MList>
 
 @code {

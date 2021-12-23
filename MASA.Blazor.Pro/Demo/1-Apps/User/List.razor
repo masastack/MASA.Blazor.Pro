@@ -91,7 +91,7 @@
                         {
                             string color = context.Item.Color;
 
-                            <MAvatar Size=48 Color="@($"{color} lighten-5")" Class="mt-1">
+                            <MAvatar Size=48 Color="@($"{color}-lighten-5")" Class="mt-1">
                                 <span class="@($"{color}--text")">@context.Item.SampleName</span>
                             </MAvatar>
                         }
@@ -120,7 +120,7 @@
                     break;
                 case nameof(UserData.Status):
                     string statusColor = context.Item.Color;
-                    <MChip Color="@($"{statusColor} lighten-5")">
+                    <MChip Color="@($"{statusColor}-lighten-5")">
                        <span class="@($"{statusColor}--text")">@context.Item.Status</span>
                     </MChip>
                     break;
@@ -193,11 +193,11 @@
 
     Dictionary<string, string> _roleIconMap = new Dictionary<string, string>
     {
-        ["Editor"]="mdi-pencil,cyan",
-        ["Subscriber"]="far fa-user,primary",
-        ["Admin"]="fas fa-user-cog,red",
-        ["Maintainer"]="fas fa-database,green",
-        ["Author"]="fas fa-cog,orange",
+        ["Editor"]="mdi-pencil,info",
+        ["Subscriber"]="far fa-user,pry",
+        ["Admin"]="fas fa-user-cog,error",
+        ["Maintainer"]="fas fa-database,sample-green",
+        ["Author"]="fas fa-cog,remind",
     };
 
     void NavigateToDetails(string id)

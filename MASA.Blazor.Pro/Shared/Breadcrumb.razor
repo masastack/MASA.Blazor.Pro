@@ -26,9 +26,6 @@
 @code {
     public override string Name { get; } = "Breadcrumb";
 
-    [Parameter]
-    public string Render{ get; set; }
-
     List<Nav> _navs = new List<Nav>();
 
     protected override void OnInitialized()

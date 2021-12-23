@@ -16,7 +16,7 @@
         </MToolbar>
     </MAppBar> 
 
-    <MNavigationDrawer Width=300 MiniVariantWidth=80 Permanent Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>          
+    <MNavigationDrawer Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>          
         <Navigation IsMini="GlobalConfig.NavigationMini" />
     </MNavigationDrawer> 
 
@@ -28,7 +28,7 @@
 
     <MMain Class="fill-lighten-1" Style="padding-top:60px">
         <div class="pa-6 max-width">
-            <Breadcrumb Render="@Guid.NewGuid().ToString()"></Breadcrumb>
+            <Breadcrumb @key="@Guid.NewGuid().ToString()"></Breadcrumb>
             @Body
         </div>
     </MMain>
@@ -40,7 +40,7 @@
     {
         if (GlobalConfig.Language is not null)
         {
-             LanguageProvider.SetLang(GlobalConfig.Language);
+            LanguageProvider.SetLang(GlobalConfig.Language);
         }
     }
 }

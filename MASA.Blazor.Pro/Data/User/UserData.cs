@@ -7,11 +7,15 @@ public class UserData
         Id = Guid.NewGuid().ToString();
         Random _ran = new Random();
 
+        //List<string> _colors = new List<string>
+        //{
+        //    "red", "deep-purple", "orange", "cyan", "green","blue-grey"
+        //};
         List<string> _colors = new List<string>
-            {
-                "red", "deep-purple", "orange", "cyan", "green","blue-grey"
-            };
-        int index = _ran.Next(0, 6);
+        {
+            "error", "pry", "remind", "info", "sample-green"
+        };
+        int index = _ran.Next(0, 5);
         Color = _colors[index];
 
         Permissions = new List<Permission>()
@@ -45,7 +49,7 @@ public class UserData
     public string Status { get; set; } = "Pending";
 
     [Required]
-    public string? Role { get; set; }
+    public string Role { get; set; } = "Subscriber";
 
     [Required]
     public string? Plan { get; set; }
