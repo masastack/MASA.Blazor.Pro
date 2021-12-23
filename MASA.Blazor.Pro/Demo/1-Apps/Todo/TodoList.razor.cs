@@ -5,27 +5,28 @@ public partial class TodoList
     
     private readonly Dictionary<string, string> _chipTextColor = new()
     {
-        { "Team", "purple" },
-        { "Low", "teal" },
-        { "Medium", "orange" },
-        { "High", "red" },
-        { "Update", "cyan" },
+        { "Team", "chip-purple" },
+        { "Low", "chip-green" },
+        { "Medium", "chip-orange" },
+        { "High", "chip-red" },
+        { "Update", "chip-blue" },
     };
     private readonly Dictionary<string, string> _chipColor = new()
     {
-        { "Team", "purple lighten-4" },
-        { "Low", "teal lighten-4" },
-        { "Medium", "orange lighten-4" },
-        { "High", "red lighten-4" },
-        { "Update", "cyan lighten-4" },
+        { "Team", "#ECE8FF" },
+        { "Low", "#E6FAF5" },
+        { "Medium", "#FFF7E8" },
+        { "High", "#FFECE8" },
+        { "Update", "#EBF6FF" },
     };
     private readonly string[] _avas = new string[]
     {
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/5.f13458cc.png",
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/1.9cba4a79.png",
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/13-small.d796bffd.png",
-        "https://pixinvent.com/demo/vuexy-vuejs-admin-dashboard-template/demo-1/img/12.03bf9466.png",
-        "https://cdn.vuetifyjs.com/images/lists/4.jpg"
+        "/img/avatar/3-small.png",
+        "/img/avatar/11-small.png",
+        "/img/avatar/avatar-s-6.jpg",
+        "/img/avatar/avatar-s-7.jpg",
+        "/img/avatar/avatar-s-8.jpg",
+        "/img/avatar/avatar-s-9.jpg"
     };
     private TodoData _selectItem = new();
     private string? _filterText;

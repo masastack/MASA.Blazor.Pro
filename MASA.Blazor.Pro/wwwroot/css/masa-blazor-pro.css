@@ -854,3 +854,28 @@ input::-webkit-input-placeholder {
 .m-timeline-flat .m-timeline-item__dot {
     box-shadow: none;
 }
+
+.chip-green--text {
+    color: #05CD99 !important;
+}
+
+.chip-red--text {
+    color: #FF5252 !important;
+}
+
+.chip-blue--text {
+    color: #37A7FF !important;
+}
+
+.chip-orange--text {
+    color: #FF7D00 !important;
+}
+
+.chip-purple--text {
+    color: #4318FF !important;
+}
+
+.chip-text {
+    font-style: normal !important;
+    font-weight: bold !important;
+}

@@ -61,7 +61,7 @@
                     <MListItemAction>
                         @foreach (var tag in item.Tag)
                         {
-                            <MChip Class="mx-1" Small TextColor=@_chipTextColor[tag] Color=@_chipColor[tag]>@tag</MChip>
+                            <MChip Class="mx-1 chip-text" Small TextColor="@_chipTextColor[tag]" Color=@_chipColor[tag]>@tag</MChip>
                         }
                         <span class="ml-4 mr-2 text-caption">@item.DueDate</span>
                     </MListItemAction>
