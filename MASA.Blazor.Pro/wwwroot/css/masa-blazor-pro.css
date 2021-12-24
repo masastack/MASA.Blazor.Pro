@@ -206,10 +206,6 @@
     color: #A3AED0;
 }
 
-.pry {
-    background-color: #4318FF !important;
-}
-
 .pry-lighten-1 {
     background-color: #3613CC !important;
 }
@@ -527,6 +523,10 @@
     margin-right: 4px !important;
 }
 
+.navigation.mini-navigation .m-list-item__icon:first-child {
+    margin-right: 0px !important;
+}
+
 .mini-navigation .m-list-item__icon {
     justify-content: center;
 }
@@ -559,6 +559,16 @@
 .coupons.m-text-field > .m-input__control > .m-input__slot:after {
     border-color: transparent;
     border-style: hidden;
+}
+
+.coupons .m-input__control .m-text-field__slot input::-webkit-input-placeholder {
+    font-family: Roboto !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    line-height: 1.1875rem !important;
+    letter-spacing: 0.009375rem !important;
+    color: #2B3674 !important;
 }
 
 .max-height {

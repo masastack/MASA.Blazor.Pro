@@ -9,7 +9,7 @@ public class UserData
 
         List<string> _colors = new List<string>
         {
-            "error", "pry", "remind", "info", "sample-green"
+            "red", "deep-purple", "orange", "cyan", "green","blue-grey"
         };
         int index = _ran.Next(0, 5);
         Color = _colors[index];
