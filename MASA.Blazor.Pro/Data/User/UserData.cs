@@ -7,10 +7,6 @@ public class UserData
         Id = Guid.NewGuid().ToString();
         Random _ran = new Random();
 
-        //List<string> _colors = new List<string>
-        //{
-        //    "red", "deep-purple", "orange", "cyan", "green","blue-grey"
-        //};
         List<string> _colors = new List<string>
         {
             "error", "pry", "remind", "info", "sample-green"

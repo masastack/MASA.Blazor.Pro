@@ -50,6 +50,8 @@ public class ShopPage
             datas = datas.Where(d => d.Name.ToUpper().Contains(Search.ToUpper()));
         }
 
+        if (datas.Count() < (PageIndex - 1) * PageSize) PageIndex = 1;
+
         return datas;
     }
 

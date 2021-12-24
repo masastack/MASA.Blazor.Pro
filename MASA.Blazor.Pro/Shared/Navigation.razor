@@ -1,68 +1,75 @@
 ﻿@inherits DemoCompontentBase
 @inject NavigationManager Nav
 @inject List<NavCategory> NavCategorys
+@inject GlobalConfigs GlobalConfig;
 
-<div style="height:132px" class="@($"block-center {(IsMini?"px-4":"px-12")}")" @onclick="()=>Nav.NavigateTo(GlobalVariables.DefaultRoute)">  
-    @if(IsMini)
-    {
-        <img class="hover-pointer" src="https://cdn.masastack.com/stack/images/logo/MASAStack/logo48_48.png"/>
-    }
-    else
-    {
-        <img class="hover-pointer" src="https://cdn.masastack.com/stack/images/logo/MASAStack/logo-h-en.png?x-oss-process=image/resize,w_200"/>
-    }  
-</div>
+<MNavigationDrawer Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
 
-<MList Nav Linkage Dense Class="@($"navigation py-0 {(IsMini?"mini-navigation":"px-7")}")">
+    <div style="height:132px" class="@($"block-center {(GlobalConfig.NavigationMini?"px-4":"px-12")}")" @onclick="()=>Nav.NavigateTo(GlobalVariables.DefaultRoute)">
+        @if (GlobalConfig.NavigationMini)
+        {
+            <img height="48" width="48" class="hover-pointer" src="/img/mainLayout/logo.svg" />
+        }
+        else
+        {
+            <img class="hover-pointer" src="/img/mainLayout/logo-en.svg" />
+        }
+    </div>
+
+    <MList Nav Linkage Dense Class="@($"navigation py-0 {(GlobalConfig.NavigationMini?"mini-navigation":"px-7")}")">
         @foreach (var navCategory in NavCategorys)
         {
             @foreach (var nav in navCategory.Navs)
             {
-                if(nav.Childs is null)
+                if (nav.Childs is null)
                 {
-                    <MListItem ActiveClass="primary" Style="border-radius: 4px;" Class="mb-4" Link Href="@nav.Href">
+                    <MListItem ActiveClass="primary" Style="border-radius: 4px;" Class="mb-4" Href="@nav.Href">
                         <ItemContent>
                             <MListItemIcon>
                                 <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=18>@nav.Icon</MIcon>
                             </MListItemIcon>
                             <MListItemContent Class="py-0 ml-2">
-                                <h7 class="@(context.Active?"white--text":"neutral-lighten-2--text")">@T(nav.Title)</h7>
+                                <div class="text-subtitle @(context.Active?"white--text":"neutral-lighten-2--text")">@T(nav.Title)</div>
                             </MListItemContent>
                         </ItemContent>
                     </MListItem>
                 }
                 else
                 {
-                    <MListGroup Group="@string.Join(",",nav.Childs.Select(n=>n.Href))" Style="border-radius: 4px;" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">                    
+                    <MListGroup Group="@nav.Childs.Select(n => n.Href).ToList()" Style="border-radius: 4px;" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
                         <ActivatorContent>
                             <MListItemContent>
-                                <h7 class="ml-2 neutral-lighten-2--text primaryText">@T(nav.Title)</h7>                  
-                            </MListItemContent>                            
+                                <div class="text-subtitle ml-2 neutral-lighten-2--text primaryText">@T(nav.Title)</div>
+                            </MListItemContent>
                         </ActivatorContent>
                         <ChildContent>
                             @foreach (var navChild in nav.Childs)
                             {
-                                <MListItem ActiveClass="primary white--text" Class="my-1" Style="border-radius: 4px;"  Link Href="@navChild.Href">
+                                <MListItem ActiveClass="primary white--text" Class="my-1" Style="border-radius: 4px;" Link Href="@navChild.Href">
                                     <ItemContent>
                                         <MListItemIcon Class="ml-n5">
                                             <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=10>@navChild.Icon</MIcon>
                                         </MListItemIcon>
                                         <MListItemContent Class="py-0 ml-n2">
-                                           <div class="text-btn @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
+                                            <div class="text-subtitle2 @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
                                         </MListItemContent>
                                     </ItemContent>
                                 </MListItem>
                             }
                         </ChildContent>
                     </MListGroup>
-                }             
+                }
             }
         }
-</MList>
+    </MList>
+</MNavigationDrawer>
+
+<MButton Small Fab Color="primary" Style="@($"bottom:58px;z-index:7;position: fixed;{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}")" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;}">
+    <MIcon Class="white--text">
+        @(GlobalConfig.NavigationMini?"mdi-chevron-right":"mdi-chevron-left")
+    </MIcon>
+</MButton>
 
 @code {
     public override string Name => nameof(Navigation);
-
-    [Parameter]
-    public bool IsMini{ get; set; }
 }

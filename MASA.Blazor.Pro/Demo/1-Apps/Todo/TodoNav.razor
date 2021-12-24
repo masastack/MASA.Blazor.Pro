@@ -1,53 +1,53 @@
 ﻿@namespace MASA.Blazor.Pro.Demo
 
 <MNavigationDrawer Permanent Class="rounded-4" Width="300">
-    <MButton Class="ma-6 rounded-pill" Style="width:-webkit-fill-available;" Dark Color="pry" OnClick="()=>_visible = true">Add Task</MButton>
+    <MButton Class="ma-6 rounded-pill" Style="width:-webkit-fill-available;" Dark Color="primary" OnClick="() => _visible = true">Add Task</MButton>
     <MList Linkage Dense>
-        <MListItemGroup>
-            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo">
+
+            <MListItem Style="height:38px;" Class="px-6" Exact Href="/apps/todo">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Size=18>mdi-email-outline</MIcon>
+                        <MIcon Color="@(!context.Active ? "neutral-lighten-2" : "primary")" Size=18>mdi-email-outline</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">My Task</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">My Task</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/important">
+            <MListItem Style="height:38px;" Class="px-6" Href="/apps/todo/important">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Size=18>mdi-star-outline</MIcon>
+                        <MIcon Color="@(!context.Active ? "neutral-lighten-2" : "primary")" Size=18>mdi-star-outline</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">Important</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">Important</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/completed">
+            <MListItem Style="height:38px;" Class="px-6" Href="/apps/todo/completed">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Size=18>mdi-check</MIcon>
+                        <MIcon Color="@(!context.Active ? "neutral-lighten-2" : "primary")" Size=18>mdi-check</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">Completed</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">Completed</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-            <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/deleted">
+            <MListItem Style="height:38px;" Class="px-6" Href="/apps/todo/deleted">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Size=18>mdi-delete-outline</MIcon>
+                        <MIcon Color="@(!context.Active ? "neutral-lighten-2" : "primary")" Size=18>mdi-delete-outline</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">Deleted</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">Deleted</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
 
             <MRow NoGutters Justify="JustifyTypes.SpaceBetween">
-                <MSubheader Class="px-6 my-6 text-subtitle neutral-lighten-4--text">Tags</MSubheader>
-                <MIcon Class="px-6 my-6" Small Color="#A3AED0">fas fa-plus</MIcon>
+                <MSubheader Class="px-6 my-6 text-btn neutral-lighten-4--text">Tags</MSubheader>
+                <MIcon Class="px-6 my-6" Small Color="neutral-lighten-4">fas fa-plus</MIcon>
             </MRow>
 
             <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/team">
@@ -56,51 +56,50 @@
                         <MIcon Small Color="purple">fas fa-circle</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">Team</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">Team</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
             <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/low">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Small Color="#05CD99">fas fa-circle</MIcon>
+                        <MIcon Small Color="sample-green">fas fa-circle</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">Low</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">Low</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
             <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/medium">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Small Color="#FFB547">fas fa-circle</MIcon>
+                        <MIcon Small Color="dark-yellow">fas fa-circle</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">Medium</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">Medium</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
             <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/high">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Small Color="#FF5252">fas fa-circle</MIcon>
+                        <MIcon Small Color="error">fas fa-circle</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">High</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">High</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
             <MListItem Style="height:38px;" Class="px-6" Link Href="/apps/todo/update">
                 <ItemContent>
                     <MListItemIcon Class="mr-2">
-                        <MIcon Small Color="#4318FF">fas fa-circle</MIcon>
+                        <MIcon Small Color="primary">fas fa-circle</MIcon>
                     </MListItemIcon>
                     <MListItemContent>
-                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-4--text" : "text-subtitle pry--text")">Update</MListItemTitle>
+                        <MListItemTitle Class="@(!context.Active ? "text-body neutral-lighten-2--text" : "text-subtitle primary--text")">Update</MListItemTitle>
                     </MListItemContent>
                 </ItemContent>
             </MListItem>
-        </MListItemGroup>
     </MList>
 </MNavigationDrawer>
 

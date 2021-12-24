@@ -103,13 +103,13 @@
                             </MCardText>
                             <div class="block-between text-center">
                                 <MHover Context="favoriteContext">
-                                    <div @attributes="favoriteContext.Attrs" @onclick="()=>item.Favorite=!item.Favorite" class="rounded-bl-xl cursor-pointer @(favoriteContext.Hover?"neutral-lighten-4":"")" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-left-radius: 20px !important;">
-                                        <MIcon Size=24 Color="@(item.Favorite?"primary":(favoriteContext.Hover?"white":""))">@(item.Favorite?"mdi-heart":"mdi-heart-outline")</MIcon>
+                                    <div @attributes="favoriteContext.Attrs" @onclick="()=>item.Favorite=!item.Favorite" class="rounded-bl-xl cursor-pointer @(favoriteContext.Hover?"fill-lighten-2":"")" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-left-radius: 20px !important;">
+                                        <MIcon Size=24 Color="@(item.Favorite?"primary":"neutral")">@(item.Favorite?"mdi-heart":"mdi-heart-outline")</MIcon>
                                     </div>
                                 </MHover>
                                 <MHover Context="orderContext">
                                     <div @attributes="orderContext.Attrs" @onclick="NavigateToOrder" class="cursor-pointer @(orderContext.Hover?"primary":"")" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-right-radius: 20px !important;">
-                                        <MIcon Size=24 Color="@(orderContext.Hover?"white":"")">mdi-cart-outline</MIcon>
+                                        <MIcon Size=24 Color="@(orderContext.Hover?"white":"neutral")">mdi-cart-outline</MIcon>
                                     </div>
                                 </MHover>
                             </div>

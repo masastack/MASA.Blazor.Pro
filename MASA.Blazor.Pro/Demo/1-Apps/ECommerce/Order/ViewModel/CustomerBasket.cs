@@ -24,7 +24,7 @@ public record BasketItem(
 
     public string GetPictureUrl()
     {
-        return $"./img/eCommerce/product/{PictureFileName}";
+        return $"./img/apps-eCommerce/{PictureFileName}";
     }
 }
 

@@ -1,9 +1,9 @@
 ﻿@using System.Diagnostics.CodeAnalysis
 @inject GlobalConfigs ScopedGlobalConfigs;
+@inject I18n LanguageProvider
 
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(App).Assembly"
-            AdditionalAssemblies="new[] { typeof(Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Manage.Internal.IndexModel).Assembly }">
+    <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -30,5 +30,9 @@
     protected override void OnInitialized()
     {
         ScopedGlobalConfigs.Bind(GlobalConfig);
+        if (GlobalConfig.Language is not null)
+        {
+            LanguageProvider.SetLang(GlobalConfig.Language);
+        }
     }
 }

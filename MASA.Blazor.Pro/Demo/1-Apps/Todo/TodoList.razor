@@ -51,17 +51,17 @@
             {
                 <MListItem Style="height:58px;" Dense Link OnClick="() => ShowDetail(item)">
                     <span @onclick:stopPropagation>
-                        <MCheckbox Class="pa-0 ma-0" @bind-Value=@item.IsChecked Color="pry"></MCheckbox>
+                        <MCheckbox Class="pa-0 ma-0" @bind-Value=@item.IsChecked Color="primary"></MCheckbox>
                     </span>
 
-                    <MListItemContent Class="text-body neutral-lighten-4--text">
+                    <MListItemContent Class="text-body neutral-lighten-2--text">
                         @item.Title
                     </MListItemContent>
 
                     <MListItemAction>
                         @foreach (var tag in item.Tag)
                         {
-                            <MChip Class="mx-1 chip-text" Small TextColor="@_chipTextColor[tag]" Color=@_chipColor[tag]>@tag</MChip>
+                            <MChip Class="mx-1 text-btn" Small TextColor="@_chipTextColor[tag]" Color="@(_chipTextColor[tag]+"-lighten-5")">@tag</MChip>
                         }
                         <span class="ml-4 mr-2 text-caption">@item.DueDate</span>
                     </MListItemAction>

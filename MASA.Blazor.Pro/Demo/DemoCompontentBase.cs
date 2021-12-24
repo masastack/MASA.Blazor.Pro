@@ -9,7 +9,7 @@ public abstract class DemoCompontentBase : ComponentBase
     {
         get
         {
-            return _languageProvider ?? throw new Exception("please Inject LanguageProvider!");
+            return _languageProvider ?? throw new Exception("please Inject I18n!");
         }
         set
         {

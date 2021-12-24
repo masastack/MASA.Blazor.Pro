@@ -569,23 +569,6 @@
     width: 100% !important;
 }
 
-.cursor-pointer {
-    cursor: pointer;
-}
-
-.img-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    height: 250px;
-}
-
 .full-width {
     width: 100% !important;
 }
@@ -596,17 +579,6 @@
 
 .hide {
     display: none;
-}
-
-.text-description {
-    -webkit-box-ordinal-group: 4;
-    -ms-flex-order: 3;
-    order: 3;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .border-right-solid {
@@ -677,22 +649,8 @@
     background-color: #f8f8f8;
 }
 
-
 .hover-pointer {
     cursor: pointer;
-}
-
-.pro-pry--text {
-    color: #7367f0 !important;
-    caret-color: #7367f0 !important;
-}
-
-.pro-pry {
-    background-color: #7367f0;
-}
-
-.grey-light {
-    background-color: rgb(252, 252, 252);
 }
 
 .justify-text-align {
@@ -835,44 +793,12 @@ input::-webkit-input-placeholder {
     margin: auto;
 }
 
-.cyan {
-    background-color: #37A7FF !important;
-}
-
-.cyan--text {
-    color: #37A7FF !important;
-}
-
-.cyan-light {
-    background-color: #EBF6FF;
-}
-
 .neutral-lighten-icon .m-icon {
     color: #A3AED0 !important;
 }
 
 .m-timeline-flat .m-timeline-item__dot {
     box-shadow: none;
-}
-
-.chip-green--text {
-    color: #05CD99 !important;
-}
-
-.chip-red--text {
-    color: #FF5252 !important;
-}
-
-.chip-blue--text {
-    color: #37A7FF !important;
-}
-
-.chip-orange--text {
-    color: #FF7D00 !important;
-}
-
-.chip-purple--text {
-    color: #4318FF !important;
 }
 
 .chip-text {

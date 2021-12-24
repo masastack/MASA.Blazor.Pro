@@ -14,7 +14,14 @@ namespace MASA.Blazor.Pro.JsRuntime
 
         public async void SetItemAsync<T>(string key, T? value)
         {
-            await _jsRuntime.InvokeVoidAsync("cookieStore.set", key,value);
+            try 
+            {
+                await _jsRuntime.InvokeVoidAsync("cookieStore.set", key, value);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

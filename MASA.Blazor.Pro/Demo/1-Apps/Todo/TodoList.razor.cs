@@ -5,20 +5,13 @@ public partial class TodoList
     
     private readonly Dictionary<string, string> _chipTextColor = new()
     {
-        { "Team", "chip-purple" },
-        { "Low", "chip-green" },
-        { "Medium", "chip-orange" },
-        { "High", "chip-red" },
-        { "Update", "chip-blue" },
+        { "Team", "pry" },
+        { "Low", "sample-green" },
+        { "Medium", "remind" },
+        { "High", "error" },
+        { "Update", "info" },
     };
-    private readonly Dictionary<string, string> _chipColor = new()
-    {
-        { "Team", "#ECE8FF" },
-        { "Low", "#E6FAF5" },
-        { "Medium", "#FFF7E8" },
-        { "High", "#FFECE8" },
-        { "Update", "#EBF6FF" },
-    };
+
     private readonly string[] _avas = new string[]
     {
         "/img/avatar/3-small.png",
