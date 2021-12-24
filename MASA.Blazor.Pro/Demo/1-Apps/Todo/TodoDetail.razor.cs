@@ -26,9 +26,9 @@ public partial class TodoDetail
     private bool _isEdit;
     private TodoData _selectData = new();
 
-    private string CompletedColor { get { return _selectData.IsCompleted ? "theme--dark pry" : "text-capitalize neutral-lighten-5 neutral-lighten-2--text"; } }
+    private string CompletedColor { get { return _selectData.IsCompleted ? "text-capitalize neutral-lighten-5 neutral-lighten-2--text" : "theme--dark primary"; } }
 
-    private string CompletedText { get { return _selectData.IsCompleted ? "Mark Complete" : "Completed"; } }
+    private string CompletedText { get { return _selectData.IsCompleted ? "Completed" : "Mark Complete"; } }
 
     [CascadingParameter]
     public TodoList TodoList { get; set; } = default!;
@@ -51,6 +51,12 @@ public partial class TodoDetail
         {
             await ValueChanged.InvokeAsync(false);
         }
+    }
+
+    private void Complete()
+    {
+        _selectData.IsCompleted = !_selectData.IsCompleted;
+        _selectData.IsChecked = _selectData.IsCompleted;
     }
 
     private void HandleCloseClick(string lable)

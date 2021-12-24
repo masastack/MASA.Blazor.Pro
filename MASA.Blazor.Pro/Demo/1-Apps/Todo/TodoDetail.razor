@@ -5,7 +5,7 @@
     <MToolbar Style="width: 100%;" Absolute Elevation=0 Class="px-6">
         @if (_isEdit)
         {
-            <MButton Class="rounded-pill" OnClick="() => _selectData.IsCompleted = !_selectData.IsCompleted" Color=@CompletedColor>
+            <MButton Class="rounded-pill" OnClick="Complete" Color=@CompletedColor>
                 @CompletedText
             </MButton>
         }
@@ -45,7 +45,7 @@
         <div class="mx-6">
             <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
                 <ActivatorContent Context="menuContext">
-                    <MTextField @bind-Value=_selectData.DueDate Label="Due Date" Outlined Placeholder="Due Date" @attributes="menuContext.Attrs"></MTextField>
+                    <MTextField Readonly @bind-Value=_selectData.DueDate Label="Due Date" Outlined Placeholder="Due Date" @attributes="menuContext.Attrs"></MTextField>
                 </ActivatorContent>
                 <ChildContent>
                     <MDatePicker Class="task-datepicker" @bind-Value=_selectData.DueDate></MDatePicker>
@@ -64,14 +64,14 @@
         <MTextarea Class="mx-6" Outlined Label="Description" @bind-Value=_selectData.Description></MTextarea>
 
         <div style="position:fixed;bottom:48px;right:24px;">
-            <MButton Outlined Class="mr-6 text-capitalize neutral-lighten-5 neutral-lighten-2--text rounded-pill" OnClick="Reset">Reset</MButton>
+            <MButton Outlined Class="mr-6 text-capitalize neutral-lighten-2--text rounded-pill" OnClick="Reset">Reset</MButton>
             @if (_isEdit)
             {
-                <MButton Color="pry rounded-pill" Dark OnClick="()=>Update(context)">Update</MButton>
+                <MButton Color="primary rounded-pill" Dark OnClick="()=>Update(context)">Update</MButton>
             }
             else
             {
-                <MButton Color="pry rounded-pill" Dark OnClick="()=>Add(context)">Add</MButton>
+                <MButton Color="primary rounded-pill" Dark OnClick="()=>Add(context)">Add</MButton>
             }
         </div>
     </MForm>

@@ -9,7 +9,10 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor(builder => 
 {
     builder.UseTheme(option=>
-        option.Primary = "#4318FF"
+        {
+            option.Primary = "#4318FF";
+            option.Accent = "#4318FF";
+        }
     );
 });
 builder.Services.AddGlobal();
