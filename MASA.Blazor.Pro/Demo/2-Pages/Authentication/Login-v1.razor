@@ -1,9 +1,17 @@
 ﻿@page "/pages/authentication/Login-v1"
 @layout EmptyLayout
 
-<MRow Class="mt-16 pt-12">
+<div class="mt-16 pt-12">
     <MASA.Blazor.Pro.Components.Login SlinInClick="Login"></MASA.Blazor.Pro.Components.Login>
-</MRow>
+</div>
+
+<MFooter Fixed Class="pb-12 pt-4" Style="background:transparent;">
+    <MRow Justify="JustifyTypes.Center">
+        <img class="mr-3" style="width:20px; height:20px;" src="img/login/Gxwd.png" />
+        <img class="mr-3" style="width:20px; height:20px;" src="img/login/2873.png" />
+        <a href="https://beian.miit.gov.cn/" target="_blank" class="neutral-lighten-3--text" style="text-decoration:none;font-size:14px;">浙ICP备2021013592号-1</a>
+    </MRow>
+</MFooter>
 
 @code {
     [Inject]

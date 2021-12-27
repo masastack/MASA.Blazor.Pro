@@ -505,7 +505,7 @@
 
 .table-border-none td, th {
     border-bottom: 0px !important;
-    box-shadow:none;
+    box-shadow: none;
 }
 
 .table-border-solid td, th {
@@ -546,8 +546,8 @@
 /*组件样式全局修改end*/
 
 /*shop*/
-.ml300{
-    margin-left:300px;
+.ml300 {
+    margin-left: 300px;
 }
 /*shop*/
 
@@ -814,4 +814,24 @@ input::-webkit-input-placeholder {
 .chip-text {
     font-style: normal !important;
     font-weight: bold !important;
+}
+
+.m-application .remover-ripple a {
+    color: #4318FF !important;
+}
+
+.remover-ripple .m-list-item:before {
+    content: none !important;
+}
+
+.remover-ripple .m-ripple__container {
+    opacity: 0 !important;
+}
+
+.remover-ripple .m-list-item:hover .m-list-item__title {
+    color: #4318FF !important;
+}
+
+.remover-ripple .m-list-item:hover .m-icon {
+    color: inherit !important;
 }
