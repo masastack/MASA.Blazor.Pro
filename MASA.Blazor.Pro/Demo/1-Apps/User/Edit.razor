@@ -124,12 +124,12 @@
 
                 <MRow Class="mt-3">
                     <MCol Md=4 Sm=12>
-                        <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
+                        <MMenu CloseOnContentClick="false" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")" @bind-Value="_birthDateMenu">
                             <ActivatorContent Context="menuContext">
-                                <MTextField @bind-Value=UserData.BirthDate Label="BirthDate" Color="primary" HideDetails="@("auto")" Outlined @attributes="menuContext.Attrs"></MTextField>
+                                <MTextField @bind-Value=UserData.BirthDate Label="BirthDate" Color="primary" Readonly HideDetails="@("auto")" Outlined @attributes="menuContext.Attrs"></MTextField>
                             </ActivatorContent>
                             <ChildContent>
-                                <MDatePicker Color="primary" @bind-Value=UserData.BirthDate></MDatePicker>
+                                <MDatePicker Class="task-datepicker" @bind-Value=UserData.BirthDate OnInput="()=>_birthDateMenu=false"></MDatePicker>
                             </ChildContent>
                         </MMenu>
                     </MCol>
@@ -269,4 +269,6 @@
     };
 
     StringNumber? tab;
+
+    bool _birthDateMenu;
 }

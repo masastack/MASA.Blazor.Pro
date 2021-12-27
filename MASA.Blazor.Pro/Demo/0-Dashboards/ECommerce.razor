@@ -4,6 +4,8 @@
 @inject GlobalConfigs GlobalConfig;
 @using BlazorComponent
 @using MASA.Blazor.Pro.Data.ECommerce
+@using System.ComponentModel
+@implements IDisposable
 
 <MRow>
     <MCol Md=3 Sm=12>
@@ -31,7 +33,7 @@
                         <h5 class="mt-1">$230k</h5>
                     </MCol>
                     <MCol Class="block-center">
-                         <MECharts @key="@GetEchartKey()" Height=100 Class="max-width mt-1" Option=_chart1></MECharts>                  
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart1></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -46,7 +48,7 @@
                         <h5 class="mt-1">$682.5k</h5>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts @key="@GetEchartKey()" Height=100 Class="max-width mt-1" Option=_chart2></MECharts>
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart2></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -62,7 +64,7 @@
                         <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts @key="@GetEchartKey()" Height=100 Class="max-width mt-1" Option=_chart3></MECharts>
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart3></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -76,7 +78,7 @@
             <MCol Md=8 Sm=12>
                 <MCard Class="max-height" Style="border-radius:20px 0px 0px 20px !important;">
                     <MCardText>
-                        <MECharts @key="@GetEchartKey()" Height=326 Class="max-width" Option=_chart4></MECharts>
+                        <MECharts Height=326 Width="@("100%")" @key="GetEchartKey()" Option=_chart4></MECharts>
                     </MCardText>
                 </MCard>
             </MCol>
@@ -97,7 +99,7 @@
                             <span>Budget:56,800</span>
                         </div>
                         <div class="mt-5" style="height:200px;">
-                            <MECharts @key="@GetEchartKey()" Height=200 Class="max-width" Option=_chart5></MECharts>
+                            <MECharts Height=200 Width="@("100%")" @key="GetEchartKey()" Option=_chart5></MECharts>
                         </div>
                         <MButton Color="primary" Height=30 Class="white--text text-btn" Style="bottom:24px;right:24px;position:absolute">View all</MButton>
                     </MCardText>
@@ -224,8 +226,8 @@
     </MCol>
     <MCol Md=4 Sm=12>
         <MCard Class="max-height">
-            <MCardText>
-                <MImage Class="rounded-4" Height=186 src="/img/eCommerce/rectangle.png" />
+            <MCardText Class="pt-6">
+                <img class="rounded-2 max-width" height=186 src="/img/eCommerce/rectangle.png" />
                 <div class="d-flex my-4">
                     <MAvatar Size=48 Color="fill-lighten-1">
                         <MIcon Color="primary" Size=20>far fa-calendar-check</MIcon>
@@ -301,7 +303,7 @@
             },
         },
         Series = new[]
-                        {
+                                {
             new
             {
                 name="series-1",
@@ -371,7 +373,7 @@
             },
         },
         Series = new[]
-                                {
+                                        {
             new
             {
                 Type= "bar",
@@ -395,7 +397,7 @@
             Trigger = "item",
         },
         Series = new[]
-                {
+                        {
            new
            {
                Type="pie",
@@ -443,7 +445,7 @@
         Title = new
         {
             Text = "Revenue Report",
-            TextStyle=new
+            TextStyle = new
             {
                 Color = "#1B2559"
             }
@@ -454,13 +456,13 @@
             axisPointer = new
             {
                 Type = "shadow"
-            }        
+            }
         },
         Legend = new
         {
             Data = new[] { "Earning", "Expense" },
             Right = "5px",
-            TextStyle=new
+            TextStyle = new
             {
                 Color = "#707EAE",
             }
@@ -471,7 +473,7 @@
             axisLine = new
             {
                 Show = false,
-                LineStyle=new 
+                LineStyle = new
                 {
                     Color = "#707EAE"
                 }
@@ -484,7 +486,7 @@
             {
                 Show = false
             },
-            TextStyle=new
+            TextStyle = new
             {
                 Color = "#707EAE"
             }
@@ -494,7 +496,7 @@
             axisLine = new
             {
                 Show = false,
-                LineStyle=new 
+                LineStyle = new
                 {
                     Color = "#707EAE"
                 }
@@ -509,7 +511,7 @@
             }
         },
         Series = new[]
-        {
+                {
             new
             {
                 Name="Earning",
@@ -538,7 +540,7 @@
     private dynamic _chart5 = new
     {
         Radar = new[]
-            {
+                    {
             new
             {
                 Indicator=new []
@@ -580,7 +582,7 @@
             }
         },
         Series = new[]
-            {
+                    {
             new
             {
                 Type= "radar",
@@ -600,7 +602,6 @@
 
     string GetEchartKey()
     {
-        //Task.Delay(1).Wait();
         return GlobalConfig.NavigationMini.ToString()+MasaBlazor.Breakpoint.Width.ToString();
     }
 
@@ -623,4 +624,25 @@
         //new("Kmart","Fashion","990","$780.05","78%","/img/eCommerce/rocket.svg","meguc@ruj.io",3,"in 24 hours",true),
         //new("Payers","Fashion","12.9k","$531.49","42%","/img/eCommerce/speaker.svg","meguc@ruj.io",3,"in 24 hours",true),
     };
+
+    [Inject]
+    public MasaBlazor Masa { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        Masa.Application.PropertyChanged += OnPropertyChanged;
+    }
+
+    private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(Application.Left))
+        {
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        Masa.Application.PropertyChanged -= OnPropertyChanged;
+    }
 }

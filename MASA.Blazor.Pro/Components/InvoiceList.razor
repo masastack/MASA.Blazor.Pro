@@ -76,7 +76,7 @@
                         {
                             string color = context.Item.Client.Color;
                             <MListItem class="grow pa-0">
-                                <MListItemAvatar Color="@($"{color} lighten-5")">
+                                <MListItemAvatar Color="@($"{color}-lighten-5")">
                                     @if (string.IsNullOrEmpty(context.Item.Client.HeadImg))
                                     {
                                         <span class="@($"{color}--text")">@context.Item.Client.SampleName</span>

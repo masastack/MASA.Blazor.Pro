@@ -59,15 +59,15 @@
     <MCol Md=4 Sm=12>
         <MCard Elevation=0 Class="line px-6 py-3 block-between">
             <h6>@_shopData.CurrentCount results found</h6>
-            <MMenu OffsetY>
+            <MMenu OffsetY OpenOnHover> 
                 <ActivatorContent>
-                    <div>
-                        <span @attributes="@context.Attrs" class="text-btn">@_shopData.SortType</span>
+                    <div @attributes="@context.Attrs">
+                        <span class="text-btn">@_shopData.SortType</span>
                         <MIcon>mdi-menu-down</MIcon>
                     </div>
                 </ActivatorContent>
                 <ChildContent>
-                    <MList>
+                    <MList Class="py-0">
                         <MListItemGroup @bind-Value="_shopData.SortType" ActiveClass="primary white--text">
                             <MListItem Value="@("Featured")">Featured </MListItem>
                             <MListItem Value="@("Lowest")"> Lowest </MListItem>
@@ -103,12 +103,12 @@
                             </MCardText>
                             <div class="block-between text-center">
                                 <MHover Context="favoriteContext">
-                                    <div @attributes="favoriteContext.Attrs" @onclick="()=>item.Favorite=!item.Favorite" class="rounded-bl-xl cursor-pointer @(favoriteContext.Hover?"fill-lighten-2":"")" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-left-radius: 20px !important;">
-                                        <MIcon Size=24 Color="@(item.Favorite?"primary":"neutral")">@(item.Favorite?"mdi-heart":"mdi-heart-outline")</MIcon>
+                                    <div @attributes="favoriteContext.Attrs" @onclick="()=>item.Favorite=!item.Favorite" class="rounded-bl-xl hover-pointer @(favoriteContext.Hover?"fill-lighten-1":"")" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-left-radius: 20px !important;">
+                                        <MIcon Size=24 Color="@(item.Favorite?"error":"neutral")">@(item.Favorite?"mdi-heart":"mdi-heart-outline")</MIcon>
                                     </div>
                                 </MHover>
                                 <MHover Context="orderContext">
-                                    <div @attributes="orderContext.Attrs" @onclick="NavigateToOrder" class="cursor-pointer @(orderContext.Hover?"primary":"")" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-right-radius: 20px !important;">
+                                    <div @attributes="orderContext.Attrs" @onclick="NavigateToOrder" class="hover-pointer @(orderContext.Hover?"primary":"")" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-right-radius: 20px !important;">
                                         <MIcon Size=24 Color="@(orderContext.Hover?"white":"neutral")">mdi-cart-outline</MIcon>
                                     </div>
                                 </MHover>

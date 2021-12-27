@@ -1,6 +1,7 @@
 ﻿@inherits DemoCompontentBase
 @inject NavigationManager NavigationManager
-@inject List<NavCategory> NavCategorys
+@inject NavHelper NavHelper
+@inject GlobalEvent GlobalEvent
 
 @{
     var items = GetBreadcrumbItems();
@@ -24,7 +25,7 @@
                 </MBreadcrumbsItem>
                 @foreach (var item in items)
                 {
-                    <MBreadcrumbsItem @key=item Href="@item.Href">@item.Text</MBreadcrumbsItem>
+                    <MBreadcrumbsItem Href="@item.Href">@item.Text</MBreadcrumbsItem>
                 }
             </ChildContent>
         </MBreadcrumbs>
@@ -35,39 +36,21 @@
 @code {
     public override string Name { get; } = "Breadcrumb";
 
-    List<Nav> _navs = new List<Nav>();
-
     protected override void OnInitialized()
-    {
-        foreach (var navCategory in NavCategorys)
-        {
-            foreach (var nav in navCategory.Navs)
-            {
-                _navs.Add(nav);
-                if (nav.Childs is not null)
-                {
-                    _navs.AddRange(nav.Childs);
-                }
-            }
-        }
+    {     
+        GlobalEvent.AddEvent(base.StateHasChanged);
     }
 
     List<BreadcrumbItem> GetBreadcrumbItems()
     {
         var items = new List<BreadcrumbItem>();
-        var currentNav = _navs.FirstOrDefault(n => n.Href is not null && NavigationManager.Uri.Contains(n.Href));
+        var currentNav = NavHelper.SameLevelNavs.FirstOrDefault(n => n.Href is not null && NavigationManager.Uri.Contains(n.Href));
         if (currentNav is not null)
         {
             if (currentNav.ParentId != 0)
             {
-                var parentNav = _navs.First(n => n.Id == currentNav.ParentId);
-                var href = parentNav.Href;
-                if (string.IsNullOrEmpty(href))
-                {
-                    href = parentNav?.Childs?.FirstOrDefault()?.Href;
-                }
-
-                items.Add(new BreadcrumbItem { Text = T(parentNav.Title), Href = href });
+                var parentNav = NavHelper.SameLevelNavs.First(n => n.Id == currentNav.ParentId);
+                items.Add(new BreadcrumbItem { Text = T(parentNav.Title), Href = parentNav.Href ?? parentNav.Childs?.FirstOrDefault()?.Href??"" });
             }
             items.Add(new BreadcrumbItem { Text = T(currentNav.Title), Href = currentNav.Href });
             items.Last().Href = currentNav.Href;

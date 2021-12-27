@@ -15,7 +15,7 @@ public class InvoiceRecord
 
     public int Total { get; set; }
 
-    public DateOnly Date { get; set; } = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
     private DateOnly? _dueDate;
     public DateOnly DueDate 

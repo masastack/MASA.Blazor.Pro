@@ -1,6 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Rendering
 @inherits LayoutComponentBase
-@inject GlobalConfigs GlobalConfig;
 
 <MApp>
     <MAppBar Elevation=0 App MaxHeight=60 Class="mx-6 rounded-b-4">
@@ -8,18 +7,17 @@
             <Favorite />
             <MSpacer />
             <Search />
-            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-3">mdi-message-processing</MIcon>
-            <MIcon Size=20 Class="ml-10" Color="neutral-lighten-3">mdi-cart-outline</MIcon>
+            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-3">mdi-message-processing-outline</MIcon>
             <Language Onchange="()=>{}" />
             <Login />
         </MToolbar>
     </MAppBar>
 
     <Navigation />
-
-    <MMain Class="fill-lighten-1" Style="padding-top:60px">
-        <div class="pa-6 max-width">
-            <Breadcrumb @key="@Guid.NewGuid().ToString()"></Breadcrumb>
+  
+    <MMain Class="fill-lighten-1" Style="padding-top:60px">       
+        <div class="pa-6 max-width">      
+            <Breadcrumb></Breadcrumb>
             @Body
         </div>
     </MMain>

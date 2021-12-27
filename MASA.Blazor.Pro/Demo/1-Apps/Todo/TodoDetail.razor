@@ -43,12 +43,12 @@
         </MSelect>
 
         <div class="mx-6">
-            <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
+            <MMenu CloseOnContentClick="false" @bind-Value="_dueDateMenu" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
                 <ActivatorContent Context="menuContext">
                     <MTextField Readonly @bind-Value=_selectData.DueDate Label="Due Date" Outlined Placeholder="Due Date" @attributes="menuContext.Attrs"></MTextField>
                 </ActivatorContent>
                 <ChildContent>
-                    <MDatePicker Class="task-datepicker" @bind-Value=_selectData.DueDate></MDatePicker>
+                    <MDatePicker Class="task-datepicker" @bind-Value=_selectData.DueDate OnInput="()=>_dueDateMenu=false"></MDatePicker>
                 </ChildContent>
             </MMenu>
         </div>
@@ -76,3 +76,7 @@
         </div>
     </MForm>
 </MNavigationDrawer>
+
+@code {
+    bool _dueDateMenu;
+}

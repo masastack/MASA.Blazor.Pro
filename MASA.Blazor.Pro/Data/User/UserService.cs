@@ -16,7 +16,7 @@
                 Contact="(397) 294-5153",
                 Country="China",
                 Profit="$99.87k",
-                Sales ="23.3k"
+                Sales ="23.3k",
             },
             new UserData() {
                 UserName = "pdurber1c",

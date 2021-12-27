@@ -543,8 +543,18 @@
 .m-btn--is-elevated {
     box-shadow: none !important;
 }
-/*组件样式全局修改end*/
 
+.m-menu__content {
+    border: 0.5px solid #E9EDF7;
+    box-sizing: border-box;
+    border-radius: 10px !important;
+}
+
+.hide-shadow {
+    box-shadow: none !important;
+    border:none;
+}
+/*组件样式全局修改end*/
 /*shop*/
 .ml300 {
     margin-left: 300px;

@@ -9,7 +9,7 @@ public class UserData
 
         List<string> _colors = new List<string>
         {
-            "red", "deep-purple", "orange", "cyan", "green","blue-grey"
+            "error", "pry", "remind", "info", "sample-green"
         };
         int index = _ran.Next(0, 5);
         Color = _colors[index];
@@ -65,9 +65,9 @@ public class UserData
 
     public string? Email { get; set; }
 
-    public DateOnly? BirthDate { get; set; }
+    public DateOnly BirthDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
-    public string? Mobile { get; set; }
+    public string? Mobile { get; set; } = "(895) 401-4255";
 
     public string? Website { get; set; }
 

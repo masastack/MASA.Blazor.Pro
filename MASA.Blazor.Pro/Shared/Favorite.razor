@@ -1,21 +1,26 @@
 ﻿@inherits DemoCompontentBase
 @inject GlobalConfigs GlobalConfig;
 @inject NavigationManager Nav
-@inject List<NavCategory> NavCategorys
+@inject NavHelper NavHelper
+@inject GlobalEvent GlobalEvent
 
 <div class="ml-10">
     @foreach (var menu in GetFavoriteMenus())
     {
         <MTooltip Color="primary" Bottom>
             <ActivatorContent>
-                <MIcon @attributes="@context.Attrs" Size=20 Class="mr-8" Color="neutral-lighten-3" OnClick="()=>NavigateToFavoriteMenu(menu.Href)">@menu.ParentIcon</MIcon>
+                <span @attributes="@context.Attrs" class="hover-pointer mr-8"  @onclick="()=>NavHelper.NavigateTo(menu)">
+                    <MIcon Size=24 Color="@(menu.Active?"primary":"neutral-lighten-3")">
+                        @menu.ParentIcon
+                    </MIcon>
+                </span>
             </ActivatorContent>
             <ChildContent>
                 <span>@GetI18nFullTitle(menu.FullTitle)</span>
             </ChildContent>
         </MTooltip>
     }
-    <MMenu OffsetY Bottom Right CloseOnContentClick="false" ValueChanged="OnOpen" Value="_open" MinWidth="@("auto")" Style="border: 0.5px solid #E9EDF7;box-sizing: border-box;" Class="rounded-2">
+    <MMenu OffsetY Bottom Right CloseOnContentClick="false" ValueChanged="OnOpen" Value="_open" MinWidth="@("auto")">
         <ActivatorContent>
              <MTooltip Color="primary" Bottom>
                 <ActivatorContent Context="tooltipContext">
@@ -30,7 +35,7 @@
                             if(attrs.ContainsKey(key) is false) attrs.Add(key,value);
                         }
                     }
-                    <MIcon @attributes="@attrs" Size=20 Color="neutral-lighten-3">mdi-star-outline</MIcon>
+                    <MIcon @attributes="@attrs" Size=20 Color="dark-yellow">mdi-star-outline</MIcon>
                 </ActivatorContent>
                 <ChildContent>
                     <span>@T("Favorite")</span>
@@ -38,14 +43,14 @@
             </MTooltip>
         </ActivatorContent>
         <ChildContent>           
-            <MList Class="pb-0" Style="min-width:320px;">
+            <MList Class="pb-1" Style="min-width:320px;">
                     <MListItem Class="mb-1">
                         <MTextField @bind-Value="_search" Class="rounded-2" HideDetails="@("auto")" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search"></MTextField>     
                     </MListItem>
                     <MListItemGroup>
                         @foreach (var nav in GetNavs(_search))
                         {
-                            <MListItem Dense OnClick="()=>NavigateToFavoriteMenu(nav.Href)" Class="px-4">
+                            <MListItem Dense OnClick="()=> NavHelper.NavigateTo(nav)" Class="px-4">
                                 <MListItemAction Class="mr-3">
                                     <MIcon Size=20 Color="neutral-lighten-3">@nav.ParentIcon</MIcon>
                                 </MListItemAction>
@@ -53,7 +58,7 @@
                                     <span Class="text-btn">@GetI18nFullTitle(nav.FullTitle)</span>
                                 </MListItemContent>
                                 <MListItemIcon Class="my-1">
-                                    <MButton Icon Text Color="neutral-lighten-3" OnClick="()=>AddOrRemoveFavoriteMenu(nav.Id)">
+                                    <MButton Icon Text Color="dark-yellow" OnClick="()=>AddOrRemoveFavoriteMenu(nav.Id)">
                                         <MIcon Size=20>@(_favoriteMenus.Contains(nav.Id)?" mdi-star":"mdi-star-outline")</MIcon>
                                     </MButton>
                                 </MListItemIcon>
@@ -74,10 +79,12 @@
         {
             _favoriteMenus.Clear();
         }
-        if (GlobalConfig.Favorite is not null)
+        else if (GlobalConfig.Favorite is not null)
         {
             _favoriteMenus = GlobalConfig.Favorite.Split('|').Select(v => Convert.ToInt32(v)).ToList();
         }
+
+        GlobalEvent.AddEvent(base.StateHasChanged);
     }
 
     bool _open;
@@ -95,39 +102,17 @@
     List<Nav> GetNavs(string? search)
     {
         var output = new List<Nav>();
-        var navs = NavCategorys.SelectMany(nc => nc.Navs);
 
-        if (search is null || search == "")
-        {
-            output.AddRange(navs.Where(n => _favoriteMenus.Contains(n.Id)));
-            output.AddRange(navs.Where(n => n.Childs is not null).SelectMany(n => n.Childs!).Where(n => _favoriteMenus.Contains(n.Id)));
-        }
+        if (search is null || search == "") output.AddRange(NavHelper.SameLevelNavs.Where(n => _favoriteMenus.Contains(n.Id)));
         else
         {
-            foreach (var nav in navs)
-            {
-                if (T(nav.Title).ToUpper().Contains(search.ToUpper()))
-                {
-                    if (nav.Href is not null) output.Add(nav);
-                    if (nav.Childs is not null) output.AddRange(nav.Childs);
-                }
-                else if (nav.Childs is not null)
-                {
-                    var searchNavs = nav.Childs.Where(n => T(n.FullTitle).ToUpper().Contains(search.ToUpper()));
-                    output.AddRange(searchNavs);
-                }
-            }
+            output.AddRange(NavHelper.SameLevelNavs.Where(n=>n.Href is not null && GetI18nFullTitle(n.FullTitle).Contains(search,StringComparison.OrdinalIgnoreCase)));
         }
 
         return output;
     }
 
     List<Nav> GetFavoriteMenus() => GetNavs(null);
-
-    void NavigateToFavoriteMenu(string href)
-    {
-        Nav.NavigateTo(href);
-    }
 
     void AddOrRemoveFavoriteMenu(int id)
     {

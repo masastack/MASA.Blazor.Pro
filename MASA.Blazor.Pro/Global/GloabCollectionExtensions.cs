@@ -11,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddI18n("Data/I18nResources/languageSettings.json");
             services.AddNav("Data/Nav/nav.json");
             services.AddScoped<GlobalConfigs>();
+            services.AddScoped<GlobalEvent>();
 
             return services;
         }

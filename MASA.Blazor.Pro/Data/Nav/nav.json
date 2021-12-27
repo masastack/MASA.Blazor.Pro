@@ -55,7 +55,7 @@
       {
         "Id": 8,
         "Title": "Todo",
-        "Icon": "far fa-calendar-check",
+        "Icon": "mdi-calendar-check-outline",
         "Href": "/apps/todo"
       },
       {
@@ -93,7 +93,7 @@
       {
         "Id": 14,
         "Title": "User",
-        "Icon": "far fa-user",
+        "Icon": "mdi-account-outline",
         "Childs": [
           {
             "Id": 15,

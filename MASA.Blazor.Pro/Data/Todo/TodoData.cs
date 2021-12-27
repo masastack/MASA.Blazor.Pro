@@ -19,7 +19,7 @@ public class TodoData
 
     public int Avatar { get; set; }
 
-    public DateOnly DueDate { get; set; } = new DateOnly(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+    public DateOnly DueDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
     [Required]
     public List<string> Tag { get; set; } = new List<string>();

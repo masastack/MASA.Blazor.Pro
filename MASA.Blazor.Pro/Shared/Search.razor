@@ -1,14 +1,13 @@
 ﻿@inherits DemoCompontentBase
-@inject NavigationManager Nav
-@inject List<NavCategory> NavCategorys
+@inject NavHelper NavHelper
 
 @{
     var navs = GetNavs(_search);
 }
-<MMenu OffsetY Bottom Right CloseOnContentClick="false" Value="@(_search!=null)" MinWidth=340>
+<MMenu OffsetY Bottom Right CloseOnContentClick="false" Value="@(_search!=null)" MinWidth=340 ContentClass="@(string.IsNullOrEmpty(_search) is true?"hide-shadow":"")">
     <ActivatorContent>
-        <div @attributes="@context.Attrs" style="width:340px;height:40px;">
-            <MTextField @bind-Value="_search" Class="rounded-2" Flat Dense Solo BackgroundColor="fill-lighten-1" Placeholder="Search">
+        <div @attributes="@context.Attrs">
+            <MTextField @bind-Value="_search" Class="rounded-2" Style="width:340px;height:40px;" Flat Dense Solo BackgroundColor="fill-lighten-1" HideDetails="@("auto")" Placeholder="Search">
                 <PrependInnerContent>
                     <MIcon Size=16 Class="mr-2 neutral-lighten-1--text">mdi-magnify</MIcon>
                 </PrependInnerContent>
@@ -21,7 +20,7 @@
            <MList>
                 @foreach (var nav in navs)
                 {
-                    <MListItem OnClick="()=>NavigateToSearchMenu(nav.Href)">
+                    <MListItem OnClick="()=>NavHelper.NavigateToByEvent(nav)">
                         <MListItemAction>
                             <MIcon Size=20 Color="neutral-lighten-4">@nav.ParentIcon</MIcon>
                         </MListItemAction>
@@ -34,17 +33,10 @@
         }
         else if(string.IsNullOrEmpty(_search) is false)
         {
-            <MCard Class="text-center">
-                <MCardText>
-                      <span class="text-btn">No data available</span>
-                </MCardText>
+            <MCard Class="text-center">   
+                <MCardText><span class="text-btn">No data available</span>   </MCardText>                  
             </MCard>
         }
-        else
-        {
-            
-        }
-
     </ChildContent>
 </MMenu>
 
@@ -55,29 +47,11 @@
     List<Nav> GetNavs(string? search)
     {
         var output = new List<Nav>();
-        var navs = NavCategorys.SelectMany(nc => nc.Navs);
         if (search is not null && search!="")
         {
-            foreach (var nav in navs)
-            {
-                if (T(nav.Title).Contains(search,StringComparison.OrdinalIgnoreCase))
-                {
-                    if (nav.Href is not null) output.Add(nav);
-                    if(nav.Childs is not null) output.AddRange(nav.Childs);
-                } 
-                else if(nav.Childs is not null)
-                {
-                    var searchNavs = nav.Childs.Where(n=>T(n.FullTitle).Contains(search,StringComparison.OrdinalIgnoreCase));
-                    output.AddRange(searchNavs);
-                }
-            }
+            output.AddRange(NavHelper.SameLevelNavs.Where(n=>n.Href is not null && GetI18nFullTitle(n.FullTitle).Contains(search,StringComparison.OrdinalIgnoreCase)));
         }
         return output;
-    }
-
-    void NavigateToSearchMenu(string href)
-    {
-        Nav.NavigateTo(href);
     }
 
     string GetI18nFullTitle(string fullTitle)
