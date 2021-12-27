@@ -4,25 +4,25 @@
 
 <MCard>
     <MCardText>
-        <MRow style="min-height:600px;">
+        <MRow style="min-height:580px;">
             <MCol Md="5" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
                 <MImage src="@_shopDataItem.PictureFile" AspectRatio="1" class="full-width" Height="@("auto")" />
             </MCol>
             <MCol Md="7" class="d-flex flex-column pa-12 pl-0">
                 <div class="mb-6">
-                    <p class="text-caption mb-0">By<span class="sample-green--text ml-2">@_shopDataItem.Brand</span></p>
                     <h5 class="neutral-lighten-1--text">@_shopDataItem.Name</h5>
+                    <p class="text-caption mb-0">By<span class="sample-green--text ml-2">@_shopDataItem.Brand</span></p>
                 </div>
                 <div class="mb-6">
                     <p class="mb-0 text-caption"> 库存 - 现货</p>
                     <MRating Readonly Value="_shopDataItem.Rating" Size=20 Color="remind" BackgroundColor="remind" Dense></MRating>
                     <h6 class="neutral--text">$@_shopDataItem.Price</h6>
                 </div>
-                <p class="mb-6 text-body neutral-lighten-4--text justify-text-align">
+                <p class="mb-6 text-body neutral-lighten-2--text justify-text-align">
                     @_shopDataItem.Description
                 </p>
                 <div class="mb-6 d-flex justify-space-between">
-                    <span class="text-caption neutral-lighten-1--text">运费</span><span class="text-caption neutral-lighten-4--text">包邮</span>
+                    <span class="text-body neutral-lighten-1--text">包邮</span><span class="text-caption neutral-lighten-4--text">运费</span>
                 </div>
                 <MDivider></MDivider>
                 <div class="mb-6 mt-6 d-flex justify-space-between">
@@ -41,15 +41,16 @@
                     <span class="text-caption neutral-lighten-4--text">颜色</span>
                 </div>
                 <div class="flex-grow-1 d-flex align-end">
-                    <MButton MinWidth=100 Depressed Outlined class="primary--text rounded-pill">
-                        收藏
-                    </MButton>
-                    <MButton Depressed class="primary ml-6 mr-6 rounded-pill">
-                        加入购物车
-                    </MButton>
-                    <MButton Depressed Width="24" MinWidth="24" class="transparent">
-                        <MIcon>mdi-share-variant</MIcon>
-                    </MButton>
+                    <div class="d-flex align-center">
+                        <MButton MinWidth=100 Depressed Outlined class="primary--text rounded-pill">
+                            收藏
+                        </MButton>
+                        <MButton Depressed class="primary ml-6 mr-6 rounded-pill">
+                            加入购物车
+                        </MButton>
+                        <MIcon Size=24 OnClick="()=>{}">mdi-share-variant</MIcon>
+                    </div>
+
                 </div>
             </MCol>
         </MRow>
@@ -92,7 +93,7 @@
                                         <h6>$@item.Price</h6>
                                     </div>
                                     <div class="text-subtitle text-truncate">@item.Name</div>
-                                    <div class="text-truncate text-caption">@item.Brand</div>
+                                    <div class="text-truncate text-body neutral-lighten-2--text">@item.Brand</div>
                                 </MCardText>
                             </MCard>
                         </MHover>

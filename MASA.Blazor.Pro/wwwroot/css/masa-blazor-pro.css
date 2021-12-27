@@ -772,6 +772,11 @@
     content: none;
 }
 
+.pro-timeline-before.m-timeline:before {
+    background-color: #E9EDF7 !important;
+}
+
+
 .divider-align-start .m-timeline-item__divider {
     align-items: start;
     margin-top: 8px;
@@ -834,4 +839,16 @@ input::-webkit-input-placeholder {
 
 .remover-ripple .m-list-item:hover .m-icon {
     color: inherit !important;
+}
+
+.cyan {
+    background-color: #37A7FF !important;
+}
+
+.cyan--text {
+    color: #37A7FF !important;
+}
+
+.cyan-light {
+    background-color: #EBF6FF;
 }
