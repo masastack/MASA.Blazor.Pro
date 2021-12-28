@@ -19,9 +19,9 @@
                  Items=@UserService.Plans ItemText="p => p" ItemValue="p => p">
         </MSelect>
 
-        <div style="bottom:48px;right:24px;position:absolute">
-            <MButton MinWidth=80 Height=40 Color="primary" Class="rounded-pill" OnClick="async ()=> await AddData(context)"> Add </MButton>
-            <MButton MinWidth=80 Height=40 Outlined Class="ml-6 text-btn rounded-pill" OnClick="async() => await UpdateVisible(false)"> Cancel </MButton>
+        <div style="bottom:48px;right:24px;position:absolute">          
+            <MButton MinWidth=80 Height=40 Outlined Class="text-btn rounded-pill" OnClick="async() => await UpdateVisible(false)"> Cancel </MButton>
+            <MButton MinWidth=80 Height=40 Color="primary" Class="ml-6 rounded-pill" OnClick="async ()=> await AddData(context)"> Add </MButton>
         </div>
     </MForm>
 </MNavigationDrawer>

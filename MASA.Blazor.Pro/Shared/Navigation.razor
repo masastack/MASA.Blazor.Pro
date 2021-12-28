@@ -15,60 +15,58 @@
         }
     </div>
 
-    <Transition Name="m-menu-transition">
-        <MList Show="@(true)" Nav Linkage Dense Class="@($"navigation py-0 {(GlobalConfig.NavigationMini?"mini-navigation":"px-7")}")">
+    <MList Nav Linkage Dense Class="@($"navigation py-0 {(GlobalConfig.NavigationMini?"mini-navigation":"px-7")}")">
 
-            @foreach (var nav in NavHelper.Navs)
+        @foreach (var nav in NavHelper.Navs)
+        {
+            if (nav.Childs is null)
             {
-                if (nav.Childs is null)
-                {
-                    <MListItem ActiveClass="primary" Style="border-radius: 4px;" Class="mb-4" Href="@nav.Href">
-                        <ItemContent>
-                            @if (context.Active)
-                            {
-                                NavHelper.RefreshRender(nav);
-                            }
-                            <MListItemIcon>
-                                <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=18>@nav.Icon</MIcon>
-                            </MListItemIcon>
-                            <MListItemContent Class="py-0 ml-2">
-                                <div class="text-subtitle @(context.Active?"white--text":"neutral-lighten-2--text")">@T(nav.Title)</div>
-                            </MListItemContent>
-                        </ItemContent>
-                    </MListItem>
-                }
-                else
-                {
-                    <MListGroup Group="@nav.Childs.Select(n => n.Href).ToList()" Style="border-radius: 4px;" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
-                        <ActivatorContent>
-                            <MListItemContent>
-                                <div class="text-subtitle ml-2 neutral-lighten-2--text primaryText">@T(nav.Title)</div>
-                            </MListItemContent>
-                        </ActivatorContent>
-                        <ChildContent>
-                            @foreach (var navChild in nav.Childs)
-                            {
-                                <MListItem ActiveClass="primary white--text" Style="border-radius: 4px;" Link Href="@navChild.Href">
-                                    <ItemContent>
-                                        @if (context.Active)
-                                        {
-                                            NavHelper.RefreshRender(navChild);
-                                        }
-                                        <MListItemIcon Class="ml-n5">
-                                            <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=10>@navChild.Icon</MIcon>
-                                        </MListItemIcon>
-                                        <MListItemContent Class="py-0 ml-n2">
-                                            <div class="text-subtitle2 @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
-                                        </MListItemContent>
-                                    </ItemContent>
-                                </MListItem>
-                            }
-                        </ChildContent>
-                    </MListGroup>
-                }
+                <MListItem ActiveClass="primary" Style="border-radius: 4px;" Class="mb-4" Href="@nav.Href">
+                    <ItemContent>
+                        @if (context.Active)
+                        {
+                            NavHelper.RefreshRender(nav);
+                        }
+                        <MListItemIcon>
+                            <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=18>@nav.Icon</MIcon>
+                        </MListItemIcon>
+                        <MListItemContent Class="py-0 ml-2">
+                            <div class="text-subtitle text-truncate @(context.Active?"white--text":"neutral-lighten-2--text")">@T(nav.Title)</div>
+                        </MListItemContent>
+                    </ItemContent>
+                </MListItem>
             }
-        </MList>
-    </Transition>
+            else
+            {
+                <MListGroup Group="@nav.Childs.Select(n => n.Href).ToList()" Style="border-radius: 4px;" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
+                    <ActivatorContent>
+                        <MListItemContent>
+                            <div class="text-subtitle text-truncate ml-2 neutral-lighten-2--text primaryText">@T(nav.Title)</div>
+                        </MListItemContent>
+                    </ActivatorContent>
+                    <ChildContent>
+                        @foreach (var navChild in nav.Childs)
+                        {
+                            <MListItem ActiveClass="primary white--text" Style="border-radius: 4px;" Link Href="@navChild.Href">
+                                <ItemContent>
+                                    @if (context.Active)
+                                    {
+                                        NavHelper.RefreshRender(navChild);
+                                    }
+                                    <MListItemIcon Class="ml-n5">
+                                        <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=10>@navChild.Icon</MIcon>
+                                    </MListItemIcon>
+                                    <MListItemContent Class="py-0 ml-n2">
+                                        <div class="text-subtitle2 text-truncate @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
+                                    </MListItemContent>
+                                </ItemContent>
+                            </MListItem>
+                        }
+                    </ChildContent>
+                </MListGroup>
+            }
+        }
+    </MList>
 
 </MNavigationDrawer>
 
