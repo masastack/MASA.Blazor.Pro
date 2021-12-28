@@ -9,6 +9,11 @@
             OnGloabConfigChange += action;
         }
 
+        public void RemoveEvent(GlobalConfigChange action)
+        {
+            OnGloabConfigChange -= action;
+        }
+
         public void Excute()
         {
             OnGloabConfigChange?.Invoke();

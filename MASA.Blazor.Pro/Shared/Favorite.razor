@@ -3,6 +3,7 @@
 @inject NavigationManager Nav
 @inject NavHelper NavHelper
 @inject GlobalEvent GlobalEvent
+@implements IDisposable
 
 <div class="ml-10">
     @foreach (var menu in GetFavoriteMenus())
@@ -134,4 +135,9 @@
     }
 
     public override string Name => nameof(Favorite);
+
+    public void Dispose()
+    {
+        GlobalEvent.RemoveEvent(base.StateHasChanged);
+    }
 }

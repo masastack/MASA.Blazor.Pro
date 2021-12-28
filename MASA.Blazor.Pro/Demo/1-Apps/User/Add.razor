@@ -4,9 +4,6 @@
     <div class="block-between mb-12">
         <span class="text-h6">Add New User</span>
         <MIcon Color="neutral-lighten-3" Size=24 OnClick="()=>Visible=false">mdi-close</MIcon>
-        @*        <MButton Small Icon OnClick="()=>Visible=false">
-            <MIcon Small>fas fa-times</MIcon>
-            </MButton>*@
     </div>
     <MForm Model=_userData EnableDataAnnotationsValidation>
         <MTextField @bind-Value="_userData.FullName" Class="mb-6" Label="FullName" HideDetails="@("auto")" Outlined />
@@ -40,6 +37,11 @@
     public EventCallback<UserData> Submit { get; set; }
 
     UserData _userData = new UserData();
+
+    protected override void OnParametersSet()
+    {
+        _userData = new UserData();
+    }
 
     async Task UpdateVisible(bool visible)
     {

@@ -2,6 +2,7 @@
 @inject NavigationManager NavigationManager
 @inject NavHelper NavHelper
 @inject GlobalEvent GlobalEvent
+@implements IDisposable
 
 @{
     var items = GetBreadcrumbItems();
@@ -56,5 +57,10 @@
             items.Last().Href = currentNav.Href;
         }
         return items;
+    }
+
+    public void Dispose()
+    {
+        GlobalEvent.RemoveEvent(base.StateHasChanged);
     }
 }
