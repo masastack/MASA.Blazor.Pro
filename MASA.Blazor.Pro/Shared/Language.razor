@@ -1,0 +1,43 @@
+﻿@inject GlobalConfigs GlobalConfig;
+@inject I18n LanguageProvider
+@inject List<LanguageSetting> LanguageSettings
+
+<MMenu OffsetY Bottom>
+    <ActivatorContent>
+        <div Color="white" @attributes="@context.Attrs" Class="hover-pointer ml-6 mr-5 neutral-lighten-4--text text-center">
+           @* <span style="min-width:64px">@(LanguageSettings.First(ls=>ls.Value== LanguageProvider.CurrentLanguage).Text)</span>*@
+            <MIcon>mdi-google-translate</MIcon>
+        </div>
+    </ActivatorContent>
+    <ChildContent>
+        <MList Class="py-0">
+            <MListItemGroup ActiveClass="primary" Value="GlobalConfig.Language">
+                @foreach (var option in LanguageSettings)
+                {
+                    <MListItem OnClick="async()=> await OnLanguageChange(option)" Value="(StringNumber)option.Value">
+                        <ItemContent>
+                             <MListItemContent>
+                                <span Class="@(context.Active?"white--text":"neutral-lighten-4--text") text-btn">
+                                    @option.Text
+                                </span>
+                            </MListItemContent>
+                        </ItemContent>
+                    </MListItem>
+                }
+            </MListItemGroup>
+        </MList>
+    </ChildContent>
+</MMenu>
+
+@code {
+
+    [Parameter]
+    public EventCallback Onchange { get; set; }
+
+    async Task OnLanguageChange(LanguageSetting setting)
+    {
+        GlobalConfig.Language = setting.Value;
+        LanguageProvider.SetLang(setting.Value);
+        await Onchange.InvokeAsync();
+    } 
+}

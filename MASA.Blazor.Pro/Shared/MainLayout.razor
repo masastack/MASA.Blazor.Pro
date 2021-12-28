@@ -1,41 +1,24 @@
-﻿@inherits LayoutComponentBase
-
-@using MASA.Blazor.Pro.Data;
+﻿@using Microsoft.AspNetCore.Components.Rendering
+@inherits LayoutComponentBase
 
 <MApp>
-
-    <MAppBar App Style="padding-left:256px" Elevation=0 Class="my-4">
-        <MToolbar Class="mx-2" Elevation=2>
-            <MAppBarNavIcon></MAppBarNavIcon>
-            <MToolbarTitle>@GlobalVariables.Title</MToolbarTitle>
-            <MSpacer></MSpacer>
-
-            <MButton Icon>
-                <MIcon>mdi-magnify</MIcon>
-            </MButton>
-
-            <Login/>
+    <MAppBar Elevation=0 App MaxHeight=60 Class="mx-6 rounded-b-4">
+        <MToolbar Elevation=0 Class="rounded-b-4">
+            <Favorite />
+            <MSpacer />
+            <Search />
+            <MIcon Size=20 Class="ml-5" Color="neutral-lighten-3">mdi-message-processing-outline</MIcon>
+            <Language Onchange="()=>{}" />
+            <Login />
         </MToolbar>
     </MAppBar>
 
-    <MNavigationDrawer App>
-        <MList Dense>
-
-            <MASA.Blazor.Pro.Dashboards.Index />
-            <MASA.Blazor.Pro.Apps.Index />
-            <MASA.Blazor.Pro.Pages.Index />
-
-        </MList>
-    </MNavigationDrawer>
-
-    <MMain Style="padding-left:268px;padding-top:90px;padding-right:12px; background-color:rgb(245, 245, 245)">
-        <MContainer Fluid>
+    <Navigation />
+  
+    <MMain Class="fill-lighten-1" Style="padding-top:60px">       
+        <div class="pa-6 max-width">      
+            <Breadcrumb></Breadcrumb>
             @Body
-        </MContainer>
+        </div>
     </MMain>
-
 </MApp>
-
-@code { 
-
-}

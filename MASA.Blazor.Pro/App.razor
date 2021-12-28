@@ -1,6 +1,9 @@
-﻿<CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(App).Assembly" 
-        AdditionalAssemblies="new[] { typeof(Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Manage.Internal.IndexModel).Assembly }">
+﻿@using System.Diagnostics.CodeAnalysis
+@inject GlobalConfigs ScopedGlobalConfigs;
+@inject I18n LanguageProvider
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -13,3 +16,23 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
+
+@code {
+    private GlobalConfigs? _globalConfig;
+
+    [Parameter]
+    public GlobalConfigs GlobalConfig
+    {
+        get => _globalConfig ?? throw new Exception("Please set parameter GlobalConfig!");
+        set => _globalConfig = value;
+    }
+
+    protected override void OnInitialized()
+    {
+        ScopedGlobalConfigs.Bind(GlobalConfig);
+        if (GlobalConfig.Language is not null)
+        {
+            LanguageProvider.SetLang(GlobalConfig.Language);
+        }
+    }
+}

@@ -1,0 +1,81 @@
+﻿@inherits DemoCompontentBase
+@inject NavHelper NavHelper
+@inject GlobalConfigs GlobalConfig;
+
+<MNavigationDrawer Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
+
+    <div style="height:132px" class="@($"block-center {(GlobalConfig.NavigationMini?"px-4":"px-12")}")" @onclick="()=>NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
+        @if (GlobalConfig.NavigationMini)
+        {
+            <img height="48" width="48" class="hover-pointer" src="/img/mainLayout/logo.svg" />
+        }
+        else
+        {
+            <img class="hover-pointer" src="/img/mainLayout/logo-en.svg" />
+        }
+    </div>
+
+    <MList Nav Linkage Dense Class="@($"navigation py-0 {(GlobalConfig.NavigationMini?"mini-navigation":"px-7")}")">
+
+        @foreach (var nav in NavHelper.Navs)
+        {
+            if (nav.Childs is null)
+            {
+                <MListItem ActiveClass="primary" Style="border-radius: 4px;" Class="mb-4" Href="@nav.Href">
+                    <ItemContent>
+                        @if (context.Active)
+                        {
+                            NavHelper.RefreshRender(nav);
+                        }
+                        <MListItemIcon>
+                            <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=18>@nav.Icon</MIcon>
+                        </MListItemIcon>
+                        <MListItemContent Class="py-0 ml-2">
+                            <div class="text-subtitle text-truncate @(context.Active?"white--text":"neutral-lighten-2--text")">@T(nav.Title)</div>
+                        </MListItemContent>
+                    </ItemContent>
+                </MListItem>
+            }
+            else
+            {
+                <MListGroup Group="@nav.Childs.Select(n => n.Href).ToList()" Style="border-radius: 4px;" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
+                    <ActivatorContent>
+                        <MListItemContent>
+                            <div class="text-subtitle text-truncate ml-2 neutral-lighten-2--text primaryText">@T(nav.Title)</div>
+                        </MListItemContent>
+                    </ActivatorContent>
+                    <ChildContent>
+                        @foreach (var navChild in nav.Childs)
+                        {
+                            <MListItem ActiveClass="primary white--text" Style="border-radius: 4px;" Link Href="@navChild.Href">
+                                <ItemContent>
+                                    @if (context.Active)
+                                    {
+                                        NavHelper.RefreshRender(navChild);
+                                    }
+                                    <MListItemIcon Class="ml-n5">
+                                        <MIcon class="@(context.Active?"white--text":"neutral-lighten-2--text")" Size=10>@navChild.Icon</MIcon>
+                                    </MListItemIcon>
+                                    <MListItemContent Class="py-0 ml-n2">
+                                        <div class="text-subtitle2 text-truncate @(context.Active?"white--text":"neutral-lighten-2--text")">@T(navChild.Title)</div>
+                                    </MListItemContent>
+                                </ItemContent>
+                            </MListItem>
+                        }
+                    </ChildContent>
+                </MListGroup>
+            }
+        }
+    </MList>
+
+</MNavigationDrawer>
+
+<MButton Small Fab Color="primary" Style="@($"bottom:58px;z-index:7;position: fixed;{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}")" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;}">
+    <MIcon Class="white--text">
+        @(GlobalConfig.NavigationMini?"mdi-chevron-right":"mdi-chevron-left")
+    </MIcon>
+</MButton>
+
+@code {
+    public override string Name => nameof(Navigation);
+}
