@@ -548,6 +548,7 @@
     border: 0.5px solid #E9EDF7;
     box-sizing: border-box;
     border-radius: 10px !important;
+    box-shadow: 0 18px 40px 0 rgb(112 144 176 / 12%) !important;
 }
 
 .hide-shadow {
@@ -861,4 +862,8 @@ input::-webkit-input-placeholder {
 
 .cyan-light {
     background-color: #EBF6FF;
+}
+
+tr:hover {
+    background-color: #F4F7FE !important;
 }
