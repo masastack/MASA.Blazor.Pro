@@ -1,4 +1,4 @@
-﻿﻿﻿<p align="center">
+﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -116,7 +116,7 @@ The Digital Flash technical team is an efficient, stable and innovative team. Th
 
 ## Code of conduct 
 
-This project adopts the code of conduct defined in the "Contributors Convention" to clarify the expected behavior of our community. For more information, see  [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
+This project adopts the code of conduct defined in the "Contributors Convention" to clarify the expected behavior of our community. For more information, see  [MASA Stack Community Code of Conduct](https://github.com/masastack/community/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 
