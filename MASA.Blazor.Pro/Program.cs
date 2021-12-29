@@ -1,5 +1,3 @@
-using MASA.Blazor.Pro.JsRuntime;
-using MASA.Blazor.Pro.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

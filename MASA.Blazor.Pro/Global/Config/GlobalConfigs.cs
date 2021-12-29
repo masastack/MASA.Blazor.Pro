@@ -1,16 +1,19 @@
-﻿using BlazorComponent;
-using MASA.Blazor.Pro.JsRuntime;
-
-namespace MASA.Blazor.Pro.Global
+﻿namespace MASA.Blazor.Pro.Global
 {
     public class GlobalConfigs
     {
-        CookieStorage? _cookieStorage;
+        private readonly CookieStorage? _cookieStorage;
+        private bool _isDark;
+        private bool _expandOnHover;
+        private bool _navigationMini;
+        private string? _language;
+        private string? _favorite;
 
         public GlobalConfigs()
         {
 
         }
+
         public GlobalConfigs(CookieStorage cookieStorage)
         {
             _cookieStorage = cookieStorage;
@@ -26,7 +29,6 @@ namespace MASA.Blazor.Pro.Global
 
         public static string FavoriteCookieKey { get; set; } = "GlobalConfigs_Favorite";
 
-        private string? _language;
         public string? Language
         {
             get => _language;
@@ -36,8 +38,7 @@ namespace MASA.Blazor.Pro.Global
                 _cookieStorage?.SetItemAsync(LanguageCookieKey, value);
             }
         }
-
-        private bool _isDark;
+        
         public bool IsDark
         {
             get => _isDark;
@@ -48,7 +49,6 @@ namespace MASA.Blazor.Pro.Global
             }
         }
 
-        private bool _navigationMini;
         public bool NavigationMini
         {
             get => _navigationMini;
@@ -58,8 +58,7 @@ namespace MASA.Blazor.Pro.Global
                 _cookieStorage?.SetItemAsync(NavigationMiniCookieKey, value);
             }
         }
-
-        private bool _expandOnHover;
+        
         public bool ExpandOnHover
         {
             get => _expandOnHover;
@@ -69,14 +68,13 @@ namespace MASA.Blazor.Pro.Global
                 _cookieStorage?.SetItemAsync(ExpandOnHoverCookieKey, value);
             }
         }
-
-        private string? _Favorite;
+        
         public string? Favorite
         {
-            get => _Favorite;
+            get => _favorite;
             set
             {
-                _Favorite = value;
+                _favorite = value;
                 _cookieStorage?.SetItemAsync(FavoriteCookieKey, value);
             }
         }
@@ -87,16 +85,8 @@ namespace MASA.Blazor.Pro.Global
             _isDark = Convert.ToBoolean(cookies[IsDarkCookieKey]);
             _navigationMini = Convert.ToBoolean(cookies[NavigationMiniCookieKey]);
             _expandOnHover = Convert.ToBoolean(cookies[ExpandOnHoverCookieKey]);
-            _Favorite = cookies[FavoriteCookieKey];
+            _favorite = cookies[FavoriteCookieKey];
         }
-
-        //public void SaveChanges()
-        //{
-        //    _cookieStorage?.SetItemAsync(LanguageCookieKey, Language);
-        //    _cookieStorage?.SetItemAsync(IsDarkCookieKey, IsDark);
-        //    _cookieStorage?.SetItemAsync(NavigationMiniCookieKey, NavigationMini);
-        //    _cookieStorage?.SetItemAsync(ExpandOnHoverCookieKey, ExpandOnHover);
-        //}
 
         public void Bind(GlobalConfigs globalConfig)
         {
@@ -104,7 +94,7 @@ namespace MASA.Blazor.Pro.Global
             _isDark = globalConfig.IsDark;
             _navigationMini = globalConfig.NavigationMini;
             _expandOnHover = globalConfig.ExpandOnHover;
-            _Favorite = globalConfig.Favorite;
+            _favorite = globalConfig.Favorite;
         }
     }
 }

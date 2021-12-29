@@ -553,7 +553,7 @@
 
 .hide-shadow {
     box-shadow: none !important;
-    border:none;
+    border: none;
 }
 /*组件样式全局修改end*/
 /*shop*/
@@ -848,7 +848,7 @@ input::-webkit-input-placeholder {
     color: #4318FF !important;
 }
 
-.remover-ripple .m-list-item:hover .m-icon {
+.remover-ripple-with-icon .m-list-item:hover .m-icon {
     color: inherit !important;
 }
 
@@ -866,4 +866,8 @@ input::-webkit-input-placeholder {
 
 tr:hover {
     background-color: #F4F7FE !important;
+}
+
+.theme--light.m-icon {
+    color: #8F9BBA;
 }
