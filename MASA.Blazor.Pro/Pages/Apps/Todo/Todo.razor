@@ -1,0 +1,18 @@
+﻿@page "/apps/todo/{FilterText?}"
+@using MASA.Blazor.Pro.Data;
+
+<div>
+    <MRow Class="no-gutters">
+        <div style="height:calc(100vh - 112px );">
+            <TodoNav />
+        </div>
+        <div class="pl-6 rounded-2" style="height:calc(100vh - 112px ); width: calc(100% - 300px); overflow: hidden; display:block;">
+            <TodoList FilterText=@FilterText />
+        </div>
+    </MRow>
+</div>
+
+@code {
+    [Parameter]
+    public string? FilterText { get; set; }
+}

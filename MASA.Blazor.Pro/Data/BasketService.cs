@@ -1,4 +1,6 @@
-﻿namespace MASA.Blazor.Pro.Data;
+﻿using MASA.Blazor.Pro.Pages;
+
+namespace MASA.Blazor.Pro.Data;
 
 public static class BasketService
 {

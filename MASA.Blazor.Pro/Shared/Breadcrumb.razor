@@ -1,4 +1,4 @@
-﻿@inherits DemoCompontentBase
+﻿@inherits ProCompontentBase
 @inject NavigationManager NavigationManager
 @inject NavHelper NavHelper
 @inject GlobalEvent GlobalEvent
@@ -42,7 +42,7 @@
         GlobalEvent.AddEvent(base.StateHasChanged);
     }
 
-    List<BreadcrumbItem> GetBreadcrumbItems()
+    private List<BreadcrumbItem> GetBreadcrumbItems()
     {
         var items = new List<BreadcrumbItem>();
         var currentNav = NavHelper.SameLevelNavs.FirstOrDefault(n => n.Href is not null && NavigationManager.Uri.Contains(n.Href));
