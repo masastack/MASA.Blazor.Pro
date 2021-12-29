@@ -127,6 +127,7 @@
         {
             SameLevelNavs.ForEach(n => n.Active = false);
             nav.Active = true;
+            SameLevelNavs.Where(n=>n.Id==nav.ParentId).ForEach(n => n.Active = false);
         }
     }
 }

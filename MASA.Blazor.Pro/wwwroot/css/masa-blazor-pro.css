@@ -141,7 +141,7 @@
     font-weight: 500 !important;
     font-size: 1rem !important;
     /* identical to box height */
-    line-height: 1.75rem !important;
+    line-height: 1.1875rem !important;
     /* default color */
     color: #1B2559;
 }
@@ -418,6 +418,11 @@
     border-bottom-right-radius: 20px !important;
 }
 
+.rounded-r-1 {
+    border-top-right-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+}
+
 .block-center {
     /*flex 布局*/
     display: flex;
@@ -513,18 +518,43 @@
     box-shadow: none;
 }
 
+.navigation {
+    overflow: visible !important;
+}
+
+.navigation .m-list-group__items .m-list-item {
+    padding-left:60px !important;
+}
+
+.navigation .m-list-item {
+    padding-left:28px;
+    padding-right:28px;
+}
+.navigation .m-list-item--link:before {
+    background-color: white !important;
+}
+.navigation .m-list-item:hover {
+    background-color: none !important;
+    background: #F4F7FE !important;
+}
+
+.navigation .m-navigation-drawer__content {
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+}
+
 .navigation .m-icon {
-    font-size: 18px;
+    font-size: 20px;
     color: #707EAE;
     caret-color: #707EAE;
 }
 
 .navigation .m-list-item__icon:first-child {
-    margin-right: 4px !important;
+    margin-right: 0px !important;
 }
 
-.navigation.mini-navigation .m-list-item__icon:first-child {
-    margin-right: 0px !important;
+.remove-click-color .m-list-item:before {
+    content: none !important;
 }
 
 .mini-navigation .m-list-item__icon {
@@ -559,6 +589,28 @@
 /*shop*/
 .ml300 {
     margin-left: 300px;
+}
+.commodity:hover {
+    height: calc(100% + 10px);
+}
+.commodity:hover .content {
+    transition-property: margin-top;
+    transition-duration: 0.5s;
+    box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12) !important;
+    margin-top: -4px;
+}
+
+.order:hover {
+    background-color: #3613CC !important;
+}
+
+.order:hover .white-order {
+    color: #FFFFFF !important;
+    caret-color: #FFFFFF !important;
+}
+
+.favorite:hover {
+    background: #F4F7FE !important;
 }
 /*shop*/
 
@@ -870,4 +922,28 @@ tr:hover {
 
 .theme--light.m-icon {
     color: #8F9BBA;
+}
+
+.m-list-group--active > .m-list-group__header .m-list-item__content {
+    color: #1B2559 !important;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+
+.m-list-group__header .m-list-item__content {
+    color: #707EAE !important;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+
+.m-list-item--active + div {
+    display: block !important;
 }
