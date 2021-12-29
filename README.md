@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<p align="center">
+﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -120,6 +120,6 @@ This project adopts the code of conduct defined in the "Contributors Convention"
 
 ## License
 
-[MIT](https://img.shields.io/badge/license-MIT-informational)(https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
+[![MASA.Blazor.Pro](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
 
 Copyright (c) 2021-present MASA.Blazor.Pro
