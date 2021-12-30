@@ -23,9 +23,9 @@ namespace MASA.Blazor.Pro.Pages.Apps.User
         {
             ["Editor"] = "mdi-pencil,info",
             ["Subscriber"] = "mdi-account,pry",
-            ["Admin"] = "fas fa-user-cog,error",
-            ["Maintainer"] = "fas fa-database,sample-green",
-            ["Author"] = "fas fa-cog,remind",
+            ["Admin"] = "mdi-account-edit,error",
+            ["Maintainer"] = "mdi-database,sample-green",
+            ["Author"] = "mdi-cog,remind",
         };
 
         public override string Name { get; } = "User-List";
