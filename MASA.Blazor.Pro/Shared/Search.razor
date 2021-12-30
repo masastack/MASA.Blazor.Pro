@@ -33,9 +33,11 @@
         }
         else if(string.IsNullOrEmpty(_search) is false)
         {
-            <MCard Class="text-center">   
-                <MCardText><span class="text-btn">No data available</span>   </MCardText>                  
-            </MCard>
+            <MList>
+                <MListItem>
+                    <span class="text-btn ma-auto">No data available</span>
+                </MListItem>
+            </MList>
         }
     </ChildContent>
 </MMenu>

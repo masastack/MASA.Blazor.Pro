@@ -530,9 +530,11 @@
     padding-left:28px;
     padding-right:28px;
 }
+
 .navigation .m-list-item--link:before {
     background-color: white !important;
 }
+
 .navigation .m-list-item:hover {
     background-color: none !important;
     background: #F4F7FE !important;
@@ -551,6 +553,28 @@
 
 .navigation .m-list-item__icon:first-child {
     margin-right: 0px !important;
+}
+
+.navigation .m-list-group--active > .m-list-group__header .m-list-item__content {
+    color: #1B2559 !important;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.navigation .m-list-group__header .m-list-item__content {
+    color: #707EAE !important;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.navigation .m-list-item--active + .m-border {
+    display: block !important;
 }
 
 .remove-click-color .m-list-item:before {
@@ -601,7 +625,7 @@
 }
 
 .order:hover {
-    background-color: #3613CC !important;
+    background-color: #6946FF !important;
 }
 
 .order:hover .white-order {
@@ -922,28 +946,4 @@ tr:hover {
 
 .theme--light.m-icon {
     color: #8F9BBA;
-}
-
-.m-list-group--active > .m-list-group__header .m-list-item__content {
-    color: #1B2559 !important;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 28px;
-}
-
-
-.m-list-group__header .m-list-item__content {
-    color: #707EAE !important;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 28px;
-}
-
-
-.m-list-item--active + div {
-    display: block !important;
 }
