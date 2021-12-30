@@ -44,7 +44,7 @@
                 <div class="block-center" style="height:40px;">
                     <MRadio Color="primary" Value="@brand">
                         <LabelContent>
-                            <span class="@($"text-subtitle {(_shopData.Category==brand?"primary--text":"text-body neutral-lighten-2--text")}")">@brand</span>
+                            <span class="@($"{(_shopData.Brand==brand?"text-subtitle primary--text":"text-body neutral-lighten-2--text")}")">@brand</span>
                         </LabelContent>
                     </MRadio>
                 </div>
