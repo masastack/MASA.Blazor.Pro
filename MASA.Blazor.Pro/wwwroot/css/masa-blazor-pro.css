@@ -577,6 +577,19 @@
     display: block !important;
 }
 
+.navigation .m-list-item:before {
+    content: none !important;
+}
+
+.navigation .m-ripple__container {
+    color: #A3AED0;
+   /* opacity: 1 !important;*/
+}
+
+.navigation .m-list-item:hover .m-list-item__title {
+    color: #4318FF !important;
+}
+
 .remove-click-color .m-list-item:before {
     content: none !important;
 }

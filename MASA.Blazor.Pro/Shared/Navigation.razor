@@ -15,14 +15,14 @@
         }
     </div>
 
-    <MList Nav Linkage Dense Class="@($"remover-ripple pa-0 {(GlobalConfig.NavigationMini?"mini-navigation":"")}")">
+    <MList Nav Linkage Dense Class="@($"pa-0 {(GlobalConfig.NavigationMini?"mini-navigation":"")}")">
 
         @foreach (var nav in NavHelper.Navs)
         {
             if (nav.Childs is null)
             {
                 <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
-                    <MListItem Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
+                    <MListItem Ripple=false Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
                         <ItemContent>
                             @if (context.Active)
                             {
@@ -51,7 +51,7 @@
                         @foreach (var navChild in nav.Childs)
                         {
                             <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
-                                <MListItem ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
+                                <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
                                     <ItemContent>
                                         @if (context.Active)
                                         {
