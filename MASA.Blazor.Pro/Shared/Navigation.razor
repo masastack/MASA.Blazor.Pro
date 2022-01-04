@@ -32,7 +32,7 @@
                                 <MIcon Color="@(context.Active?"primary":"neutral-lighten-2")" Size=20>@nav.Icon</MIcon>
                             </MListItemIcon>
                             <MListItemContent>
-                                <div style="margin-left:6.5px;" class="text-truncate @(context.Active?"text-subtitle":"text-body neutral-lighten-2--text")">@T(nav.Title)</div>
+                                <div style="margin-left:6.5px;" class="text-truncate white-space:nowrap @(context.Active?"text-subtitle":"text-body neutral-lighten-2--text")">@T(nav.Title)</div>
                             </MListItemContent>
                         </ItemContent>
                     </MListItem>
@@ -43,8 +43,7 @@
                 <MListGroup Group="@nav.Childs.Select(n => n.Href).ToList()" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
                     <ActivatorContent>
                         <MListItemContent>
-                            @*<div style="margin-left:6.5px;" class="@(nav.Active?"text-subtitle":"text-body neutral-lighten-2--text") text-truncate">@T(nav.Title)</div>*@
-                            <div style="margin-left:6.5px;">@T(nav.Title)</div>
+                            <div style="margin-left:6.5px;" class="text-truncate white-space:nowrap">@T(nav.Title)</div>
                         </MListItemContent>
                     </ActivatorContent>
                     <ChildContent>
@@ -58,7 +57,7 @@
                                             NavHelper.RefreshRender(navChild);
                                         }
                                         <MListItemContent>
-                                            <div class="text-truncate @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
+                                            <div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
                                         </MListItemContent>
                                     </ItemContent>
                                 </MListItem>
