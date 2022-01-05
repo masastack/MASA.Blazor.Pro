@@ -4,7 +4,7 @@
     {
         public static IApplicationBuilder UseGlobal(this IApplicationBuilder app)
         {
-            app.UseMiddleware<CookieMiddleware>();
+            app.UseMiddleware<MASA.Blazor.Pro.Global.CookieMiddleware>();
 
             return app;
         }

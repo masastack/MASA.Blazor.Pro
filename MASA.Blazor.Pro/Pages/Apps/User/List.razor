@@ -120,8 +120,8 @@
                     break;
                 case nameof(UserData.Status):
                     string statusColor = context.Item.Color;
-                    <MChip Color="@($"{statusColor}-lighten-5")">
-                       <span class="@($"{statusColor}--text")">@context.Item.Status</span>
+                    <MChip Color="@($"{statusColor}-lighten-5")" TextColor="@(statusColor)" Ripple="false">
+                       <span>@context.Item.Status</span>
                     </MChip>
                     break;
                 case "Action":
