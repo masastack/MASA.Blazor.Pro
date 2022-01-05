@@ -148,7 +148,7 @@
                 UserName = "fdesporte13",
                 FullName = "Florenza Desporte",
                 Email = "fdesporte13@omniture.com",
-                HeadImg="/img/user/6.png",
+                HeadImg="",
                 Role="Author",
                 Plan ="Basic",
                 Status = "Active",

@@ -43,7 +43,7 @@
 
 ## 使用
 
-在 `wwwroot/index.html`(WebAssembly) 或 `Pages/_Host.cshtml`(Server) 中引入样式:
+- 在 `wwwroot/index.html`(WebAssembly) 或 `Pages/_Host.cshtml`(Server) 中引入样式:
 
 ```html
 <html lang="en">
@@ -55,9 +55,25 @@
 	</head>
 </html>
 ```
+
 > `masa-blazor-pro.css`文件在项目wwwroot/css/masa-blazor-pro.css层级目录下
 
 > `MASA.Blazor.Pro.styles.css`需要改为`{ASSEMBLY NAME}.styles.css`,占位符 `{ASSEMBLY NAME}` 是项目的程序集名称,详情请见 [ASP.NET Core Blazor CSS 隔离](https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/css-isolation?view=aspnetcore-6.0)
+
+- 设置MasaBlazor主题
+
+```c#
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddMasaBlazor(builder => 
+{
+    builder.UseTheme(option=>
+        {
+            option.Primary = "#4318FF";
+            option.Accent = "#4318FF";
+        }
+    );
+});
+```
 
 ## 相关项目
 

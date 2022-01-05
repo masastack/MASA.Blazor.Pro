@@ -4,17 +4,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddMasaBlazor(builder => 
+builder.Services.AddMasaBlazor(builder =>
 {
-    builder.UseTheme(option=>
+    builder.UseTheme(option =>
         {
             option.Primary = "#4318FF";
             option.Accent = "#4318FF";
         }
     );
 });
-builder.Services.AddGlobal();
-builder.Services.AddScoped<CookieStorage>();
+builder.Services.AddGlobalForServer();
 
 var app = builder.Build();
 
@@ -39,7 +38,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseMiddleware<CookieMiddleware>();
+app.UseGlobal();
+app.UseMasaI18n();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 app.Run();

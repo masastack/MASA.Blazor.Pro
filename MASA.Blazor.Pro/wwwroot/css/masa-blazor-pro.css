@@ -420,7 +420,7 @@
 
 .rounded-r-1 {
     border-top-right-radius: 5px !important;
-    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
 }
 
 .block-center {

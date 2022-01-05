@@ -4,7 +4,7 @@
 @{
     var navs = GetNavs(_search);
 }
-<MMenu OffsetY Bottom Right CloseOnContentClick="false" Value="@(_search!=null)" MinWidth=340 ContentClass="@(string.IsNullOrEmpty(_search) is true?"hide-shadow":"")">
+<MMenu OffsetY Bottom Right CloseOnContentClick="false" MinWidth=340 ContentClass="@(string.IsNullOrEmpty(_search) is true?"hide-shadow":"")">
     <ActivatorContent>
         <div @attributes="@context.Attrs">
             <MTextField @bind-Value="_search" Class="rounded-2" Style="width:340px;height:40px;" Flat Dense Solo BackgroundColor="fill-lighten-1" HideDetails="@("auto")" Placeholder="Search">
@@ -41,7 +41,6 @@
         }
     </ChildContent>
 </MMenu>
-
 
 @code {
     string? _search;

@@ -1,6 +1,6 @@
 ﻿@using System.Diagnostics.CodeAnalysis
 @inject GlobalConfigs ScopedGlobalConfigs;
-@inject I18n LanguageProvider
+@inject I18n I18n
 
 <CascadingAuthenticationState>
     <Microsoft.AspNetCore.Components.Routing.Router AppAssembly="@typeof(App).Assembly">
@@ -21,18 +21,28 @@
     private GlobalConfigs? _globalConfig;
 
     [Parameter]
-    public GlobalConfigs GlobalConfig
+    public GlobalConfigs GlobalConfigs
     {
         get => _globalConfig ?? throw new Exception("Please set parameter GlobalConfig!");
         set => _globalConfig = value;
     }
 
+    private I18nConfig? _i18nConfig;
+
+    [Parameter]
+    public I18nConfig I18nConfig
+    {
+        get => _i18nConfig ?? throw new Exception("Please set parameter I18nConfig!");
+        set => _i18nConfig = value;
+    }
+
     protected override void OnInitialized()
     {
-        ScopedGlobalConfigs.Bind(GlobalConfig);
-        if (GlobalConfig.Language is not null)
+        ScopedGlobalConfigs.Bind(GlobalConfigs,I18nConfig);
+
+        if (ScopedGlobalConfigs.Language is not null)
         {
-            LanguageProvider.SetLang(GlobalConfig.Language);
+            I18n.SetLang(ScopedGlobalConfigs.Language);
         }
     }
 }

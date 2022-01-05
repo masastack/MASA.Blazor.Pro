@@ -1,4 +1,4 @@
-﻿namespace MASA.Blazor.Pro.Global.Middleware
+﻿namespace MASA.Blazor.Pro.Global
 {
     public class CookieMiddleware
     {
