@@ -1,10 +1,10 @@
 ﻿global using BlazorComponent;
 global using BlazorComponent.I18n;
 global using MASA.Blazor.Pro.Data;
-global using MASA.Blazor.Pro.Data.ECommerce;
-global using MASA.Blazor.Pro.Data.Invoice;
-global using MASA.Blazor.Pro.Data.Invoice.Model;
+global using MASA.Blazor.Pro.Global;
 global using Microsoft.AspNetCore.Components;
 global using Microsoft.AspNetCore.Components.Web;
 global using System.ComponentModel.DataAnnotations;
 global using MASA.Blazor.Pro.Pages;
+global using System.Text.Json;
+global using System.Reflection;

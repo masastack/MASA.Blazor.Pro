@@ -21,7 +21,7 @@ namespace MASA.Blazor.Pro.Pages.Dashboards
                     Show = true,
                     LineStyle = new
                     {
-                        Color = new[] { "#F4F7FE" }
+                        Color = new[] { "#F0F3FA" }
                     }
                 },
                 axisLabel = new

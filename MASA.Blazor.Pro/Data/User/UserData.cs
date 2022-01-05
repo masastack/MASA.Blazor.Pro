@@ -1,4 +1,4 @@
-﻿namespace MASA.Blazor.Pro.Data.User;
+﻿namespace MASA.Blazor.Pro.Data;
 
 public class UserData
 {

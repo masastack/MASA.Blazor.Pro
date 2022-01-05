@@ -1,24 +1,24 @@
-﻿namespace MASA.Blazor.Pro.Global
+﻿namespace MASA.Blazor.Pro.Global;
+
+public delegate void GlobalConfigChange();
+
+public class GlobalEvent
 {
-    public delegate void GlobalConfigChange();
+    private event GlobalConfigChange? OnGloabConfigChange;
 
-    public class GlobalEvent
+    public void AddEvent(GlobalConfigChange action)
     {
-        private event GlobalConfigChange? OnGloabConfigChange;
+        OnGloabConfigChange += action;
+    }
 
-        public void AddEvent(GlobalConfigChange action)
-        {
-            OnGloabConfigChange += action;
-        }
+    public void RemoveEvent(GlobalConfigChange action)
+    {
+        OnGloabConfigChange -= action;
+    }
 
-        public void RemoveEvent(GlobalConfigChange action)
-        {
-            OnGloabConfigChange -= action;
-        }
-
-        public void Excute()
-        {
-            OnGloabConfigChange?.Invoke();
-        }
+    public void Excute()
+    {
+        OnGloabConfigChange?.Invoke();
     }
 }
+

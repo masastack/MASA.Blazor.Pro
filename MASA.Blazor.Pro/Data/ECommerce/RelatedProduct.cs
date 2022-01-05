@@ -1,4 +1,4 @@
-﻿namespace MASA.Blazor.Pro.Data.ECommerce;
+﻿namespace MASA.Blazor.Pro.Data;
 
 public class RelatedProduct
 {

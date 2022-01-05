@@ -1,6 +1,4 @@
-﻿using MASA.Blazor.Pro.Data.User;
-
-namespace MASA.Blazor.Pro.Pages.Apps.User
+﻿namespace MASA.Blazor.Pro.Pages.Apps.User
 {
     public partial class List
     {

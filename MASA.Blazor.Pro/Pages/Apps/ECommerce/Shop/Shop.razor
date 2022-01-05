@@ -101,10 +101,10 @@
                             <div class="text-truncate text-body3 neutral-lighten-2--text">@item.Description</div>
                         </MCardText>
                         <div class="block-between text-center">
-                            <div @onclick="()=>item.Favorite=!item.Favorite" class="rounded-bl-xl hover-pointer favorite" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-left-radius: 20px !important;">
+                            <div @onclick="()=>item.Favorite=!item.Favorite" class="rounded-bl-xl hover-pointer favorite" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F0F3FA, inset 0px 0.5px 0px #F0F3FA;border-bottom-left-radius: 20px !important;">
                                 <MIcon Size=24 Color="@(item.Favorite?"error":"neutral")">@(item.Favorite?"mdi-heart":"mdi-heart-outline")</MIcon>
                             </div>
-                            <div @onclick="NavigateToOrder" class="hover-pointer neutral--text order" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F4F7FE, inset 0px 0.5px 0px #F4F7FE;border-bottom-right-radius: 20px !important;">
+                            <div @onclick="NavigateToOrder" class="hover-pointer neutral--text order" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F0F3FA, inset 0px 0.5px 0px #F0F3FA;border-bottom-right-radius: 20px !important;">
                                 <MIcon Size=24 Class="white-order">mdi-cart-outline</MIcon>
                             </div>
                         </div>

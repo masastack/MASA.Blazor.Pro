@@ -1,4 +1,4 @@
-﻿namespace MASA.Blazor.Pro.Data.Invoice.Model;
+﻿namespace MASA.Blazor.Pro.Data;
 
 public class StateItem
 {

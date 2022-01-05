@@ -1,7 +1,4 @@
-﻿using MASA.Blazor.Pro.Data.Invoice.Model;
-using MASA.Blazor.Pro.Data.User;
-
-namespace MASA.Blazor.Pro.Data.Invoice;
+﻿namespace MASA.Blazor.Pro.Data;
 
 public static class InvoiceService
 {

@@ -43,7 +43,7 @@
     /* identical to box height */
     letter-spacing: -0.03125em !important;
     /* default color */
-    color: #1B2559;
+    color: #2B3674;
 }
 
 .h3, .text-h3, h3 {
@@ -52,9 +52,9 @@
     font-style: normal !important;
     font-weight: 900 !important;
     font-size: 3rem !important;
-    line-height: 9.33rem !important;
+    line-height: 3.5rem !important;
     /* default color */
-    color: #1B2559;
+    color: #2B3674;
 }
 
 .h4, .text-h4, h4 {
@@ -131,7 +131,7 @@
     /* identical to box height */
     letter-spacing: 0.00625rem !important;
     /* default color */
-    color: #1B2559;
+    color: #2B3674;
 }
 
 .text-body {
@@ -156,7 +156,7 @@
     /* identical to box height */
     letter-spacing: 0.015625rem !important;
     /* default color */
-    color: #A3AED0;
+    color: #707EAE;
 }
 
 .text-body3 {
@@ -168,7 +168,7 @@
     /* identical to box height */
     line-height: 1.75rem !important;
     /* default color */
-    color: #1B2559;
+    color: #707EAE;
 }
 
 .text-btn {
@@ -179,7 +179,7 @@
     font-size: 0.875rem !important;
     line-height: 1rem !important;
     /* default color */
-    color: #A3AED0 !important;
+    color: #2B3674 !important;
 }
 
 .text-caption {
@@ -197,7 +197,7 @@
     /* OVERLINE-眉题 */
     font-family: Roboto !important;
     font-style: normal !important;
-    font-weight: 500 !important;
+    font-weight: normal !important;
     font-size: 0.625rem !important;
     line-height: 0.75rem !important;
     /* identical to box height */
@@ -291,7 +291,7 @@
 }
 
 .fill-lighten-1 {
-    background: #F4F7FE !important;
+    background: #F0F3FA !important;
 }
 
 .fill-lighten-2 {
@@ -402,7 +402,7 @@
 
 .border-b-solid {
     /* 分割线/下 */
-    box-shadow: inset 0px -1px 0px #F4F7FE !important;
+    box-shadow: inset 0px -1px 0px #F0F3FA !important;
 }
 
 .rounded-2 {
@@ -537,7 +537,7 @@
 
 .navigation .m-list-item:hover {
     background-color: none !important;
-    background: #F4F7FE !important;
+    background: #F6F8FD !important;
 }
 
 .navigation .m-navigation-drawer__content {
@@ -647,7 +647,7 @@
 }
 
 .favorite:hover {
-    background: #F4F7FE !important;
+    background: #F6F8FD !important;
 }
 /*shop*/
 
@@ -818,7 +818,7 @@
 }
 
 .mtab-tab-indicator-neutral {
-    background: #F4F7FE;
+    background: #F0F3FA;
     border: 4px solid #A3AED0;
     box-sizing: border-box;
 }
@@ -954,7 +954,7 @@ input::-webkit-input-placeholder {
 }
 
 tr:hover {
-    background-color: #F4F7FE !important;
+    background-color: #F6F8FD !important;
 }
 
 .theme--light.m-icon {

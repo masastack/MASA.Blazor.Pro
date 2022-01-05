@@ -11,13 +11,13 @@
     <ChildContent>
         <MList Class="py-0">
             <MListItemGroup ActiveClass="primary" Value="GlobalConfig.Language">
-                @foreach (var config in LanguageConfig.Languages)
+                @foreach (var languge in LanguageConfig.Languages)
                 {
-                    <MListItem OnClick="async()=> await OnLanguageChange(config.Value)" Value="(StringNumber)config.Value">
+                    <MListItem OnClick="async()=> await OnLanguageChange(languge)" Value="(StringNumber)languge">
                         <ItemContent>
                             <MListItemContent>
                                 <span Class="@(context.Active?"white--text":"neutral-lighten-4--text") text-btn">
-                                    @LanguageMap(config.Value)
+                                    @LanguageMap(languge)
                                 </span>
                             </MListItemContent>
                         </ItemContent>
