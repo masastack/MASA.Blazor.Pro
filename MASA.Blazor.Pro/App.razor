@@ -26,22 +26,13 @@
         set => _globalConfig = value;
     }
 
-    private I18nConfig? _i18nConfig;
-
-    [Parameter]
-    public I18nConfig I18nConfig
-    {
-        get => _i18nConfig ?? throw new Exception("Please set parameter I18nConfig!");
-        set => _i18nConfig = value;
-    }
-
     protected override void OnInitialized()
     {
-        ScopedGlobalConfigs.Bind(GlobalConfigs,I18nConfig);
+        ScopedGlobalConfigs.Bind(GlobalConfigs);
 
-        if (ScopedGlobalConfigs.Language is not null)
+        if (ScopedGlobalConfigs.I18nConfig?.Language is not null)
         {
-            I18n.SetLang(ScopedGlobalConfigs.Language);
+            I18n.SetLang(ScopedGlobalConfigs.I18nConfig.Language);
         }
     }
 }

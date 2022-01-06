@@ -7,8 +7,7 @@ public class GlobalConfigs
     private bool _navigationMini;
     private string? _favorite;
     private CookieStorage? _cookieStorage;
-    private I18nConfig? _i18nConfig;
-
+    
     public static string IsDarkCookieKey { get; set; } = "GlobalConfigs_IsDark";
 
     public static string NavigationMiniCookieKey { get; set; } = "GlobalConfigs_NavigationMini";
@@ -17,14 +16,7 @@ public class GlobalConfigs
 
     public static string FavoriteCookieKey { get; set; } = "GlobalConfigs_Favorite";
 
-    public string? Language
-    {
-        get => _i18nConfig?.Language;
-        set
-        {
-            if (_i18nConfig is not null) _i18nConfig.Language = value;
-        }
-    }
+    public I18nConfig? I18nConfig { get; set; }
 
     public bool IsDark
     {
@@ -74,7 +66,7 @@ public class GlobalConfigs
     public GlobalConfigs(CookieStorage cookieStorage, I18nConfig i18nConfig)
     {
         _cookieStorage = cookieStorage;
-        _i18nConfig = i18nConfig;
+        I18nConfig = i18nConfig;
     }
 
     public void Initialization(IRequestCookieCollection cookies)
@@ -96,9 +88,9 @@ public class GlobalConfigs
         }
     }
 
-    public void Bind(GlobalConfigs globalConfig, I18nConfig i18nConfig)
+    public void Bind(GlobalConfigs globalConfig)
     {
-        _i18nConfig?.Bind(i18nConfig);
+        I18nConfig?.Bind(globalConfig.I18nConfig);
         _isDark = globalConfig.IsDark;
         _navigationMini = globalConfig.NavigationMini;
         _expandOnHover = globalConfig.ExpandOnHover;

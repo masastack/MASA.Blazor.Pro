@@ -1,4 +1,6 @@
 {
+  "$DefaultLanguage": "true",
+  "$Text": "中文简体",
   "Dashboards": "仪表盘",
   "eCommerce": "电子商务",
   "Analytics": "分析",

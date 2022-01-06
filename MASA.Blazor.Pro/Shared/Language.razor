@@ -1,5 +1,4 @@
 ﻿@inject GlobalConfigs GlobalConfig;
-@inject LanguageConfig LanguageConfig
 @inject I18n I18n
 
 <MMenu OffsetY Bottom>
@@ -10,14 +9,14 @@
     </ActivatorContent>
     <ChildContent>
         <MList Class="py-0">
-            <MListItemGroup ActiveClass="primary" Value="GlobalConfig.Language">
-                @foreach (var languge in LanguageConfig.Languages)
+            <MListItemGroup ActiveClass="primary" Value="GlobalConfig.I18nConfig?.Language">
+                @foreach (var (language, map) in I18n.ToDictionary())
                 {
-                    <MListItem OnClick="async()=> await OnLanguageChange(languge)" Value="(StringNumber)languge">
+                    <MListItem OnClick="async()=> await OnLanguageChange(language)" Value="(StringNumber)language">
                         <ItemContent>
                             <MListItemContent>
                                 <span Class="@(context.Active?"white--text":"neutral-lighten-4--text") text-btn">
-                                    @LanguageMap(languge)
+                                    @map.GetValueOrDefault("$Text")
                                 </span>
                             </MListItemContent>
                         </ItemContent>
@@ -35,18 +34,8 @@
 
     async Task OnLanguageChange(string language)
     {
-        GlobalConfig.Language = language;
+        GlobalConfig.I18nConfig!.Language = language;
         I18n.SetLang(language);
         await Onchange.InvokeAsync();
-    }
-
-    string LanguageMap(string language)
-    {
-        return language switch
-        {
-            "zh-CN" => "中文简体",
-            "en-US" => "English",
-            _ => "中文简体"
-        };
     }
 }

@@ -905,7 +905,10 @@ input::-webkit-input-placeholder {
 
 .m-data-table-header__icon {
     position: absolute !important;
-    margin: auto;
+}
+
+.user .m-data-table-header__icon {
+    margin-top:1px;
 }
 
 .neutral-lighten-icon .m-icon {
