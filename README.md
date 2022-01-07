@@ -69,6 +69,20 @@ dotnet new masabp -o MASA.Test
 dotnet new masabp -rcl -o MASA.Test
 ```
 
+**Go to the Server project directory**
+
+```c#
+cd MASA.Test\MASA.Test.Server
+```
+
+**Run**
+
+```c#
+dotnet run
+```
+
+
+
 ![masabp](D:\Project\MASA\BlazorComponent\MASA.Blazor.Pro\imgs\masabp.gif)
 
 

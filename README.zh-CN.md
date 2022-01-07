@@ -67,6 +67,20 @@ dotnet new masabp -o MASA.Test
 dotnet new masabp -rcl -o MASA.Test
 ```
 
+**进入Server项目目录**
+
+```c#
+cd MASA.Test\MASA.Test.Server
+```
+
+**运行**
+
+```c#
+dotnet run
+```
+
+
+
 ![masabp](.\imgs\masabp.gif)
 
 
