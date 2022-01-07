@@ -10,21 +10,13 @@ public partial class TodoList
         { "High", "error" },
         { "Update", "info" },
     };
-    private readonly string[] _avas = new string[]
-    {
-        "/img/avatar/3-small.png",
-        "/img/avatar/11-small.png",
-        "/img/avatar/avatar-s-6.jpg",
-        "/img/avatar/avatar-s-7.jpg",
-        "/img/avatar/avatar-s-8.jpg",
-        "/img/avatar/avatar-s-9.jpg"
-    };
+    private readonly string[] _avas = TodoService.GetAvatars();
     private TodoDto _selectItem = new();
     private string? _filterText;
     private bool _visible = false;
     private string? _inputText;
     private List<TodoDto> _thisList = new();
-    private readonly List<TodoDto> _dataList = TodoService.List;
+    private readonly List<TodoDto> _dataList = TodoService.GetList();
 
     [Parameter]
     public string? FilterText
@@ -94,17 +86,5 @@ public partial class TodoList
 
         FilterText = _filterText;
     }
-
-    public void AddData(TodoDto data)
-    {
-        _dataList.Insert(0, data);
-    }
-}
-
-public class SelectData
-{
-    public string Label { get; set; } = default!;
-
-    public string Value { get; set; } = default!;
 }
 

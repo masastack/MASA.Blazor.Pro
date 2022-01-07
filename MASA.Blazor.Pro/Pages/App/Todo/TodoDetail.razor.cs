@@ -4,24 +4,8 @@ namespace MASA.Blazor.Pro.Pages.App.Todo;
 
 public partial class TodoDetail
 {
-    private readonly List<SelectData> _tagList = new()
-    {
-        new SelectData() { Label = "Team", Value = "Team" },
-        new SelectData() { Label = "Low", Value = "Low" },
-        new SelectData() { Label = "Medium", Value = "Medium" },
-        new SelectData() { Label = "High", Value = "High" },
-        new SelectData() { Label = "Update", Value = "Update" }
-    };
-    private readonly List<SelectData> _assigneeList = new()
-    {
-        new SelectData() { Label = "紫萱", Value = "紫萱" },
-        new SelectData() { Label = "若芹", Value = "若芹" },
-        new SelectData() { Label = "思菱", Value = "思菱" },
-        new SelectData() { Label = "向秋", Value = "向秋" },
-        new SelectData() { Label = "雨珍", Value = "雨珍" },
-        new SelectData() { Label = "海瑶", Value = "海瑶" },
-        new SelectData() { Label = "乐萱", Value = "乐萱" },
-    };
+    private readonly List<SelectData> _tagList = TodoService.GetTagList();
+    private readonly List<SelectData> _assigneeList = TodoService.GetAssigneeList();
     private MForm? _mForm;
     private bool _isEdit;
     private TodoDto _selectData = new();
@@ -97,20 +81,20 @@ public partial class TodoDetail
         }
     }
 
-    private async Task Add(EditContext context)
+    private async Task AddAsync(EditContext context)
     {
         var success = context.Validate();
         if (success)
         {
-            _selectData.Id = TodoService.List.Count + 1;
-            TodoService.List.Insert(0, _selectData);
+            _selectData.Id = TodoService.GenerateId();
+            TodoService.Add(_selectData);
             await HideNavigationDrawer();
 
-            NavigationManager.NavigateTo("apps/todo");
+            NavigationManager.NavigateTo("app/todo");
         }
     }
 
-    private async Task Update(EditContext context)
+    private async Task UpdateAsync(EditContext context)
     {
         var success = context.Validate();
         if (success)
@@ -147,7 +131,7 @@ public partial class TodoDetail
         }
     }
 
-    private async Task DeleteTask()
+    private async Task DeleteAsync()
     {
         _selectData.IsDeleted = true;
         TodoList.UpdateData(_selectData);

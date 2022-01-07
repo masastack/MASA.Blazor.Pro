@@ -13,7 +13,7 @@
         <MSpacer></MSpacer>
         @if (_isEdit)
         {
-            <MButton Icon OnClick="DeleteTask">
+            <MButton Icon OnClick="DeleteAsync">
                 <MIcon>mdi-delete-outline</MIcon>
             </MButton>
         }
@@ -64,11 +64,11 @@
             <MButton Outlined Class="mr-6 text-capitalize neutral-lighten-2--text rounded-pill" OnClick="ResetAsync">Reset</MButton>
             @if (_isEdit)
             {
-                <MButton Color="primary rounded-pill" Dark OnClick="()=>Update(context)">Update</MButton>
+                <MButton Color="primary rounded-pill" Dark OnClick="()=>UpdateAsync(context)">Update</MButton>
             }
             else
             {
-                <MButton Color="primary rounded-pill" Dark OnClick="()=>Add(context)">Add</MButton>
+                <MButton Color="primary rounded-pill" Dark OnClick="()=>AddAsync(context)">Add</MButton>
             }
         </div>
     </MForm>
