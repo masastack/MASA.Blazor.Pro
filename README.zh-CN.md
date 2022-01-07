@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
+﻿﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -81,7 +81,7 @@ dotnet run
 
 
 
-![masabp](.\imgs\masabp.gif)
+![masabp](imgs/masabp.gif)
 
 
 
