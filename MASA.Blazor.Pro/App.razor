@@ -1,4 +1,4 @@
-﻿@inject GlobalConfigs ScopedGlobalConfigs;
+﻿@inject GlobalConfig ScopedGlobalConfig;
 @inject I18n I18n
 
 <CascadingAuthenticationState>
@@ -17,22 +17,22 @@
 </CascadingAuthenticationState>
 
 @code {
-    private GlobalConfigs? _globalConfig;
+    private GlobalConfig? _globalConfig;
 
     [Parameter]
-    public GlobalConfigs GlobalConfigs
+    public GlobalConfig GlobalConfig
     {
-        get => _globalConfig ?? throw new Exception("Please set parameter GlobalConfig!");
+        get => _globalConfig ?? throw new Exception("Please configure the GlobalConfig first!");
         set => _globalConfig = value;
     }
 
     protected override void OnInitialized()
     {
-        ScopedGlobalConfigs.Bind(GlobalConfigs);
+        ScopedGlobalConfig.Bind(GlobalConfig);
 
-        if (ScopedGlobalConfigs.I18nConfig?.Language is not null)
+        if (ScopedGlobalConfig.I18nConfig?.Language is not null)
         {
-            I18n.SetLang(ScopedGlobalConfigs.I18nConfig.Language);
+            I18n.SetLang(ScopedGlobalConfig.I18nConfig.Language);
         }
     }
 }

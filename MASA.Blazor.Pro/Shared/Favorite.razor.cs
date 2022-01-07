@@ -17,7 +17,7 @@ namespace MASA.Blazor.Pro.Shared
                 _favoriteMenus = GlobalConfig.Favorite.Split('|').Select(v => Convert.ToInt32(v)).ToList();
             }
 
-            GlobalEvent.AddEvent(base.StateHasChanged);
+            GlobalConfigChangedEvent.OnGlobalConfigChanged += base.StateHasChanged;
         }
 
         bool _open;
@@ -32,9 +32,9 @@ namespace MASA.Blazor.Pro.Shared
             }
         }
 
-        List<Nav> GetNavs(string? search)
+        List<NavModel> GetNavs(string? search)
         {
-            var output = new List<Nav>();
+            var output = new List<NavModel>();
 
             if (search is null || search == "") output.AddRange(NavHelper.SameLevelNavs.Where(n => _favoriteMenus.Contains(n.Id)));
             else
@@ -45,7 +45,7 @@ namespace MASA.Blazor.Pro.Shared
             return output;
         }
 
-        List<Nav> GetFavoriteMenus() => GetNavs(null);
+        List<NavModel> GetFavoriteMenus() => GetNavs(null);
 
         void AddOrRemoveFavoriteMenu(int id)
         {
@@ -70,7 +70,7 @@ namespace MASA.Blazor.Pro.Shared
 
         public void Dispose()
         {
-            GlobalEvent.RemoveEvent(base.StateHasChanged);
+            GlobalConfigChangedEvent.OnGlobalConfigChanged -= base.StateHasChanged;
         }
     }
 }

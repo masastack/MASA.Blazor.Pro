@@ -8,22 +8,22 @@ public partial class InvoiceList
     private string _search = "";
     private List<int> _pageSizes = new List<int> { 10, 25, 50, 100 };
 
-    private List<DataTableHeader<InvoiceRecord>> _headers = new List<DataTableHeader<InvoiceRecord>>
+    private List<DataTableHeader<InvoiceRecordDto>> _headers = new List<DataTableHeader<InvoiceRecordDto>>
     {
-        new (){ Text="#" , Value= nameof(InvoiceRecord.Id)},
-        new (){ Text="Client" , Value= nameof(InvoiceRecord.Client)},
-        new (){ Text="State" , Value= nameof(InvoiceRecord.State)},
-        new (){ Text="Total" , Value= nameof(InvoiceRecord.Total)},
-        new (){ Text="Issued Date" , Value= nameof(InvoiceRecord.Date)},
-        new (){ Text="Balance" , Value= nameof(InvoiceRecord.Balance)},
+        new (){ Text="#" , Value= nameof(InvoiceRecordDto.Id)},
+        new (){ Text="Client" , Value= nameof(InvoiceRecordDto.Client)},
+        new (){ Text="State" , Value= nameof(InvoiceRecordDto.State)},
+        new (){ Text="Total" , Value= nameof(InvoiceRecordDto.Total)},
+        new (){ Text="Issued Date" , Value= nameof(InvoiceRecordDto.Date)},
+        new (){ Text="Balance" , Value= nameof(InvoiceRecordDto.Balance)},
         new (){ Text="Actions" , Value = "Action", Sortable = false},
     };
 
-    private List<StateItem> _stateItems = InvoiceService.GetStateItems();
+    private List<InvoiceStateDto> _stateItems = InvoiceService.GetStateList();
 
-    private PagingData<InvoiceRecord> _records = new(0, 0, 0, Enumerable.Empty<InvoiceRecord>());
+    private PagingData<InvoiceRecordDto> _records = new(0, 0, 0, Enumerable.Empty<InvoiceRecordDto>());
 
-    private PagingData<InvoiceRecord> LoadPagingData() => InvoiceService.GetInvoiceRecords(_page, _itemsPerPage, _state, _search);
+    private PagingData<InvoiceRecordDto> LoadPagingData() => InvoiceService.GetInvoiceRecordList(_page, _itemsPerPage, _state);
 
     protected override Task OnInitializedAsync()
     {

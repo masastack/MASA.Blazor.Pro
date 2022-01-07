@@ -1,7 +1,7 @@
 ﻿@inherits ProCompontentBase
 @inject NavigationManager NavigationManager
 @inject NavHelper NavHelper
-@inject GlobalEvent GlobalEvent
+@inject GlobalConfigChangedEvent GlobalConfigChangedEvent
 @implements IDisposable
 
 @{
@@ -38,8 +38,8 @@
     public override string Name { get; } = "Breadcrumb";
 
     protected override void OnInitialized()
-    {     
-        GlobalEvent.AddEvent(base.StateHasChanged);
+    {
+        GlobalConfigChangedEvent.OnGlobalConfigChanged += base.StateHasChanged;
     }
 
     private List<BreadcrumbItem> GetBreadcrumbItems()
@@ -51,7 +51,7 @@
             if (currentNav.ParentId != 0)
             {
                 var parentNav = NavHelper.SameLevelNavs.First(n => n.Id == currentNav.ParentId);
-                items.Add(new BreadcrumbItem { Text = T(parentNav.Title), Href = parentNav.Href ?? parentNav.Childs?.FirstOrDefault()?.Href??"" });
+                items.Add(new BreadcrumbItem { Text = T(parentNav.Title), Href = parentNav.Href ?? parentNav.Children?.FirstOrDefault()?.Href??"" });
             }
             items.Add(new BreadcrumbItem { Text = T(currentNav.Title), Href = currentNav.Href });
             items.Last().Href = currentNav.Href;
@@ -61,6 +61,6 @@
 
     public void Dispose()
     {
-        GlobalEvent.RemoveEvent(base.StateHasChanged);
+        GlobalConfigChangedEvent.OnGlobalConfigChanged -= base.StateHasChanged;
     }
 }

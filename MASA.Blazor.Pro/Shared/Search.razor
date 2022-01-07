@@ -45,9 +45,9 @@
 @code {
     string? _search;
 
-    List<Nav> GetNavs(string? search)
+    List<NavModel> GetNavs(string? search)
     {
-        var output = new List<Nav>();
+        var output = new List<NavModel>();
         if (search is not null && search!="")
         {
             output.AddRange(NavHelper.SameLevelNavs.Where(n=>n.Href is not null && GetI18nFullTitle(n.FullTitle).Contains(search,StringComparison.OrdinalIgnoreCase)));

@@ -25,7 +25,7 @@
                                 <MTextField @bind-Value="_search" Dense class="mr-6" style="width:570px;" HideDetails="true"
                                             Label="Search..." Outlined></MTextField>
                                 <MSelect Items="_stateItems" ValueChanged="StateChanged" style="width:156px;"
-                                         Value="@_state" TValue="int" TItem="StateItem" TItemValue="int"
+                                         Value="@_state" TValue="int" TItem="InvoiceStateDto" TItemValue="int"
                                          ItemText="u => u.Label" HideDetails="true"
                                          ItemValue="u => u.Value"
                                          Dense Outlined></MSelect>
@@ -33,7 +33,7 @@
                         </MRow>
                     </TopContent>
                     <ItemColContent>
-                        @if (context.Header.Value == nameof(InvoiceRecord.State))
+                        @if (context.Header.Value == nameof(InvoiceRecordDto.State))
                         {
                             switch (context.Item.State)
                             {
@@ -64,13 +64,13 @@
                                     break;
                             }
                         }
-                        else if (context.Header.Value == nameof(InvoiceRecord.Balance))
+                        else if (context.Header.Value == nameof(InvoiceRecordDto.Balance))
                         {
                             <MChip class="text-body sample-green--text lighten-green" Light Small>
                                 Paid
                             </MChip>
                         }
-                        else if (context.Header.Value == nameof(InvoiceRecord.Client))
+                        else if (context.Header.Value == nameof(InvoiceRecordDto.Client))
                         {
                             string color = context.Item.Client.Color;
                             <MListItem class="grow pa-0">
@@ -91,17 +91,17 @@
                                 </MListItemContent>
                             </MListItem>
                         }
-                        else if (context.Header.Value == nameof(InvoiceRecord.Id))
+                        else if (context.Header.Value == nameof(InvoiceRecordDto.Id))
                         {
                             <a @onclick="()=>NavigateToPreview(context.Item.Id)">#@context.Item.Id</a>
                         }
-                        else if (context.Header.Value == nameof(InvoiceRecord.Date))
+                        else if (context.Header.Value == nameof(InvoiceRecordDto.Date))
                         {
                             <span class="text-body neutral-lighten-1--text">
                                 @context.Item.Date.ToShortDateString()
                             </span>
                         }
-                        else if (context.Header.Value == nameof(InvoiceRecord.Total))
+                        else if (context.Header.Value == nameof(InvoiceRecordDto.Total))
                         {
                             var formatTotal = $"${context.Item.Total}";
                             <span class="text-body neutral-lighten-1--text">

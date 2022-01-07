@@ -16,13 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\i18nResources\en-US.json">
+    <Content Update="wwwroot\i18n\en-US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\i18nResources\languageConfig.json">
+    <Content Update="wwwroot\i18n\languageConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\i18nResources\zh-CN.json">
+    <Content Update="wwwroot\i18n\zh-CN.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\nav\nav.json">

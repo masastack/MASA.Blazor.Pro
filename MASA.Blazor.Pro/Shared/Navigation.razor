@@ -1,6 +1,6 @@
 ﻿@inherits ProCompontentBase
 @inject NavHelper NavHelper
-@inject GlobalConfigs GlobalConfig;
+@inject GlobalConfig GlobalConfig;
 
 <MNavigationDrawer Class="navigation" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
 
@@ -19,7 +19,7 @@
 
         @foreach (var nav in NavHelper.Navs)
         {
-            if (nav.Childs is null)
+            if (nav.Children is null)
             {
                 <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
                     <MListItem Ripple=false Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
@@ -40,14 +40,14 @@
             }
             else
             {
-                <MListGroup Group="@nav.Childs.Select(n => n.Href).ToList()" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
+                <MListGroup Group="@nav.Children.Select(n => n.Href).ToList()" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
                     <ActivatorContent>
                         <MListItemContent>
                             <div style="margin-left:6.5px;" class="text-truncate white-space:nowrap">@T(nav.Title)</div>
                         </MListItemContent>
                     </ActivatorContent>
                     <ChildContent>
-                        @foreach (var navChild in nav.Childs)
+                        @foreach (var navChild in nav.Children)
                         {
                             <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
                                 <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">

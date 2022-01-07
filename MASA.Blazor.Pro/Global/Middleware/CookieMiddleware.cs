@@ -9,7 +9,7 @@ public class CookieMiddleware
         _next = next;
     }
 
-    public async Task InvokeAsync(HttpContext context, GlobalConfigs globalConfig)
+    public async Task InvokeAsync(HttpContext context, GlobalConfig globalConfig)
     {
         var cookies = context.Request.Cookies;
         globalConfig.Initialization(cookies);
@@ -17,4 +17,3 @@ public class CookieMiddleware
         await _next(context);
     }
 }
-
