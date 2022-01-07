@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿<p align="center">
+﻿﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -23,15 +23,14 @@ English| [简体中文](./README.zh-CN.md)
 ## Templates
 
 ```
-- Dashboards
+- Dashboard
   - eCommerce
-  - Analytics
-- Apps
+- App
   - eCommerce
   - Todo
   - Invoice
   - User
-- Pages
+- Page
   - Login
   - Register
   - Forgot Password
@@ -42,6 +41,39 @@ English| [简体中文](./README.zh-CN.md)
 ```
 
 # Use
+
+* [CLI](#CLI)
+* [Existing Project](#Existing Project)
+
+
+
+### CLI
+
+**Install Template**
+
+```c#
+dotnet new --install MASA.Template
+```
+
+**Create Project**
+
+* Blazor Server
+
+```c#
+dotnet new masabp -o MASA.Test
+```
+
+* Blazor Server + RCL(Razor class libraries)
+
+```c#
+dotnet new masabp -rcl -o MASA.Test
+```
+
+![masabp](D:\Project\MASA\BlazorComponent\MASA.Blazor.Pro\imgs\masabp.gif)
+
+
+
+### Existing Project
 
 Introduce styles in `wwwroot/index.html`(WebAssembly) or `Pages/_Host.cshtml`(Server):
 

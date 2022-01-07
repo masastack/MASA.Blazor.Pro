@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿<p align="center">
+﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -23,15 +23,14 @@
 ## 模板
 
 ```
-- Dashboards
-  - 商务报表
-  - 分析报表
-- Apps
+- Dashboard
+  - 电商报表
+- App
   - 商城
   - 工作事项
   - 发票
   - 用户
-- Pages
+- Page
   - 登录
   - 注册
   - 忘记密码
@@ -42,6 +41,37 @@
 ```
 
 ## 使用
+
+* [CLI](#CLI)
+* [现有项目](#现有项目)
+
+### CLI
+
+**安装模板**
+
+```c#
+dotnet new --install MASA.Template
+```
+
+**创建项目**
+
+* Blazor Server
+
+```c#
+dotnet new masabp -o MASA.Test
+```
+
+* Blazor Server + RCL(Razor class libraries)
+
+```c#
+dotnet new masabp -rcl -o MASA.Test
+```
+
+![masabp](.\imgs\masabp.gif)
+
+
+
+### 现有项目
 
 - 在 `wwwroot/index.html`(WebAssembly) 或 `Pages/_Host.cshtml`(Server) 中引入样式:
 
