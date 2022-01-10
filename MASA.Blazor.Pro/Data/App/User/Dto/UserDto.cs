@@ -20,10 +20,10 @@ public class UserDto : IComparable
         }
     }
 
-    public string Status { get; set; } = "Pending";
+    public string Status { get; set; }
 
     [Required]
-    public string Role { get; set; } = "Subscriber";
+    public string Role { get; set; }
 
     [Required]
     public string? Plan { get; set; }
@@ -43,15 +43,15 @@ public class UserDto : IComparable
 
     public string? Email { get; set; }
 
-    public DateOnly BirthDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+    public DateOnly BirthDate { get; set; }
 
-    public string? Mobile { get; set; } = "(895) 401-4255";
+    public string Mobile { get; set; } 
 
     public string? Website { get; set; }
 
     public string? Language { get; set; }
 
-    public string Gender { get; set; } = "Male";
+    public string Gender { get; set; }
 
     public string? ContactOptions { get; set; }
 
@@ -81,26 +81,23 @@ public class UserDto : IComparable
 
     internal string Color { get; }
 
-    public UserDto()
+    public UserDto(string status,string role,DateOnly birthDate, string mobile,string gender,List<PermissionDto> permissions)
     {
         Id = Guid.NewGuid().ToString();
-        Random _ran = new Random();
+        Status = status;
+        Role = role;
+        BirthDate = birthDate;
+        Mobile = mobile;
+        Gender = gender;
+        Permissions=permissions;
 
         List<string> _colors = new List<string>
         {
             "error", "pry", "remind", "info", "sample-green"
         };
+        Random _ran = new Random();
         int index = _ran.Next(0, 5);
         Color = _colors[index];
-
-        Permissions = new List<PermissionDto>()
-        {
-            new PermissionDto() { Module="Admin", Read = true },
-            new PermissionDto() { Module="Staff", Write = true },
-            new PermissionDto() { Module="Author", Read = true, Create = true },
-            new PermissionDto() { Module="Contributor" },
-            new PermissionDto() { Module="User", Delete = true },
-        };
     }
 
     public int CompareTo(object? other)

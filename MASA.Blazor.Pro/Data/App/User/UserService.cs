@@ -4,7 +4,7 @@ public class UserService
 {
     static List<UserDto> _datas = new ()
     {
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -17,7 +17,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k",
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "pdurber1c",
             FullName = "Paulie Durber",
             Email = "pdurber1c@gov.uk",
@@ -30,7 +30,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "owind1b",
             FullName = "Onfre Wind",
             Email = "bkrabbe1d@home.pl",
@@ -43,7 +43,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "kcourtliff1a",
             FullName = "Karena Courtliff",
             Email = "kcourtliff1a@bbc.co.uk",
@@ -56,7 +56,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "soffner19",
             FullName = "Saunder Offner",
             Email = "soffner19@mac.com",
@@ -69,7 +69,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "cperot18",
             FullName = "Corrie Perot",
             Email = "cperot18@goo.ne.jp",
@@ -82,7 +82,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "vkoschek17",
             FullName = "Vladamir Koschek",
             Email = "vkoschek17@abc.net.au",
@@ -95,7 +95,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "mmcnirlan16",
             FullName = "Micaela McNirlan",
             Email = "bkrabbe1d@home.pl",
@@ -108,7 +108,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "brossiter15",
             FullName = "Benedetto Rossiter",
             Email = "brossiter15@craigslist.org",
@@ -121,7 +121,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "ebaldetti14",
             FullName = "Edwina Baldetti",
             Email = "ebaldetti14@theguardian.com",
@@ -134,7 +134,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "fdesporte13",
             FullName = "Florenza Desporte",
             Email = "fdesporte13@omniture.com",
@@ -147,7 +147,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "twidmore12",
             FullName = "Tyne Widmore",
             Email = "twidmore12@bravesites.com",
@@ -160,7 +160,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "mpiccard11",
             FullName = "Moritz Piccard",
             Email = "mpiccard11@vimeo.com",
@@ -173,7 +173,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "shebblethwaite10",
             FullName = "Skip Hebblethwaite",
             Email = "shebblethwaite10@arizona.edu",
@@ -186,7 +186,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "brosebothamz",
             FullName = "Bradan Rosebotham",
             Email = "brosebothamz@tripadvisor.com",
@@ -199,7 +199,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "smacgilfoyley",
             FullName = "Stephen MacGilfoyle",
             Email = "bkrabbe1d@home.pl",
@@ -212,7 +212,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "ofibbensx",
             FullName = "Ophelie Fibbens",
             Email = "ofibbensx@booking.com",
@@ -225,7 +225,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -238,7 +238,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -251,7 +251,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -264,7 +264,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -277,7 +277,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -290,7 +290,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -303,7 +303,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -316,7 +316,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -329,7 +329,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -342,7 +342,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -355,7 +355,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -368,7 +368,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -381,7 +381,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -394,7 +394,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -407,7 +407,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -420,7 +420,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -433,7 +433,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -446,7 +446,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -459,7 +459,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -472,7 +472,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -485,7 +485,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -498,7 +498,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -511,7 +511,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -524,7 +524,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -537,7 +537,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -550,7 +550,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -563,7 +563,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -576,7 +576,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -589,7 +589,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -602,7 +602,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -615,7 +615,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -628,7 +628,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -641,7 +641,7 @@ public class UserService
             Profit="$99.87k",
             Sales ="23.3k"
         },
-        new UserDto() {
+        new UserDto("Pending","Subscriber",DateOnly.FromDateTime(DateTime.Now),"(895) 401-4255","Male",GetPermissionsList()) {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
@@ -661,6 +661,15 @@ public class UserService
     public static List<string> GetRoleList() => new List<string>
     {
         "Admin", "Author", "Editor", "Maintainer", "Subscriber",
+    };
+
+    public static Dictionary<string, string> GetRoleIconMap() => new ()
+    {
+        ["Editor"] = "mdi-pencil,info",
+        ["Subscriber"] = "mdi-account,pry",
+        ["Admin"] = "mdi-account-edit,error",
+        ["Maintainer"] = "mdi-database,sample-green",
+        ["Author"] = "mdi-cog,remind",
     };
 
     public static List<string> GetPlanList() => new List<string>
@@ -686,5 +695,7 @@ public class UserService
         new PermissionDto() { Module="Contributor" },
         new PermissionDto() { Module="User", Delete = true },
     };
+
+
 }
 

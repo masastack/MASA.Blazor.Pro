@@ -1,6 +1,8 @@
 ﻿@inherits ProCompontentBase
 @inject NavHelper NavHelper
 @inject GlobalConfig GlobalConfig;
+@inject GlobalConfigChangedEvent GlobalConfigChangedEvent
+@implements IDisposable
 
 <MNavigationDrawer Class="navigation" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
 
@@ -78,8 +80,13 @@
 </MButton>
 
 @code {
-    protected override bool ShouldRender()
+    protected override void OnInitialized()
     {
-        return base.ShouldRender();
+        GlobalConfigChangedEvent.NavigationStateHasChanged += base.StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        GlobalConfigChangedEvent.NavigationStateHasChanged -= base.StateHasChanged;
     }
 }

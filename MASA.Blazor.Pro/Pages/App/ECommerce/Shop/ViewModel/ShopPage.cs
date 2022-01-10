@@ -1,12 +1,7 @@
-﻿namespace MASA.Blazor.Pro.Pages;
+﻿namespace MASA.Blazor.Pro.Pages.App.ECommerce.Shop;
 
 public class ShopPage
 {
-    public ShopPage(List<GoodsDto> datas)
-    {
-        Datas = datas;
-    }
-
     public List<GoodsDto> Datas { get; set; }
 
     private IEnumerable<GoodsDto> GetFilterDatas()
@@ -34,17 +29,16 @@ public class ShopPage
         {
             datas = datas.Where(d => d.Brand == Brand);
         }
-        if (SortType is not null)
+
+        if (SortType == SortType.Lowest)
         {
-            if (SortType == "Lowest")
-            {
-                datas = datas.OrderBy(d => d.Price);
-            }
-            else if (SortType == "Highest")
-            {
-                datas = datas.OrderByDescending(d => d.Price);
-            }
+            datas = datas.OrderBy(d => d.Price);
         }
+        else if (SortType == SortType.Highest)
+        {
+            datas = datas.OrderByDescending(d => d.Price);
+        }
+
         if (Search is not null)
         {
             datas = datas.Where(d => d.Name.ToUpper().Contains(Search.ToUpper()));
@@ -74,13 +68,34 @@ public class ShopPage
 
     public string? Brand { get; set; }
 
-    public StringNumber SortType { get; set; } = "Featured";
+    SortType SortType { get; set; }
+
+    public StringNumber SortTypeLable
+    {
+        get => SortType.ToString();
+        set { SortType = (SortType)Enum.Parse(typeof(SortType), value.ToString()); }
+    }
 
     public string? Search { get; set; }
+
+    public ShopPage(List<GoodsDto> datas)
+    {
+        Datas = datas;
+    }
 
     public GoodsDto GetGoods(string? id)
     {
         return Datas.FirstOrDefault(a => a.Id.ToString() == id) ?? Datas.First();
     }
 }
+
+public enum SortType
+{
+    Featured,
+    Lowest,
+    Highest
+}
+
+
+
 

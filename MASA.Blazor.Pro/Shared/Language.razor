@@ -1,5 +1,6 @@
 ﻿@inject GlobalConfig GlobalConfig;
 @inject I18n I18n
+@inject GlobalConfigChangedEvent GlobalConfigChangedEvent
 
 <MMenu OffsetY Bottom>
     <ActivatorContent>
@@ -12,7 +13,7 @@
             <MListItemGroup ActiveClass="primary" Value="GlobalConfig.I18nConfig?.Language">
                 @foreach (var (language, map) in I18n.ToDictionary())
                 {
-                    <MListItem OnClick="async()=> await OnLanguageChange(language)" Value="(StringNumber)language">
+                    <MListItem OnClick="()=> OnLanguageChange(language)" Value="(StringNumber)language">
                         <ItemContent>
                             <MListItemContent>
                                 <span Class="@(context.Active?"white--text":"neutral-lighten-4--text") text-btn">
@@ -28,14 +29,10 @@
 </MMenu>
 
 @code {
-
-    [Parameter]
-    public EventCallback Onchange { get; set; }
-
-    async Task OnLanguageChange(string language)
+    void OnLanguageChange(string language)
     {
         GlobalConfig.I18nConfig!.Language = language;
         I18n.SetLang(language);
-        await Onchange.InvokeAsync();
+        GlobalConfigChangedEvent.InvokeNavigationStateHasChanged();
     }
 }

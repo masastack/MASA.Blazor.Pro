@@ -2,14 +2,7 @@
 
 public partial class TodoList
 {
-    private readonly Dictionary<string, string> _chipTextColor = new()
-    {
-        { "Team", "pry" },
-        { "Low", "sample-green" },
-        { "Medium", "remind" },
-        { "High", "error" },
-        { "Update", "info" },
-    };
+    private readonly Dictionary<string, string> _tagColorMap = TodoService.GetTagColorMap();
     private readonly string[] _avas = TodoService.GetAvatars();
 
     private TodoDto _selectItem = new();
@@ -26,18 +19,7 @@ public partial class TodoList
         set
         {
             _filterText = value;
-            _thisList = _filterText switch
-            {
-                "important" => _dataList.Where(item => item.IsImportant && !item.IsDeleted).ToList(),
-                "completed" => _dataList.Where(item => item.IsCompleted && !item.IsDeleted).ToList(),
-                "deleted" => _dataList.Where(item => item.IsDeleted).ToList(),
-                "team" => _dataList.Where(item => item.Tag.Contains("Team")).ToList(),
-                "low" => _dataList.Where(item => item.Tag.Contains("Low")).ToList(),
-                "medium" => _dataList.Where(item => item.Tag.Contains("Medium")).ToList(),
-                "high" => _dataList.Where(item => item.Tag.Contains("High")).ToList(),
-                "update" => _dataList.Where(item => item.Tag.Contains("Update")).ToList(),
-                _ => _dataList.Where(item => !item.IsDeleted).ToList(),
-            };
+            _thisList = TodoService.GetFilterList(_filterText);
         }
     }
 

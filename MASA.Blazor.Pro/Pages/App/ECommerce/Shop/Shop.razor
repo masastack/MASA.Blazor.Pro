@@ -61,16 +61,16 @@
                 <MMenu OffsetY OpenOnHover>
                     <ActivatorContent>
                         <div @attributes="@context.Attrs">
-                            <span class="text-btn neutral-lighten-4--text">@_shopData.SortType</span>
+                            <span class="text-btn neutral-lighten-4--text">@_shopData.SortTypeLable</span>
                             <MIcon Color="neutral-lighten-4">mdi-menu-down</MIcon>
                         </div>
                     </ActivatorContent>
                     <ChildContent>
                         <MList Class="py-0">
-                            <MListItemGroup @bind-Value="_shopData.SortType" ActiveClass="primary white--text">
-                                <MListItem Value="@("Featured")">Featured </MListItem>
-                                <MListItem Value="@("Lowest")"> Lowest </MListItem>
-                                <MListItem Value="@("Highest")"> Highest </MListItem>
+                            <MListItemGroup @bind-Value="_shopData.SortTypeLable" ActiveClass="primary white--text">
+                                <MListItem Value="@(SortType.Featured.ToString())">Featured </MListItem>
+                                <MListItem Value="@(SortType.Lowest.ToString())"> Lowest </MListItem>
+                                <MListItem Value="@(SortType.Highest.ToString())"> Highest </MListItem>
                             </MListItemGroup>
                         </MList>
                     </ChildContent>

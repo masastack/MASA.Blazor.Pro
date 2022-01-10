@@ -28,7 +28,7 @@
                 <h1 class="black--text mt-3">92.6k</h1>
                 <h3 class="grey--text">Subscribers Gained</h3>
             </MCardText>
-            <MECharts Class="max-width mt-n4" Height=100 Option=_chart1></MECharts>
+            <MECharts Class="max-width mt-n4" Height=100 Option=_subscribersChart></MECharts>
         </MCard>
     </MCol>
     <MCol Md=3 Sm=6>
@@ -42,7 +42,7 @@
                 <h1 class="black--text mt-3">38.4k</h1>
                 <h3 class="grey--text">Orders Received</h3>
             </MCardText>
-            <MECharts Class="max-width mt-n2" Height=100 Option=_chart2></MECharts>
+            <MECharts Class="max-width mt-n2" Height=100 Option=_ordersChart></MECharts>
         </MCard>
     </MCol>
 </MRow>
@@ -71,13 +71,13 @@
                                 <ChildContent>
                                     <MList>
                                         <MListItemGroup @bind-Value="_lastDate">
-                                            <MListItem Value="@("Last 28 Day")">
+                                            <MListItem Selectable Value="@("Last 28 Day")">
                                                 <MListItemTitle> Last 28 Days </MListItemTitle>
                                             </MListItem>
                                             <MListItem Value="@("Last Month")">
                                                 <MListItemTitle>  Last Month  </MListItemTitle>
                                             </MListItem>
-                                            <MListItem Value="@(" Last Year")">
+                                            <MListItem Value="@("Last Year")">
                                                 <MListItemTitle>  Last Year  </MListItemTitle>
                                             </MListItem>
                                         </MListItemGroup>
@@ -86,7 +86,7 @@
                                 </ChildContent>
                             </MMenu>
                         </div>
-                        <MECharts Class="max-width mt-n2" Height=200 Option=_chart3></MECharts>
+                        <MECharts Class="max-width mt-n2" Height=200 Option=_sessionsChart></MECharts>
                     </MCol>
                 </MRow>
                 <MDivider Class="my-5"></MDivider>
@@ -364,7 +364,7 @@
                     </div>
                 </div>
                 <div>
-                    <MECharts Class="max-width mt-4" Height=300 Option=_chart4></MECharts>
+                    <MECharts Class="max-width mt-4" Height=300 Option=_salesChart></MECharts>
                 </div>
             </MCardText>
         </MCard>
@@ -431,5 +431,5 @@
 </MRow>
 
 <div class="mt-7">
-    <MASA.Blazor.Pro.Shared.InvoiceList />
+    <MASA.Blazor.Pro.Pages.App.Invoice.Components.InvoiceList />
 </div>

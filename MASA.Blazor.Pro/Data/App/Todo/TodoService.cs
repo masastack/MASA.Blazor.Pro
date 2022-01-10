@@ -70,6 +70,22 @@ public class TodoService
 
     public static List<TodoDto> GetList() => _list;
 
+    public static List<TodoDto> GetFilterList(string filter)
+    {
+        return filter switch
+        {
+            "important" => _list.Where(item => item.IsImportant && !item.IsDeleted).ToList(),
+            "completed" => _list.Where(item => item.IsCompleted && !item.IsDeleted).ToList(),
+            "deleted" => _list.Where(item => item.IsDeleted).ToList(),
+            "team" => _list.Where(item => item.Tag.Contains("Team")).ToList(),
+            "low" => _list.Where(item => item.Tag.Contains("Low")).ToList(),
+            "medium" => _list.Where(item => item.Tag.Contains("Medium")).ToList(),
+            "high" => _list.Where(item => item.Tag.Contains("High")).ToList(),
+            "update" => _list.Where(item => item.Tag.Contains("Update")).ToList(),
+            _ => _list.Where(item => !item.IsDeleted).ToList(),
+        };
+    }
+
     public static void Add(TodoDto todoDto) => _list.Insert(0, todoDto);
 
     public static List<SelectData> GetAssigneeList() => new()
@@ -90,6 +106,15 @@ public class TodoService
         new SelectData() { Label = "Medium", Value = "Medium" },
         new SelectData() { Label = "High", Value = "High" },
         new SelectData() { Label = "Update", Value = "Update" }
+    };
+
+    public static Dictionary<string, string> GetTagColorMap() => new()
+    {
+        { "Team", "pry" },
+        { "Low", "sample-green" },
+        { "Medium", "remind" },
+        { "High", "error" },
+        { "Update", "info" },
     };
 
     public static string[] GetAvatars()=> new string[]

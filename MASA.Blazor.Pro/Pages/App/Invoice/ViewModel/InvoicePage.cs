@@ -2,11 +2,6 @@
 
 public class InvoicePage
 {
-    public InvoicePage(List<InvoiceRecordDto> datas)
-    {
-        Datas = datas;
-    }
-
     public List<InvoiceRecordDto> Datas { get; set; }
 
     private IEnumerable<InvoiceRecordDto> GetFilterDatas()
@@ -43,4 +38,9 @@ public class InvoicePage
     public int? State { get; set; }
 
     public string? Search { get; set; }
+
+    public InvoicePage(List<InvoiceRecordDto> datas)
+    {
+        Datas = datas;
+    }
 }

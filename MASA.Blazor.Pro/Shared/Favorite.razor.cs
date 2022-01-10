@@ -2,7 +2,7 @@
 {
     public partial class Favorite
     {
-        List<int> _favoriteMenus = new List<int> { 5, 2, 15 };
+        List<int> _favoriteMenus = FavoriteService.GetDefaultFavoriteMenuList();
 
         protected override void OnInitialized()
         {

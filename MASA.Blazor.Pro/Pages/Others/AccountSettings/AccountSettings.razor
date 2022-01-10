@@ -54,18 +54,18 @@
                     </div>
                     <MRow Class="mt-2">
                         <MCol Md=6 Sm=12>
-                            <MTextField @bind-Value="_userInfo.UserName" Label="Username" Placeholder="Username" Outlined TValue="string" />
+                            <MTextField @bind-Value="_account.UserName" Label="Username" Placeholder="Username" Outlined TValue="string" />
                         </MCol>
                         <MCol Md=6 Sm=12>
-                            <MTextField @bind-Value="_userInfo.Name" Label="Name" Placeholder="Name" Outlined TValue="string" />
+                            <MTextField @bind-Value="_account.Name" Label="Name" Placeholder="Name" Outlined TValue="string" />
                         </MCol>
                     </MRow>
                     <MRow Class="mt-n6">
                         <MCol Md=6 Sm=12>
-                            <MTextField @bind-Value="_userInfo.Email" Label="E-mail" Placeholder="E-mai" Outlined TValue="string" />
+                            <MTextField @bind-Value="_account.Email" Label="E-mail" Placeholder="E-mai" Outlined TValue="string" />
                         </MCol>
                         <MCol Md=6 Sm=12>
-                            <MTextField @bind-Value="_userInfo.Company" Label="Company" Placeholder="Company" Outlined TValue="string" />
+                            <MTextField @bind-Value="_account.Company" Label="Company" Placeholder="Company" Outlined TValue="string" />
                         </MCol>
                     </MRow>
                     <MAlert Color="orange lighten-5" Class="orange--text">
@@ -75,7 +75,7 @@
                     </MAlert>
                     <MItem>
                         <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
-                        <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_userInfo = new UserInfo()"> Reset </MButton>
+                        <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="ResetAccount"> Reset </MButton>
                     </MItem>
                 </MList>
             </MCardTitle>
@@ -109,7 +109,7 @@
                     <MCol Md=6 Sm=12 Class="mt-n6">
                         <MMenu CloseOnContentClick="true" NudgeRight="40" Transition="scale-transition" OffsetY MinWidth="@("auto")">
                             <ActivatorContent>
-                                <MTextField @bind-Value="_information.BirthDate" Label="Birth date"  Outlined Placeholder="Birth date" Readonly @attributes="context.Attrs"></MTextField>
+                                <MTextField @bind-Value="_information.BirthDate" Label="Birth date" Outlined Placeholder="Birth date" Readonly @attributes="context.Attrs"></MTextField>
                             </ActivatorContent>
                             <ChildContent>
                                 <MDatePicker @bind-Value="_information.BirthDate"></MDatePicker>
@@ -117,18 +117,18 @@
                         </MMenu>
                     </MCol>
                     <MCol Md=6 Sm=12 Class="mt-n6">
-                        <MSelect Items=_items ItemValue="u => u.Value" Label="Country" ItemText="u => u.Label" Outlined @bind-Value="_information.Country"></MSelect>
+                        <MSelect Items=_items ItemValue="u => u.Id" Label="Country" ItemText="u => u.Name" Outlined @bind-Value="_information.Country"></MSelect>
                     </MCol>
                     <MCol Md=6 Sm=12 Class="mt-n6">
                         <MTextField @bind-Value="_information.Website" Label="Website" Placeholder="Website address" Outlined TValue="string" />
                     </MCol>
                     <MCol Md=6 Sm=12 Class="mt-n6">
-                        <MTextField @bind-Value="_information.Phone" Label="Phone" Placeholder="Phone Number" Outlined TValue="long?" />
+                        <MTextField @bind-Value="_information.Phone" Label="Phone" Placeholder="Phone Number" Outlined TValue="long" />
                     </MCol>
                 </MRow>
                 <MItem>
                     <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
-                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_information=new Information()"> Reset </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="ResetInformation"> Reset </MButton>
                 </MItem>
             </MCardText>
         </MCard>
@@ -174,11 +174,11 @@
                         <div class="text-subtitle-1">@@johndoe</div>
                         <MButton Icon Color="deep-purple">Disconnect</MButton>
                     </MCol>
-                    <MCol Md=3 Sm=6  Class="text-center">
-                         <div class="text-subtitle-1">Your Facebook</div>
-                          <MButton Color="deep-purple light-5" Outlined Class="white--text mt-5">Connect</MButton>
+                    <MCol Md=3 Sm=6 Class="text-center">
+                        <div class="text-subtitle-1">Your Facebook</div>
+                        <MButton Color="deep-purple light-5" Outlined Class="white--text mt-5">Connect</MButton>
                     </MCol>
-                    <MCol Md=3 Sm=6  Class="text-center">
+                    <MCol Md=3 Sm=6 Class="text-center">
                         <div class="text-subtitle-1">Your Google</div>
                         <MAvatar Class="mt-2 mb-2">
                             <MImage Src="/img/avatar/1.svg"></MImage>
@@ -187,13 +187,13 @@
                         <MButton Icon Color="deep-purple">Disconnect</MButton>
                     </MCol>
                     <MCol Md=3 Sm=6 Class="text-center">
-                         <div class="text-subtitle-1">Your GitHub</div>
-                         <MButton Color="deep-purple light-5" Outlined Class="white--text mt-5">Connect</MButton>
+                        <div class="text-subtitle-1">Your GitHub</div>
+                        <MButton Color="deep-purple light-5" Outlined Class="white--text mt-5">Connect</MButton>
                     </MCol>
                 </MRow>
                 <div Class="mt-5">
                     <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
-                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="()=>_social=new Social()"> Cancel </MButton>
+                    <MButton Outlined Class="ml-2 grey--text font-weight-black" OnClick="ResetSocial"> Cancel </MButton>
                 </div>
             </MCardText>
         </MCard>
@@ -216,30 +216,39 @@
     </MCol>
 </MRow>
 
-
-
 @code {
     private StringNumber _current = 0;
-    private UserInfo _userInfo = new UserInfo();
+    private AccountDto _account = AccountSettingService.GetAccount();
     private bool _show1;
     private bool _show2;
     private bool _show3;
+    private List<CountryDto> _items = AccountSettingService.GetCountryList();
+    private InformationDto _information = AccountSettingService.GetInformation();
+    private SocialDto _social = AccountSettingService.GetSocial();
+
     private string _oldPassword = "";
     private string _newPassword = "";
     private string _retypeNewPassword = "";
-    private List<Item> _items = new()
-    {
-        new Item("USA", "1"),
-        new Item("India", "2"),
-        new Item("Canada", "3"),
-    };
-    private Information _information = new Information();
-    private Social _social = new Social();
 
     private void ResetPassoword()
     {
         _oldPassword = "";
         _newPassword = "";
         _retypeNewPassword = "";
+    }
+
+    private void ResetAccount()
+    {
+        _account = AccountSettingService.GetAccount();
+    }
+
+    private void ResetInformation()
+    {
+        _information = AccountSettingService.GetInformation();
+    }
+
+    private void ResetSocial()
+    {
+        _social = AccountSettingService.GetSocial();
     }
 }

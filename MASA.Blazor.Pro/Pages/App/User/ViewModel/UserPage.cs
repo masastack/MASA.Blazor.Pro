@@ -2,12 +2,6 @@
 
 public class UserPage
 {
-    public UserPage(List<UserDto> datas)
-    {
-        UserDatas = new List<UserDto>();
-        UserDatas.AddRange(datas);
-    }
-
     public List<UserDto> UserDatas { get; set; }
 
     public string? Role { get; set; }
@@ -25,6 +19,12 @@ public class UserPage
     public int PageCount => (int)Math.Ceiling(CurrentCount / (double)PageSize);
 
     public int CurrentCount => GetFilterDatas().Count();
+
+    public UserPage(List<UserDto> datas)
+    {
+        UserDatas = new List<UserDto>();
+        UserDatas.AddRange(datas);
+    }
 
     private IEnumerable<UserDto> GetFilterDatas()
     {

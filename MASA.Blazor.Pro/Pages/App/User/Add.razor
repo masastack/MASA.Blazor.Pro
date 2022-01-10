@@ -25,7 +25,7 @@
 </MNavigationDrawer>
 
 @code {
-    private UserDto _userData = new UserDto();
+    private UserDto _userData = new UserDto("","",DateOnly.FromDateTime(DateTime.Now),"","",UserService.GetPermissionsList());
 
     [Parameter]
     public bool Visible { get; set; }
@@ -38,7 +38,7 @@
 
     protected override void OnParametersSet()
     {
-        _userData = new UserDto();
+        _userData = new UserDto("","",DateOnly.FromDateTime(DateTime.Now),"","",UserService.GetPermissionsList());
     }
 
     private async Task UpdateVisible(bool visible)

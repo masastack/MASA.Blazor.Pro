@@ -30,7 +30,7 @@
                         <h5 class="mt-1">$230k</h5>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart1></MECharts>
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_orderChart></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -45,7 +45,7 @@
                         <h5 class="mt-1">$682.5k</h5>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart2></MECharts>
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_profitChart></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -61,7 +61,7 @@
                         <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
                     </MCol>
                     <MCol Class="block-center">
-                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart3></MECharts>
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_earningsChart></MECharts>
                     </MCol>
                 </MRow>
             </MCardText>
@@ -75,7 +75,7 @@
             <MCol Md=8 Sm=12>
                 <MCard Class="max-height" Style="border-radius:20px 0px 0px 20px !important;">
                     <MCardText>
-                        <MECharts Height=326 Width="@("100%")" @key="GetEchartKey()" Option=_chart4></MECharts>
+                        <MECharts Height=326 Width="@("100%")" @key="GetEchartKey()" Option=_revenueReportChart></MECharts>
                     </MCardText>
                 </MCard>
             </MCol>
@@ -96,7 +96,7 @@
                             <span>Budget:56,800</span>
                         </div>
                         <div class="mt-5" style="height:200px;">
-                            <MECharts Height=200 Width="@("100%")" @key="GetEchartKey()" Option=_chart5></MECharts>
+                            <MECharts Height=200 Width="@("100%")" @key="GetEchartKey()" Option=_budgetChart></MECharts>
                         </div>
                         <MButton Color="primary" Height=30 Class="white--text text-btn rounded-pill" Style="bottom:24px;right:24px;position:absolute">View all</MButton>
                     </MCardText>
