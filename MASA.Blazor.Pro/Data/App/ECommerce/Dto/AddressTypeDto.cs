@@ -1,11 +1,11 @@
-﻿namespace MASA.Blazor.Pro.Pages;
+﻿namespace MASA.Blazor.Pro.Data.App.ECommerce.Dto;
 
-public class AddressType
+public class AddressTypeDto
 {
     public string Label { get; set; }
     public string Value { get; set; }
 
-    public AddressType(string label, string value)
+    public AddressTypeDto(string label, string value)
     {
         Label = label;
         Value = value;

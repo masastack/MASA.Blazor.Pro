@@ -10,8 +10,6 @@
         [Inject]
         public NavigationManager Nav { get; set; } = default!;
 
-        public override string Name => "App-eCommerce-Shop";
-
         protected override void OnInitialized()
         {
             _shopData.MultiRange = _multiRanges[0];

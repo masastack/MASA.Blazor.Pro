@@ -332,8 +332,6 @@
 
         private StringNumber _lastDate = "Last 28 Days";
 
-        public override string Name => nameof(Analytics);
-
         private static Dictionary<string, object> MerginAttributes(Dictionary<string, object> attributes, Dictionary<string, object> otherAttributes)
         {
             foreach (var (key, value) in otherAttributes)

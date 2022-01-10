@@ -15,19 +15,23 @@
         private string _payment = "";
         private List<string> _payments = new()
         {
-            "Bank Account","PayPal","UPI Transfer"
+            "Bank Account",
+            "PayPal",
+            "UPI Transfer"
         };
         private readonly List<int> _taxs = new()
         {
-            0,1,10,14,18
+            0,
+            1,
+            10,
+            14,
+            18
         };
-        private List<BillDto> _bills = new ()
+        private List<BillDto> _bills = new()
         {
             new BillDto()
         };
         private string _note = "It was a pleasure working with you and your team. We hope you will Favorite us in mind for future freelance projects. Thank You!";
-
-        public override string Name { get; } = "Apps-Invoice";
 
         [Parameter]
         public int? Id { get; set; }

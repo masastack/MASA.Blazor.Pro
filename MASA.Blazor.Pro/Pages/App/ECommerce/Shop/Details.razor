@@ -109,12 +109,10 @@
 </MRow>
 
 @code {
-    public override string Name => "App-ECommerce-Details";
     private ShopPage _shopPage = new ShopPage(ShopService.GetGoodsList());
     private GoodsDto _goods => _shopPage.GetGoods(Id);
     private List<GoodsDto> _relatedProducts => ShopService.GetRelatedGoodsList();
 
     [Parameter]
     public string? Id { get; set; }
-
 }

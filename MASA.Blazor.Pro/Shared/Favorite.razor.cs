@@ -1,6 +1,4 @@
-﻿using MASA.Blazor.Pro.Global;
-
-namespace MASA.Blazor.Pro.Shared
+﻿namespace MASA.Blazor.Pro.Shared
 {
     public partial class Favorite
     {
@@ -65,8 +63,6 @@ namespace MASA.Blazor.Pro.Shared
                 return $"{T(parent)} {T(string.Join(' ', arr))}";
             }
         }
-
-        public override string Name => nameof(Favorite);
 
         public void Dispose()
         {

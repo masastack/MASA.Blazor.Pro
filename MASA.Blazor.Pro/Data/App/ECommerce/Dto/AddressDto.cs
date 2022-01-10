@@ -1,6 +1,6 @@
-﻿namespace MASA.Blazor.Pro.Pages;
+﻿namespace MASA.Blazor.Pro.Data.App.ECommerce.Dto;
 
-public class AddressModel
+public class AddressDto
 {
     [Required]
     public string FullName { get; set; } = default!;

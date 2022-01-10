@@ -224,13 +224,10 @@
         new (){ Text= "DELETE", Sortable= false, Value= nameof(PermissionDto.Delete),Align="center"}
     };
     private List<PermissionDto> _permissions = UserService.GetPermissionsList();
-
-    public override string Name { get; } = "User-View";
+    private UserDto? _userData;
 
     [Parameter]
     public string? Id { get; set; }
-
-    private UserDto? _userData;
 
     [AllowNull]
     public UserDto UserData

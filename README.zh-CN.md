@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
+﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -118,6 +118,13 @@ builder.Services.AddMasaBlazor(builder =>
     );
 });
 ```
+## 效果展示
+
+|效果图|效果图|
+| :-----------: | :-----------: |
+|![dashboard](./imgs/dashboard.png)|![basket](./imgs/basket.png)|
+|![edit](./imgs/edit.png)|![view](./imgs/view.png)|
+|![login](./imgs/login.png)|![todo](./imgs/todo.png)|
 
 ## 相关项目
 

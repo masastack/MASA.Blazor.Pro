@@ -35,8 +35,6 @@
 
 
 @code {
-    public override string Name { get; } = "Breadcrumb";
-
     protected override void OnInitialized()
     {
         GlobalConfigChangedEvent.OnGlobalConfigChanged += base.StateHasChanged;

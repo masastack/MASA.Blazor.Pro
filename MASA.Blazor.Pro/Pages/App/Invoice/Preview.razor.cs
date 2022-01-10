@@ -6,8 +6,6 @@
         private bool _showAddPayment;
         private InvoiceRecordDto? _invoiceRecord;
 
-        public override string Name { get; } = "invoice_preview";
-
         [Parameter]
         public int? Id { get; set; }
 

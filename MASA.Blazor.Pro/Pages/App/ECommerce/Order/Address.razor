@@ -35,7 +35,7 @@
                             <MSelect @bind-Value="@_address.AddressType"
                                      Label="Address Type"
                                      Outlined
-                                     Items="@_items"
+                                     Items="@_addressTypes"
                                      ItemText="u => u.Label"
                                      ItemValue="u => u.Value">
                             </MSelect>
@@ -44,7 +44,7 @@
                 </MForm>
             </MCardText>
             <MCardActions class="d-flex justify-center mb-10">
-                <MButton Depressed Large Width="340" class="primary text-capitalize rounded-pill" OnClick="AddressForm">
+                <MButton Depressed Large Width="340" class="primary text-capitalize rounded-pill" OnClick="AddressSubmit">
                     Save and Deliver Here
                 </MButton>
             </MCardActions>
@@ -75,7 +75,7 @@
         Saved successfully
     </ChildContent>
     <ActionContent>
-        <MButton Color="pink" Text OnClick="()=>{_show = false;}">
+        <MButton Color="pink" Text OnClick="()=>{ _show = false; }">
             Close
         </MButton>
     </ActionContent>
@@ -84,22 +84,22 @@
 @code {
     private bool _valid = true, _show = false;
     private MForm _form = default!;
-    private AddressModel _address = new();
-    private List<AddressType> _items = new()
-    {
-        new AddressType("Home", "1"),
-        new AddressType("Work", "2")
-    };
+    private AddressDto _address = new();
+    private List<AddressTypeDto> _addressTypes = BasketService.GetAddressTypes();
+
     [Parameter]
     public StringNumber Step { get; set; } = default!;
+
     [Parameter]
     public EventCallback<StringNumber> StepChanged { get; set; }
+
     [Parameter]
     public bool Disabled { get; set; }
+
     [Parameter]
     public EventCallback<bool> DisabledChanged { get; set; }
 
-    private async void AddressForm()
+    private async void AddressSubmit()
     {
         await _form.ValidateAsync();
         if (_valid)

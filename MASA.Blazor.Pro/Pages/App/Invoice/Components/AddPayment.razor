@@ -52,10 +52,7 @@
 @code {
     private bool _dateMenu;
     private string _paymentMethod = "";
-    private List<string> _paymentMethods = new List<string>
-    {
-        "Cash","Bank Transfer","Debit","Credit","Paypal"
-    };
+    private List<string> _paymentMethods = InvoiceService.GetpaymentMethodList();
 
     [Parameter]
     public bool Show { get; set; } = false;

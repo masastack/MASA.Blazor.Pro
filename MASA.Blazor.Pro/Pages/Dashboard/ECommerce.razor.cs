@@ -355,8 +355,6 @@
         };
         private List<CompanyDto> _companyList = ECommerceService.GetCompanyList();
 
-        public override string Name => nameof(ECommerce);
-
         [Inject]
         public MasaBlazor Masa { get; set; } = default!;
 
