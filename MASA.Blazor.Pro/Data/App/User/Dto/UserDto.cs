@@ -1,6 +1,6 @@
 ﻿namespace MASA.Blazor.Pro.Data.App.User.Dto;
 
-public class UserDto
+public class UserDto : IComparable
 {
     public string Id { get; set; }
 
@@ -101,6 +101,15 @@ public class UserDto
             new PermissionDto() { Module="Contributor" },
             new PermissionDto() { Module="User", Delete = true },
         };
+    }
+
+    public int CompareTo(object? other)
+    {
+        if (other is UserDto user)
+        {
+            return FullName.CompareTo(user.FullName);
+        }
+        else return 1;   
     }
 
     public string GetFullNameInitials()

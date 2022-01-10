@@ -211,7 +211,7 @@
                 Right = "5px",
                 TextStyle = new
                 {
-                    Color = "#707EAE",
+                    Color = "#485585",
                 }
             },
             XAxis = new
@@ -222,7 +222,7 @@
                     Show = false,
                     LineStyle = new
                     {
-                        Color = "#707EAE"
+                        Color = "#485585"
                     }
                 },
                 axisTick = new
@@ -235,7 +235,7 @@
                 },
                 TextStyle = new
                 {
-                    Color = "#707EAE"
+                    Color = "#485585"
                 }
             },
             YAxis = new
@@ -245,7 +245,7 @@
                     Show = false,
                     LineStyle = new
                     {
-                        Color = "#707EAE"
+                        Color = "#485585"
                     }
                 },
                 axisTick = new

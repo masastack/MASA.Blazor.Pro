@@ -1,8 +1,8 @@
-﻿namespace MASA.Blazor.Pro.Pages;
+﻿namespace MASA.Blazor.Pro.Data.App.ECommerce.Dto;
 
-public class MultiRange
+public class MultiRangeDto
 {
-    public MultiRange(RangeType rangeType, string text, double leftNumber, double rightNumber = 0)
+    public MultiRangeDto(RangeType rangeType, string text, double leftNumber, double rightNumber = 0)
     {
         RangeType = rangeType;
         Text = text;

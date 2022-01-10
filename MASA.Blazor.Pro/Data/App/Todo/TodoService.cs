@@ -94,11 +94,11 @@ public class TodoService
 
     public static string[] GetAvatars()=> new string[]
     {
-        "/img/avatar/3-small.png",
-        "/img/avatar/11-small.png",
-        "/img/avatar/avatar-s-6.jpg",
-        "/img/avatar/avatar-s-7.jpg",
-        "/img/avatar/avatar-s-8.jpg",
-        "/img/avatar/avatar-s-9.jpg"
+        "/img/avatar/1.svg",
+        "/img/avatar/8.svg",
+        "/img/avatar/12.svg",
+        "/img/avatar/10.svg",
+        "/img/avatar/11.svg",
+        "/img/avatar/9.svg"
     };
 }

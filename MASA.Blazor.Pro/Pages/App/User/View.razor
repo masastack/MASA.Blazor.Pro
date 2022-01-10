@@ -19,7 +19,7 @@
                             else
                             {
                                 <MAvatar Size="120">
-                                    <MImage Src="@UserData.HeadImg" />
+                                    <MImage Contain Src="@UserData.HeadImg" />
                                 </MAvatar>
                             }
                             <h5 class="mt-1">@UserData.FullName</h5>
@@ -176,8 +176,8 @@
                                 Project meeting with john @@10:15am.
                             </span>
                             <MListItem class="grow mt-4 pa-0">
-                                <MListItemAvatar Color="deep-purple lighten-1" class="pa-0">
-                                    <MImage Src="/img/avatar/avatar-s-7.jpg">
+                                <MListItemAvatar class="pa-0">
+                                    <MImage Src="/img/avatar/10.svg">
                                     </MImage>
                                 </MListItemAvatar>
                                 <MListItemContent>
@@ -212,7 +212,7 @@
     </MCol>
 </MRow>
 
-<MASA.Blazor.Pro.Shared.InvoiceList />
+<MASA.Blazor.Pro.Pages.App.Invoice.Components.InvoiceList />
 
 @code {
     private List<DataTableHeader<PermissionDto>> _headers = new List<DataTableHeader<PermissionDto>>

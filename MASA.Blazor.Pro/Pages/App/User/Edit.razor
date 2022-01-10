@@ -4,7 +4,7 @@
 
 <MCard>
     <MCardText Class="px-6 pb-6">
-        <MTabs @bind-Value="tab" HideSlider Height=10 Color="sample-green">     
+        <MTabs @bind-Value="tab" HideSlider Height=10 Color="sample-green">
             <MTab Value="@("Account")">
                 <MIcon Size=16 Color="@(tab=="Account"?"sample-green":"fill")">mdi-circle</MIcon>
                 <span class="ml-2 text-btn @(tab=="Account"?"neutral--text":"")">Account</span>
@@ -42,13 +42,13 @@
                 </div>
                 <MRow Class="my-3">
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.UserName" Color="primary" Label="UserName" HideDetails="@("auto")" Outlined/>
+                        <MTextField @bind-Value="UserData.UserName" Color="primary" Label="UserName" HideDetails="@("auto")" Outlined />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.FullName" Color="primary" Label="FullName" HideDetails="@("auto")" Outlined/>
+                        <MTextField @bind-Value="UserData.FullName" Color="primary" Label="FullName" HideDetails="@("auto")" Outlined />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Email" Color="primary" Label="Email" HideDetails="@("auto")" Outlined/>
+                        <MTextField @bind-Value="UserData.Email" Color="primary" Label="Email" HideDetails="@("auto")" Outlined />
                     </MCol>
                 </MRow>
                 <MRow>
@@ -56,7 +56,7 @@
                         <MSelect @bind-Value="UserData.Status"
                                  Color="primary"
                                  HideDetails="@("auto")"
-                                 Outlined                                
+                                 Outlined
                                  Items="@UserService.GetStatusList()"
                                  ItemText="u => u"
                                  ItemValue="u => u"
@@ -67,7 +67,7 @@
                         <MSelect @bind-Value="UserData.Role"
                                  Color="primary"
                                  HideDetails="@("auto")"
-                                 Outlined                                 
+                                 Outlined
                                  Items="@UserService.GetRoleList()"
                                  ItemText="u => u"
                                  ItemValue="u => u"
@@ -85,7 +85,7 @@
                 </div>
                 <MDataTable HideDefaultFooter Headers="_headers" TItem="PermissionDto" Items="UserData.Permissions" ItemKey="r=>r.Module" Class="table-header-fill table-border-solid">
                     <HeaderColContent Context="header">
-                         <span class="text-body neutral-lighten-1--text">@header.Text</span>
+                        <span class="text-body neutral-lighten-1--text">@header.Text</span>
                     </HeaderColContent>
 
                     <ItemColContent>
@@ -132,10 +132,10 @@
                         </MMenu>
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Mobile" Label="Mobile" Color="primary" HideDetails="@("auto")" Outlined/>
+                        <MTextField @bind-Value="UserData.Mobile" Label="Mobile" Color="primary" HideDetails="@("auto")" Outlined />
                     </MCol>
                     <MCol Md=4 Sm=12>
-                        <MTextField @bind-Value="UserData.Website" Label="Website" Color="primary" HideDetails="@("auto")" Outlined/>
+                        <MTextField @bind-Value="UserData.Website" Label="Website" Color="primary" HideDetails="@("auto")" Outlined />
                     </MCol>
                 </MRow>
 
@@ -170,28 +170,28 @@
                 </MRow>
 
                 <div class="mt-12">
-                    <MIcon Size=20  Color="sample-green" Class="mt-n1">mdi-map-marker-outline</MIcon>
+                    <MIcon Size=20 Color="sample-green" Class="mt-n1">mdi-map-marker-outline</MIcon>
                     <span class="text-h6">Address</span>
                     <MRow Class="mt-3">
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Address1" Label="Address Line 1" Color="primary" HideDetails="@("auto")" Outlined/>
+                            <MTextField @bind-Value="UserData.Address1" Label="Address Line 1" Color="primary" HideDetails="@("auto")" Outlined />
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Address2" Label="Address Line 2" Color="primary" HideDetails="@("auto")" Outlined/>
+                            <MTextField @bind-Value="UserData.Address2" Label="Address Line 2" Color="primary" HideDetails="@("auto")" Outlined />
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Address3" Label="Address Line 3" Color="primary" HideDetails="@("auto")" Outlined/>
+                            <MTextField @bind-Value="UserData.Address3" Label="Address Line 3" Color="primary" HideDetails="@("auto")" Outlined />
                         </MCol>
                     </MRow>
                     <MRow Class="mt-3">
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.City" Label="City" Color="primary" HideDetails="@("auto")" Outlined/>
+                            <MTextField @bind-Value="UserData.City" Label="City" Color="primary" HideDetails="@("auto")" Outlined />
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.State" Label="State" Color="primary" HideDetails="@("auto")" Outlined/>
+                            <MTextField @bind-Value="UserData.State" Label="State" Color="primary" HideDetails="@("auto")" Outlined />
                         </MCol>
                         <MCol Md=4 Sm=12>
-                            <MTextField @bind-Value="UserData.Country" Label="Country" Color="primary" HideDetails="@("auto")" Outlined/>
+                            <MTextField @bind-Value="UserData.Country" Label="Country" Color="primary" HideDetails="@("auto")" Outlined />
                         </MCol>
                     </MRow>
                 </div>
@@ -224,7 +224,7 @@
         </MTabsItems>
 
         <div class="mt-10 d-flex">
-            <MSpacer></MSpacer>            
+            <MSpacer></MSpacer>
             <MButton MinWidth=80 Height=40 Outlined Class="text-btn rounded-pill"> Reset </MButton>
             <MButton MinWidth=80 Height=40 Color="primary" Class="ml-6 rounded-pill"> Save Changes </MButton>
         </div>
@@ -246,7 +246,7 @@
     {
         get
         {
-            return _userData ?? UserService.GetList().First();
+            return _userData ?? (_userData = UserService.GetList().First());
         }
         set
         {

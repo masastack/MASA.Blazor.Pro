@@ -43,7 +43,7 @@
     /* identical to box height */
     letter-spacing: -0.03125em !important;
     /* default color */
-    color: #2B3674;
+    color: #323D6F;
 }
 
 .h3, .text-h3, h3 {
@@ -54,7 +54,7 @@
     font-size: 3rem !important;
     line-height: 3.5rem !important;
     /* default color */
-    color: #2B3674;
+    color: #323D6F;
 }
 
 .h4, .text-h4, h4 {
@@ -67,7 +67,7 @@
     /* identical to box height */
     letter-spacing: 0.02em !important;
     /* default color */
-    color: #2B3674;
+    color: #323D6F;
 }
 
 .h5, .text-h5, h5 {
@@ -105,7 +105,7 @@
     /* identical to box height */
     letter-spacing: 0.01em !important;
     /* default color */
-    color: #2B3674;
+    color: #323D6F;
 }
 
 .text-subtitle {
@@ -131,7 +131,7 @@
     /* identical to box height */
     letter-spacing: 0.00625rem !important;
     /* default color */
-    color: #2B3674;
+    color: #323D6F;
 }
 
 .text-body {
@@ -156,7 +156,7 @@
     /* identical to box height */
     letter-spacing: 0.015625rem !important;
     /* default color */
-    color: #707EAE;
+    color: #485585;
 }
 
 .text-body3 {
@@ -168,7 +168,7 @@
     /* identical to box height */
     line-height: 1.75rem !important;
     /* default color */
-    color: #707EAE;
+    color: #485585;
 }
 
 .text-btn {
@@ -179,7 +179,7 @@
     font-size: 0.875rem !important;
     line-height: 1rem !important;
     /* default color */
-    color: #2B3674 !important;
+    color: #323D6F !important;
 }
 
 .text-caption {
@@ -241,15 +241,15 @@
 }
 
 .neutral-lighten-1 {
-    background-color: #2B3674;
+    background-color: #323D6F;
 }
 
 .neutral-lighten-2 {
-    background-color: #707EAE;
+    background-color: #485585;
 }
 
 .neutral-lighten-3 {
-    background-color: #8F9BBA;
+    background-color: #7681AB;
 }
 
 .neutral-lighten-4 {
@@ -267,18 +267,18 @@
 
 
 .neutral-lighten-1--text {
-    color: #2B3674 !important;
-    caret-color: #2B3674 !important;
+    color: #323D6F !important;
+    caret-color: #323D6F !important;
 }
 
 .neutral-lighten-2--text {
-    color: #707EAE !important;
-    caret-color: #707EAE !important;
+    color: #485585 !important;
+    caret-color: #485585 !important;
 }
 
 .neutral-lighten-3--text {
-    color: #8F9BBA !important;
-    caret-color: #8F9BBA !important;
+    color: #7681AB !important;
+    caret-color: #7681AB !important;
 }
 
 .neutral-lighten-4--text {
@@ -439,7 +439,7 @@
 
 /*组件样式全局修改start*/
 .m-radio i {
-    font-size: 24px !important;
+    font-size: 21px !important;
 }
 
 .m-input__slot {
@@ -490,7 +490,7 @@
     font-size: 0.875rem !important;
     /*    line-height: 1rem !important;*/
     /* default color */
-    color: #8F9BBA;
+    color: #7681AB;
 }
 
 .m-input--checkbox .mdi-checkbox-blank-outline {
@@ -505,7 +505,7 @@
 
 
 .table-header-fill .m-data-table-header tr {
-    background: #FAFBFF;
+    background: #F6F8FD;
 }
 
 .table-border-none td, th {
@@ -547,8 +547,8 @@
 
 .navigation .m-icon {
     font-size: 20px;
-    color: #707EAE;
-    caret-color: #707EAE;
+    color: #485585;
+    caret-color: #485585;
 }
 
 .navigation .m-list-item__icon:first-child {
@@ -565,7 +565,7 @@
 }
 
 .navigation .m-list-group__header .m-list-item__content {
-    color: #707EAE !important;
+    color: #485585 !important;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -668,7 +668,11 @@
     font-size: 1rem !important;
     line-height: 1.1875rem !important;
     letter-spacing: 0.009375rem !important;
-    color: #2B3674 !important;
+    color: #323D6F !important;
+}
+
+.m-text-field.m-input--dense:not(.m-text-field--outlined) .m-text-field__prefix, .m-text-field.m-input--dense:not(.m-text-field--outlined) .m-text-field__suffix, .m-text-field.m-input--dense:not(.m-text-field--outlined) input {
+   padding-top:0;
 }
 
 .max-height {
@@ -780,7 +784,7 @@
 }
 
 .text-btn .m-label {
-    color: #2B3674;
+    color: #323D6F;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -849,7 +853,7 @@
 }
 
 .neutral-lighten-1--text .m-label {
-    color: #2B3674 !important;
+    color: #323D6F !important;
 }
 
 .neutral-lighten-4--text .m-label {
@@ -899,7 +903,7 @@ td.text-center .m-input--checkbox .m-input__slot {
 }
 
 input::-webkit-input-placeholder {
-    color: #8F9BBA !important;
+    color: #7681AB !important;
     font-size: 12px !important;
 }
 
@@ -961,5 +965,12 @@ tr:hover {
 }
 
 .theme--light.m-icon {
-    color: #8F9BBA;
+    color: #7681AB;
+}
+
+.invoice-list-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: .857rem;
+    font-weight: 600;
 }

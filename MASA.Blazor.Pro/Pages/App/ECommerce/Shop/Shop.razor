@@ -4,7 +4,7 @@
 <MCard Elevation=0 Class="rounded-4 pa-6 mr-3" Style="min-width:300px;width=300px;float:left;">
     <h6>Filters</h6>
 
-    <span class="text-btn mt-1">Multi Range</span>
+    <span class="text-btn neutral-lighten-4--text mt-1">Multi Range</span>
     <div class="border-b-solid mt-6 mb-12 pl-2">
         <MRadioGroup Dense @bind-Value="_shopData.MultiRange">
             @foreach (var multiRange in _multiRanges)
@@ -12,7 +12,7 @@
                 <div class="block-center" style="height:40px;">
                     <MRadio Color="primary" Value="@multiRange">
                         <LabelContent>
-                            <span class="@($"{(_shopData.MultiRange==multiRange?"text-subtitle primary--text":"text-body neutral-lighten-2--text")}")">@multiRange.Text</span>
+                            <span class="@($"{(_shopData.MultiRange==multiRange?"text-subtitle primary--text":"text-body3")}")">@multiRange.Text</span>
                         </LabelContent>
                     </MRadio>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="block-center" style="height:40px;">
                     <MRadio Color="primary" Value="@categorie">
                         <LabelContent>
-                            <span class="@($"{(_shopData.Category==categorie?"text-subtitle primary--text":"text-body neutral-lighten-2--text")}")">@categorie</span>
+                            <span class="@($"{(_shopData.Category==categorie?"text-subtitle primary--text":"text-body3")}")">@categorie</span>
                         </LabelContent>
                     </MRadio>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="block-center" style="height:40px;">
                     <MRadio Color="primary" Value="@brand">
                         <LabelContent>
-                            <span class="@($"{(_shopData.Brand==brand?"text-subtitle primary--text":"text-body neutral-lighten-2--text")}")">@brand</span>
+                            <span class="@($"{(_shopData.Brand==brand?"text-subtitle primary--text":"text-body3")}")">@brand</span>
                         </LabelContent>
                     </MRadio>
                 </div>
@@ -61,8 +61,8 @@
                 <MMenu OffsetY OpenOnHover>
                     <ActivatorContent>
                         <div @attributes="@context.Attrs">
-                            <span class="text-btn">@_shopData.SortType</span>
-                            <MIcon>mdi-menu-down</MIcon>
+                            <span class="text-btn neutral-lighten-4--text">@_shopData.SortType</span>
+                            <MIcon Color="neutral-lighten-4">mdi-menu-down</MIcon>
                         </div>
                     </ActivatorContent>
                     <ChildContent>
@@ -98,7 +98,7 @@
                                 <h6>$@item.Price</h6>
                             </div>
                             <div class="text-subtitle text-truncate my-1">@item.Name</div>
-                            <div class="text-truncate text-body3 neutral-lighten-2--text">@item.Description</div>
+                            <div class="text-truncate text-body3 neutral-lighten-3--text">@item.Description</div>
                         </MCardText>
                         <div class="block-between text-center">
                             <div @onclick="()=>item.Favorite=!item.Favorite" class="rounded-bl-xl hover-pointer favorite" style="width:50%;height:56px;line-height: 56px;box-shadow: inset -1px 0px 0px #F0F3FA, inset 0px 0.5px 0px #F0F3FA;border-bottom-left-radius: 20px !important;">

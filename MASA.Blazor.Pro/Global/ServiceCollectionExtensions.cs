@@ -13,7 +13,7 @@
             return services;
         }
 
-        public static async Task<IServiceCollection> AddGlobalForWasm(this IServiceCollection services, string baseUri)
+        public static async Task<IServiceCollection> AddGlobalForWasmAsync(this IServiceCollection services, string baseUri)
         {          
             await services.AddMasaI18nForWasmAsync(Path.Combine(baseUri, $"i18n"));
             using var httpclient = new HttpClient();

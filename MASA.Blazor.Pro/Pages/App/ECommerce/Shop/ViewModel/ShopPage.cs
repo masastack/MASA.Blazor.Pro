@@ -68,7 +68,7 @@ public class ShopPage
 
     public int PageCount => (int)Math.Ceiling(CurrentCount / (double)PageSize);
 
-    public MultiRange? MultiRange { get; set; }
+    public MultiRangeDto? MultiRange { get; set; }
 
     public string? Category { get; set; }
 
@@ -78,9 +78,9 @@ public class ShopPage
 
     public string? Search { get; set; }
 
-    public GoodsDto GetGoods(string id)
+    public GoodsDto GetGoods(string? id)
     {
-        return Datas.FirstOrDefault(a => a.Id == Guid.Parse(id)) ?? Datas.First();
+        return Datas.FirstOrDefault(a => a.Id.ToString() == id) ?? Datas.First();
     }
 }
 

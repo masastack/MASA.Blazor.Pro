@@ -4,31 +4,33 @@
     <MCol Md="12">
         <MCard>
             <MCardText>
-                <MDataTable Headers="_headers" Items="_records.Items" HideDefaultFooter class="table-header-fill table-border-solid">
+                <MDataTable Headers="_headers" Items="_invoicePage.GetPageDatas()"  ItemsPerPage="_invoicePage.PageSize"  HideDefaultFooter class="table-header-fill table-border-solid">
                     <TopContent>
                         <MRow class="mb-1">
                             <MCol Md="@("auto")" class="d-flex align-center">
                                 <span class="mr-6 text-btn neutral-lighten-1--text">Entries:</span>
                                 <MSelect Items="_pageSizes"
-                                         ValueChanged="PageSizeChanged"
-                                         Value="@_itemsPerPage"
+                                         @bind-Value="@_invoicePage.PageSize"
                                          ItemText="u => u.ToString()"
-                                         ItemValue="u => u" HideDetails="true"
+                                         ItemValue="u => u"
+                                         HideDetails="true"
                                          Dense style="width:120px"
-                                         TValue="int" TItem="int" TItemValue="int"
-                                         Outlined></MSelect>
-                                <MButton Class="primary rounded-pill ml-6">Add Record</MButton>
-                                @*OnClick="NavigateToAdd"*@
+                                         Outlined>
+                                </MSelect>
+                                <MButton Class="primary rounded-pill ml-6">Add Record</MButton> @*OnClick="NavigateToAdd"*@
                             </MCol>
                             <MSpacer />
                             <MCol Md="@("auto")" class="d-flex">
-                                <MTextField @bind-Value="_search" Dense class="mr-6" style="width:570px;" HideDetails="true"
+                                <MTextField @bind-Value="_invoicePage.Search" Dense class="mr-6" style="width:570px;" HideDetails="true"
                                             Label="Search..." Outlined></MTextField>
-                                <MSelect Items="_stateItems" ValueChanged="StateChanged" style="width:156px;"
-                                         Value="@_state" TValue="int" TItem="InvoiceStateDto" TItemValue="int"
+                                <MSelect Items="_stateItems" style="width:220px;"
+                                         @bind-Value="@_invoicePage.State" TValue="int?" TItem="InvoiceStateDto" TItemValue="int"
                                          ItemText="u => u.Label" HideDetails="true"
                                          ItemValue="u => u.Value"
-                                         Dense Outlined></MSelect>
+                                         Dense
+                                         Outlined
+                                         Clearable>
+                                </MSelect>
                             </MCol>
                         </MRow>
                     </TopContent>
@@ -133,49 +135,47 @@
                                 </ActivatorContent>
                                 <ChildContent>
                                     <MList Dense>
-                                        <MListItemGroup>
-                                            <MListItem>
-                                                <MListItemIcon class="mr-3">
-                                                    <MIcon>mdi-arrow-down</MIcon>
-                                                </MListItemIcon>
-                                                <MListItemContent>
-                                                    <MListItemTitle>
-                                                        Download
-                                                    </MListItemTitle>
-                                                </MListItemContent>
-                                            </MListItem>
-                                            <MListItem>
-                                                @*OnClick="()=>NavigateToEdit(context.Item.Id)"*@
-                                                <MListItemIcon class="mr-3">
-                                                    <MIcon>mdi-square-edit-outline</MIcon>
-                                                </MListItemIcon>
-                                                <MListItemContent>
-                                                    <MListItemTitle>
-                                                        Edit
-                                                    </MListItemTitle>
-                                                </MListItemContent>
-                                            </MListItem>
-                                            <MListItem>
-                                                <MListItemIcon class="mr-3">
-                                                    <MIcon>mdi-delete-outline</MIcon>
-                                                </MListItemIcon>
-                                                <MListItemContent>
-                                                    <MListItemTitle>
-                                                        Delete
-                                                    </MListItemTitle>
-                                                </MListItemContent>
-                                            </MListItem>
-                                            <MListItem>
-                                                <MListItemIcon class="mr-3">
-                                                    <MIcon>mdi-content-copy</MIcon>
-                                                </MListItemIcon>
-                                                <MListItemContent>
-                                                    <MListItemTitle>
-                                                        Duplocate
-                                                    </MListItemTitle>
-                                                </MListItemContent>
-                                            </MListItem>
-                                        </MListItemGroup>
+                                        <MListItem Link>
+                                            <MListItemIcon class="mr-3">
+                                                <MIcon>mdi-arrow-down</MIcon>
+                                            </MListItemIcon>
+                                            <MListItemContent>
+                                                <MListItemTitle>
+                                                    Download
+                                                </MListItemTitle>
+                                            </MListItemContent>
+                                        </MListItem>
+                                        <MListItem Link>
+                                            @*OnClick="()=>NavigateToEdit(context.Item.Id)"*@
+                                            <MListItemIcon class="mr-3">
+                                                <MIcon>mdi-square-edit-outline</MIcon>
+                                            </MListItemIcon>
+                                            <MListItemContent>
+                                                <MListItemTitle>
+                                                    Edit
+                                                </MListItemTitle>
+                                            </MListItemContent>
+                                        </MListItem>
+                                        <MListItem Link>
+                                            <MListItemIcon class="mr-3">
+                                                <MIcon>mdi-delete-outline</MIcon>
+                                            </MListItemIcon>
+                                            <MListItemContent>
+                                                <MListItemTitle>
+                                                    Delete
+                                                </MListItemTitle>
+                                            </MListItemContent>
+                                        </MListItem>
+                                        <MListItem Link>
+                                            <MListItemIcon class="mr-3">
+                                                <MIcon>mdi-content-copy</MIcon>
+                                            </MListItemIcon>
+                                            <MListItemContent>
+                                                <MListItemTitle>
+                                                    Duplocate
+                                                </MListItemTitle>
+                                            </MListItemContent>
+                                        </MListItem>
                                     </MList>
                                 </ChildContent>
                             </MMenu>
@@ -188,13 +188,14 @@
                 </MDataTable>
                 <MRow NoGutters>
                     <MCol Md="@("auto")" Align="AlignTypes.Center">
-                        <span class="text-btn neutral-lighten-1--text"> Showing @((_records.PageIndex-1)*_records.PageSize+1) to @(Math.Min(_records.PageIndex*_records.PageSize,_records.Count)) of @_records.Count entries</span>
+                        <span class="text-btn neutral-lighten-1--text"> Showing @((_invoicePage.PageIndex-1)*_invoicePage.PageSize+1) to @(_invoicePage.PageIndex*_invoicePage.PageSize) of @_invoicePage.CurrentCount entries</span>
                     </MCol>
                     <MSpacer />
                     <MCol Md="@("auto")">
-                        <MPagination Class="ma-3" OnInput="PaginationChanged" @bind-Value="_page"
-                                     Length="_records.PageCount"
-                                     Circle></MPagination>
+                         @if(_invoicePage.PageCount>0)
+                        {
+                            <MPagination Class="ma-3" @bind-Value="_invoicePage.PageIndex" Length="_invoicePage.PageCount" Circle></MPagination>
+                        }                       
                     </MCol>
                 </MRow>
             </MCardText>

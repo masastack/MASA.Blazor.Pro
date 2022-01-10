@@ -5,24 +5,24 @@
 <MCard>
     <MCardText>
         <MRow style="min-height:580px;">
-            <MCol Md="5" Align="AlignTypes.Center" Class="d-flex flex-column align-center">
-                <MImage src="@_goods.PictureFile" AspectRatio="1" class="full-width" Height="@("auto")" />
+            <MCol Md="5" Align="AlignTypes.Center">
+                <MImage Contain Src="@_goods.PictureFile"></MImage>
             </MCol>
             <MCol Md="7" class="d-flex flex-column pa-12 pl-0">
                 <div class="mb-6">
                     <h5 class="neutral-lighten-1--text">@_goods.Name</h5>
-                    <p class="text-caption mb-0">By<span class="sample-green--text ml-2">@_goods.Brand</span></p>
+                    <p class="text-body2 neutral-lighten-4--text mb-0">By<span class="text-body2 sample-green--text ml-2">@_goods.Brand</span></p>
                 </div>
                 <div class="mb-6">
-                    <p class="mb-0 text-caption"> 库存 - 现货</p>
+                    <p class="mb-0 text-body2"> 库存 - 现货</p>
                     <MRating Readonly Value="_goods.Rating" Size=20 Color="remind" BackgroundColor="remind" Dense></MRating>
                     <h6 class="neutral--text">$@_goods.Price</h6>
                 </div>
-                <p class="mb-6 text-body neutral-lighten-2--text justify-text-align">
+                <p class="mb-6 text-body3 justify-text-align">
                     @_goods.Description
                 </p>
                 <div class="mb-6 d-flex justify-space-between">
-                    <span class="text-body neutral-lighten-1--text">包邮</span><span class="text-caption neutral-lighten-4--text">运费</span>
+                    <span class="text-body2">包邮</span><span class="text-body2 neutral-lighten-4--text">运费</span>
                 </div>
                 <MDivider></MDivider>
                 <div class="mb-6 mt-6 d-flex justify-space-between">
@@ -38,7 +38,7 @@
                         <MButton Fab class="mx-2 rounded-circle ml-0 mr-0" Width="24" Height="24" MinWidth="24" Color="blue">
                         </MButton>
                     </MButtonGroup>
-                    <span class="text-caption neutral-lighten-4--text">颜色</span>
+                    <span class="text-body2 neutral-lighten-4--text">颜色</span>
                 </div>
                 <div class="flex-grow-1 d-flex align-end">
                     <div class="d-flex align-center">
@@ -48,7 +48,11 @@
                         <MButton Depressed class="primary ml-6 mr-6 rounded-pill">
                             加入购物车
                         </MButton>
-                        <MIcon Size=24 OnClick="()=>{}">mdi-share-variant</MIcon>
+                        <span class="hover-pointer" @onclick="()=>{}">
+                            <MIcon Size=24 Color="neutral-lighten-3">
+                               mdi-share-variant
+                            </MIcon>
+                        </span>
                     </div>
 
                 </div>
@@ -85,7 +89,7 @@
                     <MSlideItem>
                         <MHover Context="hoverContext">
                             <MCard @attributes="hoverContext.Attrs" Elevation="@(hoverContext.Hover ? 6 : 0)" RefBack="@context.Ref" Color="@("#f8f8f8")" class="ma-3 white" Height="428" Width="333" Click="@context.Toggle">
-                                <MImage Height=333 Width=333 Src="@item.ImgUrl" Class="hover-pointer"></MImage>
+                                <MImage Height=333 Width=333 Src="@item.PictureFile" Class="hover-pointer"></MImage>
                                 <MDivider />
                                 <MCardText class="pa-3">
                                     <div class="d-flex justify-space-between">
@@ -93,7 +97,7 @@
                                         <h6>$@item.Price</h6>
                                     </div>
                                     <div class="text-subtitle text-truncate">@item.Name</div>
-                                    <div class="text-truncate text-body neutral-lighten-2--text">@item.Brand</div>
+                                    <div class="text-truncate text-body3 neutral-lighten-3--text">@item.Brand</div>
                                 </MCardText>
                             </MCard>
                         </MHover>
@@ -107,8 +111,8 @@
 @code {
     public override string Name => "App-ECommerce-Details";
     private ShopPage _shopPage = new ShopPage(ShopService.GetGoodsList());
-    private GoodsDto _goods => _shopPage.GetGoods(Id ?? "2d1e3440-5134-40c8-836f-f988bfef91c8");
-    private List<RelatedGoodsDto> _relatedProducts => ShopService.GetRelatedGoodsList();
+    private GoodsDto _goods => _shopPage.GetGoods(Id);
+    private List<GoodsDto> _relatedProducts => ShopService.GetRelatedGoodsList();
 
     [Parameter]
     public string? Id { get; set; }

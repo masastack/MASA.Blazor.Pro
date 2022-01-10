@@ -2,13 +2,13 @@
 
 public class UserService
 {
-    public static List<UserDto> GetList() => new List<UserDto>()
+    static List<UserDto> _datas = new ()
     {
         new UserDto() {
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
-            HeadImg="/img/avatar/3-small.png",
+            HeadImg="/img/avatar/1.svg",
             Role="Editor",
             Plan ="Company",
             Status = "Active",
@@ -47,7 +47,7 @@ public class UserService
             UserName = "kcourtliff1a",
             FullName = "Karena Courtliff",
             Email = "kcourtliff1a@bbc.co.uk",
-            HeadImg="/img/avatar/avatar-s-7.jpg",
+            HeadImg="/img/avatar/2.svg",
             Role="Admin",
             Plan ="Basic",
             Status = "Active",
@@ -60,7 +60,7 @@ public class UserService
             UserName = "soffner19",
             FullName = "Saunder Offner",
             Email = "soffner19@mac.com",
-            HeadImg="",
+            HeadImg="/img/avatar/3.svg",
             Role="Maintainer",
             Plan ="Basic",
             Status = "Pending",
@@ -99,7 +99,7 @@ public class UserService
             UserName = "mmcnirlan16",
             FullName = "Micaela McNirlan",
             Email = "bkrabbe1d@home.pl",
-            HeadImg="",
+            HeadImg="/img/avatar/4.svg",
             Role="Admin",
             Plan ="Basic",
             Status = "Indonesia",
@@ -125,7 +125,7 @@ public class UserService
             UserName = "ebaldetti14",
             FullName = "Edwina Baldetti",
             Email = "ebaldetti14@theguardian.com",
-            HeadImg="",
+            HeadImg="/img/avatar/7.svg",
             Role="Maintainer",
             Plan ="BAsic",
             Status = "Pending",
@@ -164,7 +164,7 @@ public class UserService
             UserName = "mpiccard11",
             FullName = "Moritz Piccard",
             Email = "mpiccard11@vimeo.com",
-            HeadImg="/img/avatar/avatar-s-7.jpg",
+            HeadImg="/img/avatar/8.svg",
             Role="Maintainer",
             Plan ="Basic",
             Status = "Inactive",
@@ -177,7 +177,7 @@ public class UserService
             UserName = "shebblethwaite10",
             FullName = "Skip Hebblethwaite",
             Email = "shebblethwaite10@arizona.edu",
-            HeadImg="/img/avatar/3-small.png",
+            HeadImg="/img/avatar/9.svg",
             Role="Admin",
             Plan ="Basic",
             Status = "Inactive",
@@ -216,7 +216,7 @@ public class UserService
             UserName = "ofibbensx",
             FullName = "Ophelie Fibbens",
             Email = "ofibbensx@booking.com",
-            HeadImg="/img/avatar/avatar-s-11.jpg",
+            HeadImg="/img/avatar/10.svg",
             Role="Editor",
             Plan ="Basic",
             Status = "Active",
@@ -229,7 +229,7 @@ public class UserService
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
-            HeadImg="/img/avatar/avatar-s-20.jpg",
+            HeadImg="/img/avatar/11.svg",
             Role="Editor",
             Plan ="Company",
             Status = "Active",
@@ -242,7 +242,7 @@ public class UserService
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
-            HeadImg="/img/avatar/avatar-s-6.jpg",
+            HeadImg="/img/avatar/12.svg",
             Role="Editor",
             Plan ="Company",
             Status = "Active",
@@ -255,20 +255,7 @@ public class UserService
             UserName = "bkrabbe1d",
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
-            HeadImg="/img/avatar/avatar-s-7.jpg",
-            Role="Editor",
-            Plan ="Company",
-            Status = "Active",
-            Contact="(397) 294-5153",
-            Country="China",
-            Profit="$99.87k",
-            Sales ="23.3k"
-        },
-        new UserDto() {
-            UserName = "bkrabbe1d",
-            FullName = "Beverlie Krabbe",
-            Email = "bkrabbe1d@home.pl",
-            HeadImg="",
+            HeadImg="/img/avatar/13.svg",
             Role="Editor",
             Plan ="Company",
             Status = "Active",
@@ -282,6 +269,19 @@ public class UserService
             FullName = "Beverlie Krabbe",
             Email = "bkrabbe1d@home.pl",
             HeadImg="",
+            Role="Editor",
+            Plan ="Company",
+            Status = "Active",
+            Contact="(397) 294-5153",
+            Country="China",
+            Profit="$99.87k",
+            Sales ="23.3k"
+        },
+        new UserDto() {
+            UserName = "bkrabbe1d",
+            FullName = "Beverlie Krabbe",
+            Email = "bkrabbe1d@home.pl",
+            HeadImg="/img/avatar/14.svg",
             Role="Editor",
             Plan ="Company",
             Status = "Active",
@@ -655,6 +655,8 @@ public class UserService
             Sales ="23.3k"
         }
     };
+
+    public static List<UserDto> GetList() => _datas;
 
     public static List<string> GetRoleList() => new List<string>
     {

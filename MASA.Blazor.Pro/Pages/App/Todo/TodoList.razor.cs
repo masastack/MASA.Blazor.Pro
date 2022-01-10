@@ -11,6 +11,7 @@ public partial class TodoList
         { "Update", "info" },
     };
     private readonly string[] _avas = TodoService.GetAvatars();
+
     private TodoDto _selectItem = new();
     private string? _filterText;
     private bool _visible = false;

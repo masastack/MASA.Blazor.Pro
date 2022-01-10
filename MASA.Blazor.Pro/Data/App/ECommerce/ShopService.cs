@@ -2,7 +2,7 @@
 
 public class ShopService
 {
-    public static List<GoodsDto> GetGoodsList() => new List<GoodsDto>
+    static List<GoodsDto> _datas = new ()
     {
         new("GA506B 温热管线饮水机",239.99,"https://img-cdn.lonsid.co/image/1593360117.jpg","饮水机",5,"LONSID","独特内胆 省电节能 智能触控 时尚科技 人性化操作 界面易懂 电子童锁实用安全 水电自动分离 停水贴心保护。不锈钢内胆：永不生锈，加热快，健康安全、彩灯显示：彩色灯条显示，让喝水成为一种享受。自动停水：连续出水超过1分钟会自动停止出水，防止中途离开出现意外。"),
         new("朗诗德G3速热管线机",339.99,"https://img-cdn.lonsid.co/image/1597939297.jpg","饮水机",5,"LONSID","六重智能防护 高原模式 精准控温 硅胶密封设计 休眠模式。适配全通量纯水机：适配全通量纯水机没有频繁起跳的环境噪音，有桶、无桶纯水机都适用。即热即饮：采用速热技术，一次沸腾，避免千滚水。六档精准定制水温：进出水双NTC+可控硅调节精准控温，可满足六种水温需求：25℃常温、55℃泡奶、55℃暖胃温开水、75℃花茶、85℃红茶、95℃咖啡、自动休眠：60s内无任何操作，自动进入休眠模式，节能省电，夜晚不打扰、大小杯设置：小杯 150ml、大杯500ml，走开也能放心接。"),
@@ -66,13 +66,34 @@ public class ShopService
         new("VicTsing Wireless Mouse",10.99,"/img/apps-eCommerce/27.png","Computers & Tablets",3,"VicTsing","After thousands of samples of palm data, we designed this ergonomic mouse. The laptop mouse has a streamlined arc and thumb rest to help reduce the stress caused by prolonged use of the laptop mouse."),
     };
 
-    public static List<RelatedGoodsDto> GetRelatedGoodsList() => new List<RelatedGoodsDto>
+    public static List<GoodsDto> GetGoodsList() => _datas;
+
+    public static List<GoodsDto> GetRelatedGoodsList() => GetGoodsList().GetRange(0, 10);
+
+    public static List<MultiRangeDto> GetMultiRangeList() => new ()
     {
-        new("GA406B 温热管线饮水机","Lonsid","https://img-cdn.lonsid.co/image/1593360117.jpg",9999,5),
-        new("G1管线饮水机","Lonsid","https://img-cdn.lonsid.co/image/1593360094.jpg",9999,5),
-        new("GA406K 速热管线饮水机","Lonsid","https://img-cdn.lonsid.co/image/1555404598.jpg",9999,5),
-        new("GT3桌面即热饮水机","Lonsid","https://img-cdn.lonsid.co/image/1560130226.jpg",9999,5),
-        new("GR320RB冷热型饮水机","Lonsid","https://img-cdn.lonsid.co/image/1603728000ddBMgnpYFmMWTlAl3bAX179.jpg",9999,5)
+        new(RangeType.All,"All",0),
+        new(RangeType.LessEqual,"<= $10",10),
+        new(RangeType.Range,"$10 - $100",10,100),
+        new(RangeType.Range,"$100 - $500",100,500),
+        new(RangeType.MoreEqual,">=$500",500),
+    };
+
+    public static List<string> GetCategortyList() => new()
+    {
+        "饮水机",
+        "纯水机",
+        "商务机",
+        "胶囊机",
+        "空净系列",
+        "中央处理设备",
+        "Cell Phones",
+    };
+
+    public static List<string> GetBrandList() => new()
+    {
+        "LONSID",
+        "Apple"
     };
 }
 
