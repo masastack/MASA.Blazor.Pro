@@ -498,6 +498,25 @@
     caret-color: #A3AED0 !important;
 }
 
+.theme--light .m-input--is-disabled .mdi-checkbox-blank-outline {
+    color: #E9EDF7 !important;
+    caret-color: #E9EDF7 !important;
+}
+
+.theme--light .m-input--is-disabled .mdi-checkbox-marked {
+    color: #E9EDF7 !important;
+    caret-color: #E9EDF7 !important;
+}
+
+.m-input--checkbox .m-input--selection-controls__ripple:before {
+    content: none;
+}
+
+.m-input--selection-controls__input:hover .mdi-checkbox-blank-outline {
+    color: #4318FF !important;
+    caret-color: #4318FF !important;
+}
+
 .m-radio .mdi-radiobox-blank {
     color: #A3AED0 !important;
     caret-color: #A3AED0 !important;
