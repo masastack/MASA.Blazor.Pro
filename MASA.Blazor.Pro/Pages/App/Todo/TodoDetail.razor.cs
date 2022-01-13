@@ -15,7 +15,7 @@ public partial class TodoDetail
     private string CompletedText { get { return _selectData.IsCompleted ? "Completed" : "Mark Complete"; } }
 
     [CascadingParameter]
-    public TodoList TodoList { get; set; } = default!;
+    public Todo Todo { get; set; } = default!;
 
     [Parameter]
     public bool Value { get; set; }
@@ -86,8 +86,8 @@ public partial class TodoDetail
         var success = context.Validate();
         if (success)
         {
-            _selectData.Id = TodoService.GenerateId();
-            TodoService.Add(_selectData);
+            _selectData.Id = Todo.GenerateId();
+            Todo.AddData(_selectData);
             await HideNavigationDrawer();
 
             NavigationManager.NavigateTo("app/todo");
@@ -100,7 +100,7 @@ public partial class TodoDetail
         if (success)
         {
             var data = (TodoDto)context.Model;
-            TodoList.UpdateData(data);
+            Todo.UpdateData(data);
             await HideNavigationDrawer();
         }
     }
@@ -134,7 +134,7 @@ public partial class TodoDetail
     private async Task DeleteAsync()
     {
         _selectData.IsDeleted = true;
-        TodoList.UpdateData(_selectData);
+        Todo.UpdateData(_selectData);
         await HideNavigationDrawer();
     }
 }

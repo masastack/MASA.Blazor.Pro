@@ -2,7 +2,7 @@
 
 public class TodoService
 {
-    private static readonly List<TodoDto> _list = new()
+    public static List<TodoDto> GetList() => new()
     {
         new TodoDto(1, false, false, false, false, "汉皇重色思倾国，御宇多年求不得。", "紫萱", 0, new DateOnly(2021, 9, 15), new List<string> { "Low", }, "1、最灵繁的人也看不见自己的背脊。——非洲"),
         new TodoDto(2, false, false, false, false, "杨家有女初长成，养在深闺人未识。", "若芹", 2, new DateOnly(2021, 9, 16), new List<string> { "Low" }, "2、最困难的事情就是认识自己。——希腊"),
@@ -66,28 +66,6 @@ public class TodoService
         new TodoDto(60, true, false, true, false, "天长地久有时尽，此恨绵绵无绝期。", "向秋", 1, new DateOnly(2021, 11, 14), new List<string> { "Update" }, "60、生活的道路一旦选定，就要勇敢地走到底，决不回头。——左拉"),
     };
 
-    public static int GenerateId() => _list.Count + 1;
-
-    public static List<TodoDto> GetList() => _list;
-
-    public static List<TodoDto> GetFilterList(string filter)
-    {
-        return filter switch
-        {
-            "important" => _list.Where(item => item.IsImportant && !item.IsDeleted).ToList(),
-            "completed" => _list.Where(item => item.IsCompleted && !item.IsDeleted).ToList(),
-            "deleted" => _list.Where(item => item.IsDeleted).ToList(),
-            "team" => _list.Where(item => item.Tag.Contains("Team")).ToList(),
-            "low" => _list.Where(item => item.Tag.Contains("Low")).ToList(),
-            "medium" => _list.Where(item => item.Tag.Contains("Medium")).ToList(),
-            "high" => _list.Where(item => item.Tag.Contains("High")).ToList(),
-            "update" => _list.Where(item => item.Tag.Contains("Update")).ToList(),
-            _ => _list.Where(item => !item.IsDeleted).ToList(),
-        };
-    }
-
-    public static void Add(TodoDto todoDto) => _list.Insert(0, todoDto);
-
     public static List<SelectData> GetAssigneeList() => new()
     {
         new SelectData() { Label = "紫萱", Value = "紫萱" },
@@ -117,7 +95,7 @@ public class TodoService
         { "Update", "info" },
     };
 
-    public static string[] GetAvatars()=> new string[]
+    public static string[] GetAvatars() => new string[]
     {
         "/img/avatar/1.svg",
         "/img/avatar/8.svg",
