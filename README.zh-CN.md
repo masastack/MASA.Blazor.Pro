@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -49,7 +49,7 @@
 
 **安装模板**
 
-```c#
+```shell
 dotnet new --install MASA.Template
 ```
 
@@ -57,25 +57,31 @@ dotnet new --install MASA.Template
 
 * Blazor Server
 
-```c#
+```shell
 dotnet new masabp -o MASA.Test
 ```
 
-* Blazor Server + RCL(Razor class libraries)
+- Blazor WebAssembly
 
-```c#
-dotnet new masabp -rcl -o MASA.Test
+```shell
+dotnet new masabp --mode Wasm -o Masa.TestWasm
+```
+
+- Blazor RCL
+
+```shell
+dotnet new masabp --mode ServerAndWasm -o Masa.TestRcl
 ```
 
 **进入Server项目目录**
 
-```c#
-cd MASA.Test\MASA.Test.Server
+```shell
+cd MASA.Test
 ```
 
 **运行**
 
-```c#
+```shell
 dotnet run
 ```
 
