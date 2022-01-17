@@ -10,23 +10,21 @@
 @if (items.Count > 0)
 {
     <div class="d-flex block-center pb-6 pt-1">
-        <div class="text-subtitle">
-            @items.Last().Text
-        </div>
-
-        <div class="mx-4 border-solid" style="height:16px;width:0.5px;"/>
-
         <MBreadcrumbs @key="@(Guid.NewGuid())" Linkage Class="pa-0">
             <DividerContent>
-                <MIcon Small>mdi-chevron-right</MIcon>
+                <div class="mx-2 border-solid" style="height:16px;width:0.5px;" />
             </DividerContent>
             <ChildContent>
-                <MBreadcrumbsItem Href="@GlobalVariables.DefaultRoute">
-                    <MIcon Small Color="primary">fas fa-home</MIcon>
+                <MBreadcrumbsItem Href="javascript:history.back(-1)">
+                    <MIcon Size=20 Color="neutral-lighten-2">mdi-arrow-left</MIcon>
                 </MBreadcrumbsItem>
-                @foreach (var item in items)
+                @for (var i = 0; i < items.Count; i++)
                 {
-                    <MBreadcrumbsItem Href="@item.Href">@item.Text</MBreadcrumbsItem>
+                    var item = items[i];
+                    var isLast = i == items.Count - 1;
+                    <MBreadcrumbsItem Href="@item.Href">
+                        <span class="@(isLast ? "text-subtitle2 neutral-lighten-2--text" : "text-body2")">@item.Text</span>
+                    </MBreadcrumbsItem>
                 }
             </ChildContent>
         </MBreadcrumbs>
@@ -49,7 +47,7 @@
             if (currentNav.ParentId != 0)
             {
                 var parentNav = NavHelper.SameLevelNavs.First(n => n.Id == currentNav.ParentId);
-                items.Add(new BreadcrumbItem { Text = T(parentNav.Title), Href = parentNav.Href ?? parentNav.Children?.FirstOrDefault()?.Href??"" });
+                items.Add(new BreadcrumbItem { Text = T(parentNav.Title), Href = parentNav.Href ?? parentNav.Children?.FirstOrDefault()?.Href ?? "" });
             }
             items.Add(new BreadcrumbItem { Text = T(currentNav.Title), Href = currentNav.Href });
             items.Last().Href = currentNav.Href;
