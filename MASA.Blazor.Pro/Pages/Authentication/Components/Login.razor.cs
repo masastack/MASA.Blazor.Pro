@@ -23,6 +23,6 @@ public partial class Login
     public string ForgotPasswordRoute { get; set; } = $"pages/authentication/forgot-password-v1";
 
     [Parameter]
-    public EventCallback<MouseEventArgs> SlinInClick { get; set; }
+    public EventCallback<MouseEventArgs> OnLogin { get; set; }
 }
 
