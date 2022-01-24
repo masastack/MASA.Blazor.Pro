@@ -385,7 +385,10 @@
         {
             if (e.PropertyName == nameof(Application.Left))
             {
-                InvokeAsync(StateHasChanged);
+                if(GlobalConfig.CurrentNav?.Href == "dashboard/ecommerce")
+                {
+                    InvokeAsync(StateHasChanged);
+                }           
             }
         }
 

@@ -4,19 +4,19 @@ public class NavHelper
 {
     private List<NavModel> _navList;
     private NavigationManager _navigationManager;
-    private GlobalConfigChangedEvent _globalConfigChangedEvent;
+    private GlobalConfig _globalConfig;
 
-    public List<NavModel> Navs { get; }
+    public List<NavModel> Navs { get; } = new();
 
-    public List<NavModel> SameLevelNavs { get; }
+    public List<NavModel> SameLevelNavs { get; } = new();
 
-    public NavHelper(List<NavModel> navList, NavigationManager navigationManager, GlobalConfigChangedEvent globalEvent)
+    public List<PageTabItem> PageTabItems { get; } = new();
+
+    public NavHelper(List<NavModel> navList, NavigationManager navigationManager, GlobalConfig globalConfig)
     {
         _navList = navList;
         _navigationManager = navigationManager;
-        _globalConfigChangedEvent = globalEvent;
-        Navs = new List<NavModel>();
-        SameLevelNavs = new List<NavModel>();
+        _globalConfig = globalConfig;
         Initialization();
     }
 
@@ -44,6 +44,11 @@ public class NavHelper
             SameLevelNavs.Add(nav);
             if (nav.Children is not null) SameLevelNavs.AddRange(nav.Children);
         });
+
+        SameLevelNavs.Where(nav => nav.Href is not null).ForEach(nav => 
+        {
+            PageTabItems.Add(new PageTabItem(nav.Title, nav.Href, nav.ParentIcon, nav.Href != GlobalVariables.DefaultRoute));
+        });
     }
 
     public void NavigateTo(NavModel nav)
@@ -62,7 +67,7 @@ public class NavHelper
     public void RefreshRender(NavModel nav)
     {
         Active(nav);
-        _globalConfigChangedEvent.Invoke();
+        _globalConfig.CurrentNav = nav;
     }
 
     public void NavigateToByEvent(NavModel nav)

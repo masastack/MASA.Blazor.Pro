@@ -456,6 +456,7 @@
 
 .m-toolbar__content {
     padding: 0 0 0 0;
+    background-color: white;
 }
 
 .m-card {
@@ -641,6 +642,15 @@
     box-shadow: none !important;
     border: none;
 }
+
+/* pagetabs */
+
+.m-page-tabs .m-slide-group__prev.m-slide-group__prev--disabled {
+    flex: none !important;
+    min-width: 0px !important;
+}
+
+/* pagetabs */
 /*组件样式全局修改end*/
 /*shop*/
 .ml300 {
@@ -993,3 +1003,51 @@ tr:hover {
     font-size: .857rem;
     font-weight: 600;
 }
+
+.pagetabs .m-item-group.m-slide-group.m-tabs-bar {
+    z-index: 9999;
+}
+
+.m-page_tab {
+    background-color: #FFF;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    /* text/3-1次要 */
+    color: #A3AED0 !important;
+}
+
+.m-page_tab .m-icon {
+    color: #A3AED0 !important;
+}
+
+.m-page_tab_active {
+    background-color: #F0F3FA !important;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    /* text/1-1强调 */
+    color: #1B2559 !important;                                                                                                                                                               
+}
+
+.m-page_tab_active .m-icon {
+    color: #1B2559 !important;
+}
+
+.m-page-tabs > .m-tabs-bar {
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    height: 45px;
+    padding-left: 16px;
+}
+
+.m-page-tabs .m-tab:before {
+    content: none !important;
+}
+

@@ -22,7 +22,7 @@ public class NavModel
 
     public NavModel[]? Children { get; set; }
 
-    public NavModel(int id, string href, string icon, string title, NavModel[]? children)
+    public NavModel(int id, string? href, string icon, string title, NavModel[]? children)
     {
         Id = id;
         Href = href;

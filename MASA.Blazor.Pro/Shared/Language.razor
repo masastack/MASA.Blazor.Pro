@@ -1,6 +1,5 @@
 ﻿@inject GlobalConfig GlobalConfig;
 @inject I18n I18n
-@inject GlobalConfigChangedEvent GlobalConfigChangedEvent
 
 <MMenu OffsetY Bottom>
     <ActivatorContent>
@@ -10,7 +9,7 @@
     </ActivatorContent>
     <ChildContent>
         <MList Class="py-0">
-            <MListItemGroup ActiveClass="primary" Value="GlobalConfig.I18nConfig?.Language">
+            <MListItemGroup ActiveClass="primary" Value="GlobalConfig.Language">
                 @foreach (var (language, map) in I18n.ToDictionary())
                 {
                     <MListItem OnClick="()=> OnLanguageChange(language)" Value="(StringNumber)language">
@@ -30,9 +29,8 @@
 
 @code {
     void OnLanguageChange(string language)
-    {
-        GlobalConfig.I18nConfig!.Language = language;
+    {      
         I18n.SetLang(language);
-        GlobalConfigChangedEvent.InvokeNavigationStateHasChanged();
+        GlobalConfig.Language = language;
     }
 }
