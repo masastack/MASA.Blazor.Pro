@@ -1005,7 +1005,7 @@ tr:hover {
 }
 
 .pagetabs .m-item-group.m-slide-group.m-tabs-bar {
-    z-index: 9999;
+    z-index: 5;
 }
 
 .m-page_tab {
