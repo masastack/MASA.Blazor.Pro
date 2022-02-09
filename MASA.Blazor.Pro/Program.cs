@@ -13,6 +13,7 @@ builder.Services.AddMasaBlazor(builder =>
         }
     );
 });
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddGlobalForServer();
 
 var app = builder.Build();
@@ -38,8 +39,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseGlobal();
-app.UseMasaI18n();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 app.Run();

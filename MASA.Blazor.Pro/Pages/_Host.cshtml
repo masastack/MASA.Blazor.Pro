@@ -2,10 +2,9 @@
 @namespace MASA.Blazor.Pro.Pages
 @using MASA.Blazor.Pro.Global
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@inject GlobalConfig GlobalConfig;
 @{
     Layout = "_Layout";
 }
 
-<component type="typeof(MASA.Blazor.Pro.App)" param-GlobalConfig="@GlobalConfig" render-mode="ServerPrerendered" />
+<component type="typeof(MASA.Blazor.Pro.App)" render-mode="ServerPrerendered" />
 

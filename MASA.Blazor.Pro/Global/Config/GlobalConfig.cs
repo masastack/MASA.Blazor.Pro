@@ -10,7 +10,7 @@ public class GlobalConfig
     private bool _navigationMini;
     private string? _favorite;
     private NavModel? _currentNav;
-    private CookieStorage? _cookieStorage;   
+    private CookieStorage? _cookieStorage;
 
     #endregion
 
@@ -31,14 +31,14 @@ public class GlobalConfig
     public string? Language
     {
         get => I18nConfig?.Language;
-        set 
+        set
         {
-            if(I18nConfig is not null)
+            if (I18nConfig is not null)
             {
                 I18nConfig.Language = value;
                 OnLanguageChanged?.Invoke();
-            }           
-        } 
+            }
+        }
     }
 
     public bool IsDark
@@ -104,15 +104,11 @@ public class GlobalConfig
 
     #endregion
 
-    /// <summary>
-    /// 别删，大锅
-    /// </summary>
-    public GlobalConfig() { }
-
-    public GlobalConfig(CookieStorage cookieStorage, I18nConfig i18nConfig)
+    public GlobalConfig(CookieStorage cookieStorage, I18nConfig i18nConfig, IHttpContextAccessor httpContextAccessor)
     {
         _cookieStorage = cookieStorage;
         I18nConfig = i18nConfig;
+        if (httpContextAccessor.HttpContext is not null) Initialization(httpContextAccessor.HttpContext.Request.Cookies);
     }
 
     #region event
@@ -134,28 +130,5 @@ public class GlobalConfig
         _expandOnHover = Convert.ToBoolean(cookies[ExpandOnHoverCookieKey]);
         _favorite = cookies[FavoriteCookieKey];
     }
-
-    public async Task Initialization()
-    {
-        if (_cookieStorage is not null)
-        {
-            _isDark = Convert.ToBoolean(await _cookieStorage.GetCookie(IsDarkCookieKey));
-            _pageMode = await _cookieStorage.GetCookie(PageModeKey);
-            _navigationMini = Convert.ToBoolean(await _cookieStorage.GetCookie(NavigationMiniCookieKey));
-            _expandOnHover = Convert.ToBoolean(await _cookieStorage.GetCookie(ExpandOnHoverCookieKey));
-            _favorite = await _cookieStorage.GetCookie(FavoriteCookieKey);
-        }
-    }
-
-    public void Bind(GlobalConfig globalConfig)
-    {
-        I18nConfig?.Bind(globalConfig.I18nConfig);
-        _isDark = globalConfig.IsDark;
-        _pageMode = globalConfig.PageMode;
-        _navigationMini = globalConfig.NavigationMini;
-        _expandOnHover = globalConfig.ExpandOnHover;
-        _favorite = globalConfig.Favorite;
-    }
-
     #endregion
 }

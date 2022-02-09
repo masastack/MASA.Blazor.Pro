@@ -34,7 +34,8 @@
 @code {
     protected override void OnInitialized()
     {
-       GlobalConfig.OnLanguageChanged  += base.StateHasChanged;
+       GlobalConfig.OnLanguageChanged += base.StateHasChanged;
+       GlobalConfig.OnCurrentNavChanged += base.StateHasChanged;
     }
 
     private List<BreadcrumbItem> GetBreadcrumbItems()
@@ -56,6 +57,7 @@
 
     public void Dispose()
     {
-        GlobalConfig.OnLanguageChanged  -= base.StateHasChanged;
+        GlobalConfig.OnLanguageChanged -= base.StateHasChanged;
+        GlobalConfig.OnCurrentNavChanged -= base.StateHasChanged;
     }
 }
