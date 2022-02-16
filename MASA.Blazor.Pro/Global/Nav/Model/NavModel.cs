@@ -20,6 +20,8 @@ public class NavModel
 
     public bool Active { get; set; }
 
+    public string? Target { get; set; }
+
     public NavModel[]? Children { get; set; }
 
     public NavModel(int id, string? href, string icon, string title, NavModel[]? children)

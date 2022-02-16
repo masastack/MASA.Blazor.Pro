@@ -45,9 +45,9 @@ public class NavHelper
             if (nav.Children is not null) SameLevelNavs.AddRange(nav.Children);
         });
 
-        SameLevelNavs.Where(nav => nav.Href is not null).ForEach(nav => 
+        SameLevelNavs.Where(nav => nav.Href is not null).ForEach(nav =>
         {
-            PageTabItems.Add(new PageTabItem(nav.Title, nav.Href, nav.ParentIcon, nav.Href != GlobalVariables.DefaultRoute));
+            PageTabItems.Add(new PageTabItem(nav.Title, nav.Href, nav.ParentIcon, PageTabsMatch.Prefix, nav.Target == "Self" ? PageTabsTarget.Self : PageTabsTarget.Blank)); /*nav.Href != GlobalVariables.DefaultRoute*/
         });
     }
 

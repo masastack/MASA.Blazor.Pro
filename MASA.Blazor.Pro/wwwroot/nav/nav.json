@@ -48,7 +48,8 @@
     "Id": 8,
     "Title": "Todo",
     "Icon": "mdi-calendar-check-outline",
-    "Href": "app/todo"
+    "Href": "app/todo",
+    "Target": "Self"
   },
   {
     "Id": 9,
