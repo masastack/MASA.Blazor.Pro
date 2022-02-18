@@ -29,5 +29,9 @@
   "Reset Password v2": "重置密码版本2",
   "Others": "其他",
   "Account Settings": "账户设置",
-  "Favorite": "收藏"
+  "Favorite": "收藏",
+  "Settings": "设置",
+  "Breadcrumb": "面包屑",
+  "PageTab": "多页签",
+  "Mode": "模式"
 }

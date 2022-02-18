@@ -17,14 +17,7 @@
     <Navigation />
 
     <MMain Class="fill-lighten-1" Style="padding-top:60px">
-        @if (GlobalConfig.PageMode == PageModes.Breadcrumb)
-        {
-            <div class="pa-6 max-width">
-                <Breadcrumb></Breadcrumb>
-                @Body
-            </div>
-        }
-        else if (GlobalConfig.PageMode == PageModes.PageTab)
+        @if (GlobalConfig.PageMode == PageModes.PageTab)
         {
             <PageTabs>
                 @Body
@@ -33,6 +26,7 @@
         else
         {
             <div class="pa-6 max-width">
+                <Breadcrumb></Breadcrumb>
                 @Body
             </div>
         }

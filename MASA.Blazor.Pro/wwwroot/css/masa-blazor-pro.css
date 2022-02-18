@@ -1005,11 +1005,10 @@ tr:hover {
 }
 
 .pagetabs .m-item-group.m-slide-group.m-tabs-bar {
-    /*z-index: 5;*/
     margin-top:4px;
 }
 
-.m-page_tab {
+.m-page-tabs .m-page_tab {
     background-color: #FFF;
     font-family: Roboto;
     font-style: normal;
@@ -1019,10 +1018,13 @@ tr:hover {
     letter-spacing: 0.1px;
     /* text/3-1次要 */
     color: #A3AED0 !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
 }
 
 .m-page_tab .m-icon {
     color: #A3AED0 !important;
+    font-size:16px !important;
 }
 
 .m-page_tab_active {
@@ -1037,14 +1039,14 @@ tr:hover {
     color: #1B2559 !important;                                                                                                                                                               
 }
 
-.m-page_tab_active .m-icon {
+.m-page_tab_active > .m-icon {
     color: #1B2559 !important;
 }
 
 .m-page-tabs > .m-tabs-bar {
     border-bottom-left-radius: 20px !important;
     border-bottom-right-radius: 20px !important;
-    height: 45px;
+    height: 36px;
     padding-left: 16px;
 }
 
@@ -1052,3 +1054,16 @@ tr:hover {
     content: none !important;
 }
 
+.m-page-tabs .m-tab:hover {
+    background-color: #F6F8FD;
+    color: #485585 !important;
+}
+
+    .m-page-tabs .m-tab:hover > .m-icon {
+        color: #485585 !important;
+    }
+
+.m-app-bar.rounded-b-4 > .m-toolbar__content {
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+}
