@@ -4,20 +4,22 @@
 <MNavigationDrawer Value=Show ValueChanged=ShowChanged Fixed Right Temporary Width="300">
     <PrependContent>
         <MContainer>
-            <MToolbar Flat Height="80">
-                <h5>
-                    @T("Settings")
-                </h5>
+            <MToolbar Style="width: 100%;" Absolute Elevation=0 Class="pr-4">
+                <span class="text-h6">@T("Settings")</span>
+                <MSpacer></MSpacer>
+                <MButton Icon OnClick="()=>{ Show = false; }">
+                    <MIcon>mdi-close</MIcon>
+                </MButton>
             </MToolbar>
         </MContainer>
     </PrependContent>
     <ChildContent>
-        <MContainer>
-            <h6>@T("Mode")</h6>
-            <MButtonGroup Mandatory Value=GlobalConfig.PageMode ValueChanged="PageModeChanged" class="mt-1">
-                <MButton Value="PageModes.Breadcrumb"  Text Width="135">@T("Breadcrumb")</MButton>
-                <MButton Value="PageModes.PageTab" Text Width="135">@T("PageTab")</MButton>
-            </MButtonGroup>
+        <MContainer Fluid>
+            <p class="mt-8 text-subtitle2">@T("Mode")</p>
+            <MRadioGroup TValue="string" Mandatory Value=GlobalConfig.PageMode ValueChanged="PageModeChanged" Row>
+                <MRadio Label="@T("Breadcrumb")" Value="PageModes.Breadcrumb"></MRadio>
+                <MRadio Label="@T("PageTab")" Value="PageModes.PageTab"></MRadio>
+            </MRadioGroup>
         </MContainer>
     </ChildContent>
 </MNavigationDrawer>
@@ -29,8 +31,8 @@
     [Parameter]
     public EventCallback<bool> ShowChanged { get; set; }
 
-    void PageModeChanged(StringNumber value)
+    void PageModeChanged(string value)
     {
-        GlobalConfig.PageMode = value.ToString();
+        GlobalConfig.PageMode = value;
     }
 }
