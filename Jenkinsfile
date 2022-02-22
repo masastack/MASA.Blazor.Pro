@@ -23,7 +23,9 @@ pipeline {
     //执行阶段
     stages {
         stage('setting env') {
-            agent any
+            agent {
+                label 'dotnet6'
+            }
             options {
                 skipDefaultCheckout(true)
             }
