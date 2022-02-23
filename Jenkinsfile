@@ -19,13 +19,12 @@ pipeline {
             )}"""
         NEW_ALI_REGISTRY_AUTH = credentials('NEW_ALI_REGISTRY_AUTH')
         KUBE_CONFIG = credentials('k8s-ack')
+        KUBE_CONFIG_PRD = credentials('k8s-ack-prd')
     }
     //执行阶段
     stages {
         stage('setting env') {
-            agent {
-                label 'dotnet6'
-            }
+            agent any
             options {
                 skipDefaultCheckout(true)
             }
@@ -43,7 +42,7 @@ pipeline {
             }
         }   
         //构建docker镜像
-        stage('docker') {
+        stage('docker-dev') {
             options {
                 retry (2)
             }
@@ -70,20 +69,40 @@ pipeline {
             steps {
                 container('kubectl') {
                     sh '''
-                          kubectl set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
+                          echo $KUBE_CONFIG_DEV | base64 --decode >> ./config
+                          kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
                        '''
                 }
             }
         }
-        //发布测试环境
-        stage('deploy-test') {
+        stage('docker-prd') {
+            options {
+                retry (2)
+            }
             when {
-                branch 'develop'
+                buildingTag()
+            }
+            steps {
+                container('docker') {
+                    sh '''
+                          docker login $NEW_ALI_REGISTRY --username=$NEW_ALI_REGISTRY_AUTH_USR -p $NEW_ALI_REGISTRY_AUTH_PSW                     
+                          docker build --force-rm  -f ./MASA.Blazor.Pro/Dockerfile -t $IMAGE_PRD .                     
+                          docker push $IMAGE_PRD
+                          docker rmi $IMAGE_PRD
+                       '''
+                }
+            }
+            
+        }
+        stage('deploy-prd') {
+            when {
+                buildingTag()
             }
             steps {
                 container('kubectl') {
                     sh '''
-                          kubectl set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
+                          echo $KUBE_CONFIG_PRD | base64 --decode >> ./config
+                          kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
                        '''
                 }
             }
@@ -102,5 +121,4 @@ pipeline {
         }
     }
 }
-
    
