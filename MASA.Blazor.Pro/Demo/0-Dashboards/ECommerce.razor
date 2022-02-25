@@ -1,0 +1,648 @@
+﻿@page "/dashboards/ecommerce"
+@inherits DemoCompontentBase
+@inject MasaBlazor MasaBlazor
+@inject GlobalConfigs GlobalConfig;
+@using BlazorComponent
+@using MASA.Blazor.Pro.Data.ECommerce
+@using System.ComponentModel
+@implements IDisposable
+
+<MRow>
+    <MCol Md=3 Sm=12>
+        <MCard Height=146>
+            <MCardText>
+                <MRow Class="max-height" NoGutters>
+                    <MCol>
+                        <span class="text-btn">Congratulations🎉</span>
+                        <h5 class="mt-1">$48.9k</h5>
+                        <MButton Color="primary" Height=30 Class="white--text text-btn" Style="bottom:16px;position:absolute">View</MButton>
+                    </MCol>
+                    <MCol>
+                        <MImage Src="/img/eCommerce/trophy.png"></MImage>
+                    </MCol>
+                </MRow>
+            </MCardText>
+        </MCard>
+    </MCol>
+    <MCol Md=3 Sm=12>
+        <MCard Height=146>
+            <MCardText>
+                <MRow Class="max-height" NoGutters>
+                    <MCol>
+                        <span class="text-btn">Orders</span>
+                        <h5 class="mt-1">$230k</h5>
+                    </MCol>
+                    <MCol Class="block-center">
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart1></MECharts>
+                    </MCol>
+                </MRow>
+            </MCardText>
+        </MCard>
+    </MCol>
+    <MCol Md=3 Sm=12>
+        <MCard Height=146>
+            <MCardText>
+                <MRow Class="max-height" NoGutters>
+                    <MCol>
+                        <span class="text-btn">Profit</span>
+                        <h5 class="mt-1">$682.5k</h5>
+                    </MCol>
+                    <MCol Class="block-center">
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart2></MECharts>
+                    </MCol>
+                </MRow>
+            </MCardText>
+        </MCard>
+    </MCol>
+    <MCol Md=3 Sm=12>
+        <MCard Height=146>
+            <MCardText>
+                <MRow Class="max-height" NoGutters>
+                    <MCol>
+                        <span class="text-btn">Earnings</span>
+                        <h5 class="my-1">$9745</h5>
+                        <span class="text-caption neutral-lighten-2--text">68% more earning than last month.</span>
+                    </MCol>
+                    <MCol Class="block-center">
+                        <MECharts Height=100 Width="@("100%")" Class="mt-1" @key="GetEchartKey()" Option=_chart3></MECharts>
+                    </MCol>
+                </MRow>
+            </MCardText>
+        </MCard>
+    </MCol>
+</MRow>
+
+<MRow>
+    <MCol Md=8 Sm=12>
+        <MRow NoGutters Class="max-height">
+            <MCol Md=8 Sm=12>
+                <MCard Class="max-height" Style="border-radius:20px 0px 0px 20px !important;">
+                    <MCardText>
+                        <MECharts Height=326 Width="@("100%")" @key="GetEchartKey()" Option=_chart4></MECharts>
+                    </MCardText>
+                </MCard>
+            </MCol>
+            <MCol Md=4 Sm=12>
+                <MCard Class="max-height" Style="box-shadow: -1px 0px 0px rgba(67, 24, 255, 0.1) !important;border-radius: 0px 20px 20px 0px !important;">
+                    <MCardText>
+                        <div class="block-between">
+                            <h4 class="neutral--text">$25,852</h4>
+                            <span class="text-caption sample-green--text">
+                                <MIcon Size=15 Color="sample-green">mdi-menu-up</MIcon>
+                                +2.45%
+                            </span>
+                        </div>
+                        <div class="sample-green--text text-btn mt-1">
+                            <MAvatar Color="sample-green" Size=16>
+                                <MIcon Size=7 Class="white--text">mdi-check</MIcon>
+                            </MAvatar>
+                            <span>Budget:56,800</span>
+                        </div>
+                        <div class="mt-5" style="height:200px;">
+                            <MECharts Height=200 Width="@("100%")" @key="GetEchartKey()" Option=_chart5></MECharts>
+                        </div>
+                        <MButton Color="primary" Height=30 Class="white--text text-btn" Style="bottom:24px;right:24px;position:absolute">View all</MButton>
+                    </MCardText>
+                </MCard>
+            </MCol>
+        </MRow>
+    </MCol>
+    <MCol Md=4 Sm=12>
+        <MCard>
+            <MCardText Class="pb-0">
+                <div class="block-between mb-4">
+                    <h6>Statistics</h6>
+                    <span class="text-btn neutral-lighten-2--text">Updated 1 month ago</span>
+                </div>
+                <MRow NoGutters>
+                    <MCol Md=6 Sm=12 Class="py-12">
+                        <div class="d-flex">
+                            <MAvatar Size=56 Color="fill-lighten-1">
+                                <MIcon Color="sample-green" Size=27>mdi-trending-up</MIcon>
+                            </MAvatar>
+                            <div class="ml-3">
+                                <div class="text-btn">Sales</div>
+                                <h6>8.504K</h6>
+                            </div>
+                        </div>
+                    </MCol>
+                    <MCol Md=6 Sm=12 Class="py-12">
+                        <div class="d-flex">
+                            <MAvatar Size=56 Color="fill-lighten-1">
+                                <MIcon Color="dark-yellow" Size=25>far fa-user</MIcon>
+                            </MAvatar>
+                            <div class="ml-3">
+                                <div class="text-btn">User</div>
+                                <h6>$35040</h6>
+                            </div>
+                        </div>
+                    </MCol>
+                    <MCol Md=6 Sm=12 Class="py-12">
+                        <div class="d-flex">
+                            <MAvatar Size=56 Color="fill-lighten-1">
+                                <MIcon Color="error" Size=27>mdi-cube-outline</MIcon>
+                            </MAvatar>
+                            <div class="ml-3">
+                                <div class="text-btn">Products</div>
+                                <h6>323.5K</h6>
+                            </div>
+                        </div>
+                    </MCol>
+                    <MCol Md=6 Sm=12 Class="py-12">
+                        <div class="d-flex">
+                            <MAvatar Size=56 Color="fill-lighten-1">
+                                <MIcon Color="primary" Size=27>mdi-currency-usd</MIcon>
+                            </MAvatar>
+                            <div class="ml-3">
+                                <div class="text-btn">Revenue</div>
+                                <h6>$35040</h6>
+                            </div>
+                        </div>
+                    </MCol>
+                </MRow>
+            </MCardText>
+        </MCard>
+    </MCol>
+</MRow>
+
+<MRow>
+    <MCol Md=8 Sm=12>
+        <MCard Class="max-height">
+            <MDataTable Headers="_headers"
+                        TItem="CompanyData"
+                        Items="_companyDatas"
+                        HideDefaultFooter
+                        Class="table-border-none pt-2">
+                <HeaderColContent Context="header">
+                    <span class="text-caption neutral-lighten-2--text ml-2">@header.Text</span>
+                </HeaderColContent>
+                <ItemColContent>
+                    @switch (context.Header.Value)
+                    {
+                        case nameof(CompanyData.CompanyName):
+                            <div Class="py-2 ml-2">
+                                <div class="d-flex">
+                                    <MAvatar>
+                                        <MImage Height=48 MaxWidth=48 Contain src="@context.Item.CompanyIcon"></MImage>
+                                    </MAvatar>
+                                    <div class="ml-4">
+                                        <span class="text-subtitle">@context.Item.CompanyName</span>
+                                        <br />
+                                        <span class="text-caption">@context.Item.CompanyEmail</span>
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case nameof(CompanyData.Category):
+                            <span class="text-subtitle">@context.Item.Category</span>
+                            break;
+                        case nameof(CompanyData.Views):
+                            <span class="text-subtitle">@context.Item.Views</span>
+                            <br />
+                            <span class="text-caption">@context.Item.ViewTime</span>
+                            break;
+                        case nameof(CompanyData.Revenue):
+                            <span class="text-subtitle">@context.Item.Revenue</span>
+                            break;
+                        case nameof(CompanyData.Sales):
+                            <span class="text-subtitle">@context.Item.Sales</span>
+                            if (context.Item.Rise)
+                            {
+                                <MIcon Class="ml-3" Color="green">mdi-trending-up</MIcon>
+                            }
+                            else
+                            {
+                                <MIcon Class="ml-3" Color="red">mdi-trending-down</MIcon>
+                            }
+
+                            break;
+                        default:
+                            @context.Value
+                            break;
+                    }
+                </ItemColContent>
+            </MDataTable>
+        </MCard>
+    </MCol>
+    <MCol Md=4 Sm=12>
+        <MCard Class="max-height">
+            <MCardText Class="pt-6">
+                <img class="rounded-2 max-width" height=186 src="/img/eCommerce/rectangle.png" />
+                <div class="d-flex my-4">
+                    <MAvatar Size=48 Color="fill-lighten-1">
+                        <MIcon Color="primary" Size=20>far fa-calendar-check</MIcon>
+                    </MAvatar>
+                    <div class="ml-4">
+                        <div class="text-subtitle">Sat，May 25，2021</div>
+                        <span class="text-caption">10:AM to 6:PM</span>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <MAvatar Size=48 Color="fill-lighten-1">
+                        <MIcon Color="sample-green" Size=25>mdi-map-marker-outline</MIcon>
+                    </MAvatar>
+                    <div class="ml-4">
+                        <div class="text-subtitle">Central Park </div>
+                        <span class="text-caption">Manhattan,New york City</span>
+                    </div>
+                </div>
+            </MCardText>
+        </MCard>
+    </MCol>
+</MRow>
+
+@code {
+    public override string Name => nameof(ECommerce);
+
+    private dynamic _chart1 = new
+    {
+        Tooltip = new
+        {
+            Trigger = "axis"
+        },
+        XAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = true,
+                LineStyle = new
+                {
+                    Color = new[] { "#F4F7FE" }
+                }
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+        },
+        YAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        Series = new[]
+                                {
+            new
+            {
+                name="series-1",
+                Type= "line",
+                Data= new int[][]{ new[] { 0,0},new[] { 1,2},new[] { 2,1},new[] { 3,3},new[] { 4,2},new[] { 5,4}},
+                Color="#4318FF",
+                SymbolSize=6,
+                Symbol="circle",
+            }
+        },
+        Grid = new
+        {
+            x = 3,
+            x2 = 3,
+            y = 3,
+            y2 = 3
+        }
+    };
+
+    private dynamic _chart2 = new
+    {
+        Tooltip = new
+        {
+            Trigger = "axis",
+            axisPointer = new
+            {
+                Type = "shadow"
+            }
+        },
+        XAxis = new
+        {
+            Data = new[] { "", "", "", "", "" },
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        YAxis = new
+        {
+            axisLine = new
+            {
+                Show = false
+            },
+            axisLabel = new
+            {
+                Show = false
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+        },
+        Series = new[]
+                                        {
+            new
+            {
+                Type= "bar",
+                Data= new []{ 2, 6, 4, 2, 4 },
+                Color="#4318FF"
+            }
+        },
+        Grid = new
+        {
+            x = 3,
+            x2 = 3,
+            y = 3,
+            y2 = 3
+        }
+    };
+
+    private dynamic _chart3 = new
+    {
+        Tooltip = new
+        {
+            Trigger = "item",
+        },
+        Series = new[]
+                        {
+           new
+           {
+               Type="pie",
+               Radius="90%",
+               Label=new
+               {
+                   Show=false
+               },
+               Data=new[]
+               {
+                   new
+                   {
+                       value=53,
+                       Name="Product",
+                       ItemStyle=new
+                       {
+                            Color= "#4318FF"
+                       }
+                   },
+                   new
+                   {
+                       value=31,
+                       Name="App",
+                       ItemStyle=new
+                       {
+                            Color= "#05CD99"
+                       }
+                   },
+                   new
+                   {
+                       value=16,
+                       Name="Service",
+                       ItemStyle=new
+                       {
+                            Color= "#FFB547"
+                       }
+                   },
+               }
+           }
+        }
+    };
+
+    private dynamic _chart4 = new
+    {
+        Title = new
+        {
+            Text = "Revenue Report",
+            TextStyle = new
+            {
+                Color = "#1B2559"
+            }
+        },
+        Tooltip = new
+        {
+            Trigger = "axis",
+            axisPointer = new
+            {
+                Type = "shadow"
+            }
+        },
+        Legend = new
+        {
+            Data = new[] { "Earning", "Expense" },
+            Right = "5px",
+            TextStyle = new
+            {
+                Color = "#707EAE",
+            }
+        },
+        XAxis = new
+        {
+            Data = new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Aug", "Sep" },
+            axisLine = new
+            {
+                Show = false,
+                LineStyle = new
+                {
+                    Color = "#707EAE"
+                }
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            },
+            TextStyle = new
+            {
+                Color = "#707EAE"
+            }
+        },
+        YAxis = new
+        {
+            axisLine = new
+            {
+                Show = false,
+                LineStyle = new
+                {
+                    Color = "#707EAE"
+                }
+            },
+            axisTick = new
+            {
+                Show = false
+            },
+            splitLine = new
+            {
+                Show = false
+            }
+        },
+        Series = new[]
+                {
+            new
+            {
+                Name="Earning",
+                Type= "bar",
+                Data= new []{ 100, 180, 300, 250, 100,50,200,140,80 },
+                Color="#4318FF",
+                Stack="x",
+                BarWidth="15"
+            },
+            new
+            {
+                Name="Expense",
+                Type= "bar",
+                Data= new []{ -180, -100, -70, -250, -130,-100,-90,-120 },
+                Color="#A18BFF",
+                Stack="x",
+                BarWidth="15"
+            }
+        },
+        Grid = new
+        {
+            y2 = 25
+        }
+    };
+
+    private dynamic _chart5 = new
+    {
+        Radar = new[]
+                    {
+            new
+            {
+                Indicator=new []
+                {
+                    new
+                    {
+                        Text="Jan",Max=300
+                    },
+                    new
+                    {
+                        Text="Feb",Max=300
+                    },
+                    new
+                    {
+                        Text="Mar",Max=300
+                    },
+                    new
+                    {
+                        Text="Apr",Max=300
+                    },
+                    new
+                    {
+                        Text="May",Max=300
+                    },
+                    new
+                    {
+                        Text="Jun",Max=300
+                    },
+                    new
+                    {
+                        Text="Aug",Max=300
+                    },
+                    new
+                    {
+                        Text="Sep",Max=300
+                    },
+                },
+                Radius=70
+            }
+        },
+        Series = new[]
+                    {
+            new
+            {
+                Type= "radar",
+                Data= new []
+                {
+                    new
+                    {
+                      Value=new []{ 150, 260, 160, 200, 150,100,200,140},
+                    }
+                },
+                Color="#4318FF",
+                SymbolSize=6,
+                Symbol="circle",
+            }
+        }
+    };
+
+    string GetEchartKey()
+    {
+        return GlobalConfig.NavigationMini.ToString()+MasaBlazor.Breakpoint.Width.ToString();
+    }
+
+    List<DataTableHeader<CompanyData>> _headers = new List<DataTableHeader<CompanyData>>
+    {
+        new () {Text= "COMPANY", Value= nameof(CompanyData.CompanyName)},
+        new (){ Text= "CATEGORY", Value= nameof(CompanyData.Category)},
+        new (){ Text= "VIEWS", Value= nameof(CompanyData.Views)},
+        new (){ Text= "REVENUE", Value= nameof(CompanyData.Revenue)},
+        new (){ Text= "SALES", Value= nameof(CompanyData.Sales)},
+    };
+
+    List<CompanyData> _companyDatas = new List<CompanyData>
+    {
+        new("Dixons","Technology","23.4k","$891.2","68%","/img/avatar/3-small.png","meguc@ruj.io",1,"in 24 hours",false),
+        new("Motels","Grocery","78k","$668.51","97%","/img/avatar/avatar-s-11.jpg","vecav@hodzi.co.uk",2,"in 2 days",true),
+        new("Zipcar","Fashion","162","$522.29","62%","/img/avatar/avatar-s-20.jpg","davcilse@is.gov",3,"in 5 days",true),
+        new("Owning","Technology","214","$291.01","88%","/img/avatar/avatar-s-6.jpg","meguc@ruj.io",1,"in 24 hours",true),
+        new("Cafés","Grocery","208","$783.93","16%","/img/avatar/avatar-s-7.jpg","meguc@ruj.io",2,"in 24 hours",false),
+        //new("Kmart","Fashion","990","$780.05","78%","/img/eCommerce/rocket.svg","meguc@ruj.io",3,"in 24 hours",true),
+        //new("Payers","Fashion","12.9k","$531.49","42%","/img/eCommerce/speaker.svg","meguc@ruj.io",3,"in 24 hours",true),
+    };
+
+    [Inject]
+    public MasaBlazor Masa { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        Masa.Application.PropertyChanged += OnPropertyChanged;
+    }
+
+    private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(Application.Left))
+        {
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        Masa.Application.PropertyChanged -= OnPropertyChanged;
+    }
+}
