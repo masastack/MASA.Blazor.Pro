@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
+﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
     <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
@@ -23,14 +23,15 @@ English| [简体中文](./README.zh-CN.md)
 ## Templates
 
 ```
-- Dashboard
+- Dashboards
   - eCommerce
-- App
+  - Analytics
+- Apps
   - eCommerce
   - Todo
   - Invoice
   - User
-- Page
+- Pages
   - Login
   - Register
   - Forgot Password
@@ -41,59 +42,6 @@ English| [简体中文](./README.zh-CN.md)
 ```
 
 # Use
-
-* [CLI](#CLI)
-* [Existing Project](#Existing Project)
-
-
-
-### CLI
-
-**Install Template**
-
-```shell
-dotnet new --install MASA.Template
-```
-
-**Create Project**
-
-* Blazor Server
-
-```shell
-dotnet new masabp -o MASA.Test
-```
-
-- Blazor WebAssembly
-
-```shell
-dotnet new masabp --mode Wasm -o Masa.TestWasm
-```
-
-- Blazor RCL
-
-```shell
-dotnet new masabp --mode ServerAndWasm -o Masa.TestRcl
-```
-
-**Go to the Server project directory**
-
-```shell
-cd MASA.Test
-```
-
-**Run**
-
-```shell
-dotnet run
-```
-
-
-
-![masabp](imgs/masabp.gif)
-
-
-
-### Existing Project
 
 Introduce styles in `wwwroot/index.html`(WebAssembly) or `Pages/_Host.cshtml`(Server):
 
@@ -107,33 +55,9 @@ Introduce styles in `wwwroot/index.html`(WebAssembly) or `Pages/_Host.cshtml`(Se
 	</head>
 </html>
 ```
-
 > The `masa-blazor-pro.css` file is in the hierarchical directory of the project wwwroot/css/masa-blazor-pro.css 
 
 > `MASA.Blazor.Pro.styles.css` needs to be changed to `{ASSEMBLY NAME}.styles.css`, the placeholder `{ASSEMBLY NAME}` is the assembly name of the project, see [ASP.NET Core Blazor for details CSS isolation](https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/css-isolation?view=aspnetcore-6.0)
-
-- Setting up MasaBlazor theme
-
-```c#
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddMasaBlazor(builder => 
-{
-    builder.UseTheme(option=>
-        {
-            option.Primary = "#4318FF";
-            option.Accent = "#4318FF";
-        }
-    );
-});
-```
-
-## Rendering
-
-|rendering|rendering|
-| :-----------: | :-----------: |
-|![dashboard](./imgs/dashboard.png)|![basket](./imgs/basket.png)|
-|![edit](./imgs/edit.png)|![view](./imgs/view.png)|
-|![login](./imgs/login.png)|![todo](./imgs/todo.png)|
 
 ## Related projects
 
@@ -182,9 +106,9 @@ Thanks to all the friends who have contributed to this project.
 
 ## Interactive 
 
-QQ group | WX public account| WX Customer Service
-:---:|:---:|:---:
-![masa.blazor-qq](./imgs/masa.blazor-qq-group.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-public-account.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-customer-service.png)
+QQ group | WX group | WX public account| WX Customer Service
+:---:|:---:|:---:|:---:
+![masa.blazor-qq](./imgs/masa.blazor-qq-group.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-group.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-public-account.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-customer-service.png)
 
 ## Development team
 
@@ -192,10 +116,10 @@ The Digital Flash technical team is an efficient, stable and innovative team. Th
 
 ## Code of conduct 
 
-This project adopts the code of conduct defined in the "Contributors Convention" to clarify the expected behavior of our community. For more information, see  [MASA Stack Community Code of Conduct](https://github.com/masastack/community/blob/main/CODE-OF-CONDUCT.md).
+This project adopts the code of conduct defined in the "Contributors Convention" to clarify the expected behavior of our community. For more information, see  [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
 
 ## License
 
-[![MASA.Blazor.Pro](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
+[MIT](https://img.shields.io/badge/license-MIT-informational)(https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
 
 Copyright (c) 2021-present MASA.Blazor.Pro
