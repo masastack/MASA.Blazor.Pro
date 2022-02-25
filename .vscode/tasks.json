@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/MASA.Blazor.Pro/MASA.Blazor.Pro.csproj",
+                "${workspaceFolder}/Masa.Blazor.Pro/Masa.Blazor.Pro.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/MASA.Blazor.Pro/MASA.Blazor.Pro.csproj",
+                "${workspaceFolder}/Masa.Blazor.Pro/Masa.Blazor.Pro.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/MASA.Blazor.Pro/MASA.Blazor.Pro.csproj",
+                "${workspaceFolder}/Masa.Blazor.Pro/Masa.Blazor.Pro.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

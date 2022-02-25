@@ -1,16 +1,16 @@
 ﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
-    <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
+    <img alt="Masa Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
 </p>
 
-<h1 align="center">MASA Blazor Pro</h1>
+<h1 align="center">Masa Blazor Pro</h1>
 
 <div align="center">
 
 开箱即用的中台前端/设计解决方案，Blazor 项目模板，提供多种常见场景的预设布局。
 
-[![MASA.Blazor.Pro](https://img.shields.io/badge/license-MIT-informational)](https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
+[![Masa.Blazor.Pro](https://img.shields.io/badge/license-MIT-informational)](https://github.com/BlazorComponent/Masa.Blazor.Pro/blob/develop/LICENSE) 
 
 </div>
 
@@ -50,7 +50,7 @@
 **安装模板**
 
 ```shell
-dotnet new --install MASA.Template
+dotnet new --install Masa.Template
 ```
 
 **创建项目**
@@ -58,7 +58,7 @@ dotnet new --install MASA.Template
 * Blazor Server
 
 ```shell
-dotnet new masabp -o MASA.Test
+dotnet new masabp -o Masa.Test
 ```
 
 - Blazor WebAssembly
@@ -76,7 +76,7 @@ dotnet new masabp --mode ServerAndWasm -o Masa.TestRcl
 **进入Server项目目录**
 
 ```shell
-cd MASA.Test
+cd Masa.Test
 ```
 
 **运行**
@@ -101,13 +101,14 @@ dotnet run
 		<!--Style-->
 		<link href="css/masa-blazor-pro.css" rel="stylesheet">
 		<!--<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">-->
-		<link href="MASA.Blazor.Pro.styles.css" rel="stylesheet">
+		<link href="Masa.Blazor.Pro.styles.css" rel="stylesheet">
 	</head>
 </html>
 ```
+
 > `masa-blazor-pro.css`文件在项目wwwroot/css/masa-blazor-pro.css层级目录下
 
-> `MASA.Blazor.Pro.styles.css`需要改为`{ASSEMBLY NAME}.styles.css`,占位符 `{ASSEMBLY NAME}` 是项目的程序集名称,详情请见 [ASP.NET Core Blazor CSS 隔离](https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/css-isolation?view=aspnetcore-6.0)
+> `Masa.Blazor.Pro.styles.css`需要改为`{ASSEMBLY NAME}.styles.css`,占位符 `{ASSEMBLY NAME}` 是项目的程序集名称,详情请见 [ASP.NET Core Blazor CSS 隔离](https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/css-isolation?view=aspnetcore-6.0)
 
 - 设置MasaBlazor主题
 
@@ -134,7 +135,7 @@ builder.Services.AddMasaBlazor(builder =>
 ## 相关项目
 
 - [BlazorComponent（无样式的底层组件框架)](https://github.com/BlazorComponent/BlazorComponent)
-- [MASA Blazor（一套基于Material设计规范和BlazorComponent的交互能力提供标准的基础组件库)](https://github.com/BlazorComponent/MASA.Blazor)
+- [Masa Blazor（一套基于Material设计规范和BlazorComponent的交互能力提供标准的基础组件库)](https://github.com/BlazorComponent/Masa.Blazor)
 
 ## 浏览器支持
 
@@ -168,14 +169,14 @@ builder.Services.AddMasaBlazor(builder =>
 3. Commit with commit message, like `feat:add MButton`
 4. Create Pull Request
 
-如果你希望参与贡献，欢迎 [Pull Request](https://github.com/BlazorComponent/MASA.Blazor.Pro/pulls)，或给我们 [报告 Bug](https://github.com/BlazorComponent/MASA.Blazor.Pro/issues/new) 。
+如果你希望参与贡献，欢迎 [Pull Request](https://github.com/BlazorComponent/Masa.Blazor.Pro/pulls)，或给我们 [报告 Bug](https://github.com/BlazorComponent/Masa.Blazor.Pro/issues/new) 。
 
 ### 贡献者
 
 感谢所有为本项目做出过贡献的朋友。
 
-<a href="https://github.com/BlazorComponent/MASA.Blazor.Pro/graphs/contributors"> 
-    <img src="https://contrib.rocks/image?repo=BlazorComponent/MASA.Blazor.Pro" /> 
+<a href="https://github.com/BlazorComponent/Masa.Blazor.Pro/graphs/contributors"> 
+    <img src="https://contrib.rocks/image?repo=BlazorComponent/Masa.Blazor.Pro" /> 
 </a>
 
 ## 交流
@@ -191,10 +192,10 @@ QQ群 | 微信公众号 | 微信客服
 
 ## 行为准则
 
-本项目采用了《贡献者公约》所定义的行为准则，以明确我们社区的预期行为。更多信息请见 [MASA Stack Community Code of Conduct](https://github.com/masastack/community/blob/main/CODE-OF-CONDUCT.md).
+本项目采用了《贡献者公约》所定义的行为准则，以明确我们社区的预期行为。更多信息请见 [Masa Stack Community Code of Conduct](https://github.com/masastack/community/blob/main/CODE-OF-CONDUCT.md).
 
 ## 许可声明
 
-[![MASA.Blazor.Pro](https://img.shields.io/badge/license-MIT-informational)](https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
+[![Masa.Blazor.Pro](https://img.shields.io/badge/license-MIT-informational)](https://github.com/BlazorComponent/Masa.Blazor.Pro/blob/develop/LICENSE) 
 
-Copyright (c) 2021-present MASA.Blazor.Pro
+Copyright (c) 2021-present Masa.Blazor.Pro

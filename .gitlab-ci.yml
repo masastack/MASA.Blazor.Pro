@@ -18,7 +18,7 @@ docker:
     - name: $CI_ALI_REGISTRY_DOMAIN/masa/library:docker-17.05.01-dind
   script:
     - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
-    - docker build --force-rm  -f ./MASA.Blazor.Pro/Dockerfile -t $IMAGE .
+    - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE .
     - docker push $IMAGE
   retry: 2
 
@@ -40,7 +40,7 @@ docker-prd:
     - name: $CI_ALI_REGISTRY_DOMAIN/masa/library:docker-17.05.01-dind
   script:
     - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
-    - docker build --force-rm  -f ./MASA.Blazor.Pro/Dockerfile -t $IMAGE_PRD .
+    - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE_PRD .
     - docker push $IMAGE_PRD
   retry: 2
 

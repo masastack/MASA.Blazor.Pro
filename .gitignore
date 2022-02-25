@@ -220,8 +220,3 @@ package-lock.json
 Thunbs.db
 #忽略nuget库 
 packages/
-#.vscode/
-/src/LONSID/MASA.SEC.UI.Admin/Pages/Promotion/Promotion.rar
-/src/MASA.SEC/Service/MASA.SEC.Service.WeChat/Properties/PublishProfiles/FolderProfile.pubxml
-/src/MASA.SEC/Service/MASA.SEC.Service.WeChat/.config/dotnet-tools.json
-/src/MASA.SEC/Test/MASA.SEC.Test.Service.Order/MSBuild_Logs/MSBuild_pid-7564_f6bd5d5efde74514a34b1a67fc863391.failure.txt

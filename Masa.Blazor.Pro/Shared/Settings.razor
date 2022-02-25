@@ -1,0 +1,38 @@
+﻿@inherits ProCompontentBase
+@inject GlobalConfig GlobalConfig
+
+<MNavigationDrawer Value=Show ValueChanged=ShowChanged Fixed Right Temporary Width="300">
+    <PrependContent>
+        <MContainer>
+            <MToolbar Style="width: 100%;" Absolute Elevation=0 Class="pr-4">
+                <span class="text-h6">@T("Settings")</span>
+                <MSpacer></MSpacer>
+                <MButton Icon OnClick="()=>{ Show = false; }">
+                    <MIcon>mdi-close</MIcon>
+                </MButton>
+            </MToolbar>
+        </MContainer>
+    </PrependContent>
+    <ChildContent>
+        <MContainer Fluid>
+            <p class="mt-8 text-subtitle2">@T("Mode")</p>
+            <MRadioGroup TValue="string" Mandatory Value=GlobalConfig.PageMode ValueChanged="PageModeChanged" Row>
+                <MRadio Label="@T("Breadcrumb")" Value="PageModes.Breadcrumb"></MRadio>
+                <MRadio Label="@T("PageTab")" Value="PageModes.PageTab"></MRadio>
+            </MRadioGroup>
+        </MContainer>
+    </ChildContent>
+</MNavigationDrawer>
+
+@code {
+    [Parameter]
+    public bool Show { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ShowChanged { get; set; }
+
+    void PageModeChanged(string value)
+    {
+        GlobalConfig.PageMode = value;
+    }
+}

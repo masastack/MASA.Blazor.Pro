@@ -53,7 +53,7 @@ pipeline {
                 container('docker') {
                     sh '''
                           docker login $NEW_ALI_REGISTRY --username=$NEW_ALI_REGISTRY_AUTH_USR -p $NEW_ALI_REGISTRY_AUTH_PSW                     
-                          docker build --force-rm  -f ./MASA.Blazor.Pro/Dockerfile -t $IMAGE .                     
+                          docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE .                     
                           docker push $IMAGE
                           docker rmi $IMAGE 
                        '''
@@ -86,7 +86,7 @@ pipeline {
                 container('docker') {
                     sh '''
                           docker login $NEW_ALI_REGISTRY --username=$NEW_ALI_REGISTRY_AUTH_USR -p $NEW_ALI_REGISTRY_AUTH_PSW                     
-                          docker build --force-rm  -f ./MASA.Blazor.Pro/Dockerfile -t $IMAGE_PRD .                     
+                          docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE_PRD .                     
                           docker push $IMAGE_PRD
                           docker rmi $IMAGE_PRD
                        '''

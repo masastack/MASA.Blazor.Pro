@@ -1,16 +1,16 @@
-﻿﻿﻿<p align="center">
+﻿﻿﻿﻿﻿﻿﻿﻿<p align="center">
   <a href="https://masa-blazor-docs-dev.lonsid.cn" target="_blank">
-    <img alt="MASA Blazor Pro Logo" width="150" src="./imgs/logo.png">
+    <img alt="Masa Blazor Pro Logo" width="150" src="./imgs/logo.png">
   </a>
 </p>
 
-<h1 align="center">MASA Blazor Pro</h1>
+<h1 align="center">Masa Blazor Pro</h1>
 
 <div align="center">
 
 Out-of-the-box mid-office front-end/design solutions, Blazor project templates, provide preset layouts for a variety of common scenarios.
 
-[![MASA.Blazor.Pro](https://img.shields.io/badge/license-MIT-informational)](https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
+[![Masa.Blazor.Pro](https://img.shields.io/badge/license-MIT-informational)](https://github.com/BlazorComponent/Masa.Blazor.Pro/blob/develop/LICENSE) 
 
 </div>
 
@@ -23,15 +23,14 @@ English| [简体中文](./README.zh-CN.md)
 ## Templates
 
 ```
-- Dashboards
+- Dashboard
   - eCommerce
-  - Analytics
-- Apps
+- App
   - eCommerce
   - Todo
   - Invoice
   - User
-- Pages
+- Page
   - Login
   - Register
   - Forgot Password
@@ -43,6 +42,59 @@ English| [简体中文](./README.zh-CN.md)
 
 # Use
 
+* [CLI](#CLI)
+* [Existing Project](#Existing Project)
+
+
+
+### CLI
+
+**Install Template**
+
+```shell
+dotnet new --install Masa.Template
+```
+
+**Create Project**
+
+* Blazor Server
+
+```shell
+dotnet new masabp -o Masa.Test
+```
+
+- Blazor WebAssembly
+
+```shell
+dotnet new masabp --mode Wasm -o Masa.TestWasm
+```
+
+- Blazor RCL
+
+```shell
+dotnet new masabp --mode ServerAndWasm -o Masa.TestRcl
+```
+
+**Go to the Server project directory**
+
+```shell
+cd Masa.Test
+```
+
+**Run**
+
+```shell
+dotnet run
+```
+
+
+
+![masabp](imgs/masabp.gif)
+
+
+
+### Existing Project
+
 Introduce styles in `wwwroot/index.html`(WebAssembly) or `Pages/_Host.cshtml`(Server):
 
 ```html
@@ -51,18 +103,42 @@ Introduce styles in `wwwroot/index.html`(WebAssembly) or `Pages/_Host.cshtml`(Se
 		<!--Style-->
 		<link href="css/masa-blazor-pro.css" rel="stylesheet">
 		<!--<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">-->
-		<link href="MASA.Blazor.Pro.styles.css" rel="stylesheet">
+		<link href="Masa.Blazor.Pro.styles.css" rel="stylesheet">
 	</head>
 </html>
 ```
+
 > The `masa-blazor-pro.css` file is in the hierarchical directory of the project wwwroot/css/masa-blazor-pro.css 
 
-> `MASA.Blazor.Pro.styles.css` needs to be changed to `{ASSEMBLY NAME}.styles.css`, the placeholder `{ASSEMBLY NAME}` is the assembly name of the project, see [ASP.NET Core Blazor for details CSS isolation](https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/css-isolation?view=aspnetcore-6.0)
+> `Masa.Blazor.Pro.styles.css` needs to be changed to `{ASSEMBLY NAME}.styles.css`, the placeholder `{ASSEMBLY NAME}` is the assembly name of the project, see [ASP.NET Core Blazor for details CSS isolation](https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/css-isolation?view=aspnetcore-6.0)
+
+- Setting up MasaBlazor theme
+
+```c#
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddMasaBlazor(builder => 
+{
+    builder.UseTheme(option=>
+        {
+            option.Primary = "#4318FF";
+            option.Accent = "#4318FF";
+        }
+    );
+});
+```
+
+## Rendering
+
+|rendering|rendering|
+| :-----------: | :-----------: |
+|![dashboard](./imgs/dashboard.png)|![basket](./imgs/basket.png)|
+|![edit](./imgs/edit.png)|![view](./imgs/view.png)|
+|![login](./imgs/login.png)|![todo](./imgs/todo.png)|
 
 ## Related projects
 
 - [BlazorComponent（（Unstyled underlying component framework）)](https://github.com/BlazorComponent/BlazorComponent)
-- [MASA Blazor（A set of standard basic component libraries based on Material design specifications and BlazorComponent interaction capabilities)](https://github.com/BlazorComponent/MASA.Blazor)
+- [Masa Blazor（A set of standard basic component libraries based on Material design specifications and BlazorComponent interaction capabilities)](https://github.com/BlazorComponent/Masa.Blazor)
 
 ## Supported browsers
 
@@ -100,15 +176,15 @@ Introduce styles in `wwwroot/index.html`(WebAssembly) or `Pages/_Host.cshtml`(Se
 
 Thanks to all the friends who have contributed to this project.
 
-<a href="https://github.com/BlazorComponent/MASA.Blazor.Pro/graphs/contributors"> 
-    <img src="https://contrib.rocks/image?repo=BlazorComponent/MASA.Blazor.Pro" /> 
+<a href="https://github.com/BlazorComponent/Masa.Blazor.Pro/graphs/contributors"> 
+    <img src="https://contrib.rocks/image?repo=BlazorComponent/Masa.Blazor.Pro" /> 
 </a>
 
 ## Interactive 
 
-QQ group | WX group | WX public account| WX Customer Service
-:---:|:---:|:---:|:---:
-![masa.blazor-qq](./imgs/masa.blazor-qq-group.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-group.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-public-account.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-customer-service.png)
+QQ group | WX public account| WX Customer Service
+:---:|:---:|:---:
+![masa.blazor-qq](./imgs/masa.blazor-qq-group.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-public-account.png) | ![masa.blazor-weixin](./imgs/masa.blazor-wechat-customer-service.png)
 
 ## Development team
 
@@ -116,10 +192,10 @@ The Digital Flash technical team is an efficient, stable and innovative team. Th
 
 ## Code of conduct 
 
-This project adopts the code of conduct defined in the "Contributors Convention" to clarify the expected behavior of our community. For more information, see  [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
+This project adopts the code of conduct defined in the "Contributors Convention" to clarify the expected behavior of our community. For more information, see  [Masa Stack Community Code of Conduct](https://github.com/masastack/community/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 
-[MIT](https://img.shields.io/badge/license-MIT-informational)(https://github.com/BlazorComponent/MASA.Blazor.Pro/blob/develop/LICENSE) 
+[![Masa.Blazor.Pro](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](https://github.com/BlazorComponent/Masa.Blazor.Pro/blob/develop/LICENSE) 
 
-Copyright (c) 2021-present MASA.Blazor.Pro
+Copyright (c) 2021-present Masa.Blazor.Pro
