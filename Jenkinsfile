@@ -22,25 +22,7 @@ pipeline {
         KUBE_CONFIG_PRD = credentials('k8s-ack-prd')
     }
     //执行阶段
-    stages {
-        stage('setting env') {
-            agent any
-            options {
-                skipDefaultCheckout(true)
-            }
-            steps {
-                wrap([$class: 'BuildUser']) {
-                    script {
-                        BUILD_USER = "${BUILD_USER}"
-                        BUILD_USER_ID ="${BUILD_USER_ID}"
-                    }
-                    script {
-                        env.BUILD_USERNAME = "${BUILD_USER}"
-                        env.BUILD_USERNAMEID = "${BUILD_USER_ID}"
-                    }
-                }
-            }
-        }   
+    stages {   
         //构建docker镜像
         stage('docker-dev') {
             options {
@@ -105,18 +87,6 @@ pipeline {
                           kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
                        '''
                 }
-            }
-        }
-    }
-    post {
-        success {
-           script {
-               sh 'export TYPE=success;export JOB_NAME="${JOB_BASE_NAME}";export BUILD_NUM="$BUILD_NUMBER";export BUILD_TIME="$BUILD_TIMESTAMP";export BUILD_USER="${BUILD_USERNAME}"; export URL_JOB="${BUILD_URL}";export URL_LOG="${BUILD_URL}console";export JOB_TIPS1="${BUILD_USERNAMEID}" ;sh send_message-export.sh'
-           }
-        }
-        failure {
-            script {
-                sh 'export TYPE=failure;export JOB_NAME="${JOB_BASE_NAME}";export BUILD_NUM="$BUILD_NUMBER";export BUILD_TIME="$BUILD_TIMESTAMP"; export BUILD_USER="${BUILD_USERNAME}"; export URL_JOB="${BUILD_URL}";export URL_LOG="${BUILD_URL}console";export JOB_TIPS1="${BUILD_USERNAMEID}" ;sh send_message-export.sh'
             }
         }
     }
