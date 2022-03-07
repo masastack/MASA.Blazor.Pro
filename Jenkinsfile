@@ -1,5 +1,4 @@
 pipeline {
-    //配置执行环境
     agent {
         label 'ecs-agent'
     }
@@ -17,7 +16,7 @@ pipeline {
                 script: 'echo  ${NEW_ALI_REGISTRY}"/masa/masa-blazor-pro:"${GIT_BRANCH}'
             )}"""
         NEW_ALI_REGISTRY_AUTH = credentials('NEW_ALI_REGISTRY_AUTH')
-        KUBE_CONFIG = credentials('k8s-ack')
+        KUBE_CONFIG_DEV = credentials('k8s-ack')
         KUBE_CONFIG_PRD = credentials('k8s-ack-prd')
     }
     stages {  
@@ -26,7 +25,7 @@ pipeline {
                 retry (2)
             }
             when {
-                branch 'main'
+                branch 'develop'
             }
             steps {
                 sh '''
@@ -78,4 +77,6 @@ pipeline {
         }
     }
 }
+
+
    
