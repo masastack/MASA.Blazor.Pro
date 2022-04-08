@@ -561,7 +561,7 @@
 }
 
 .navigation .m-navigation-drawer__content {
-    overflow-y: visible !important;
+    overflow-y:scroll;
     overflow-x: visible !important;
 }
 
