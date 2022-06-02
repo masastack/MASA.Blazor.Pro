@@ -1,4 +1,5 @@
-﻿@inject GlobalConfig GlobalConfig;
+﻿@using System.Globalization
+@inject GlobalConfig GlobalConfig;
 @inject I18n I18n
 
 <MMenu OffsetY Bottom>
@@ -9,14 +10,14 @@
     </ActivatorContent>
     <ChildContent>
         <MList Class="py-0">
-            <MListItemGroup ActiveClass="primary" Value="GlobalConfig.Language">
-                @foreach (var (language, map) in I18n.ToDictionary())
+            <MListItemGroup ActiveClass="primary" Value="GlobalConfig.Culture?.Name">
+                @foreach (var culture in I18n.SupportedCultures)
                 {
-                    <MListItem OnClick="()=> OnLanguageChange(language)" Value="(StringNumber)language">
+                    <MListItem OnClick="()=> OnLanguageChange(culture)" Value="(StringNumber)culture.Name">
                         <ItemContent>
                             <MListItemContent>
                                 <span Class="@(context.Active?"white--text":"neutral-lighten-4--text") text-btn">
-                                    @map.GetValueOrDefault("$Text")
+                                    @culture.NativeName
                                 </span>
                             </MListItemContent>
                         </ItemContent>
@@ -28,9 +29,9 @@
 </MMenu>
 
 @code {
-    void OnLanguageChange(string language)
+    void OnLanguageChange(CultureInfo culture)
     {      
-        I18n.SetLang(language);
-        GlobalConfig.Language = language;
+        I18n.SetCulture(culture);
+        GlobalConfig.Culture = culture;
     }
 }
