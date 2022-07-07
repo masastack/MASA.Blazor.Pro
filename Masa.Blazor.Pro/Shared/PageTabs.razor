@@ -11,7 +11,7 @@
             <span class="mx-2 text-capitalize @(context.IsActive ?"neutral--text":"")" style="min-width:46px;">@T(context.Item.Name)</span>
             @if (context.Item.Closable)
             {
-                <MIcon Size=16 OnClick="context.Close">mdi-close</MIcon>
+                <MIcon Size=16 OnClick="context.Close" OnClickStopPropagation OnClickPreventDefault>mdi-close</MIcon>
             }
         </MTab>
     </TabContent>
