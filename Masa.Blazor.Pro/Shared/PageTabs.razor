@@ -5,10 +5,15 @@
 
 <MPageTabs Value="NavHelper.PageTabItems.FindIndex(tab => tab.Url == GlobalConfig.CurrentNav?.Href)" Class="px-6 pagetabs" Items="NavHelper.PageTabItems">
     <TabContent>
-        <MTab Value="NavHelper.PageTabItems.FindIndex(tab=> tab.Url==context.Item.Url)" Href="@context.Item.Url" @attributes="@context.Attrs" class="px-6 rounded-t-xl m-page_tab"
-              ActiveClass="m-page_tab_active" IsActive=context.IsActive Ripple="false">
+        <MTab Value="@NavHelper.PageTabItems.FindIndex(tab => string.Equals(tab.AbsolutePath, context.Item.AbsolutePath, StringComparison.InvariantCultureIgnoreCase))"
+              Href="@context.Item.Url"
+              Class="px-6 rounded-t-xl m-page_tab"
+              ActiveClass="m-page_tab_active"
+              IsActive=context.IsActive
+              Ripple="false"
+              @attributes="@context.Attrs">
             <MIcon Size=20>@context.Item.Icon</MIcon>
-            <span class="mx-2 text-capitalize @(context.IsActive ?"neutral--text":"")" style="min-width:46px;">@T(context.Item.Name)</span>
+            <span class="mx-2 text-capitalize @(context.IsActive ? "neutral--text" : "")" style="min-width:46px;">@T(context.Item.Name)</span>
             @if (context.Item.Closable)
             {
                 <MIcon Size=16 OnClick="context.Close" OnClickStopPropagation OnClickPreventDefault>mdi-close</MIcon>
@@ -39,4 +44,5 @@
         GlobalConfig.OnLanguageChanged -= base.StateHasChanged;
         GlobalConfig.OnCurrentNavChanged -= base.StateHasChanged;
     }
+
 }
