@@ -1,4 +1,6 @@
-﻿namespace Masa.Blazor.Pro.Global;
+﻿using System.Globalization;
+
+namespace Masa.Blazor.Pro.Global;
 
 public class GlobalConfig
 {
@@ -26,16 +28,16 @@ public class GlobalConfig
 
     public static string FavoriteCookieKey { get; set; } = "GlobalConfig_Favorite";
 
-    public I18nConfig? I18nConfig { get; set; }
+    public I18n? I18n { get; set; }
 
-    public string? Language
+    public CultureInfo? Culture
     {
-        get => I18nConfig?.Language;
+        get => I18n?.Culture;
         set
         {
-            if (I18nConfig is not null)
+            if (I18n is not null)
             {
-                I18nConfig.Language = value;
+                I18n.SetCulture(value);
                 OnLanguageChanged?.Invoke();
             }
         }
@@ -104,10 +106,10 @@ public class GlobalConfig
 
     #endregion
 
-    public GlobalConfig(CookieStorage cookieStorage, I18nConfig i18nConfig, IHttpContextAccessor httpContextAccessor)
+    public GlobalConfig(CookieStorage cookieStorage, I18n i18n, IHttpContextAccessor httpContextAccessor)
     {
         _cookieStorage = cookieStorage;
-        I18nConfig = i18nConfig;
+        I18n = i18n;
         if (httpContextAccessor.HttpContext is not null) Initialization(httpContextAccessor.HttpContext.Request.Cookies);
     }
 

@@ -6,13 +6,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor(builder =>
 {
-    builder.UseTheme(option =>
-        {
-            option.Primary = "#4318FF";
-            option.Accent = "#4318FF";
-        }
-    );
-});
+    builder.Theme.Primary = "#4318FF";
+    builder.Theme.Accent = "#4318FF";
+}).AddI18nForServer("wwwroot/i18n");
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddGlobalForServer();
 
