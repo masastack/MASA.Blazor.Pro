@@ -649,6 +649,11 @@
     min-width: 0px !important;
 }
 
+.m-page-tabs .m-slide-group__next.m-slide-group__next--disabled {
+    flex: none !important;
+    min-width: 0px !important;
+}
+
 /* pagetabs */
 /*组件样式全局修改end*/
 /*shop*/
@@ -1046,7 +1051,7 @@ tr:hover {
     border-bottom-left-radius: 20px !important;
     border-bottom-right-radius: 20px !important;
     height: 36px;
-    padding-left: 16px;
+    padding: 0 16px;
 }
 
 .m-page-tabs .m-tab:before {
