@@ -47,6 +47,12 @@ public class NavHelper
 
         SameLevelNavs.Where(nav => nav.Href is not null).ForEach(nav =>
         {
+            // The following path will not open a new tab
+            if (nav.Href is "app/user/view" or "app/user/edit" or "app/ecommerce/details")
+            {
+                nav.Target = "Self";
+            }
+
             PageTabItems.Add(new PageTabItem(nav.Title, nav.Href, nav.ParentIcon, PageTabsMatch.Prefix, nav.Target == "Self" ? PageTabsTarget.Self : PageTabsTarget.Blank)); /*nav.Href != GlobalVariables.DefaultRoute*/
         });
     }
