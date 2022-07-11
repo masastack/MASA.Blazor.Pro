@@ -2,7 +2,7 @@
 
 public class BasketItemDto
 {
-    public BasketItemDto(int id, string name, string company, float score, int qty, string delivery,
+    public BasketItemDto(int id, string name, string company, float score, uint qty, string delivery,
         string offers, decimal price, string pictureFileName, bool freeShipping)
     {
         Id = id;
@@ -25,7 +25,7 @@ public class BasketItemDto
 
     public float Score { get; set; }
 
-    public int Qty { get; set; }
+    public uint Qty { get; set; }
 
     public string Delivery { get; set; } = default!;
 
