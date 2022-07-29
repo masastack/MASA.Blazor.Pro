@@ -34,7 +34,8 @@
         "Id": 6,
         "Title": "Details",
         "Icon": "mdi-circle",
-        "Href": "app/ecommerce/details"
+        "Href": "app/ecommerce/details",
+        "Target": "Self"
       },
       {
         "Id": 7,
@@ -98,13 +99,15 @@
         "Id": 16,
         "Title": "View",
         "Icon": "mdi-circle",
-        "Href": "app/user/view"
+        "Href": "app/user/view",
+        "Target": "Self"
       },
       {
         "Id": 17,
         "Title": "Edit",
         "Icon": "mdi-circle",
-        "Href": "app/user/edit"
+        "Href": "app/user/edit",
+        "Target": "Self"
       }
     ]
   },
