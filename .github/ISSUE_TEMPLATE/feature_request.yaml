@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest a sample or enhancement for the MASA.Blazor.Pro
+title: "Sample request title"
+body:
+  - type: dropdown
+    validations:
+      required: true
+    attributes:
+      label: Issue type
+      options:
+        - sample request
+        - enhancement
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please provide a description of the sample request or enhancement
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots here to help explain your problem
+  - type: textarea
+    attributes:
+      label: Which OS or Visual Studio versions did you see the issue on?
+      description: If applicable, please provide the versions
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Enter any other applicable info here
