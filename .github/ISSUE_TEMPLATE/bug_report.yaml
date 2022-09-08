@@ -1,0 +1,25 @@
+name: Bug report
+description: File a bug report
+title: "Bug title"
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please provide a description of the bug and how to reproduce it
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots here to help explain your problem
+  - type: textarea
+    attributes:
+      label: OS version
+      description: Please provide your OS and OS' version
+  - type: textarea
+    attributes:
+      label: Visual Studio version
+      description: Please provide your Visual Studio Code version
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Enter any other applicable info here
