@@ -61,14 +61,14 @@
         <MTextarea Class="mx-6" Outlined Label="Description" @bind-Value=_selectData.Description></MTextarea>
 
         <div style="position:fixed;bottom:48px;right:24px;">
-            <MButton Outlined Class="mr-6 text-capitalize neutral-lighten-2--text rounded-pill" OnClick="ResetAsync">Reset</MButton>
+            <MButton Outlined Class="mr-6 text-capitalize neutral-lighten-2--text rounded-pill" OnClick="Reset">Reset</MButton>
             @if (_isEdit)
             {
-                <MButton Color="primary rounded-pill" Dark OnClick="()=>UpdateAsync(context)">Update</MButton>
+                <MButton Color="primary rounded-pill" Dark OnClick="()=>UpdateAsync(context.EditContext)">Update</MButton>
             }
             else
             {
-                <MButton Color="primary rounded-pill" Dark OnClick="()=>AddAsync(context)">Add</MButton>
+                <MButton Color="primary rounded-pill" Dark OnClick="()=>AddAsync(context.EditContext)">Add</MButton>
             }
         </div>
     </MForm>

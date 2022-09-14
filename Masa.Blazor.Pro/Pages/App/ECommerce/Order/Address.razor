@@ -99,13 +99,13 @@
     [Parameter]
     public EventCallback<bool> DisabledChanged { get; set; }
 
-    private async void AddressSubmit()
+    private void AddressSubmit()
     {
-        await _form.ValidateAsync();
+        _form.Validate();
         if (_valid)
         {
             _show = true;
-            await _form.ResetAsync();
+            _form.Reset();
         }
     }
 }

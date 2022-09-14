@@ -48,7 +48,7 @@ public partial class TodoDetail
         _selectData.Tag.Remove(lable);
     }
 
-    protected override async Task OnParametersSetAsync()
+    protected override void OnParametersSet()
     {
         if (SelectItem == null)
         {
@@ -77,7 +77,7 @@ public partial class TodoDetail
 
         if (ValueChanged.HasDelegate && !Value && _mForm != null)
         {
-            await _mForm.ResetValidationAsync();
+            _mForm.ResetValidation();
         }
     }
 
@@ -105,11 +105,11 @@ public partial class TodoDetail
         }
     }
 
-    private async Task ResetAsync()
+    private void Reset()
     {
         if (_mForm != null)
         {
-            await _mForm.ResetValidationAsync();
+            _mForm.ResetValidation();
         }
 
         if (SelectItem != null)
