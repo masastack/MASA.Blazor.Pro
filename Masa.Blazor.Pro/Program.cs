@@ -1,4 +1,3 @@
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,8 +5,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMasaBlazor(builder =>
 {
-    builder.Theme.Primary = "#4318FF";
-    builder.Theme.Accent = "#4318FF";
+    builder.ConfigureTheme(theme =>
+    {
+        theme.Themes.Light.Primary = "#4318FF";
+        theme.Themes.Light.Accent = "#4318FF";
+    });
 }).AddI18nForServer("wwwroot/i18n");
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddGlobalForServer();
