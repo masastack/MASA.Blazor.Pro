@@ -25,14 +25,14 @@
     </MTab>
 </MTabs>
 
-<MTabsItems Value="_curTab" class="pt-6 ml-n6">
+<MTabsItems Value="_curTab" class="pt-6 transparent">
     <MTabItem>
         <Cart @bind-Step="_curTab" @bind-Disabled="_addressDisabled" />
     </MTabItem>
-    <MTabItem class="pl-6">
+    <MTabItem>
         <Address @bind-Step="_curTab" @bind-Disabled="_paymentDisabled" />
     </MTabItem>
-    <MTabItem class="pl-6">
+    <MTabItem>
         <Payment />
     </MTabItem>
 </MTabsItems>
