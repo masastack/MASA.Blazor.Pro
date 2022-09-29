@@ -31,7 +31,7 @@
             <MIcon>mdi-close</MIcon>
         </MButton>
     </MToolbar>
-    <MForm @ref="_mForm" Model="_selectData" Class="pt-16" EnableDataAnnotationsValidation>
+    <MForm @ref="_mForm" Model="_selectData" Class="pt-16" EnableValidation>
         <MTextField Class="mx-6 mt-6" @bind-Value=_selectData.Title Label="Title" Outlined Clearable></MTextField>
 
         <MSelect Class="mx-6" Outlined Label="Assignee" @bind-Value=_selectData.Assignee
