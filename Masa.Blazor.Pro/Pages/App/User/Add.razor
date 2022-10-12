@@ -3,7 +3,7 @@
         <span class="text-h6">Add New User</span>
         <MIcon Color="neutral-lighten-3" Size=24 OnClick="()=>Visible=false">mdi-close</MIcon>
     </div>
-    <MForm Model=_userData EnableDataAnnotationsValidation>
+    <MForm Model=_userData EnableValidation>
         <MTextField @bind-Value="_userData.FullName" Class="mb-6" Label="FullName" HideDetails="@("auto")" Outlined />
         <MTextField @bind-Value="_userData.UserName" Class="mb-6" Label="UserName" HideDetails="@("auto")" Outlined />
         <MTextField @bind-Value="_userData.Email" Class="mb-6" Label="Email" HideDetails="@("auto")" Outlined />

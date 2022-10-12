@@ -8,7 +8,7 @@
                 Be sure to check "Deliver to this address" when you have finished
             </MCardSubtitle>
             <MCardText class="pl-4 pr-4 mt-2">
-                <MForm Model="_address" @bind-Value="_valid" @ref="_form" EnableDataAnnotationsValidation>
+                <MForm Model="_address" @bind-Value="_valid" @ref="_form" EnableValidation>
                     <MRow>
                         <MCol Md="6" class="pb-0">
                             <MTextField @bind-Value="_address.FullName" Label="Full Name" Outlined></MTextField>

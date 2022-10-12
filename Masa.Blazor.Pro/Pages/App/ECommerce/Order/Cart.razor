@@ -1,6 +1,6 @@
 ﻿<MRow style="height: calc(100vh - 218px);" NoGutters>
     <MCol Md="8">
-        <MVirtualScroll style="height: calc(100vh - 228px);" class="hidden-webkit-scrollbar pr-6 pl-6" Items="_basketItems">
+        <MVirtualScroll style="height: calc(100vh - 228px);" class="hidden-webkit-scrollbar pr-6" Items="_basketItems">
             <ItemContent>
                 <MHover Context="hoverContext" class="full-width mb-6" >
                     <MCard Height="270" Class="@($"{hoverContext.Class} {(hoverContext.Hover ? "pro-elevation" : "")}")" @attributes="hoverContext.Attrs" Elevation="@(hoverContext.Hover ? 6 : 0)">
