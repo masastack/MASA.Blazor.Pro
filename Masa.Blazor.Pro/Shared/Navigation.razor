@@ -3,7 +3,7 @@
 @inject GlobalConfig GlobalConfig;
 @implements IDisposable
 
-<MNavigationDrawer Class="navigation" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
+<MNavigationDrawer @bind-Value="Visible" Class="navigation" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
 
     <div style="height:132px" class="@($"block-center {(GlobalConfig.NavigationMini?"px-4":"px-12")}")" @onclick="()=>NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
         @if (GlobalConfig.NavigationMini)
@@ -72,16 +72,26 @@
 
 </MNavigationDrawer>
 
-<MButton Small Fab Color="primary" Style="@($"bottom:58px;z-index:7;position: fixed;{(GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}")" OnClick="()=>{GlobalConfig.ExpandOnHover=!GlobalConfig.ExpandOnHover;}">
+<MButton Small Fab Color="primary" Style="@($"bottom:58px;z-index:7;position: fixed;{(!Visible ? "left:-14px;": GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}")" OnClick=Switch>
     <MIcon Class="white--text">
-        @(GlobalConfig.NavigationMini?"mdi-chevron-right":"mdi-chevron-left")
+        @(GlobalConfig.NavigationMini ? "mdi-chevron-right" : "mdi-chevron-left")
     </MIcon>
 </MButton>
 
 @code {
+    public bool Visible { get; set; } = true;
+
     protected override void OnInitialized()
     {
         GlobalConfig.OnLanguageChanged += base.StateHasChanged;
+    }
+
+    public void Switch()
+    {
+        if (Visible)
+            GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
+        else
+            Visible = true;
     }
 
     public void Dispose()
