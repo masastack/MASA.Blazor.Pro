@@ -72,7 +72,7 @@
 
 </MNavigationDrawer>
 
-<MButton Small Fab Color="primary" Style="@($"bottom:58px;z-index:7;position: fixed;{(!Visible ? "left:-14px;": GlobalConfig.NavigationMini ? "left:60px;" : "left:280px;")}")" OnClick=Switch>
+<MButton Small Fab Color="primary" Style="@($"bottom:58px;z-index:7;position: fixed;left:{ButtonLeft}px;")" OnClick=Switch>
     <MIcon Class="white--text">
         @(GlobalConfig.NavigationMini ? "mdi-chevron-right" : "mdi-chevron-left")
     </MIcon>
@@ -80,6 +80,8 @@
 
 @code {
     public bool Visible { get; set; } = true;
+
+    public int ButtonLeft => !Visible ? -14 : GlobalConfig.NavigationMini ? 60 : 280;
 
     protected override void OnInitialized()
     {
@@ -89,9 +91,10 @@
     public void Switch()
     {
         if (Visible)
+        {
             GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
-        else
-            Visible = true;
+        }
+        else Visible = true;
     }
 
     public void Dispose()
