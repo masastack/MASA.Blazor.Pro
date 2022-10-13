@@ -1,7 +1,6 @@
 ﻿@inherits ProCompontentBase
 @inject NavHelper NavHelper
 @inject GlobalConfig GlobalConfig;
-@implements IDisposable
 
 <MNavigationDrawer @bind-Value="Visible" Class="navigation" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
 
@@ -25,10 +24,6 @@
                 <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
                     <MListItem Ripple=false Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
                         <ItemContent>
-                            @if (context.Active)
-                            {
-                                NavHelper.RefreshRender(nav);
-                            }
                             <MListItemIcon>
                                 <MIcon Color="@(context.Active?"primary":"neutral-lighten-2")" Size=20>@nav.Icon</MIcon>
                             </MListItemIcon>
@@ -50,19 +45,28 @@
                     <ChildContent>
                         @foreach (var navChild in nav.Children)
                         {
-                            <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
+                            @if (NavHelper.CurrentUri.EndsWith(navChild.Href))
+                            {
+                                <MBorder Value=false Width=4 Class="rounded-r-1" Border="Borders.Right">
+                                    <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
+                                        <ItemContent>
+                                            <MListItemContent>
+                                                <div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
+                                            </MListItemContent>
+                                        </ItemContent>
+                                    </MListItem>
+                                </MBorder>
+                            }
+                            else
+                            {
                                 <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
                                     <ItemContent>
-                                        @if (context.Active)
-                                        {
-                                            NavHelper.RefreshRender(navChild);
-                                        }
                                         <MListItemContent>
                                             <div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
                                         </MListItemContent>
                                     </ItemContent>
                                 </MListItem>
-                            </MBorder>
+                            }
                         }
                     </ChildContent>
                 </MListGroup>
@@ -88,11 +92,6 @@
 
     public int ButtonLeft => !Visible ? -14 : GlobalConfig.NavigationMini ? 60 : 280;
 
-    protected override void OnInitialized()
-    {
-        GlobalConfig.OnLanguageChanged += base.StateHasChanged;
-    }
-
     public void Switch()
     {
         if (Visible)
@@ -100,10 +99,5 @@
             GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
         }
         else Visible = true;
-    }
-
-    public void Dispose()
-    {
-        GlobalConfig.OnLanguageChanged -= base.StateHasChanged;
     }
 }

@@ -31,8 +31,23 @@
     [Parameter]
     public EventCallback<bool> ShowChanged { get; set; }
 
-    void PageModeChanged(string value)
+    [Parameter]
+    public string PageModel { get; set; } = PageModes.PageTab;
+
+    [Parameter]
+    public EventCallback<string> PageModelChanged { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (PageModelChanged.HasDelegate)
+            await PageModelChanged.InvokeAsync(GlobalConfig.PageMode);
+    }
+
+    async Task PageModeChanged(string value)
     {
         GlobalConfig.PageMode = value;
+        if (PageModelChanged.HasDelegate)
+            await PageModelChanged.InvokeAsync(value);
+        else PageModel = value;
     }
 }
