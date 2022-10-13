@@ -21,16 +21,7 @@
         {
             if (nav.Children is null)
             {
-                <MListItem Ripple=false Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
-                        <ItemContent>
-                            <MListItemIcon>
-                                <MIcon Color="@(context.Active?"primary":"neutral-lighten-2")" Size=20>@nav.Icon</MIcon>
-                            </MListItemIcon>
-                            <MListItemContent>
-                                <div style="margin-left:6.5px;" class="text-truncate white-space:nowrap @(context.Active?"text-subtitle":"text-body neutral-lighten-2--text")">@T(nav.Title)</div>
-                            </MListItemContent>
-                        </ItemContent>
-                    </MListItem>@*                <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
+                <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
                     <MListItem Ripple=false Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
                         <ItemContent>
                             <MListItemIcon>
@@ -41,8 +32,7 @@
                             </MListItemContent>
                         </ItemContent>
                     </MListItem>
-                </MBorder>*@
-
+                </MBorder>
             }
             else
             {
@@ -55,14 +45,20 @@
                     <ChildContent>
                         @foreach (var navChild in nav.Children)
                         {
-                             <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
-                                    <ItemContent>
-                                        <MListItemContent>
-                                            <div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
-                                        </MListItemContent>
-                                    </ItemContent>
-                                </MListItem>
-                   @*         <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
+                            @if (NavHelper.CurrentUri.EndsWith(navChild.Href))
+                            {
+                                <MBorder Value=false Width=4 Class="rounded-r-1" Border="Borders.Right">
+                                    <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
+                                        <ItemContent>
+                                            <MListItemContent>
+                                                <div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
+                                            </MListItemContent>
+                                        </ItemContent>
+                                    </MListItem>
+                                </MBorder>
+                            }
+                            else
+                            {
                                 <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
                                     <ItemContent>
                                         <MListItemContent>
@@ -70,7 +66,7 @@
                                         </MListItemContent>
                                     </ItemContent>
                                 </MListItem>
-                            </MBorder>*@
+                            }
                         }
                     </ChildContent>
                 </MListGroup>

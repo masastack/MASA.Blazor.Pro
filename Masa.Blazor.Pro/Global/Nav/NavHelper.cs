@@ -11,6 +11,8 @@ public class NavHelper
 
     public List<PageTabItem> PageTabItems { get; } = new();
 
+    public string CurrentUri => _navigationManager.Uri;
+
     public NavHelper(List<NavModel> navList, NavigationManager navigationManager)
     {
         _navList = navList;
