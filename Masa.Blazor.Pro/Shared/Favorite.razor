@@ -8,7 +8,7 @@
         <MTooltip Color="primary" Bottom>
             <ActivatorContent>
                 <span @attributes="@context.Attrs" class="hover-pointer mr-8"  @onclick="()=>NavHelper.NavigateTo(menu)">
-                    <MIcon Size=24 Color="@(menu.Active?"primary":"neutral-lighten-3")">
+                    <MIcon Size=24 Color="@(NavHelper.CurrentUri.EndsWith(menu.Href) ?"primary":"neutral-lighten-3")">
                         @menu.ParentIcon
                     </MIcon>
                 </span>
