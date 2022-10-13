@@ -30,15 +30,15 @@ variables:
 docker:
   stage: docker
   tags:
-     - linux-shell
-   before_script:
-     - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
-   only:
+    - linux-shell
+  before_script:
+    - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
+  only:
      - main
-   script:
-     - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE .
-     - docker push $IMAGE
-   retry: 2
+  script:
+    - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE .
+    - docker push $IMAGE
+  retry: 2
 
 deploy:
   image: portainer/kubectl-shell
