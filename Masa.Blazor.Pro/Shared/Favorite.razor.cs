@@ -14,8 +14,6 @@
             {
                 _favoriteMenus = GlobalConfig.Favorite.Split('|').Select(v => Convert.ToInt32(v)).ToList();
             }
-
-            GlobalConfig.OnCurrentNavChanged += base.StateHasChanged;
         }
 
         bool _open;
@@ -62,11 +60,6 @@
                 arr.RemoveAt(0);
                 return $"{T(parent)} {T(string.Join(' ', arr))}";
             }
-        }
-
-        public void Dispose()
-        {
-            GlobalConfig.OnCurrentNavChanged -= base.StateHasChanged;
         }
     }
 }

@@ -18,9 +18,6 @@
         };
         private List<CompanyDto> _companyList = ECommerceService.GetCompanyList();
 
-        [Inject]
-        public MasaBlazor Masa { get; set; } = default!;
-
         private string GetEchartKey()
         {
             return GlobalConfig.NavigationMini.ToString() + MasaBlazor.Breakpoint.Width.ToString();
@@ -28,7 +25,7 @@
 
         protected override void OnInitialized()
         {
-            Masa.Application.PropertyChanged += OnPropertyChanged;
+            MasaBlazor.Application.PropertyChanged += OnPropertyChanged;
 
             _orderChart = new
             {
@@ -385,7 +382,7 @@
         {
             if (e.PropertyName == nameof(Application.Left))
             {
-                if(GlobalConfig.CurrentNav?.Href == "dashboard/ecommerce")
+                if(NavigationManager.Uri == "dashboard/ecommerce")
                 {
                     InvokeAsync(StateHasChanged);
                 }           
@@ -394,7 +391,7 @@
 
         public void Dispose()
         {
-            Masa.Application.PropertyChanged -= OnPropertyChanged;
+            MasaBlazor.Application.PropertyChanged -= OnPropertyChanged;
         }
     }
 }
