@@ -20,12 +20,13 @@
 
         private string GetEchartKey()
         {
-            return GlobalConfig.NavigationMini.ToString() + MasaBlazor.Breakpoint.Width.ToString();
+            return MasaBlazor.Application.Left.ToString() + MasaBlazor.Breakpoint.Width;
         }
 
         protected override void OnInitialized()
         {
             MasaBlazor.Breakpoint.OnUpdate += OnPropertyChanged;
+            MasaBlazor.Application.PropertyChanged += OnPropertyChanged;
 
             _orderChart = new
             {
@@ -387,9 +388,15 @@
             return Task.CompletedTask;
         }
 
+        private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged();
+        }
+
         public void Dispose()
         {
             MasaBlazor.Breakpoint.OnUpdate -= OnPropertyChanged;
+            MasaBlazor.Application.PropertyChanged -= OnPropertyChanged;
         }
     }
 }
