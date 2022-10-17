@@ -20,7 +20,7 @@
            <MList>
                 @foreach (var nav in navs)
                 {
-                    <MListItem OnClick="()=>NavHelper.NavigateToByEvent(nav)">
+                    <MListItem OnClick="()=>NavHelper.NavigateTo(nav)">
                         <MListItemAction>
                             <MIcon Size=20 Color="neutral-lighten-4">@nav.ParentIcon</MIcon>
                         </MListItemAction>

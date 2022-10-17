@@ -2,7 +2,6 @@
 @inject NavigationManager NavigationManager
 @inject NavHelper NavHelper
 @inject GlobalConfig GlobalConfig
-@implements IDisposable
 
 @{
     var items = GetBreadcrumbItems();
@@ -32,12 +31,6 @@
 }
 
 @code {
-    protected override void OnInitialized()
-    {
-       GlobalConfig.OnLanguageChanged += base.StateHasChanged;
-       GlobalConfig.OnCurrentNavChanged += base.StateHasChanged;
-    }
-
     private List<BreadcrumbItem> GetBreadcrumbItems()
     {
         var items = new List<BreadcrumbItem>();
@@ -53,11 +46,5 @@
             items.Last().Href = currentNav.Href;
         }
         return items;
-    }
-
-    public void Dispose()
-    {
-        GlobalConfig.OnLanguageChanged -= base.StateHasChanged;
-        GlobalConfig.OnCurrentNavChanged -= base.StateHasChanged;
     }
 }

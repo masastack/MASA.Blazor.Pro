@@ -4,7 +4,7 @@ public abstract class ProCompontentBase : ComponentBase
 {
     private I18n? _languageProvider;
 
-    [Inject]
+    [CascadingParameter]
     public I18n LanguageProvider
     {
         get

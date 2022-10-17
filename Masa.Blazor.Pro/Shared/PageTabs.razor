@@ -1,12 +1,9 @@
 ﻿@inherits ProCompontentBase
 @inject NavHelper NavHelper
-@inject GlobalConfig GlobalConfig
-@implements IDisposable
 
-<MPageTabs Value="NavHelper.PageTabItems.FindIndex(tab => tab.Url == GlobalConfig.CurrentNav?.Href)" Class="px-6 pagetabs" Items="NavHelper.PageTabItems">
+<MPageTabs Class="px-6 pagetabs" Items="NavHelper.PageTabItems">
     <TabContent>
-        <MTab Value="@NavHelper.PageTabItems.FindIndex(tab => string.Equals(tab.AbsolutePath, context.Item.AbsolutePath, StringComparison.InvariantCultureIgnoreCase))"
-              Href="@context.Item.Url"
+        <MTab Href="@context.Item.Url"
               Class="px-6 rounded-t-xl m-page_tab"
               ActiveClass="m-page_tab_active"
               IsActive=context.IsActive
@@ -28,21 +25,6 @@
 </MPageTabs>
 
 @code {
-    StringNumber _tabIndex = 0;
-
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-
-    protected override void OnInitialized()
-    {
-        GlobalConfig.OnLanguageChanged += base.StateHasChanged;
-        GlobalConfig.OnCurrentNavChanged += base.StateHasChanged;
-    }
-
-    public void Dispose()
-    {
-        GlobalConfig.OnLanguageChanged -= base.StateHasChanged;
-        GlobalConfig.OnCurrentNavChanged -= base.StateHasChanged;
-    }
-
 }
