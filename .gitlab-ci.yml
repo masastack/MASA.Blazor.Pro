@@ -6,7 +6,7 @@
 stages:
 #   - sonarqube
   - docker
-  - deploy
+  - deploy-dev
   - docker-prd
   - deploy-prd
 
@@ -28,7 +28,7 @@ variables:
 #     - docker push $IMAGE
 #   retry: 2
 docker:
-  stage: docker
+  stage: docker-dev
   tags:
     - linux-shell
   before_script:
@@ -40,13 +40,13 @@ docker:
     - docker push $IMAGE
   retry: 2
 
-deploy:
+deploy-dev:
   image: portainer/kubectl-shell
   stage: deploy
   only:
     - main
   script:
-    - echo $KUBE_CONFIG_DEV | base64 -d > ./config
+    - echo $KUBE_CONFIG_DEV_YDY | base64 -d > ./config
     - kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
   retry: 2
 
