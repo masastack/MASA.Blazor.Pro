@@ -200,13 +200,13 @@
         <MCard Style="@(_current == 4 ?"":"display:none")">
             <MCardText>
                 <p class="grey--text">ACTIVITY</p>
-                <MSwitch Label="Email me when someone comments on my article"></MSwitch>
-                <MSwitch Label="Email me when someone answers on my form"></MSwitch>
-                <MSwitch Label="Email me hen someone follows me"></MSwitch>
+                <MSwitch Label="Email me when someone comments on my article" TValue="bool"></MSwitch>
+                <MSwitch Label="Email me when someone answers on my form" TValue="bool"></MSwitch>
+                <MSwitch Label="Email me hen someone follows me" TValue="bool"></MSwitch>
                 <p class="grey--text">APPLICATION</p>
-                <MSwitch Label="News and announcements"></MSwitch>
-                <MSwitch Label="Weekly product updates"></MSwitch>
-                <MSwitch Label="Weekly blog digest"></MSwitch>
+                <MSwitch Label="News and announcements" TValue="bool"></MSwitch>
+                <MSwitch Label="Weekly product updates" TValue="bool"></MSwitch>
+                <MSwitch Label="Weekly blog digest" TValue="bool"></MSwitch>
                 <MItem>
                     <MButton Color="deep-purple white--text font-weight-black"> Save changes </MButton>
                     <MButton Outlined Class="ml-2 grey--text font-weight-black"> Cancel </MButton>
