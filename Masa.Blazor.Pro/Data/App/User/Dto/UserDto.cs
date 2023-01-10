@@ -16,7 +16,11 @@ public class UserDto : IComparable
     {
         get
         {
-            return string.Join("", FullName.Split(' ').Select(n => n[0].ToString().ToUpper()));
+            return string.Join("", FullName.Split(' ').Select(n => 
+            {
+                if (n.Length > 0) return n[0].ToString().ToUpper();
+                else return "";
+            }));
         }
     }
 
@@ -117,5 +121,10 @@ public class UserDto : IComparable
             result += item.Substring(0, 1);
         }
         return result;
+    }
+
+    public UserDto Copy()
+    {
+        return (UserDto)MemberwiseClone();
     }
 }

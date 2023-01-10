@@ -218,10 +218,10 @@
     private List<DataTableHeader<PermissionDto>> _headers = new List<DataTableHeader<PermissionDto>>
     {
     new (){ Text= "MODULE", Sortable= false, Value= nameof(PermissionDto.Module)},
-    new (){ Text= "READ", Sortable= false, Value= nameof(PermissionDto.Read),Align="center"},
-    new (){ Text= "WRITE", Sortable= false, Value= nameof(PermissionDto.Write),Align="center"},
-    new (){ Text= "CREATE", Sortable= false, Value= nameof(PermissionDto.Create),Align="center"},
-    new (){ Text= "DELETE", Sortable= false, Value= nameof(PermissionDto.Delete),Align="center"}
+    new (){ Text= "READ", Sortable= false, Value= nameof(PermissionDto.Read),Align=DataTableHeaderAlign.Center},
+    new (){ Text= "WRITE", Sortable= false, Value= nameof(PermissionDto.Write),Align=DataTableHeaderAlign.Center},
+    new (){ Text= "CREATE", Sortable= false, Value= nameof(PermissionDto.Create),Align=DataTableHeaderAlign.Center},
+    new (){ Text= "DELETE", Sortable= false, Value= nameof(PermissionDto.Delete),Align=DataTableHeaderAlign.Center}
     };
     private List<PermissionDto> _permissions = UserService.GetPermissionsList();
     private UserDto? _userData;
