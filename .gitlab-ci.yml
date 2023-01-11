@@ -38,17 +38,23 @@ variables:
 #     - kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
 #   retry: 2
 
-docker-prd:
-  image: docker:17.05.0
+# docker-prd:
+#   image: docker:17.05.0
   stage: docker-prd
+  tags:
+    - linux-shell
   only:
     - tags
-  services:
-    - name: $CI_ALI_REGISTRY_DOMAIN/masa/library:docker-17.05.01-dind
-  script:
+  before_script:
     - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
+#   services:
+#     - name: $CI_ALI_REGISTRY_DOMAIN/masa/library:docker-17.05.01-dind
+  script:
+#     - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
     - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE_PRD .
     - docker push $IMAGE_PRD
+  after_script:
+    - docker rmi $IMAGE_PRD
   retry: 2
 
 deploy-prd:
