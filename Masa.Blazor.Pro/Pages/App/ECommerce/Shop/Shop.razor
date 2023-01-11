@@ -7,13 +7,13 @@
 
         <span class="text-btn neutral-lighten-4--text mt-1">Multi Range</span>
         <div class="border-b-solid mt-6 mb-12 pl-2">
-            <MRadioGroup Dense @bind-Value="_shopData.MultiRange">
+            <MRadioGroup Dense @bind-Value="MultiRangeText">
                 @foreach (var multiRange in _multiRanges)
                 {
                     <div class="block-center" style="height:40px;">
-                        <MRadio Color="primary" Value="@multiRange">
+                        <MRadio Color="primary" Value="@multiRange.Text">
                             <LabelContent>
-                                <span class="@($"{(_shopData.MultiRange==multiRange?"text-subtitle primary--text":"text-body3")}")">@multiRange.Text</span>
+                                <span class="@($"{(MultiRangeText==multiRange.Text?"text-subtitle primary--text":"text-body3")}")">@multiRange.Text</span>
                             </LabelContent>
                         </MRadio>
                     </div>
