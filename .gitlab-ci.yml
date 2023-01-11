@@ -5,8 +5,8 @@
 
 stages:
 #   - sonarqube
-  - docker-dev
-  - deploy-dev
+#   - docker-dev
+#   - deploy-dev
   - docker-prd
   - deploy-prd
 
@@ -15,28 +15,28 @@ variables:
   IMAGE: $CI_ALI_REGISTRY_DOMAIN/masa/masa-blazor-pro:0.0.$CI_PIPELINE_ID
   IMAGE_PRD: $CI_ALI_REGISTRY_DOMAIN/masa/masa-blazor-pro:$CI_COMMIT_TAG
 
-docker:
-  stage: docker-dev
-  tags:
-    - linux-shell
-  before_script:
-    - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
-  only:
-     - main
-  script:
-    - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE .
-    - docker push $IMAGE
-  retry: 2
+# docker:
+#   stage: docker-dev
+#   tags:
+#     - linux-shell
+#   before_script:
+#     - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
+#   only:
+#      - main
+#   script:
+#     - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE .
+#     - docker push $IMAGE
+#   retry: 2
 
-deploy-dev:
-  image: portainer/kubectl-shell
-  stage: deploy-dev
-  only:
-    - main
-  script:
-    - echo $KUBE_CONFIG_DEV_YDY | base64 -d > ./config
-    - kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
-  retry: 2
+# deploy-dev:
+#   image: portainer/kubectl-shell
+#   stage: deploy-dev
+#   only:
+#     - main
+#   script:
+#     - echo $KUBE_CONFIG_DEV_YDY | base64 -d > ./config
+#     - kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
+#   retry: 2
 
 docker-prd:
   image: docker:17.05.0
