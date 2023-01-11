@@ -58,7 +58,9 @@ docker-prd:
   retry: 2
 
 deploy-prd:
-  image: portainer/kubectl-shell
+#   image: portainer/kubectl-shell
+  tags:
+    - linux-shell
   stage: deploy-prd
   only:
     - tags
