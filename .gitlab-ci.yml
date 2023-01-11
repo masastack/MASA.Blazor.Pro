@@ -5,7 +5,7 @@
 
 stages:
 #   - sonarqube
-  - docker
+  - docker-dev
   - deploy-dev
   - docker-prd
   - deploy-prd
@@ -15,18 +15,6 @@ variables:
   IMAGE: $CI_ALI_REGISTRY_DOMAIN/masa/masa-blazor-pro:0.0.$CI_PIPELINE_ID
   IMAGE_PRD: $CI_ALI_REGISTRY_DOMAIN/masa/masa-blazor-pro:$CI_COMMIT_TAG
 
-# docker:
-#   image: docker:17.05.0
-#   stage: docker
-#   only:
-#     - main
-#   services:
-#     - name: $CI_ALI_REGISTRY_DOMAIN/masa/library:docker-17.05.01-dind
-#   script:
-#     - docker login -u $CI_ALI_REGISTRY_USER -p $CI_ALI_REGISTRY_PASSWD $CI_ALI_REGISTRY_DOMAIN
-#     - docker build --force-rm  -f ./Masa.Blazor.Pro/Dockerfile -t $IMAGE .
-#     - docker push $IMAGE
-#   retry: 2
 docker:
   stage: docker-dev
   tags:
@@ -42,7 +30,7 @@ docker:
 
 deploy-dev:
   image: portainer/kubectl-shell
-  stage: deploy
+  stage: deploy-dev
   only:
     - main
   script:
