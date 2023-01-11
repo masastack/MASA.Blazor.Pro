@@ -38,7 +38,7 @@ variables:
 #     - kubectl --kubeconfig ./config set image deployment/masa-blazor-pro masa-blazor-pro=$IMAGE -n masa-blazor
 #   retry: 2
 
-# docker-prd:
+docker-prd:
 #   image: docker:17.05.0
   stage: docker-prd
   tags:
