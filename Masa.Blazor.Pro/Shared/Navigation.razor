@@ -2,7 +2,7 @@
 @inject NavHelper NavHelper
 @inject GlobalConfig GlobalConfig;
 
-<MNavigationDrawer @bind-Value="Visible" Class="navigation rounded-r-xl" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
+<MNavigationDrawer @bind-Value="Visible" Class="navigation" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
 
     <div style="height:132px" class="@($"block-center {(GlobalConfig.NavigationMini?"px-4":"px-12")}")" @onclick="()=>NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
         @if (GlobalConfig.NavigationMini)
