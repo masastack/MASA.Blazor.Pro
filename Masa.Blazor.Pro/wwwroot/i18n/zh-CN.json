@@ -31,6 +31,9 @@
   "Account Settings": "账户设置",
   "Favorite": "收藏",
   "Settings": "设置",
+  "NavigationStyle": "导航样式",
+  "Flat": "扁平",
+  "Rounded": "圆角",
   "Breadcrumb": "面包屑",
   "PageTab": "多页签",
   "Mode": "模式"

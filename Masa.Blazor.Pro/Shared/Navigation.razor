@@ -2,102 +2,102 @@
 @inject NavHelper NavHelper
 @inject GlobalConfig GlobalConfig;
 
-<MNavigationDrawer @bind-Value="Visible" Class="navigation rounded-r-xl" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
+<MNavigationDrawer @bind-Value="Visible" Class="@($"navigation {(GlobalConfig.NavigationStyle==NavigationStyles.Rounded?"rounded-r-xl":string.Empty)}")" Width=300 MiniVariantWidth=80 Fixed ExpandOnHover="GlobalConfig.ExpandOnHover" @bind-MiniVariant="GlobalConfig.NavigationMini" App>
 
-    <div style="height:132px" class="@($"block-center {(GlobalConfig.NavigationMini?"px-4":"px-12")}")" @onclick="()=>NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
-        @if (GlobalConfig.NavigationMini)
-        {
-            <img height="48" width="48" class="hover-pointer" src="/img/mainLayout/logo.svg" />
-        }
-        else
-        {
-            <img class="hover-pointer" src="/img/mainLayout/logo-en.svg" />
-        }
-    </div>
+	<div style="height:132px" class="@($"block-center {(GlobalConfig.NavigationMini?"px-4":"px-12")}")" @onclick="()=>NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
+		@if (GlobalConfig.NavigationMini)
+		{
+			<img height="48" width="48" class="hover-pointer" src="/img/mainLayout/logo.svg" />
+		}
+		else
+		{
+			<img class="hover-pointer" src="/img/mainLayout/logo-en.svg" />
+		}
+	</div>
 
-    <MList Nav Linkage Dense Class="@($"pa-0 {(GlobalConfig.NavigationMini?"mini-navigation":"")}")">
+	<MList Nav Linkage Dense Class="@($"pa-0 {(GlobalConfig.NavigationMini?"mini-navigation":"")}")">
 
-        @foreach (var nav in NavHelper.Navs)
-        {
-            if (nav.Children is null)
-            {
-                <MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
-                    <MListItem Ripple=false Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
-                        <ItemContent>
-                            <MListItemIcon>
-                                <MIcon Color="@(context.Active?"primary":"neutral-lighten-2")" Size=20>@nav.Icon</MIcon>
-                            </MListItemIcon>
-                            <MListItemContent>
-                                <div style="margin-left:6.5px;" class="text-truncate white-space:nowrap @(context.Active?"text-subtitle":"text-body neutral-lighten-2--text")">@T(nav.Title)</div>
-                            </MListItemContent>
-                        </ItemContent>
-                    </MListItem>
-                </MBorder>
-            }
-            else
-            {
-                <MListGroup Group="@nav.Children.Select(n => n.Href).ToList()" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
-                    <ActivatorContent>
-                        <MListItemContent>
-                            <div style="margin-left:6.5px;" class="text-truncate white-space:nowrap">@T(nav.Title)</div>
-                        </MListItemContent>
-                    </ActivatorContent>
-                    <ChildContent>
-                        @foreach (var navChild in nav.Children)
-                        {
-                            @if (NavHelper.CurrentUri.EndsWith(navChild.Href))
-                            {
-                                <MBorder Value=false Width=4 Class="rounded-r-1" Border="Borders.Right">
-                                    <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
-                                        <ItemContent>
-                                            <MListItemContent>
-                                                <div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
-                                            </MListItemContent>
-                                        </ItemContent>
-                                    </MListItem>
-                                </MBorder>
-                            }
-                            else
-                            {
-                                <MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
-                                    <ItemContent>
-                                        <MListItemContent>
-                                            <div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
-                                        </MListItemContent>
-                                    </ItemContent>
-                                </MListItem>
-                            }
-                        }
-                    </ChildContent>
-                </MListGroup>
-            }
-        }
-    </MList>
+		@foreach (var nav in NavHelper.Navs)
+		{
+			if (nav.Children is null)
+			{
+				<MBorder Value=false Offset Width=4 Class="rounded-r-1" Border="Borders.Right">
+					<MListItem Ripple=false Class="mb-4" ActiveClass="fill-lighten-1" Href="@nav.Href">
+						<ItemContent>
+							<MListItemIcon>
+								<MIcon Color="@(context.Active?"primary":"neutral-lighten-2")" Size=20>@nav.Icon</MIcon>
+							</MListItemIcon>
+							<MListItemContent>
+								<div style="margin-left:6.5px;" class="text-truncate white-space:nowrap @(context.Active?"text-subtitle":"text-body neutral-lighten-2--text")">@T(nav.Title)</div>
+							</MListItemContent>
+						</ItemContent>
+					</MListItem>
+				</MBorder>
+			}
+			else
+			{
+				<MListGroup Group="@nav.Children.Select(n => n.Href).ToList()" Class="mb-4" PrependIcon="@nav.Icon" NoAction ActiveClass="primaryText" AppendIcon="M8.33398 10.3335L12.5007 14.5002L16.6673 10.3335H8.33398Z">
+					<ActivatorContent>
+						<MListItemContent>
+							<div style="margin-left:6.5px;" class="text-truncate white-space:nowrap">@T(nav.Title)</div>
+						</MListItemContent>
+					</ActivatorContent>
+					<ChildContent>
+						@foreach (var navChild in nav.Children)
+						{
+							@if (NavHelper.CurrentUri.EndsWith(navChild.Href))
+							{
+								<MBorder Value=false Width=4 Class="rounded-r-1" Border="Borders.Right">
+									<MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
+										<ItemContent>
+											<MListItemContent>
+												<div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
+											</MListItemContent>
+										</ItemContent>
+									</MListItem>
+								</MBorder>
+							}
+							else
+							{
+								<MListItem Ripple=false ActiveClass="fill-lighten-1" Link Href="@navChild.Href">
+									<ItemContent>
+										<MListItemContent>
+											<div class="text-truncate white-space:nowrap @(context.Active?"text-subtitle2":"text-btn neutral-lighten-2--text")">@T(navChild.Title)</div>
+										</MListItemContent>
+									</ItemContent>
+								</MListItem>
+							}
+						}
+					</ChildContent>
+				</MListGroup>
+			}
+		}
+	</MList>
 </MNavigationDrawer>
 
 @if (!(Masa.Breakpoint.Mobile && Visible is true))
 {
-    <MButton Small Fab Color="primary" OnClick=Switch Style="@($"bottom:58px;z-index:7;position: fixed;left:{ButtonLeft}px;")">
-        <MIcon Class="white--text">
-            @(Visible is false || GlobalConfig.NavigationMini ? "mdi-chevron-right" : "mdi-chevron-left")
-        </MIcon>
-    </MButton>
+	<MButton Small Fab Color="primary" OnClick=Switch Style="@($"bottom:58px;z-index:7;position: fixed;left:{ButtonLeft}px;")">
+		<MIcon Class="white--text">
+			@(Visible is false || GlobalConfig.NavigationMini ? "mdi-chevron-right" : "mdi-chevron-left")
+		</MIcon>
+	</MButton>
 }
 
 @code {
-    [Inject]
-    public MasaBlazor Masa { get; set; } = default!;
+	[Inject]
+	public MasaBlazor Masa { get; set; } = default!;
 
-    public bool Visible { get; set; } = true;
+	public bool Visible { get; set; } = true;
 
-    public int ButtonLeft => !Visible ? -14 : GlobalConfig.NavigationMini ? 60 : 280;
+	public int ButtonLeft => !Visible ? -14 : GlobalConfig.NavigationMini ? 60 : 280;
 
-    public void Switch()
-    {
-        if (Visible)
-        {
-            GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
-        }
-        else Visible = true;
-    }
+	public void Switch()
+	{
+		if (Visible)
+		{
+			GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
+		}
+		else Visible = true;
+	}
 }
