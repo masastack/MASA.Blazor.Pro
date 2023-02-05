@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Masa.Blazor" Version="0.7.0-alpha.1661" />
+    <PackageReference Include="Masa.Blazor" Version="1.0.0-preview.2" />
   </ItemGroup>
 
   <ItemGroup>
