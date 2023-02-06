@@ -21,6 +21,13 @@
                 <MRadio Label="@T("PageTab")" Value="PageModes.PageTab"></MRadio>
             </MRadioGroup>
         </MContainer>
+        <MContainer Fluid>
+            <p class="mt-8 text-subtitle2">@T("NavigationStyle")</p>
+            <MRadioGroup TValue="string" Mandatory Value=GlobalConfig.NavigationStyle ValueChanged="NavigationStyleChanged" Row>
+                <MRadio Label="@T("Flat")" Value="NavigationStyles.Flat"></MRadio>
+                <MRadio Label="@T("Rounded")" Value="NavigationStyles.Rounded"></MRadio>
+            </MRadioGroup>
+        </MContainer>
     </ChildContent>
 </MNavigationDrawer>
 
@@ -35,12 +42,20 @@
     public string PageModel { get; set; } = PageModes.PageTab;
 
     [Parameter]
+    public string NavigationStyle { get; set; } = NavigationStyles.Flat;
+
+    [Parameter]
     public EventCallback<string> PageModelChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<string> NavigationBarStyleChanged { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         if (PageModelChanged.HasDelegate)
             await PageModelChanged.InvokeAsync(GlobalConfig.PageMode);
+        if (NavigationBarStyleChanged.HasDelegate)
+            await NavigationBarStyleChanged.InvokeAsync(GlobalConfig.NavigationStyle);
     }
 
     async Task PageModeChanged(string value)
@@ -49,5 +64,13 @@
         if (PageModelChanged.HasDelegate)
             await PageModelChanged.InvokeAsync(value);
         else PageModel = value;
+    }
+
+    async Task NavigationStyleChanged(string value)
+    {
+        GlobalConfig.NavigationStyle = value;
+        if (NavigationBarStyleChanged.HasDelegate)
+            await NavigationBarStyleChanged.InvokeAsync(value);
+        else NavigationStyle = value;
     }
 }

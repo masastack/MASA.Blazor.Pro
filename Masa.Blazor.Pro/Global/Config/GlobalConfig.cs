@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace Masa.Blazor.Pro.Global;
+﻿namespace Masa.Blazor.Pro.Global;
 
 public class GlobalConfig
 {
@@ -11,12 +9,15 @@ public class GlobalConfig
     private bool _navigationMini;
     private string? _favorite;
     private CookieStorage? _cookieStorage;
+    private string? _navigationStyle;
 
     #endregion
 
     #region Property
 
     public static string PageModeKey { get; set; } = "GlobalConfig_PageMode";
+
+    public static string NavigationStyleKey { get; set; } = "GlobalConfig_NavigationStyle";
 
     public static string NavigationMiniCookieKey { get; set; } = "GlobalConfig_NavigationMini";
 
@@ -33,6 +34,17 @@ public class GlobalConfig
             _cookieStorage?.SetItemAsync(PageModeKey, value);
         }
     }
+
+    public string NavigationStyle
+    {
+        get => _navigationStyle ?? NavigationStyles.Flat;
+        set
+        {
+            _navigationStyle = value;
+            _cookieStorage?.SetItemAsync(NavigationStyleKey, value);
+        }
+    }
+
 
     public bool NavigationMini
     {
@@ -83,6 +95,7 @@ public class GlobalConfig
     public void Initialization(IRequestCookieCollection cookies)
     {
         _pageMode = cookies[PageModeKey];
+        _navigationStyle = cookies[NavigationStyleKey];
         _navigationMini = Convert.ToBoolean(cookies[NavigationMiniCookieKey]);
         _expandOnHover = Convert.ToBoolean(cookies[ExpandOnHoverCookieKey]);
         _favorite = cookies[FavoriteCookieKey];
