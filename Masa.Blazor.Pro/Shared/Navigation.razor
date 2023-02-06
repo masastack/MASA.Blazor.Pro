@@ -92,6 +92,8 @@
 
     public int ButtonLeft => !Visible ? -14 : GlobalConfig.NavigationMini ? 60 : 280;
 
+    public string ComputedNavigationStyle => (GlobalConfig.NavigationStyle == NavigationStyles.Rounded ? "rounded-r-xl" : string.Empty);
+
     public void Switch()
     {
         if (Visible)
