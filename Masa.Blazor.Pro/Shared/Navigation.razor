@@ -1,6 +1,6 @@
 ﻿@inherits ProCompontentBase
 @inject NavHelper NavHelper
-@inject GlobalConfig GlobalConfig;
+@inject GlobalConfig GlobalConfig
 
 <MNavigationDrawer @bind-Value="Visible" 
                    Class="@($"navigation {ComputedNavigationClass}")"
@@ -11,8 +11,8 @@
                    MiniVariant="GlobalConfig.ExpandOnHover"
                    App>
 
-    <div class="logo-container" @onclick="() => NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
-        <img class="logo hover-pointer" height="49" src="/img/mainLayout/logo-en.svg" />
+    <div class="logo" @onclick="() => NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
+        <img class="hover-pointer" height="49" src="/img/mainLayout/logo-en.svg" />
     </div>
 
     <MList Nav Routable Dense Class="@($"pa-0 {(GlobalConfig.ExpandOnHover ? "mini-navigation" : "")}")">
@@ -60,20 +60,11 @@
             }
         }
     </MList>
-
-    @* @if (!(Masa.Breakpoint.Mobile && Visible)) *@
-    @* { *@
-    @*     <MButton Small Fab Color="primary" Class="nav-toggle-btn" OnClick="Switch"> *@
-    @*         <MIcon Class="white--text"> *@
-    @*             @(Visible is false || GlobalConfig.ExpandOnHover ? "mdi-chevron-right" : "mdi-chevron-left") *@
-    @*         </MIcon> *@
-    @*     </MButton> *@
-    @* } *@
 </MNavigationDrawer>
 
-@if (!(Masa.Breakpoint.Mobile && Visible is true))
+@if (!(Masa.Breakpoint.Mobile && Visible))
 {
-    <MButton Small Fab Color="primary" OnClick=Switch Style="@($"bottom:58px;z-index:7;position: fixed;left:{ButtonLeft}px;")">
+    <MButton Small Fab Class="nav-toggle-btn" Color="primary" OnClick="Switch">
         <MIcon Class="white--text">
             @(Visible is false || GlobalConfig.ExpandOnHover ? "mdi-chevron-right" : "mdi-chevron-left")
         </MIcon>
@@ -87,8 +78,6 @@
 
     public bool Visible { get; set; } = true;
 
-    public int ButtonLeft => !Visible ? -14 : GlobalConfig.ExpandOnHover ? 60 : 280;
-
     public string ComputedNavigationClass => (GlobalConfig.NavigationStyle == NavigationStyles.Rounded ? "rounded-r-xl" : string.Empty);
 
     public void Switch()
@@ -96,12 +85,10 @@
         if (Visible)
         {
             GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
-            Console.Out.WriteLine("GlobalConfig.ExpandOnHover = {0}", GlobalConfig.ExpandOnHover);
-            // GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
-            Console.Out.WriteLine("GlobalConfig.ExpandOnHover = {0}", GlobalConfig.ExpandOnHover);
         }
         else
         {
+            GlobalConfig.ExpandOnHover = false;
             Visible = true;
         }
     }
