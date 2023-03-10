@@ -19,8 +19,6 @@ public class GlobalConfig
 
     public static string NavigationStyleKey { get; set; } = "GlobalConfig_NavigationStyle";
 
-    public static string NavigationMiniCookieKey { get; set; } = "GlobalConfig_NavigationMini";
-
     public static string ExpandOnHoverCookieKey { get; set; } = "GlobalConfig_ExpandOnHover";
 
     public static string FavoriteCookieKey { get; set; } = "GlobalConfig_Favorite";
@@ -42,17 +40,6 @@ public class GlobalConfig
         {
             _navigationStyle = value;
             _cookieStorage?.SetItemAsync(NavigationStyleKey, value);
-        }
-    }
-
-
-    public bool NavigationMini
-    {
-        get => _navigationMini;
-        set
-        {
-            _navigationMini = value;
-            _cookieStorage?.SetItemAsync(NavigationMiniCookieKey, value);
         }
     }
 
@@ -96,7 +83,6 @@ public class GlobalConfig
     {
         _pageMode = cookies[PageModeKey];
         _navigationStyle = cookies[NavigationStyleKey];
-        _navigationMini = Convert.ToBoolean(cookies[NavigationMiniCookieKey]);
         _expandOnHover = Convert.ToBoolean(cookies[ExpandOnHoverCookieKey]);
         _favorite = cookies[FavoriteCookieKey];
     }
