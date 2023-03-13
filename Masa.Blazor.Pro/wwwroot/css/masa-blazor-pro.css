@@ -1046,11 +1046,11 @@ tr:hover {
     font-weight: 600;
 }
 
-.pagetabs .m-item-group.m-slide-group.m-tabs-bar {
-    margin-top:4px;
+.m-page-tabs {
+    margin-top: 4px;
 }
 
-.m-page-tabs .m-page_tab {
+.m-page-tabs .m-page-tab {
     background-color: #FFF;
     font-family: Roboto;
     font-style: normal;
@@ -1064,12 +1064,12 @@ tr:hover {
     border-top-right-radius: 8px !important;
 }
 
-.m-page_tab .m-icon {
+.m-page-tabs .m-page_tab .m-icon {
     color: #A3AED0 !important;
     font-size:16px !important;
 }
 
-.m-page_tab_active {
+.m-page-tabs .m-tab--active {
     background-color: #F0F3FA !important;
     font-family: Roboto;
     font-style: normal;
@@ -1081,7 +1081,7 @@ tr:hover {
     color: #1B2559 !important;                                                                                                                                                               
 }
 
-.m-page_tab_active > .m-icon {
+.m-page-tabs .m-tab--active > .m-icon {
     color: #1B2559 !important;
 }
 

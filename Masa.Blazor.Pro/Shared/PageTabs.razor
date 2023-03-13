@@ -1,34 +1,24 @@
 ﻿@inherits ProCompontentBase
 @inject NavHelper NavHelper
 
-@* <MPageTabs Class="px-6 pagetabs" Items="NavHelper.PageTabItems"> *@
-@*     <TabContent> *@
-@*         <MTab Href="@context.Item.Url" *@
-@*               Class="px-6 rounded-t-xl m-page_tab" *@
-@*               ActiveClass="m-page_tab_active" *@
-@*               IsActive=context.IsActive *@
-@*               Ripple="false" *@
-@*               @attributes="@context.Attrs"> *@
-@*             <MIcon Size=20>@context.Item.Icon</MIcon> *@
-@*             <span class="mx-2 text-capitalize @(context.IsActive ? "neutral--text" : "")" style="min-width:46px;">@T(context.Item.Name)</span> *@
-@*             @if (context.Item.Closable) *@
-@*             { *@
-@*                 <MIcon Size=16 OnClick="context.Close" OnClickStopPropagation OnClickPreventDefault>mdi-close</MIcon> *@
-@*             } *@
-@*         </MTab> *@
-@*     </TabContent> *@
-@*     <ChildContent> *@
-@*         <div class="mt-6"> *@
-@*             @ChildContent *@
-@*         </div> *@
-@*     </ChildContent> *@
-@* </MPageTabs> *@
-
-<PPageTabs>
-    @ChildContent
+<PPageTabs @ref="PPageTabs" TabClass="px-6 rounded-t-xl" Ripple="false" HideSlider>
+    <TabContent>
+        @{
+            var item = NavHelper.PageTabItems.FirstOrDefault(u => context.Equals(u.Href));
+        }
+        <MIcon Size="20">@item?.Icon</MIcon>
+        <span class="mx-2 text-capitalize @(context.Selected ? "neutral--text" : "")" style="min-width:46px;">@T(item?.Title)</span>
+    </TabContent>
+    <ChildContent>
+        @ChildContent
+    </ChildContent>
 </PPageTabs>
 
 @code {
+
+    public PPageTabs? PPageTabs { get; private set; }
+
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
 }

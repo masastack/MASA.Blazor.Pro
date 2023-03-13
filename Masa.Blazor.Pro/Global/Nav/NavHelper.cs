@@ -9,7 +9,7 @@ public class NavHelper
 
     public List<NavModel> SameLevelNavs { get; } = new();
 
-    // public List<PageTabItem> PageTabItems { get; } = new();
+    public List<PageTabItem> PageTabItems { get; } = new();
 
     public string CurrentUri => _navigationManager.Uri;
 
@@ -53,7 +53,7 @@ public class NavHelper
                 nav.Target = "Self";
             }
 
-            // PageTabItems.Add(new PageTabItem(nav.Title, nav.Href, nav.ParentIcon, PageTabsMatch.Prefix, nav.Target == "Self" ? PageTabsTarget.Self : PageTabsTarget.Blank)); /*nav.Href != GlobalVariables.DefaultRoute*/
+            PageTabItems.Add(new(nav.Title, nav.Href, nav.ParentIcon));
         });
     }
 
@@ -68,3 +68,4 @@ public class NavHelper
     }
 }
 
+public record PageTabItem(string Title, string Href, string Icon);

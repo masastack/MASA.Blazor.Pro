@@ -3,8 +3,8 @@
 
 <MApp>
     <CascadingValue Value="I18n">
-        <MAppBar Elevation=0 App Height="88" Class="@($"default-app-bar {(_pageTab == PageModes.PageTab ? "mx-6" : "mx-6 rounded-b-4")}")">
-            <div class="d-flex full-width align-center">
+        <MAppBar Elevation=0 App Height="100" Class="@($"default-app-bar {(_pageTab == PageModes.PageTab ? "mx-6" : "mx-6 rounded-b-4")}")">
+            <div class="d-flex full-width align-center" style="height: 64px">
                 <Favorite />
                 <MSpacer />
                 <Search />
@@ -16,7 +16,7 @@
             <div class="full-width">
                 @if (_pageTab == PageModes.PageTab)
                 {
-                    <PPageTabs @ref="_pageTabs"/>
+                    <PageTabs @ref="_pageTabs"/>
                 }
                 else
                 {
@@ -31,7 +31,7 @@
             <div class="pa-6">
                 @if (_pageTab == PageModes.PageTab)
                 {
-                    <PWindow PageTabs="@_pageTabs">
+                    <PWindow PageTabs="@_pageTabs?.PPageTabs">
                         @Body
                     </PWindow>
                 }
@@ -49,7 +49,7 @@
     private bool _showSetting;
     private string? _pageTab;
 
-    private PPageTabs _pageTabs;
+    private PageTabs? _pageTabs;
 
     void OnLanguageChanged(CultureInfo culture)
     {
