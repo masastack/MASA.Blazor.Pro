@@ -450,7 +450,9 @@
     min-height: 0px !important;
 }
 
-.m-toolbar__content {
+.default-app-bar .m-toolbar__content {
+    flex-direction: column;
+    height: inherit;
     padding: 0 0 0 0;
     background-color: white;
 }
