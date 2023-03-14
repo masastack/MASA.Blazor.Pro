@@ -1,10 +1,10 @@
 ﻿@inherits ProCompontentBase
 @inject NavHelper NavHelper
 
-<PPageTabs @ref="PPageTabs" TabClass="px-6 rounded-t-xl" Ripple="false" HideSlider>
+<PPageTabs @ref="PPageTabs" TabClass="px-6 rounded-t-xl" Ripple="false" HideSlider SelfPaths="@SelfPaths">
     <TabContent>
         @{
-            var item = NavHelper.PageTabItems.FirstOrDefault(u => context.Equals(u.Href));
+            var item = NavHelper.PageTabItems.FirstOrDefault(u => context.IsMatch(u.Href));
         }
         <MIcon Size="20">@item?.Icon</MIcon>
         <span class="mx-2 text-capitalize @(context.Selected ? "neutral--text" : "")" style="min-width:46px;">@T(item?.Title)</span>
@@ -20,5 +20,8 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public IEnumerable<string>? SelfPaths { get; set; }
 
 }

@@ -16,7 +16,7 @@
             <div class="full-width">
                 @if (_pageTab == PageModes.PageTab)
                 {
-                    <PageTabs @ref="_pageTabs"/>
+                    <PageTabs @ref="_pageTabs" SelfPaths="@s_selfPaths" />
                 }
                 else
                 {
@@ -31,7 +31,7 @@
             <div class="pa-6">
                 @if (_pageTab == PageModes.PageTab)
                 {
-                    <PWindow PageTabs="@_pageTabs?.PPageTabs">
+                    <PWindow PageTabs="@_pageTabs?.PPageTabs" SelfPaths="@s_selfPaths">
                         @Body
                     </PWindow>
                 }
@@ -46,10 +46,20 @@
 </MApp>
 
 @code {
-    private bool _showSetting;
-    private string? _pageTab;
 
-    private PageTabs? _pageTabs;
+    private static string[] s_selfPaths =
+    {
+        "/app/todo"
+    };
+
+    private
+        bool _showSetting;
+
+    private
+        string? _pageTab;
+
+    private
+        PageTabs? _pageTabs;
 
     void OnLanguageChanged(CultureInfo culture)
     {
