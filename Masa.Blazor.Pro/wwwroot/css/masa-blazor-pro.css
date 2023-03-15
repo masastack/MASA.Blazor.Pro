@@ -450,11 +450,16 @@
     min-height: 0px !important;
 }
 
+.m-application.theme--light .default-app-bar {
+    background-color: white !important;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 .default-app-bar .m-toolbar__content {
     flex-direction: column;
     height: inherit;
     padding: 0 0 0 0;
-    background-color: white;
 }
 
 .m-card {
@@ -1086,10 +1091,9 @@ tr:hover {
 }
 
 .m-page-tabs > .m-tabs-bar {
-    border-bottom-left-radius: 20px !important;
-    border-bottom-right-radius: 20px !important;
     height: 36px;
     padding: 0 16px;
+    background-color: unset !important;
 }
 
 .m-page-tabs .m-tab:before {
@@ -1108,4 +1112,8 @@ tr:hover {
 .m-app-bar.rounded-b-4 > .m-toolbar__content {
     border-bottom-left-radius: 20px !important;
     border-bottom-right-radius: 20px !important;
+}
+
+.m-dialog {
+    border-radius: 20px;
 }

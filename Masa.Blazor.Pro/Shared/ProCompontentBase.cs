@@ -17,7 +17,7 @@ public abstract class ProCompontentBase : ComponentBase
         }
     }
 
-    public string T(string key)
+    public string? T(string? key)
     {
         return LanguageProvider.T(key);
     }

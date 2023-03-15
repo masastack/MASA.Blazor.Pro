@@ -48,9 +48,9 @@
                         <MButton Depressed class="primary ml-6 mr-6 rounded-pill">
                             加入购物车
                         </MButton>
-                        <span class="hover-pointer" @onclick="()=>{}">
+                        <span class="hover-pointer" @onclick="() => { }">
                             <MIcon Size=24 Color="neutral-lighten-3">
-                               mdi-share-variant
+                                mdi-share-variant
                             </MIcon>
                         </span>
                     </div>
@@ -109,10 +109,28 @@
 </MRow>
 
 @code {
-    private ShopPage _shopPage = new ShopPage(ShopService.GetGoodsList());
-    private GoodsDto _goods => _shopPage.GetGoods(Id);
-    private List<GoodsDto> _relatedProducts => ShopService.GetRelatedGoodsList();
+    private GoodsDto? _goods;
+    private List<GoodsDto> _relatedProducts = new();
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = null!;
+
+    [CascadingParameter]
+    public IPageTabsProvider? PageTabsProvider { get; set; }
 
     [Parameter]
     public string? Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        var shopPage = new ShopPage(ShopService.GetGoodsList());
+        _goods = shopPage.GetGoods(Id);
+
+        _relatedProducts = ShopService.GetRelatedGoodsList();
+
+        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), _goods.Name);
+    }
+
 }
