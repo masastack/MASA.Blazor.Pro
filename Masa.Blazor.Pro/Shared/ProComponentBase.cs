@@ -1,6 +1,6 @@
 ﻿namespace Masa.Blazor.Pro;
 
-public abstract class ProCompontentBase : ComponentBase
+public abstract class ProComponentBase : ComponentBase
 {
     private string? _culture;
 

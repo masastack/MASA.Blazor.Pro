@@ -1,6 +1,6 @@
 ﻿namespace Masa.Blazor.Pro.Pages.Dashboard
 {
-    public partial class Analytics : ProCompontentBase
+    public partial class Analytics : ProComponentBase
     {
         private object? _subscribersChart;
         private object? _ordersChart;
