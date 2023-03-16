@@ -3,7 +3,7 @@
 
 <MApp>
     <PPageTabsProvider>
-        <CascadingValue Value="I18n">
+        <CascadingValue Value="I18n.Culture.Name" Name="CultureName">
             <MAppBar Elevation=0 App Height="100" Class="@($"default-app-bar {(_pageTab == PageModes.PageTab ? "mx-6" : "mx-6 rounded-b-4")}")">
                 <div class="d-flex full-width align-center" style="height: 64px">
                     <Favorite />
@@ -54,14 +54,11 @@
         "/app/todo"
     };
 
-    private
-        bool _showSetting;
+    private bool _showSetting;
 
-    private
-        string? _pageTab;
+    private string? _pageTab;
 
-    private
-        PageTabs? _pageTabs;
+    private PageTabs? _pageTabs;
 
     void OnLanguageChanged(CultureInfo culture)
     {

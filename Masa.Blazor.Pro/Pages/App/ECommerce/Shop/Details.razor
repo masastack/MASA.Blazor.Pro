@@ -130,7 +130,14 @@
 
         _relatedProducts = ShopService.GetRelatedGoodsList();
 
-        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), _goods.Name);
+        UpdateTabTitle();
+    }
+
+    protected override void OnLanguageChanged() => UpdateTabTitle();
+
+    private void UpdateTabTitle()
+    {
+        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), T("Details of {0}", _goods.Name));
     }
 
 }

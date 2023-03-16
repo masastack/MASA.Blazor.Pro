@@ -2,24 +2,32 @@
 
 public abstract class ProCompontentBase : ComponentBase
 {
-    private I18n? _languageProvider;
+    private string? _culture;
 
-    [CascadingParameter]
-    public I18n LanguageProvider
+    [Inject]
+    protected I18n? LanguageProvider { get; set; }
+    
+    [CascadingParameter(Name = "CultureName")]
+    protected string? Culture
     {
-        get
-        {
-            return _languageProvider ?? throw new Exception("please Inject I18n!");
-        }
+        get => _culture;
         set
         {
-            _languageProvider = value;
+            if (_culture != null && !Equals(_culture, value))
+            {
+                OnLanguageChanged();
+            }
+
+            _culture = value;
         }
     }
 
-    public string? T(string? key)
+    protected string? T(string? key, params object[] args)
     {
-        return LanguageProvider.T(key);
+        return LanguageProvider?.T(key, args: args);
+    }
+
+    protected virtual void OnLanguageChanged()
+    {
     }
 }
-

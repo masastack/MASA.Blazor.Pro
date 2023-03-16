@@ -12,15 +12,15 @@
                             @if (string.IsNullOrEmpty(UserData.HeadImg))
                             {
                                 string color = UserData.Color;
-                                    <MAvatar Size="120" Color="@($"{color}-lighten-5")">
-                                        <span class="@($"{color}--text text-h3")">@UserData.SampleName</span>
-                                    </MAvatar>
+                                <MAvatar Size="120" Color="@($"{color}-lighten-5")">
+                                    <span class="@($"{color}--text text-h3")">@UserData.SampleName</span>
+                                </MAvatar>
                             }
                             else
                             {
-                                    <MAvatar Size="120">
-                                        <MImage Contain Src="@UserData.HeadImg" />
-                                    </MAvatar>
+                                <MAvatar Size="120">
+                                    <MImage Contain Src="@UserData.HeadImg" />
+                                </MAvatar>
                             }
                             <h5 class="mt-1">@UserData.FullName</h5>
                             <span class="mt-1 text-caption">@UserData.Email</span>
@@ -99,7 +99,7 @@
                 Permission according to roles
             </MCardSubtitle>
             <MCardText>
-                <MDataTable HideDefaultFooter Headers="_headers" TItem="PermissionDto" Items="_permissions" ItemKey="r=>r.Module" Class="table-header-fill table-border-solid">
+                <MDataTable HideDefaultFooter Headers="_headers" TItem="PermissionDto" Items="_permissions" ItemKey="r => r.Module" Class="table-header-fill table-border-solid">
                     <HeaderColContent Context="header">
                         <span class="text-body neutral-lighten-1--text">@header.Text</span>
                     </HeaderColContent>
@@ -107,19 +107,19 @@
                         @switch (context.Header.Value)
                         {
                             case nameof(PermissionDto.Module):
-                                        <span class="text-body neutral-lighten-2--text">@context.Value</span>
+                                <span class="text-body neutral-lighten-2--text">@context.Value</span>
                                 break;
                             case nameof(PermissionDto.Read):
-                                        <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Read"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Read"></MCheckbox>
                                 break;
                             case nameof(PermissionDto.Write):
-                                        <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Write"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Write"></MCheckbox>
                                 break;
                             case nameof(PermissionDto.Create):
-                                        <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Create"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Create"></MCheckbox>
                                 break;
                             case nameof(PermissionDto.Delete):
-                                        <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Delete"></MCheckbox>
+                                <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Delete"></MCheckbox>
                                 break;
                             default:
                                 @context.Value
@@ -215,35 +215,48 @@
 <Masa.Blazor.Pro.Pages.App.Invoice.Components.InvoiceList />
 
 @code {
+
     private List<DataTableHeader<PermissionDto>> _headers = new List<DataTableHeader<PermissionDto>>
     {
-    new (){ Text= "MODULE", Sortable= false, Value= nameof(PermissionDto.Module)},
-    new (){ Text= "READ", Sortable= false, Value= nameof(PermissionDto.Read),Align=DataTableHeaderAlign.Center},
-    new (){ Text= "WRITE", Sortable= false, Value= nameof(PermissionDto.Write),Align=DataTableHeaderAlign.Center},
-    new (){ Text= "CREATE", Sortable= false, Value= nameof(PermissionDto.Create),Align=DataTableHeaderAlign.Center},
-    new (){ Text= "DELETE", Sortable= false, Value= nameof(PermissionDto.Delete),Align=DataTableHeaderAlign.Center}
+        new() { Text = "MODULE", Sortable = false, Value = nameof(PermissionDto.Module) },
+        new() { Text = "READ", Sortable = false, Value = nameof(PermissionDto.Read), Align = DataTableHeaderAlign.Center },
+        new() { Text = "WRITE", Sortable = false, Value = nameof(PermissionDto.Write), Align = DataTableHeaderAlign.Center },
+        new() { Text = "CREATE", Sortable = false, Value = nameof(PermissionDto.Create), Align = DataTableHeaderAlign.Center },
+        new() { Text = "DELETE", Sortable = false, Value = nameof(PermissionDto.Delete), Align = DataTableHeaderAlign.Center }
     };
+
     private List<PermissionDto> _permissions = UserService.GetPermissionsList();
     private UserDto? _userData;
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = null!;
+
+    [CascadingParameter]
+    private IPageTabsProvider? PageTabsProvider { get; set; }
 
     [Parameter]
     public string? Id { get; set; }
 
-    [AllowNull]
     public UserDto UserData
     {
-        get
-        {
-            return _userData ?? UserService.GetList().First();
-        }
-        set
-        {
-            _userData = value;
-        }
+        get { return _userData ?? UserService.GetList().First(); }
+        set { _userData = value; }
     }
 
-    protected override void OnParametersSet()
+    protected override void OnInitialized()
     {
-        UserData = UserService.GetList().FirstOrDefault(u => u.Id == Id);
+        base.OnInitialized();
+
+        _userData = UserService.GetList().FirstOrDefault(u => u.Id == Id);
+
+        UpdateTabTitle();
     }
+
+    protected override void OnLanguageChanged() => UpdateTabTitle();
+
+    private void UpdateTabTitle()
+    {
+        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), T("View of {0}", UserData.FullName));
+    }
+
 }
