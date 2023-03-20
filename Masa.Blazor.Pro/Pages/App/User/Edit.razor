@@ -261,11 +261,9 @@
         UpdateTabTitle();
     }
 
-    protected override void OnLanguageChanged() => UpdateTabTitle();
-
     private void UpdateTabTitle()
     {
-        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), T("Edit of {0}", UserData.FullName));
+        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), () => T("Edit of {0}", UserData.FullName));
     }
 
     private List<DataTableHeader<PermissionDto>> _headers = new List<DataTableHeader<PermissionDto>>

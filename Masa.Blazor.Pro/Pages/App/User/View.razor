@@ -252,11 +252,9 @@
         UpdateTabTitle();
     }
 
-    protected override void OnLanguageChanged() => UpdateTabTitle();
-
     private void UpdateTabTitle()
     {
-        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), T("View of {0}", UserData.FullName));
+        PageTabsProvider?.UpdateTabTitle(NavigationManager.GetAbsolutePath(), () => T("View of {0}", UserData.FullName));
     }
 
 }
