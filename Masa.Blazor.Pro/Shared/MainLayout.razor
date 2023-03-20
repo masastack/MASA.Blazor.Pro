@@ -32,9 +32,9 @@
                 <div class="pa-6">
                     @if (_pageTab == PageModes.PageTab)
                     {
-                        <PWindow PageTabs="@_pageTabs?.PPageTabs" SelfPatterns="@s_selfPatterns">
+                        <PPageContainer PageTabs="@_pageTabs?.PPageTabs" SelfPatterns="@s_selfPatterns">
                             @Body
-                        </PWindow>
+                        </PPageContainer>
                     }
                     else
                     {
