@@ -1,6 +1,6 @@
 ﻿namespace Masa.Blazor.Pro.Pages.App.ECommerce.Shop
 {
-    public partial class Shop : ProCompontentBase
+    public partial class Shop : ProComponentBase
     {
         readonly List<MultiRangeDto> _multiRanges = ShopService.GetMultiRangeList();
         readonly List<string> _categories = ShopService.GetCategortyList();

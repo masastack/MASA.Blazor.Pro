@@ -36,5 +36,8 @@
   "Rounded": "圆角",
   "Breadcrumb": "面包屑",
   "PageTab": "多页签",
-  "Mode": "模式"
+  "Mode": "模式",
+  "View of {0}": "{0} 的视图",
+  "Edit of {0}": "编辑 {0}",
+  "Details of {0}": "{0} 的详情"
 }

@@ -1,6 +1,6 @@
 ﻿namespace Masa.Blazor.Pro.Pages.Dashboard
 {
-    public partial class ECommerce : ProCompontentBase
+    public partial class ECommerce : ProComponentBase
     {
         private object? _orderChart;
         private object? _profitChart;

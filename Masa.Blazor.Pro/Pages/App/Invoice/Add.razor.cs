@@ -1,6 +1,6 @@
 ﻿namespace Masa.Blazor.Pro.Pages.App.Invoice
 {
-    public partial class Add : ProCompontentBase
+    public partial class Add : ProComponentBase
     {
         private bool _showAddPayment;
         private string _invoiceTo = "";
