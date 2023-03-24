@@ -9,14 +9,10 @@
     <a class="text-decoration-none" href="javascript:history.back(-1)">
         <MIcon Size=20 Color="neutral-lighten-2">mdi-arrow-left</MIcon>
     </a>
-    <div class="mx-5" style="height:16px;width:0.5px;border: 0.5px solid #A3AED0;" />
-    <MBreadcrumbs Items="_items" Routable Class="pa-0">
-        <DividerContent>
-            <div class="mx-5" style="height:16px;width:0.5px;border: 0.5px solid #A3AED0;" />
-        </DividerContent>
+    @DividerContent
+    <MBreadcrumbs Items="_items" Routable Class="pa-0" DividerContent="DividerContent">
         <ItemContent>
-            <a class="text-decoration-none @(context.Disabled ? "text-subtitle2 neutral-lighten-2--text" : "text-body2")"
-               style="@(context.Disabled ? "pointer-events: none;" : "")"
+            <a class="text-decoration-none @(context.Disabled ? "text-subtitle2 neutral-lighten-2--text pointer-events-none" : "text-body2")"
                href="@context.Href">
                 @T(context.Text)
             </a>
@@ -36,6 +32,14 @@
 
         NavigationManager.LocationChanged += OnLocationChanged;
     }
+
+    private RenderFragment DividerContent => (builder) =>
+    {
+        builder.OpenElement(0, "div");
+        builder.AddAttribute(1, "class", "mx-5");
+        builder.AddAttribute(2, "style", "height:16px;width:0.5px;border: 0.5px solid #A3AED0;");
+        builder.CloseElement();
+    };
 
     private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
     {
