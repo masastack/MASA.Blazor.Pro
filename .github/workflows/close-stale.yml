@@ -16,5 +16,5 @@ jobs:
           days-before-issue-close: 3
           stale-issue-message: 'This issue is stale because it has been open for 4 days with no activity.'
           close-issue-message: 'This issue is closed because it has been open for 3 days with stale.'
-          stale-issue-label: 'status/stale'
+          stale-issue-label: 'stale'
           any-of-labels: wontfix,resolved,needs feedback,duplicate,can't reproduce,invalid
