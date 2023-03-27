@@ -156,7 +156,7 @@
     /* identical to box height */
     letter-spacing: 0.015625rem !important;
     /* default color */
-    color: #485585;
+    color: #485585 !important;
 }
 
 .text-body3 {
@@ -450,16 +450,44 @@
     min-height: 0px !important;
 }
 
-.m-application.theme--light .default-app-bar {
-    background-color: white !important;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+.default-app-bar {
+    background-color: transparent !important;
 }
 
 .default-app-bar .m-toolbar__content {
     flex-direction: column;
     height: inherit;
     padding: 0 0 0 0;
+}
+
+.default-app-bar__actions {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 64px;
+}
+
+.default-app-bar__actions.page-mode--breadcrumb {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.default-app-bar__nav {
+    width: 100%;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.default-app-bar__nav.page-mode--tab {
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.default-app-bar__nav.page-mode--breadcrumb {
+    min-height: 60px;
 }
 
 .m-card {
@@ -1049,10 +1077,6 @@ tr:hover {
     height: 32px;
     font-size: .857rem;
     font-weight: 600;
-}
-
-.p-page-tabs {
-    margin-top: 4px;
 }
 
 .p-page-tabs .p-page-tab {

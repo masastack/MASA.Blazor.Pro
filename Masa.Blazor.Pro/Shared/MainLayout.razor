@@ -4,8 +4,8 @@
 <MApp>
     <PPageTabsProvider>
         <CascadingValue Value="I18n.Culture.Name" Name="CultureName">
-            <MAppBar Elevation=0 App Height="100" Class="@($"default-app-bar {(_pageTab == PageModes.PageTab ? "mx-6" : "mx-6 rounded-b-4")}")">
-                <div class="d-flex full-width align-center" style="height: 64px">
+            <MAppBar Elevation=0 App Height="100" Class="default-app-bar mx-6">
+                <div class="default-app-bar__actions @PageModeClass">
                     <Favorite />
                     <MSpacer />
                     <Search />
@@ -14,7 +14,7 @@
                     <Language OnLanguageChanged="OnLanguageChanged" />
                     <Login />
                 </div>
-                <div class="full-width">
+                <div class="default-app-bar__nav @PageModeClass">
                     @if (_pageTab == PageModes.PageTab)
                     {
                         <PageTabs @ref="_pageTabs" SelfPatterns="@s_selfPatterns" />
@@ -59,6 +59,8 @@
     private string? _pageTab;
 
     private PageTabs? _pageTabs;
+
+    private string PageModeClass => _pageTab == PageModes.PageTab ? "page-mode--tab" : "page-mode--breadcrumb";
 
     void OnLanguageChanged(CultureInfo culture)
     {
