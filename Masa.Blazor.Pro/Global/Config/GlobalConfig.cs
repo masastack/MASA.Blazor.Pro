@@ -2,18 +2,18 @@
 
 public class GlobalConfig
 {
-    #region Field
+    private readonly CookieStorage? _cookieStorage;
 
     private string? _pageMode;
     private bool _expandOnHover;
-    private bool _navigationMini;
     private string? _favorite;
-    private CookieStorage? _cookieStorage;
     private string? _navigationStyle;
 
-    #endregion
-
-    #region Property
+    public GlobalConfig(CookieStorage cookieStorage, IHttpContextAccessor httpContextAccessor)
+    {
+        _cookieStorage = cookieStorage;
+        if (httpContextAccessor.HttpContext is not null) Initialization(httpContextAccessor.HttpContext.Request.Cookies);
+    }
 
     public static string PageModeKey { get; set; } = "GlobalConfig_PageMode";
 
@@ -22,6 +22,8 @@ public class GlobalConfig
     public static string ExpandOnHoverCookieKey { get; set; } = "GlobalConfig_ExpandOnHover";
 
     public static string FavoriteCookieKey { get; set; } = "GlobalConfig_Favorite";
+
+    public EventHandler? NavigationStyleChanged { get; set; }
 
     public string PageMode
     {
@@ -39,6 +41,7 @@ public class GlobalConfig
         set
         {
             _navigationStyle = value;
+            NavigationStyleChanged?.Invoke(this, EventArgs.Empty);
             _cookieStorage?.SetItemAsync(NavigationStyleKey, value);
         }
     }
@@ -63,22 +66,6 @@ public class GlobalConfig
         }
     }
 
-    #endregion
-
-    public GlobalConfig(CookieStorage cookieStorage, IHttpContextAccessor httpContextAccessor)
-    {
-        _cookieStorage = cookieStorage;
-        if (httpContextAccessor.HttpContext is not null) Initialization(httpContextAccessor.HttpContext.Request.Cookies);
-    }
-
-    #region event
-
-    public delegate void GlobalConfigChanged();
-
-    #endregion
-
-    #region Method
-
     public void Initialization(IRequestCookieCollection cookies)
     {
         _pageMode = cookies[PageModeKey];
@@ -86,5 +73,4 @@ public class GlobalConfig
         _expandOnHover = Convert.ToBoolean(cookies[ExpandOnHoverCookieKey]);
         _favorite = cookies[FavoriteCookieKey];
     }
-    #endregion
 }
