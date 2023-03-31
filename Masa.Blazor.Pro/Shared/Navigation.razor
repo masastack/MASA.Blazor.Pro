@@ -1,6 +1,7 @@
 ﻿@inherits ProComponentBase
 @inject NavHelper NavHelper
 @inject GlobalConfig GlobalConfig
+@implements IDisposable
 
 <MNavigationDrawer @bind-Value="Visible" 
                    Class="@($"navigation {ComputedNavigationClass}")"
@@ -80,6 +81,18 @@
 
     public string ComputedNavigationClass => (GlobalConfig.NavigationStyle == NavigationStyles.Rounded ? "rounded-r-xl" : string.Empty);
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        GlobalConfig.NavigationStyleChanged += NavigationStyleChanged;
+    }
+
+    private void NavigationStyleChanged(object? sender, EventArgs e)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
     public void Switch()
     {
         if (Visible)
@@ -91,6 +104,11 @@
             GlobalConfig.ExpandOnHover = false;
             Visible = true;
         }
+    }
+
+    void IDisposable.Dispose()
+    {
+        GlobalConfig.NavigationStyleChanged -= NavigationStyleChanged;
     }
 
 }
