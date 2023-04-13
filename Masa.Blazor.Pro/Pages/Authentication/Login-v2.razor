@@ -14,24 +14,14 @@
         </div>
     </MCol>
     <MCol Md=8 Sm=12 Class="fill-lighten-1 block-center">
-        <Masa.Blazor.Pro.Pages.Authentication.Components.Login HideLogo
-                                          Elevation="0"
-                                          Width="500"
-                                          CreateAccountRoute="pages/authentication/register-v2"
-                                          ForgotPasswordRoute="pages/authentication/forgot-password-v2">
-        </Masa.Blazor.Pro.Pages.Authentication.Components.Login>
+        <Masa.Blazor.Pro.Pages.Authentication.Components.Login
+            HideLogo
+            Elevation="0"
+            Width="500"
+            CreateAccountRoute="pages/authentication/register-v2"
+            ForgotPasswordRoute="pages/authentication/forgot-password-v2" />
+
     </MCol>
 </MRow>
 
 <a href="https://beian.miit.gov.cn/" target="_blank" class="neutral-lighten-3--text" style="position:absolute;bottom:48px;margin-left:63%;text-decoration:none;font-size:14px;">浙ICP备2021013592号-1</a>
-
-
-@code {
-    [Inject]
-    public NavigationManager Navigation { get; set; } = default!;
-
-    public void Login(MouseEventArgs args)
-    {
-        Navigation.NavigateTo(Navigation.BaseUri);
-    }
-}
