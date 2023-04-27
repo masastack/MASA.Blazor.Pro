@@ -1,16 +1,12 @@
 ﻿@inherits ProComponentBase
 @inject NavHelper NavHelper
 
-<PPageTabs @ref="PPageTabs" TabClass="px-6 rounded-t-xl" Ripple="false" HideSlider SelfPatterns="@SelfPatterns">
-    <TabContent>
-        @{
-            var item = NavHelper.PageTabItems.FirstOrDefault(u => context.IsMatch(u.Href));
-        }
-        <MIcon Size="20">@item?.Icon</MIcon>
-        <span class="mx-2 text-capitalize @(context.Selected ? "neutral--text" : "")" style="min-width:46px;">
-            @T(item?.Title)
-        </span>
-    </TabContent>
+<PPageTabs @ref="PPageTabs"
+           TabClass="px-6 rounded-t-xl"
+           TabOptions="@TabOptions"
+           Ripple="false"
+           HideSlider
+           SelfPatterns="@SelfPatterns">
     <ChildContent>
         @ChildContent
     </ChildContent>
@@ -25,5 +21,15 @@
 
     [Parameter]
     public IEnumerable<string>? SelfPatterns { get; set; }
+
+    private TabOptions TabOptions(PageTabPathValue value)
+    {
+        var item = NavHelper.PageTabItems.FirstOrDefault(u => value.IsMatch(u.Href));
+        var title = T(item?.Title);
+        var icon = item?.Icon;
+        var titleClass = $"mx-2 text-capitalize {(value.Selected ? "neutral--text" : "")}";
+
+        return new TabOptions(title, icon, titleClass);
+    }
 
 }
