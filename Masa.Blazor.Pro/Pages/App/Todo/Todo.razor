@@ -21,7 +21,9 @@
                         </MTextField>
                         <MMenu OffsetX Left OffsetY>
                             <ActivatorContent>
-                                <MButton Class="mr-5" Icon Large @attributes="context.Attrs"><MIcon>mdi-dots-horizontal</MIcon></MButton>
+                                <MButton Class="mr-5" Icon Large @attributes="context.Attrs">
+                                    <MIcon>mdi-dots-horizontal</MIcon>
+                                </MButton>
                             </ActivatorContent>
                             <ChildContent>
                                 <MList Dense>
@@ -66,7 +68,7 @@
                                 <MListItemAction>
                                     @foreach (var tag in item.Tag)
                                     {
-                                        <MChip Class="mx-1 text-btn" Small TextColor="@_tagColorMap[tag]" Color="@(_tagColorMap[tag]+"-lighten-5")">@tag</MChip>
+                                        <MChip Class="mx-1 text-btn" Small TextColor="@_tagColorMap[tag]" Color="@(_tagColorMap[tag] + "-lighten-5")">@tag</MChip>
                                     }
                                     <span class="ml-4 mr-2 text-caption">@item.DueDate</span>
                                 </MListItemAction>
@@ -82,5 +84,5 @@
             </div>
         </MRow>
     </div>
-    <TodoDetail Value="_visible" ValueChanged="val=>_visible = val" SelectItem=_selectItem></TodoDetail>
+    <TodoDetail @bind-Value="_visible" SelectItem=_selectItem></TodoDetail>
 </CascadingValue>

@@ -63,7 +63,7 @@
     </MList>
 </MNavigationDrawer>
 
-@if (!(Masa.Breakpoint.Mobile && Visible))
+@if (!(Masa.Breakpoint.Mobile && Visible is true))
 {
     <MButton Small Fab Class="nav-toggle-btn" Color="primary" OnClick="Switch">
         <MIcon Class="white--text">
@@ -77,7 +77,7 @@
     [Inject]
     public MasaBlazor Masa { get; set; } = default!;
 
-    public bool Visible { get; set; } = true;
+    public bool? Visible { get; set; } = true;
 
     public string ComputedNavigationClass => (GlobalConfig.NavigationStyle == NavigationStyles.Rounded ? "rounded-r-xl" : string.Empty);
 
@@ -95,7 +95,7 @@
 
     public void Switch()
     {
-        if (Visible)
+        if (Visible is true)
         {
             GlobalConfig.ExpandOnHover = !GlobalConfig.ExpandOnHover;
         }
