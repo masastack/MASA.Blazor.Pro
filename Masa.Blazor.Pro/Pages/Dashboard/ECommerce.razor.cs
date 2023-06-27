@@ -25,7 +25,7 @@
 
         protected override void OnInitialized()
         {
-            MasaBlazor.Breakpoint.OnUpdate += OnPropertyChanged;
+            MasaBlazor.Breakpoint.OnUpdate += BreakpointOnOnUpdate;
             MasaBlazor.Application.PropertyChanged += OnPropertyChanged;
 
             _orderChart = new
@@ -379,13 +379,17 @@
             };
         }
 
-        private Task OnPropertyChanged()
+        private void BreakpointOnOnUpdate(object? sender, BreakpointChangedEventArgs e)
+        {
+            OnPropertyChanged();
+        }
+
+        private void OnPropertyChanged()
         {
             if (NavHelper.CurrentUri.EndsWith("dashboard/ecommerce"))
             {
                 InvokeAsync(StateHasChanged);
             }
-            return Task.CompletedTask;
         }
 
         private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -395,7 +399,7 @@
 
         public void Dispose()
         {
-            MasaBlazor.Breakpoint.OnUpdate -= OnPropertyChanged;
+            MasaBlazor.Breakpoint.OnUpdate -= BreakpointOnOnUpdate;
             MasaBlazor.Application.PropertyChanged -= OnPropertyChanged;
         }
     }

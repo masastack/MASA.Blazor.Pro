@@ -7,7 +7,7 @@
 
         private TodoDto _selectItem = new();
         private string? _filterText;
-        private bool _visible = false;
+        private bool? _visible = false;
         private string? _inputText;
         private List<TodoDto> _thisList = new();
         private readonly List<TodoDto> _dataList = TodoService.GetList();

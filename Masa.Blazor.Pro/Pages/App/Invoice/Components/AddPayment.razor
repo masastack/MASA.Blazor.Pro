@@ -55,10 +55,10 @@
     private List<string> _paymentMethods = InvoiceService.GetpaymentMethodList();
 
     [Parameter]
-    public bool Show { get; set; } = false;
+    public bool? Show { get; set; }
 
     [Parameter]
-    public EventCallback<bool> ShowChanged { get; set; }
+    public EventCallback<bool?> ShowChanged { get; set; }
     
     private DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 }

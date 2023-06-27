@@ -18,13 +18,13 @@ public partial class TodoDetail
     public Todo Todo { get; set; } = default!;
 
     [Parameter]
-    public bool Value { get; set; }
+    public bool? Value { get; set; }
 
     [Parameter]
     public TodoDto? SelectItem { get; set; }
 
     [Parameter]
-    public EventCallback<bool> ValueChanged { get; set; }
+    public EventCallback<bool?> ValueChanged { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; } = default!;
@@ -75,7 +75,7 @@ public partial class TodoDetail
         };
         _selectData.Tag.AddRange(SelectItem.Tag);
 
-        if (ValueChanged.HasDelegate && !Value && _mForm != null)
+        if (ValueChanged.HasDelegate && Value is not true && _mForm != null)
         {
             _mForm.ResetValidation();
         }

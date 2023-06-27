@@ -2,7 +2,7 @@
 {
     public partial class Add : ProComponentBase
     {
-        private bool _showAddPayment;
+        private bool? _showAddPayment;
         private string _invoiceTo = "";
         private readonly List<string> _invoices = new()
         {

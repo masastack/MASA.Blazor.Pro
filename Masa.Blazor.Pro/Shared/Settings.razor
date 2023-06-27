@@ -33,10 +33,10 @@
 
 @code {
     [Parameter]
-    public bool Show { get; set; }
+    public bool? Show { get; set; }
 
     [Parameter]
-    public EventCallback<bool> ShowChanged { get; set; }
+    public EventCallback<bool?> ShowChanged { get; set; }
 
     [Parameter]
     public string PageModel { get; set; } = PageModes.PageTab;

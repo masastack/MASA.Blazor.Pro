@@ -28,10 +28,10 @@
     private UserDto _userData = new UserDto("","",DateOnly.FromDateTime(DateTime.Now),"","",UserService.GetPermissionsList());
 
     [Parameter]
-    public bool Visible { get; set; }
+    public bool? Visible { get; set; }
 
     [Parameter]
-    public EventCallback<bool> VisibleChanged { get; set; }
+    public EventCallback<bool?> VisibleChanged { get; set; }
 
     [Parameter]
     public EventCallback<UserDto> Submit { get; set; }

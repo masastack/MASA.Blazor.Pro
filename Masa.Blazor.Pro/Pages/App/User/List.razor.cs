@@ -2,7 +2,7 @@
 {
     public partial class List
     {
-        public bool _visible;
+        public bool? _visible;
         public UserPage _userPage = new(UserService.GetList());
         private List<int> _pageSizes = new() { 10, 25, 50, 100 };
         private readonly List<DataTableHeader<UserDto>> _headers = new()

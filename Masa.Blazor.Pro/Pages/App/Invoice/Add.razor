@@ -7,7 +7,7 @@
             <MCardText class="px-8 py-6">
                 <div class="d-flex">
                     <div class="mr-auto">
-                        <MIcon Color=purple>fas fa-seedling</MIcon>
+                        <MIcon Color=purple>fa:fas fa-seedling</MIcon>
                         <span class="ml-4 black--text">Masa Blazor Pro</span>
                         <h4 class="mt-6">Office 149, 450 South Brand Brooklyn</h4>
                         <h4 class="mt-2">San Diego County, CA 91905, USA</h4>
@@ -124,11 +124,11 @@
                                     </MRow>
                                 </div>
                                 <div class="border-solid text-center" style="width:20px">
-                                    <MIcon Small OnClick="()=>_bills.Remove(bill)">fas fa-times</MIcon>
+                                    <MIcon Small OnClick="()=>_bills.Remove(bill)">fa:fas fa-times</MIcon>
                                     <div style="height:75%"></div>
                                      <MMenu NudgeRight="40" CloseOnClick="false" CloseOnContentClick="false" @bind-Value="@bill.ShowMenu" Transition="scale-transition" Left Top OffsetY MinWidth="@("auto")">
                                         <ActivatorContent>
-                                            <MIcon @attributes="context.Attrs" Small Class="mt-auto">fas fa-cog</MIcon>                                        
+                                            <MIcon @attributes="context.Attrs" Small Class="mt-auto">fa:fas fa-cog</MIcon>                                        
                                         </ActivatorContent>
                                         <ChildContent>                                     
                                             <MCard>

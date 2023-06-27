@@ -127,21 +127,21 @@
                     <MMenu Right Bottom>
                         <ActivatorContent Context="activatorContext">
                             <MButton Icon @attributes="@activatorContext.Attrs">
-                                <MIcon XSmall>fas fa-ellipsis-v</MIcon>
+                                <MIcon XSmall>fa:fas fa-ellipsis-v</MIcon>
                             </MButton>
                         </ActivatorContent>
                         <ChildContent>
                             <MList>
                                 <MListItem OnClick="()=>NavigateToDetails(context.Item.Id)">
-                                    <MIcon Small>fas fa-user-tie</MIcon>
+                                    <MIcon Small>fa:fas fa-user-tie</MIcon>
                                     <MListItemTitle Class="ml-2"> Details </MListItemTitle>
                                 </MListItem>
                                 <MListItem OnClick="()=>NavigateToEdit(context.Item.Id)">
-                                    <MIcon Small>far fa-edit</MIcon>
+                                    <MIcon Small>fa:far fa-edit</MIcon>
                                     <MListItemTitle Class="ml-2"> Edit </MListItemTitle>
                                 </MListItem>
                                 <MListItem OnClick="()=>_userPage.UserDatas.RemoveAt(_userPage.UserDatas.FindIndex(u=>u.Id==context.Item.Id))">
-                                    <MIcon Small>far fa-trash-alt</MIcon>
+                                    <MIcon Small>fa:far fa-trash-alt</MIcon>
                                     <MListItemTitle Class="ml-2"> Delete </MListItemTitle>
                                 </MListItem>
                             </MList>

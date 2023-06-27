@@ -38,8 +38,8 @@
 
 @code {
     [Parameter]
-    public bool Show { get; set; } = false;
+    public bool? Show { get; set; }
 
     [Parameter]
-    public EventCallback<bool> ShowChanged { get; set; }
+    public EventCallback<bool?> ShowChanged { get; set; }
 }

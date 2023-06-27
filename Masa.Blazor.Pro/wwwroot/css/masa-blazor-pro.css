@@ -1,4 +1,8 @@
-﻿html {
+﻿:root {
+    --app-background-color: #F0F3FA;
+}
+
+html {
     font-size: 16px;
 }
 
@@ -291,7 +295,7 @@
 }
 
 .fill-lighten-1 {
-    background: #F0F3FA !important;
+    background: var(--app-background-color) !important;
 }
 
 .fill-lighten-2 {
@@ -402,7 +406,7 @@
 
 .border-b-solid {
     /* 分割线/下 */
-    box-shadow: inset 0px -1px 0px #F0F3FA !important;
+    box-shadow: inset 0px -1px 0px var(--app-background-color) !important;
 }
 
 .rounded-2 {
@@ -451,7 +455,7 @@
 }
 
 .default-app-bar {
-    background-color: transparent !important;
+    background-color: var(--app-background-color) !important;
 }
 
 .default-app-bar .m-toolbar__content {
@@ -478,6 +482,7 @@
     min-height: 36px;
     display: flex;
     align-items: center;
+    background-color: var(--app-background-color);
 }
 
 .default-app-bar__nav.page-mode--tab {
@@ -937,7 +942,7 @@
 }
 
 .mtab-tab-indicator-neutral {
-    background: #F0F3FA;
+    background: var(--app-background-color);
     border: 4px solid #A3AED0;
     box-sizing: border-box;
 }
@@ -1110,7 +1115,7 @@ tr:hover {
 }
 
 .p-page-tabs .m-tab--active {
-    background-color: #F0F3FA !important;
+    background-color: var(--app-background-color) !important;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
