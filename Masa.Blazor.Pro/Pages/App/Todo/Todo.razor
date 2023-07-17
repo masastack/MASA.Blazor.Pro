@@ -58,7 +58,7 @@
                         {
                             <MListItem Style="height:58px;" Dense Link OnClick="() => ShowDetail(item)">
                                 <span @onclick:stopPropagation>
-                                    <MCheckbox Class="pa-0 ma-0" @bind-Value=@item.IsChecked Color="primary"></MCheckbox>
+                                    <MCheckbox TValue="bool" Class="pa-0 ma-0" @bind-Value=@item.IsChecked Color="primary"></MCheckbox>
                                 </span>
 
                                 <MListItemContent Class="text-body neutral-lighten-2--text">

@@ -206,9 +206,9 @@
                 </div>
                 @if (IsEdit)
                 {
-                        <div class="mt-2">
-                            <MButton Block class="success" OnClick="()=>{ _showAddPayment = true; }">Add Payment</MButton>
-                        </div>
+                    <div class="mt-2">
+                        <MButton Block class="success" OnClick="()=>{ _showAddPayment = true; }">Add Payment</MButton>
+                    </div>
                 }
 
             </MCardText>
@@ -216,9 +216,9 @@
 
         <div class="mt-4">
             <MSelect BackgroundColor="white" Items=_payments ItemValue="u => u" Dense Label="Accept Payment Via" ItemText="u => u" Outlined @bind-Value=_payment></MSelect>
-            <MSwitch Value=true Class="mt-n3" Color="#7367f0" Label="Payment Terms"></MSwitch>
-            <MSwitch Value=true Class="mt-n3" Color="#7367f0" Label="Client Notes"></MSwitch>
-            <MSwitch Class="mt-n3" Color="#7367f0" Label="Payment Stub" TValue="bool"></MSwitch>
+            <MSwitch TValue="bool" Value=true Class="mt-n3" Color="#7367f0" Label="Payment Terms"></MSwitch>
+            <MSwitch TValue="bool" Value=true Class="mt-n3" Color="#7367f0" Label="Client Notes"></MSwitch>
+            <MSwitch TValue="bool" Class="mt-n3" Color="#7367f0" Label="Payment Stub"></MSwitch>
         </div>
     </MCol>
 </MRow>
