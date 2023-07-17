@@ -96,16 +96,16 @@
                     <span class="text-body neutral-lighten-2--text">@context.Value</span>
                     break;
                 case nameof(PermissionDto.Read):
-                    <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Read"></MCheckbox>
+                    <MCheckbox TValue="bool" Class="mt-0" Color="primary" @bind-Value="context.Item.Read"></MCheckbox>
                     break;
                 case nameof(PermissionDto.Write):
-                    <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Write"></MCheckbox>
+                    <MCheckbox TValue="bool" Class="mt-0" Color="primary" @bind-Value="context.Item.Write"></MCheckbox>
                     break;
                 case nameof(PermissionDto.Create):
-                    <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Create"></MCheckbox>
+                    <MCheckbox TValue="bool" Class="mt-0" Color="primary" @bind-Value="context.Item.Create"></MCheckbox>
                     break;
                 case nameof(PermissionDto.Delete):
-                    <MCheckbox Class="mt-0" Color="primary" @bind-Value="context.Item.Delete"></MCheckbox>
+                    <MCheckbox TValue="bool" Class="mt-0" Color="primary" @bind-Value="context.Item.Delete"></MCheckbox>
                     break;
                 default:
                     @context.Value
