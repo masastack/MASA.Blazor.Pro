@@ -1,9 +1,9 @@
 ﻿@inherits LayoutComponentBase
-@inject I18n I18n
+@inject GlobalConfig GlobalConfig
 
 <MApp>
     <PPageTabsProvider>
-        <CascadingValue Value="I18n.Culture.Name" Name="CultureName">
+        <CascadingValue Value="GlobalConfig.Culture.Name" Name="CultureName">
             <MAppBar Elevation=0 App Height="100" Class="default-app-bar mx-6">
                 <div class="default-app-bar__actions @PageModeClass">
                     <Favorite />
@@ -62,9 +62,19 @@
 
     private string PageModeClass => _pageTab == PageModes.PageTab ? "page-mode--tab" : "page-mode--breadcrumb";
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            await GlobalConfig.InitFromStorage();
+        }
+    }
+
     void OnLanguageChanged(CultureInfo culture)
     {
-        I18n.SetCulture(culture);
+        GlobalConfig.Culture = culture;
     }
 
 }

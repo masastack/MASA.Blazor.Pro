@@ -1,4 +1,6 @@
-﻿namespace Masa.Blazor.Pro.Pages.Authentication.Components;
+﻿using Microsoft.AspNetCore.Components.Web;
+
+namespace Masa.Blazor.Pro.Pages.Authentication.Components;
 
 public partial class Login
 {
