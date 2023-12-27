@@ -1157,3 +1157,13 @@ tr:hover {
 .m-dialog {
     border-radius: 20px;
 }
+
+/* avoid the entry animation at the first render */
+@media (min-width: 1264px) {
+    .m-app-bar.m-app-bar--app:not(.app--sized) {
+        left: 300px !important;
+    }
+    .m-main:not(.app--sized){
+        padding-left: 300px !important;
+    }
+}
