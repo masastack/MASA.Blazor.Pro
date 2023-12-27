@@ -2,6 +2,7 @@
 
 FROM registry.cn-hangzhou.aliyuncs.com/masa/dotnet_aspnet:8.0-1 AS base
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://0.0.0.0:80
 EXPOSE 80
 EXPOSE 443
 
