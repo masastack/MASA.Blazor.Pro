@@ -56,15 +56,27 @@
 @code {
 
     private static readonly string[] s_selfPatterns =
-    {
+    [
         "/app/todo"
-    };
+    ];
 
     private bool? _showSetting;
 
     private PageTabs? _pageTabs;
 
     private string PageModeClass => GlobalConfig.PageMode == PageModes.PageTab ? "page-mode--tab" : "page-mode--breadcrumb";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        GlobalConfig.PageModeChanged += PageModeChanged;
+    }
+
+    private void PageModeChanged(object? sender, EventArgs e)
+    {
+        InvokeAsync(StateHasChanged);
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

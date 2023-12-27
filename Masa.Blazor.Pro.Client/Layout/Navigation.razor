@@ -3,15 +3,14 @@
 @inject GlobalConfig GlobalConfig
 @implements IDisposable
 
-<MNavigationDrawer @bind-Value="Visible" 
+<MNavigationDrawer @bind-Value="Visible"
                    Class="@($"navigation {ComputedNavigationClass}")"
-                   Width=300 
+                   Width=300
                    MiniVariantWidth=80
                    Floating
-                   ExpandOnHover="GlobalConfig.ExpandOnHover"
-                   MiniVariant="GlobalConfig.ExpandOnHover"
+                   ExpandOnHover="@GlobalConfig.ExpandOnHover"
+                   MiniVariant="@GlobalConfig.ExpandOnHover"
                    App>
-
     <div class="logo" @onclick="() => NavHelper.NavigateTo(GlobalVariables.DefaultRoute)">
         <img class="hover-pointer" height="49" src="/img/mainLayout/logo-en.svg" />
     </div>
@@ -77,6 +76,8 @@
     [Inject]
     public MasaBlazor Masa { get; set; } = default!;
 
+    private CancellationTokenSource? _cancellationTokenSource;
+
     public bool? Visible { get; set; } = true;
 
     public string ComputedNavigationClass => (GlobalConfig.NavigationStyle == NavigationStyles.Rounded ? "rounded-r-xl" : string.Empty);
@@ -85,12 +86,24 @@
     {
         base.OnInitialized();
 
-        GlobalConfig.NavigationStyleChanged += NavigationStyleChanged;
+        GlobalConfig.NavigationStyleChanged += GlobalConfigChanged;
+        GlobalConfig.ExpandOnHoverChanged += GlobalConfigChanged;
     }
 
-    private void NavigationStyleChanged(object? sender, EventArgs e)
+    private async void GlobalConfigChanged(object? sender, EventArgs e)
     {
-        InvokeAsync(StateHasChanged);
+        _cancellationTokenSource?.Cancel();
+        _cancellationTokenSource = new CancellationTokenSource();
+
+        try
+        {
+            await Task.Delay(100, _cancellationTokenSource.Token);
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (TaskCanceledException)
+        {
+            // ignore
+        }
     }
 
     public void Switch()
@@ -108,7 +121,8 @@
 
     void IDisposable.Dispose()
     {
-        GlobalConfig.NavigationStyleChanged -= NavigationStyleChanged;
+        GlobalConfig.NavigationStyleChanged -= GlobalConfigChanged;
+        GlobalConfig.ExpandOnHoverChanged -= GlobalConfigChanged;
     }
 
 }

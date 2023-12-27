@@ -1158,12 +1158,12 @@ tr:hover {
     border-radius: 20px;
 }
 
-/* prevent the sliding animation at the first render */ 
+/* avoid the entry animation at the first render */
 @media (min-width: 1264px) {
-    .m-app-bar.m-app-bar--app:not([data-booted="true"]){
+    .m-app-bar.m-app-bar--app:not(.app--sized) {
         left: 300px !important;
     }
-    .m-main:not([data-booted="true"]){
+    .m-main:not(.app--sized){
         padding-left: 300px !important;
     }
 }

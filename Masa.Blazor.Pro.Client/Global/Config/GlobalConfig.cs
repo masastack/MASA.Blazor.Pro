@@ -30,12 +30,17 @@ public class GlobalConfig
 
     public EventHandler? NavigationStyleChanged { get; set; }
 
+    public EventHandler? PageModeChanged { get; set; }
+
+    public EventHandler? ExpandOnHoverChanged { get; set; }
+
     public string PageMode
     {
         get => _pageMode ?? PageModes.PageTab;
         set
         {
             _pageMode = value;
+            PageModeChanged?.Invoke(this, EventArgs.Empty);
             _cookieStorage.SetAsync(PageModeKey, value);
         }
     }
@@ -57,6 +62,7 @@ public class GlobalConfig
         set
         {
             _expandOnHover = value;
+            ExpandOnHoverChanged?.Invoke(this, EventArgs.Empty);
             _cookieStorage.SetAsync(ExpandOnHoverCookieKey, value);
         }
     }
@@ -83,10 +89,10 @@ public class GlobalConfig
 
     public async Task InitFromStorage()
     {
-        _pageMode = await _cookieStorage.GetAsync(PageModeKey);
-        _navigationStyle = await _cookieStorage.GetAsync(NavigationStyleKey);
-        _expandOnHover = Convert.ToBoolean(await _cookieStorage.GetAsync(ExpandOnHoverCookieKey));
-        _favorite = await _cookieStorage.GetAsync(FavoriteCookieKey);
+        PageMode = await _cookieStorage.GetAsync(PageModeKey);
+        NavigationStyle = await _cookieStorage.GetAsync(NavigationStyleKey);
+        ExpandOnHover = Convert.ToBoolean(await _cookieStorage.GetAsync(ExpandOnHoverCookieKey));
+        Favorite = await _cookieStorage.GetAsync(FavoriteCookieKey);
 
         var lang = await _cookieStorage.GetAsync(LangCookieKey);
         if (!string.IsNullOrWhiteSpace(lang))
