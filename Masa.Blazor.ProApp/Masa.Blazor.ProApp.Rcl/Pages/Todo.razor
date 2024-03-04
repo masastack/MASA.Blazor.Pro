@@ -17,7 +17,8 @@
     </MButton>
 </div>
 
-<MBottomSheet ContentClass="px-4 py-2">
+<MBottomSheet @bind-Value="_newTaskSheet"
+              ContentClass="px-4 py-2">
     <ActivatorContent>
         <MButton Fixed Right Fab Color="primary"
                  Style="bottom: 72px;"
@@ -26,38 +27,42 @@
         </MButton>
     </ActivatorContent>
     <ChildContent>
-        <MTextField @bind-Value="@_todoTask.Title"
-                    Class="my-2"
-                    Dense
-                    Filled
-                    Rounded
-                    HideDetails="true"
-                    Placeholder="Title"
-                    PersistentPlaceholder>
-        </MTextField>
+        <MForm Model="_todoTask"
+               EnableValidation
+               OnInvalidSubmit="HandleOnSubmit">
+            <MTextField @bind-Value="@_todoTask.Title"
+                        Class="my-2"
+                        Dense
+                        Filled
+                        Rounded
+                        HideDetails="true"
+                        Placeholder="Title"
+                        PersistentPlaceholder>
+            </MTextField>
 
-        <MTextarea @bind-Value="@_todoTask.Description"
-                   Dense
-                   Filled
-                   Rounded
-                   HideDetails="true"
-                   Placeholder="Description"
-                   PersistentPlaceholder>
-        </MTextarea>
+            <MTextarea @bind-Value="@_todoTask.Description"
+                       Dense
+                       Filled
+                       Rounded
+                       HideDetails="true"
+                       Placeholder="Description"
+                       PersistentPlaceholder>
+            </MTextarea>
 
-        <div Class="d-flex align-center my-2">
-            <MButton Color="secondary" Text>
-                <MIcon Left>mdi-calendar-today-outline</MIcon>
-                Today
-            </MButton>
-            <MButton Icon>
-                <MIcon>mdi-flag-variant-outline</MIcon>
-            </MButton>
-            <MSpacer/>
-            <MButton Icon Color="primary">
-                <MIcon>mdi-arrow-up-circle</MIcon>
-            </MButton>
-        </div>
+            <div Class="d-flex align-center my-2">
+                <MButton Color="secondary" Text>
+                    <MIcon Left>mdi-calendar-today-outline</MIcon>
+                    Today
+                </MButton>
+                <MButton Icon>
+                    <MIcon>mdi-flag-variant-outline</MIcon>
+                </MButton>
+                <MSpacer/>
+                <MButton Icon Color="primary" Type="submit">
+                    <MIcon>mdi-arrow-up-circle</MIcon>
+                </MButton>
+            </div>
+        </MForm>
     </ChildContent>
 </MBottomSheet>
 
@@ -67,12 +72,20 @@
 @code {
 
     private bool? _drawer = false;
+    private bool _newTaskSheet;
 
     private string Category => Filter ?? "inbox";
 
     private TodoTask _todoTask = new();
 
     [Parameter] public string? Filter { get; set; }
+
+    private async Task HandleOnSubmit()
+    {
+        // TODO: Save the task
+
+        _newTaskSheet = false;
+    }
 
 
 }

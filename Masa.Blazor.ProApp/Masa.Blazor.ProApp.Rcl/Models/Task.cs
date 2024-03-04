@@ -1,16 +1,16 @@
-﻿namespace Masa.Blazor.ProApp.Rcl.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Masa.Blazor.ProApp.Rcl.Models;
 
 public class TodoTask
 {
     public int Id { get; set; }
 
-    public string? Title { get; set; }
-
-    public string? Assignee { get; set; }
+    [Required] public string? Title { get; set; }
 
     public string? Description { get; set; }
 
-    public DateOnly DueAt { get; set; }
+    [Required] public DateOnly DueAt { get; set; }
 
     public bool Important { get; set; }
 
