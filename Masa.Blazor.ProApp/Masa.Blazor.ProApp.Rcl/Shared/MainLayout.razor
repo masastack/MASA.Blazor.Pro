@@ -1,0 +1,43 @@
+﻿@inherits LayoutComponentBase
+
+<MApp>
+    <MMain>
+        <MContainer Fluid Style="height: 100%">
+            <MErrorHandler>
+                <PPageContainer SelfPatterns="@( ["/todo"])"
+                                Transition="fade-transition">
+                    @Body
+                </PPageContainer>
+            </MErrorHandler>
+        </MContainer>
+    </MMain>
+
+    <MBottomNavigation App
+                       Routable
+                       Grow
+                       Shift
+                       Color="primary"
+                       @bind-Value="_current">
+        <MButton Href="/">
+            <span>Shop</span>
+            <MIcon>@ShopIcon</MIcon>
+        </MButton>
+        <MButton Href="/todo">
+            <span>To do</span>
+            <MIcon>@TodoIcon</MIcon>
+        </MButton>
+        <MButton Href="/user">
+            <span>User</span>
+            <MIcon>@UserIcon</MIcon>
+        </MButton>
+    </MBottomNavigation>
+</MApp>
+
+@code {
+
+    private StringNumber? _current;
+
+    private string ShopIcon => _current == 0 ? "mdi-shopping" : "mdi-shopping-outline";
+    private string TodoIcon => _current == 1 ? "mdi-check-bold" : "mdi-check";
+    private string UserIcon => _current == 2 ? "mdi-account" : "mdi-account-outline";
+}

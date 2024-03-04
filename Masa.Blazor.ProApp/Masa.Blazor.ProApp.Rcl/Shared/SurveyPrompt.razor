@@ -1,0 +1,20 @@
+﻿<MAlert Type="AlertTypes.Info" Text Class="mt-2">
+    <strong>@Title</strong>
+
+    <span class="text-nowrap">
+        More Information go to
+        <a target="_blank"
+           class="font-weight-bold"
+           href="https://docs.masastack.com/blazor/introduction/why-masa-blazor">
+            MASA Blazor
+        </a>.
+    </span>
+</MAlert>
+
+@code {
+
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string? Title { get; set; }
+
+}

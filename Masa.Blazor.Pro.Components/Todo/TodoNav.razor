@@ -1,0 +1,95 @@
+﻿@namespace Masa.Blazor.Pro.Components
+
+<MNavigationDrawer Value="@Value"
+                   ValueChanged="@ValueChanged"
+                   Permanent="@Permanent"
+                   Width="300"
+                   Fixed>
+    @if (ShowAddTask)
+    {
+        <MButton Block Rounded Color="primary" Class="ma-6">Add Task</MButton>
+    }
+
+    <MList Routable Dense>
+        @foreach (var item in _categories)
+        {
+            <MListItem ActiveClass="primary" Href="@item.Href" Exact>
+                <ItemContent>
+                    <MListItemIcon Class="mr-4">
+                        <MIcon>@item.IconOrColor</MIcon>
+                    </MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>@item.Title</MListItemTitle>
+                    </MListItemContent>
+                </ItemContent>
+            </MListItem>
+        }
+
+        <MSubheader>Tags</MSubheader>
+
+        @foreach (var item in _tags)
+        {
+            <MListItem ActiveClass="primary" Href="@item.Href" Exact>
+                <ItemContent>
+                    <MListItemIcon Class="mr-4">
+                        <MIcon Color="@item.IconOrColor">mdi-circle</MIcon>
+                    </MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>@item.Title</MListItemTitle>
+                    </MListItemContent>
+                </ItemContent>
+            </MListItem>
+        }
+
+        <MSubheader>Priority</MSubheader>
+
+        @foreach (var item in _priority)
+        {
+            <MListItem ActiveClass="primary" Href="@item.Href" Exact>
+                <ItemContent>
+                    <MListItemIcon Class="mr-4">
+                        <MIcon Color="@item.IconOrColor">mdi-flag-variant</MIcon>
+                    </MListItemIcon>
+                    <MListItemContent>
+                        <MListItemTitle>@item.Title</MListItemTitle>
+                    </MListItemContent>
+                </ItemContent>
+            </MListItem>
+        }
+    </MList>
+</MNavigationDrawer>
+
+@code {
+
+    [Parameter] public bool? Value { get; set; }
+
+    [Parameter] public EventCallback<bool?> ValueChanged { get; set; }
+
+    [Parameter] public bool Permanent { get; set; }
+
+    [Parameter] public bool ShowAddTask { get; set; }
+
+    private static TodoNavItem[] _categories =
+    [
+        new TodoNavItem("Inbox", "mdi-inbox-outline", "/todo"),
+        new TodoNavItem("Important", "mdi-star-box-outline", "/todo/important"),
+        new TodoNavItem("Completed", "mdi-checkbox-marked-outline", "/todo/completed"),
+        new TodoNavItem("Trash", "mdi-trash-can-outline", "/todo/deleted")
+    ];
+
+    private static TodoNavItem[] _tags =
+    [
+        new TodoNavItem("Team", "purple", "/todo/team"),
+        new TodoNavItem("Family", "blue", "/todo/family"),
+    ];
+
+    private static TodoNavItem[] _priority =
+    [
+        new TodoNavItem("Low", "green", "/todo/low"),
+        new TodoNavItem("Medium", "yellow", "/todo/medium"),
+        new TodoNavItem("High", "red", "/todo/high"),
+    ];
+
+    record TodoNavItem(string Title, string IconOrColor, string Href);
+
+}

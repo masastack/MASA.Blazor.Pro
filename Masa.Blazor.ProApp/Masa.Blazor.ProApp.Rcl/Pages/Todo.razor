@@ -1,0 +1,78 @@
+﻿@page "/todo/{filter?}"
+@using Masa.Blazor.ProApp.Rcl.Models
+
+<PageTitle>To do</PageTitle>
+
+<div class="d-flex align-center">
+    <MButton Class="mr-1" Icon OnClick="@(() => _drawer = !_drawer)">
+        <MIcon>mdi-menu</MIcon>
+    </MButton>
+    <span class="text-capitalize">@Category</span>
+    <MSpacer/>
+    <MButton Icon>
+        <MIcon>mdi-sort</MIcon>
+    </MButton>
+    <MButton Icon>
+        <MIcon>mdi-dots-horizontal</MIcon>
+    </MButton>
+</div>
+
+<MBottomSheet ContentClass="px-4 py-2">
+    <ActivatorContent>
+        <MButton Fixed Right Fab Color="primary"
+                 Style="bottom: 72px;"
+                 @attributes="@context.Attrs">
+            <MIcon>mdi-plus</MIcon>
+        </MButton>
+    </ActivatorContent>
+    <ChildContent>
+        <MTextField @bind-Value="@_todoTask.Title"
+                    Class="my-2"
+                    Dense
+                    Filled
+                    Rounded
+                    HideDetails="true"
+                    Placeholder="Title"
+                    PersistentPlaceholder>
+        </MTextField>
+
+        <MTextarea @bind-Value="@_todoTask.Description"
+                   Dense
+                   Filled
+                   Rounded
+                   HideDetails="true"
+                   Placeholder="Description"
+                   PersistentPlaceholder>
+        </MTextarea>
+
+        <div Class="d-flex align-center my-2">
+            <MButton Color="secondary" Text>
+                <MIcon Left>mdi-calendar-today-outline</MIcon>
+                Today
+            </MButton>
+            <MButton Icon>
+                <MIcon>mdi-flag-variant-outline</MIcon>
+            </MButton>
+            <MSpacer/>
+            <MButton Icon Color="primary">
+                <MIcon>mdi-arrow-up-circle</MIcon>
+            </MButton>
+        </div>
+    </ChildContent>
+</MBottomSheet>
+
+
+<TodoNav @bind-Value="_drawer"/>
+
+@code {
+
+    private bool? _drawer = false;
+
+    private string Category => Filter ?? "inbox";
+
+    private TodoTask _todoTask = new();
+
+    [Parameter] public string? Filter { get; set; }
+
+
+}
