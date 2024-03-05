@@ -7,6 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Masa.Blazor.ProApp\Masa.Blazor.ProApp.Rcl\Masa.Blazor.ProApp.Rcl.csproj" />
+      <ProjectReference Include="..\Masa.Blazor.ProApp.Rcl\Masa.Blazor.ProApp.Rcl.csproj" />
     </ItemGroup>
 </Project>

@@ -1,0 +1,15 @@
+﻿.m-expansion-panel::before {
+  box-shadow: none;
+}
+
+.m-expansion-panel:not(:first-child)::after {
+  border-top: none;
+}
+
+.m-expansion-panel-content__wrap {
+  padding: 0 8px 8px;
+}
+
+.m-expansion-panel--active>.m-expansion-panel-header {
+  min-height: inherit;
+}

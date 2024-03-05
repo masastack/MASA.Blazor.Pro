@@ -1,0 +1,62 @@
+﻿<MBottomSheet Value="Show"
+              ValueChanged="ShowChanged">
+    <div class="d-flex">
+        <MButton Text Color="secondary"
+                 OnClick="@HandleOnCancel">
+            Cancel
+        </MButton>
+        <MSpacer/>
+        <MButton Text Color="primary"
+                 OnClick="@HandleOnConfirm">
+            Confirm
+        </MButton>
+    </div>
+    <PDateDigitalClockPickerView Value="_internalDate"
+                                 ValueChanged="InternalDateChanged"
+                                 TValue="DateTime"
+                                 TimeFormat="TimeFormat.Hr24">
+    </PDateDigitalClockPickerView>
+</MBottomSheet>
+
+@code {
+
+    [Parameter] public bool Show { get; set; }
+    [Parameter] public EventCallback<bool> ShowChanged { get; set; }
+    [Parameter] public DateTime Value { get; set; }
+    [Parameter] public EventCallback<DateTime> ValueChanged { get; set; }
+
+    private DateTime _internalDate;
+    private bool _previousShow;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (_previousShow != Show)
+        {
+            _previousShow = Show;
+
+            if (Show)
+            {
+                _internalDate = Value;
+            }
+        }
+    }
+
+    private void InternalDateChanged(DateTime date)
+    {
+        _internalDate = date;
+    }
+
+    private void HandleOnCancel()
+    {
+        ShowChanged.InvokeAsync(false);
+    }
+
+    private async Task HandleOnConfirm()
+    {
+        await ValueChanged.InvokeAsync(_internalDate);
+        _ = ShowChanged.InvokeAsync(false);
+    }
+
+}
