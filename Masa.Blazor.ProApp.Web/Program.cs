@@ -1,4 +1,4 @@
-using Masa.Blazor.ProApp.Rcl.Data;
+using Masa.Blazor.Pro.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();

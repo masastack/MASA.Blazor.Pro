@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Masa.Blazor;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
@@ -6,6 +8,25 @@ public static class ServiceCollectionExtensions
     {
         services.AddMasaBlazor(options =>
         {
+            options.Defaults = new Dictionary<string, IDictionary<string, object?>?>()
+            {
+                ["MButton"] = new Dictionary<string, object?>()
+                {
+                    [nameof(MButton.Depressed)] = true
+                },
+                ["MTextField"] = new Dictionary<string, object?>()
+                {
+                    ["Filled"] = true,
+                    ["Rounded"] = true,
+                    ["PersistentPlaceholder"] = true
+                },
+                ["MTextarea"] = new Dictionary<string, object?>()
+                {
+                    ["Filled"] = true,
+                    ["Rounded"] = true,
+                    ["PersistentPlaceholder"] = true
+                }
+            };
             options.ConfigureTheme(theme =>
             {
                 theme.Themes.Light.Primary = "#4f33ff";

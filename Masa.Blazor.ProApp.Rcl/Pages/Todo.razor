@@ -1,6 +1,6 @@
 ﻿@page "/todo/{filter?}"
-@using Masa.Blazor.ProApp.Rcl.Data
-@using Masa.Blazor.ProApp.Rcl.Models
+@page "/todo/tag/{tag:int}"
+@using Masa.Blazor.Pro.Components.Models
 @inject ProDatabase ProDatabase
 
 <PageTitle>To do</PageTitle>
@@ -30,7 +30,8 @@
                     {
                         <MListItem>
                             <MListItemAction Class="mr-2">
-                                <MSimpleCheckbox Color="primary" Ripple="false" Value="@task.Completed" ValueChanged="@(() => CompleteTask(task))"/>
+                                <MSimpleCheckbox Color="primary" Ripple="false" Value="@task.Completed"
+                                                 ValueChanged="@(() => CompleteTask(task))"/>
                             </MListItemAction>
                             <MListItemContent>
                                 <MListItemTitle>@task.Title</MListItemTitle>
@@ -47,7 +48,7 @@
     }
 </MExpansionPanels>
 <MBottomSheet @bind-Value="_newTaskSheet"
-              ContentClass="px-4 py-2">
+              ContentClass="pa-4">
     <ActivatorContent>
         <MButton Fixed Right Fab Color="primary"
                  Style="bottom: 72px;"
@@ -60,28 +61,23 @@
                EnableValidation
                OnValidSubmit="HandleOnSubmit">
             <MTextField @bind-Value="@_todoTask.Title"
-                        Class="my-2"
+                        Class="mb-2"
                         Dense
-                        Filled
-                        Rounded
                         HideDetails="true"
-                        Placeholder="Title"
-                        PersistentPlaceholder
+                        Placeholder="What needs to be done?"
                         AutoFocus="@_newTaskSheet">
             </MTextField>
 
             <MTextarea @bind-Value="@_todoTask.Description"
+                       Class="mb-2"
                        Dense
-                       Filled
-                       Rounded
                        HideDetails="true"
-                       Placeholder="Description"
-                       PersistentPlaceholder>
+                       Placeholder="How to do it?">
             </MTextarea>
 
-            <div Class="d-flex align-center my-2">
-                <MButton Color="secondary"
-                         Text
+            <div Class="d-flex align-center mb-2">
+                <MButton Text
+                         Small
                          OnClick="@(() => _calendarSheet = true)">
                     <MIcon Left>mdi-calendar-today-outline</MIcon>
                     @GetAliasOfDueAt()
@@ -89,9 +85,11 @@
                 <MMenu OffsetY Top>
                     <ActivatorContent Context="menuContext">
                         <MButton Color="@PriorityColor"
-                                 Icon
+                                 Text
+                                 Small
                                  @attributes="@menuContext.Attrs">
-                            <MIcon>mdi-flag-variant-outline</MIcon>
+                            <MIcon Left>mdi-flag-variant-outline</MIcon>
+                            @_todoTask.Priority
                         </MButton>
                     </ActivatorContent>
                     <ChildContent>
@@ -107,20 +105,87 @@
                     </ChildContent>
                 </MMenu>
                 <MSpacer/>
-                <MButton Icon Color="primary" Type="submit">
-                    <MIcon>mdi-arrow-up-circle</MIcon>
-                </MButton>
+                <MBottomSheet>
+                    <ActivatorContent Context="tagContext">
+                        <MButton Icon Text
+                                 Color="@(_todoTask.TagIds.Length > 0 ? "success" : "")"
+                                 @attributes="@tagContext.Attrs">
+                            <MIcon>mdi-tag-text-outline</MIcon>
+                        </MButton>
+                    </ActivatorContent>
+                    <ChildContent>
+                        <MList Dense>
+                            <MListItemGroup Multiple
+                                            Values="@_todoTask.TagIds.Select(id => (StringNumber)id).ToList()"
+                                            ValuesChanged="v => _todoTask.TagIds = v.Select(u => u.AsT1).ToArray()">
+                                @foreach (var item in _tags)
+                                {
+                                    <MListItem Value="@item.Id">
+                                        @RenderFragments.GenTagItem(item)
+                                    </MListItem>
+                                }
+                            </MListItemGroup>
+                        </MList>
+                    </ChildContent>
+                </MBottomSheet>
             </div>
+
+            <MButton Block
+                     Color="primary"
+                     Type="submit">
+                <MIcon Left>mdi-arrow-up-circle</MIcon>
+                Add task
+            </MButton>
         </MForm>
     </ChildContent>
 </MBottomSheet>
 
+<TodoNav @bind-Show="_drawer"
+         Tags="_tags"
+         OnAddTagClick="ShowAddTagSheet"/>
+
 <DateDigitalClockSheet @bind-Value="_todoTask.DueAt"
                        @bind-Show="_calendarSheet"/>
 
-<TodoNav @bind-Value="_drawer"/>
+<MBottomSheet @bind-Value="_tagSheet"
+              ContentClass="pa-4">
+    <MTextField Value="@_newTag.Name"
+                ValueChanged="OnTagNameChanged"
+                TValue="string"
+                Class="mb-3"
+                Dense
+                HideDetails="true"
+                Placeholder="Name"
+                Autofocus>
+    </MTextField>
+    <MItemGroup Value="@_newTag.Color"
+                ValueChanged="v => _newTag.Color = v?.ToString()"
+                Mandatory
+                Class="mb-3 d-flex justify-space-around"
+                Style="min-height: 36px;">
+        @foreach (var color in colors)
+        {
+            <MItem Value="@color">
+                <MIcon Color="@color"
+                       Large="@context.Active"
+                       OnClick="@context.Toggle">
+                    mdi-circle
+                </MIcon>
+            </MItem>
+        }
+    </MItemGroup>
+    <MButton Color="primary"
+             Block
+             Depressed
+             Disabled="@(string.IsNullOrWhiteSpace(_newTag.Name))"
+             OnClick="@HandleOnAddTag">
+        Add new tag
+    </MButton>
+</MBottomSheet>
 
 @code {
+
+    private static string[] colors = ["red", "orange", "blue", "green", "purple", "pink", "yellow"];
 
     private static List<(TodoTaskPriority priority, string? color)> Priorities =
     [
@@ -131,33 +196,25 @@
     ];
 
     private bool? _drawer = false;
+    private string? _prevFilter;
+    private int _prevTag;
+
     private bool _newTaskSheet;
     private bool _calendarSheet;
+
+    private bool _tagSheet;
+
+    private TodoTask _todoTask = new();
+    private TodoTag _newTag = new();
+
     private int _page = 1;
     private int _pageSize = 10;
     private List<TodoTask> _tasks = new();
+    private List<TodoTag> _tags = new();
 
     private List<StringNumber> _expandedPriority = [0, 1, 2, 3, -1];
 
     private string Category => Filter ?? "Today";
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await LoadTasks();
-            StateHasChanged();
-        }
-    }
-
-    private async Task LoadTasks()
-    {
-        _tasks = Filter?.ToLowerInvariant() switch
-        {
-            "inbox" => await ProDatabase.GetTasksAsync(_page, _pageSize),
-            _ => await ProDatabase.GetTasksAsync(_page, _pageSize, DateTime.Today),
-        };
-    }
 
     private string? PriorityColor => _todoTask.Priority switch
     {
@@ -167,16 +224,60 @@
         _ => null
     };
 
-    private TodoTask _todoTask = new();
-
     [Parameter] public string? Filter { get; set; }
+
+    [Parameter] public int Tag { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _prevFilter = Filter;
+            _prevTag = Tag;
+
+            await LoadTasks();
+            await LoadTags();
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (_prevFilter != Filter || _prevTag != Tag)
+        {
+            _prevFilter = Filter;
+            _prevTag = Tag;
+            await LoadTasks();
+        }
+    }
+
+    private async Task LoadTasks()
+    {
+        if (Tag != 0)
+        {
+            _tasks = await ProDatabase.GetTasksAsync(_page, _pageSize, tag: Tag);
+        }
+        else
+        {
+            _tasks = Filter?.ToLowerInvariant() switch
+            {
+                "inbox" => await ProDatabase.GetTasksAsync(_page, _pageSize),
+                _ => await ProDatabase.GetTasksAsync(_page, _pageSize, DateTime.Today)
+            };
+        }
+    }
+
+    private async Task LoadTags()
+    {
+        _tags = await ProDatabase.GetTagsAsync();
+    }
 
     private async Task HandleOnSubmit()
     {
-        // TODO: Save the task
-
         await ProDatabase.CreateTaskAsync(_todoTask);
+        await LoadTasks();
 
+        _todoTask = new();
         _newTaskSheet = false;
     }
 
@@ -220,6 +321,24 @@
     {
         task.Completed = !task.Completed;
         await ProDatabase.UpdateTaskAsync(task);
+    }
+
+    private void ShowAddTagSheet()
+    {
+        _drawer = false;
+        _tagSheet = true;
+    }
+
+    private void OnTagNameChanged(string val)
+    {
+        _newTag.Name = val.Trim(',').Trim(' ').Trim(';');
+    }
+
+    private async Task HandleOnAddTag()
+    {
+        await ProDatabase.CreateTagAsync(_newTag);
+        _newTag = new();
+        _tagSheet = false;
     }
 
 }
