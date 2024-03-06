@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Masa.Blazor.Pro.Components;
+using Microsoft.Extensions.Logging;
 
 namespace ProApp
 {
@@ -15,7 +16,8 @@ namespace ProApp
                 });
 
             builder.Services.AddMauiBlazorWebView();
-            builder.Services.AddMasaBlazor();
+            builder.Services.AddMasaBlazorPro();
+            builder.Services.AddSingleton(_ = new ProDatabase(FileSystem.AppDataDirectory));
 
             builder.Services.AddLogging(logging =>
             {

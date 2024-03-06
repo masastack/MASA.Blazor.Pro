@@ -17,8 +17,17 @@ public class ProDatabase
         // enable multi-threaded database access
         SQLiteOpenFlags.SharedCache;
 
-    // public static string DatabasePath =>
-    //     Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
+    public ProDatabase()
+    {
+        DatabasePath = DatabaseFilename;
+    }
+
+    public ProDatabase(string dir)
+    {
+        DatabasePath = Path.Combine(dir, DatabaseFilename);
+    }
+
+    public string DatabasePath { get; private set; }
 
     private SQLiteAsyncConnection? Database { get; set; }
 
@@ -30,7 +39,7 @@ public class ProDatabase
             return;
         }
 
-        Database = new SQLiteAsyncConnection(DatabaseFilename, Flags);
+        Database = new SQLiteAsyncConnection(DatabasePath, Flags);
         await Database.CreateTableAsync<TodoTask>();
         await Database.CreateTableAsync<TodoTag>();
     }
