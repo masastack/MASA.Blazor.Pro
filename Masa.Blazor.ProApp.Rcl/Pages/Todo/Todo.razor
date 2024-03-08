@@ -1,0 +1,370 @@
+﻿@page "/todo/{filter?}"
+@page "/todo/tag/{tag:int}"
+@using Masa.Blazor.Pro.Components.Models
+@inject ProDatabase ProDatabase
+@inject NavigationManager NavigationManager
+@inject IPopupService PopupService
+
+<PageTitle>To do</PageTitle>
+
+<MAppBar Fixed
+         Style="z-index: 2;"
+         ElevateOnScroll
+         Color="#f0f3fa">
+    <MAppBarNavIcon @onclick="@(() => _drawer = !_drawer)"/>
+    <MToolbarTitle Class="pl-0 subtitle-1 text-capitalize">@Title</MToolbarTitle>
+    <MSpacer/>
+    @if (CurrentTag != null)
+    {
+        <MMenu Bottom OffsetY MinWidth="200">
+            <ActivatorContent>
+                <MButton Icon @attributes="@context.Attrs">
+                    <MIcon>mdi-dots-horizontal</MIcon>
+                </MButton>
+            </ActivatorContent>
+            <ChildContent>
+                <MListItem OnClick="@(() => DeleteTag(CurrentTag))">
+                    <MListItemContent>
+                        <MListItemTitle Class="d-flex align-center">
+                            <MIcon Class="mr-2">mdi-delete-forever-outline</MIcon>
+                            Delete tag
+                        </MListItemTitle>
+                    </MListItemContent>
+                </MListItem>
+            </ChildContent>
+        </MMenu>
+    }
+</MAppBar>
+
+<MExpansionPanels Multiple Accordion @bind-Values="_expandedPriority"
+                  Style="padding-top: 56px;">
+    @foreach (var item in _tasks.GroupBy(t => t.Priority).OrderByDescending(t => t.Key))
+    {
+        <MExpansionPanel Value="(int)item.Key" Class="mb-4 rounded-lg">
+            <MExpansionPanelHeader>@item.Key</MExpansionPanelHeader>
+            <MExpansionPanelContent>
+                <MList Dense Class="py-0">
+                    @foreach (var task in item)
+                    {
+                        <MListItem OnClick="@(() => EditTask(task))" Class="py-2">
+                            <MListItemAction Class="mt-0 align-self-start">
+                                <MSimpleCheckbox Color="primary"
+                                                 Class="@($"priority--{task.Priority.ToString().ToLowerInvariant()}")"
+                                                 Ripple="false"
+                                                 Value="@task.Completed"
+                                                 ValueChanged="@(() => CompleteTask(task))"/>
+                            </MListItemAction>
+                            <MListItemContent Class="py-0">
+                                <MListItemTitle>@task.Title</MListItemTitle>
+                                @if (!string.IsNullOrWhiteSpace(task.Description))
+                                {
+                                    <MListItemSubtitle>@task.Description</MListItemSubtitle>
+                                }
+                                @if (task.TagIds.Length > 0)
+                                {
+                                    <div class="mt-1">
+                                        @RenderFragments.GenTagChips(_tags, task.TagIds, xSmall: true)
+                                    </div>
+                                }
+                                <div class="@(IsExpired(task.DueAt) ? "error--text" : "success--text") text-caption">@GetAliasOfDueAt(task.DueAt)</div>
+                            </MListItemContent>
+                        </MListItem>
+                    }
+                </MList>
+            </MExpansionPanelContent>
+        </MExpansionPanel>
+    }
+
+    @if (_completedTasks.Count > 0)
+    {
+        <MExpansionPanel Value="-1" Class="mb-4 rounded-lg">
+            <MExpansionPanelHeader>Completed</MExpansionPanelHeader>
+            <MExpansionPanelContent>
+                <MList Dense Class="py-0">
+                    @foreach (var task in _completedTasks)
+                    {
+                        <MListItem OnClick="@(() => EditTask(task))"
+                                   Color="grey"
+                                   Class="py-2 text-decoration-line-through">
+                            <MListItemAction Class="mr-2 mt-1 align-self-start">
+                                <MSimpleCheckbox Color="grey"
+                                                 Ripple="false"
+                                                 Value="@task.Completed"
+                                                 ValueChanged="@(() => CompleteTask(task))"/>
+                            </MListItemAction>
+                            <MListItemContent Class="py-0">
+                                <MListItemTitle>@task.Title</MListItemTitle>
+                                @if (!string.IsNullOrWhiteSpace(task.Description))
+                                {
+                                    <MListItemSubtitle>@task.Description</MListItemSubtitle>
+                                }
+                                @if (task.TagIds.Length > 0)
+                                {
+                                    <div class="mt-1">
+                                        @RenderFragments.GenTagChips(_tags, task.TagIds, xSmall: true)
+                                    </div>
+                                }
+                                <div class="text-caption">@GetAliasOfDueAt(task.DueAt)</div>
+                            </MListItemContent>
+                        </MListItem>
+                    }
+                </MList>
+            </MExpansionPanelContent>
+        </MExpansionPanel>
+    }
+</MExpansionPanels>
+
+<MButton Fixed Right Fab Color="primary"
+         Style="bottom: 72px;"
+         OnClick="@(() => _taskSheet.Open())">
+    <MIcon>mdi-plus</MIcon>
+</MButton>
+
+<EditSheet Tags="@_tags"
+           GetAliasOfDueAt="GetAliasOfDueAt"
+           OnAdd="@HandleOnSubmit"
+           OnUpdate="@HandleOnUpdate"
+           OnDelete="@HandleOnDelete"
+           @ref="_taskSheet">
+</EditSheet>
+
+<TodoNav @bind-Show="_drawer"
+         Tags="_tags"
+         OnAddTagClick="ShowAddTagSheet"/>
+
+
+<MBottomSheet @bind-Value="_tagSheet"
+              ContentClass="pa-4">
+    <MTextField Value="@_newTag.Name"
+                ValueChanged="OnTagNameChanged"
+                TValue="string"
+                Class="mb-3"
+                Dense
+                HideDetails="true"
+                Placeholder="Name"
+                Autofocus>
+    </MTextField>
+    <MItemGroup Value="@_newTag.Color"
+                ValueChanged="v => _newTag.Color = v?.ToString()"
+                Mandatory
+                Class="mb-3 d-flex justify-space-between"
+                Style="min-height: 36px;">
+        @foreach (var color in colors)
+        {
+            <MItem Value="@color">
+                <MIcon Color="@color"
+                       Large="@context.Active"
+                       OnClick="@context.Toggle">
+                    mdi-circle
+                </MIcon>
+            </MItem>
+        }
+    </MItemGroup>
+    <MButton Color="primary"
+             Block
+             Depressed
+             Disabled="@(string.IsNullOrWhiteSpace(_newTag.Name))"
+             OnClick="@HandleOnAddTag">
+        Add new tag
+    </MButton>
+</MBottomSheet>
+
+@code {
+
+    private static string[] colors = ["red", "orange", "blue", "green", "purple", "pink", "yellow"];
+
+    private bool? _drawer = false;
+    private string? _prevFilter;
+    private int _prevTag;
+
+    private EditSheet _taskSheet = default!;
+
+    private bool _tagSheet;
+
+    private TodoTag _newTag = new();
+
+    private int _page = 1;
+    private int _pageSize = 10;
+    private List<TodoTask> _tasks = new();
+    private List<TodoTask> _completedTasks = new();
+    private List<TodoTag> _tags = new();
+
+    private List<StringNumber> _expandedPriority = [0, 1, 2, 3, -1];
+
+    private TodoTag? CurrentTag => _tags.FirstOrDefault(t => t.Id == Tag);
+
+    private string Title => CurrentTag?.Name ?? Filter ?? "Today";
+
+    [Parameter] public string? Filter { get; set; }
+
+    [Parameter] public int Tag { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _prevFilter = Filter;
+            _prevTag = Tag;
+
+            await LoadTasks();
+            await LoadTags();
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (_prevFilter != Filter || _prevTag != Tag)
+        {
+            _prevFilter = Filter;
+            _prevTag = Tag;
+            await LoadTasks();
+        }
+    }
+
+    private async Task LoadTasks()
+    {
+        List<TodoTask> tasks;
+
+        if (Tag != 0)
+        {
+            tasks = await ProDatabase.GetTasksAsync(_page, _pageSize, tag: Tag);
+        }
+        else
+        {
+            tasks = Filter?.ToLowerInvariant() switch
+            {
+                "inbox" => await ProDatabase.GetTasksAsync(_page, _pageSize),
+                _ => await ProDatabase.GetTasksAsync(_page, _pageSize, DateTime.Today)
+            };
+        }
+
+        _tasks = tasks.Where(t => !t.Completed).ToList();
+        _completedTasks = tasks.Where(t => t.Completed).ToList();
+    }
+
+    private async Task LoadTags()
+    {
+        _tags = await ProDatabase.GetTagsAsync();
+    }
+
+    private async Task HandleOnSubmit(TodoTask model)
+    {
+        await ProDatabase.CreateTaskAsync(model);
+        await LoadTasks();
+    }
+
+    private async Task HandleOnUpdate(TodoTask model)
+    {
+        await ProDatabase.UpdateTaskAsync(model);
+        await LoadTasks();
+    }
+
+    private async Task HandleOnDelete(TodoTask model)
+    {
+        await ProDatabase.DeleteTaskAsync(model);
+        await LoadTasks();
+    }
+
+    private bool IsExpired(DateTime dueAt) => dueAt < DateTime.Today;
+
+    private string GetAliasOfDueAt(DateTime dueAt)
+    {
+        var dateStr = GetDateStr();
+        return dueAt.TimeOfDay == TimeSpan.Zero
+            ? dateStr
+            : $"{dateStr}, {dueAt.ToShortTimeString()}";
+
+        string GetDateStr()
+        {
+            var today = DateTime.Today;
+            var dateOfDue = dueAt.Date;
+            if (dateOfDue == today)
+            {
+                return "Today";
+            }
+
+            if (dateOfDue == today.AddDays(-1))
+            {
+                return "Yesterday";
+            }
+
+            if (dateOfDue == today.AddDays(1))
+            {
+                return "Tomorrow";
+            }
+
+            if (dateOfDue.Year == DateTime.Today.Year)
+            {
+                return dateOfDue.ToString("M");
+            }
+
+            return dateOfDue.ToShortDateString();
+        }
+    }
+
+    private async Task CompleteTask(TodoTask task)
+    {
+        if (task.Completed)
+        {
+            task.Completed = false;
+            _tasks.Add(task);
+            _completedTasks.Remove(task);
+        }
+        else
+        {
+            task.Completed = true;
+            _completedTasks.Add(task);
+            _tasks.Remove(task);
+        }
+
+        await ProDatabase.UpdateTaskAsync(task);
+    }
+
+    private void ShowAddTagSheet()
+    {
+        _drawer = false;
+        _tagSheet = true;
+    }
+
+    private void OnTagNameChanged(string val)
+    {
+        _newTag.Name = val.Trim(',').Trim(' ').Trim(';');
+    }
+
+    private async Task HandleOnAddTag()
+    {
+        await ProDatabase.CreateTagAsync(_newTag);
+        _tags.Add(_newTag);
+
+        _newTag = new();
+        _tagSheet = false;
+    }
+
+    private void EditTask(TodoTask task)
+    {
+        _taskSheet.Open(task);
+    }
+
+    private async Task DeleteTag(TodoTag model)
+    {
+        var confirm = await PopupService.ConfirmAsync("Delete tag", "Are you sure you want to delete this tag?");
+        if (!confirm)
+        {
+            return;
+        }
+
+        await ProDatabase.DeleteTagAsync(model);
+
+        _ = PopupService.EnqueueSnackbarAsync("Tag deleted", AlertTypes.Success);
+
+        var tag = _tags.FirstOrDefault(t => t.Id == model.Id);
+        if (tag != null)
+        {
+            _tags.Remove(tag);
+        }
+
+        NavigationManager.NavigateTo("/todo");
+    }
+
+}

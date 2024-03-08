@@ -1,0 +1,173 @@
+﻿@using Masa.Blazor.Pro.Components.Models
+@inject IPopupService PopupService
+
+<MBottomSheet @bind-Value="_show"
+              ContentClass="pa-4">
+    <MTextField @bind-Value="@_currentTask.Title"
+                Class="mb-2"
+                Dense
+                HideDetails="true"
+                Placeholder="What needs to be done?"
+                AutoFocus="@_show">
+    </MTextField>
+
+    <MTextarea @bind-Value="@_currentTask.Description"
+               Class="mb-2"
+               Dense
+               HideDetails="true"
+               Placeholder="How to do it?">
+    </MTextarea>
+
+    <div Class="d-flex align-center mb-1">
+        <MButton Class="text-capitalize"
+                 Text
+                 Small
+                 OnClick="@(() => _calendarSheet = true)">
+            <MIcon Left>mdi-calendar-today-outline</MIcon>
+            @GetAliasOfDueAt(_currentTask.DueAt)
+        </MButton>
+        <MMenu OffsetY Top>
+            <ActivatorContent Context="menuContext">
+                <MButton Class="text-capitalize"
+                         Color="@PriorityColor"
+                         Text
+                         Small
+                         @attributes="@menuContext.Attrs">
+                    <MIcon Left>mdi-flag-variant-outline</MIcon>
+                    @_currentTask.Priority
+                </MButton>
+            </ActivatorContent>
+            <ChildContent>
+                <MList Dense>
+                    @foreach (var (priority, color) in Priorities)
+                    {
+                        <MListItem OnClick="@(() => _currentTask.Priority = priority)">
+                            <MIcon Color="@color" Class="mr-1">mdi-flag-variant-outline</MIcon>
+                            <MListItemTitle>@priority</MListItemTitle>
+                        </MListItem>
+                    }
+                </MList>
+            </ChildContent>
+        </MMenu>
+        <MSpacer/>
+        <MBottomSheet>
+            <ActivatorContent Context="tagContext">
+                <MButton Icon Text
+                         Color="@(_currentTask.TagIds.Length > 0 ? "success" : "")"
+                         @attributes="@tagContext.Attrs">
+                    <MIcon>mdi-tag-text-outline</MIcon>
+                </MButton>
+            </ActivatorContent>
+            <ChildContent>
+                <MList Dense>
+                    <MListItemGroup Multiple
+                                    Values="@_currentTask.TagIds.Select(id => (StringNumber)id).ToList()"
+                                    ValuesChanged="v => _currentTask.TagIds = v.Select(u => u.AsT1).ToArray()">
+                        @foreach (var item in Tags)
+                        {
+                            <MListItem ActiveClass="primary--text" Value="@item.Id">
+                                @RenderFragments.GenTagItem(item)
+                            </MListItem>
+                        }
+                    </MListItemGroup>
+                </MList>
+            </ChildContent>
+        </MBottomSheet>
+    </div>
+
+    <div class="d-flex align-center mb-2" style="min-height: 24px;">
+        @RenderFragments.GenTagChips(Tags, _currentTask.TagIds, small: true)
+    </div>
+
+    <div class="d-flex align-center">
+        @if (_isEdit)
+        {
+            <MButton Color="error"
+                     MinWidth="36"
+                     Class="mr-1 px-0"
+                     OnClick="DeleteTask">
+                <MIcon>mdi-delete-forever-outline</MIcon>
+            </MButton>
+        }
+
+        <MButton Color="primary"
+                 Type="submit"
+                 Class="flex-fill"
+                 Disabled="@(string.IsNullOrWhiteSpace(_currentTask.Title))"
+                 OnClick="@HandleOnAddOrUpdate">
+            <MIcon Left>mdi-arrow-up-circle</MIcon>
+            @(_isEdit ? "Update" : "Add") Task
+        </MButton>
+    </div>
+</MBottomSheet>
+
+<DateDigitalClockSheet @bind-Value="_currentTask.DueAt"
+                       @bind-Show="_calendarSheet"/>
+
+@code {
+
+    [Parameter] public Func<DateTime, string> GetAliasOfDueAt { get; set; }
+
+    [Parameter] public List<TodoTag> Tags { get; set; } = new();
+
+    [Parameter] public EventCallback<TodoTask> OnAdd { get; set; }
+
+    [Parameter] public EventCallback<TodoTask> OnUpdate { get; set; }
+
+    [Parameter] public EventCallback<TodoTask> OnDelete { get; set; }
+
+    private static List<(TodoTaskPriority priority, string? color)> Priorities =
+    [
+        (TodoTaskPriority.High, "red"),
+        (TodoTaskPriority.Medium, "orange"),
+        (TodoTaskPriority.Low, "blue"),
+        (TodoTaskPriority.Default, null)
+    ];
+
+    private bool _show;
+    private bool _calendarSheet;
+    private MForm _form = null!;
+    private bool _isEdit;
+
+    private TodoTask _currentTask = new();
+
+    private string? PriorityColor => _currentTask.Priority switch
+    {
+        TodoTaskPriority.High => "red",
+        TodoTaskPriority.Medium => "orange",
+        TodoTaskPriority.Low => "blue",
+        _ => null
+    };
+
+    private async Task HandleOnAddOrUpdate()
+    {
+        var action = _isEdit ? OnUpdate : OnAdd;
+        await action.InvokeAsync(_currentTask);
+        _show = false;
+    }
+
+    private async Task DeleteTask()
+    {
+        var confirmed = await PopupService.ConfirmAsync("Delete task", $"Are you sure to delete task '{_currentTask.Title}'?");
+        if (confirmed)
+        {
+            await OnDelete.InvokeAsync(_currentTask);
+            _show = false;
+        }
+    }
+
+    internal void Open()
+    {
+        _isEdit = false;
+        _currentTask = new();
+        _show = true;
+    }
+
+    internal void Open(TodoTask task)
+    {
+        _isEdit = true;
+        _currentTask = (TodoTask)task.ShallowCopy();
+        _show = true;
+    }
+
+}

@@ -57,6 +57,12 @@ public class ProDatabase
         await InitAsync();
         await Database.UpdateAsync(task);
     }
+    
+    public async Task DeleteTaskAsync(TodoTask task)
+    {
+        await InitAsync();
+        await Database.DeleteAsync(task);
+    }
 
     public async Task<List<TodoTask>> GetTasksAsync(
         int page,
@@ -76,9 +82,8 @@ public class ProDatabase
         {
             hasWhere = true;
 
-            var tick = dateTime.Ticks;
-            var nextDay = tick + TimeSpan.TicksPerDay;
-            sqlBuilder.Append(" WHERE [DueAt] >= ").Append(tick).Append(" AND [DueAt] < ").Append(nextDay);
+            var tick = dateTime.AddDays(1).Ticks;
+            sqlBuilder.Append(" WHERE [DueAt] < ").Append(tick);
         }
 
         if (tag != 0)
@@ -115,6 +120,18 @@ public class ProDatabase
         await InitAsync();
 
         return await Database.Table<TodoTag>().ToListAsync();
+    }
+    
+    public async Task UpdateTagAsync(TodoTag tag)
+    {
+        await InitAsync();
+        await Database.UpdateAsync(tag);
+    }
+    
+    public async Task DeleteTagAsync(TodoTag tag)
+    {
+        await InitAsync();
+        await Database.DeleteAsync(tag);
     }
 
     #endregion

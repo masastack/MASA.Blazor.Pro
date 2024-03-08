@@ -1,4 +1,6 @@
-﻿.m-expansion-panel::before {
+﻿/* reset */
+
+.m-expansion-panel::before {
   box-shadow: none;
 }
 
@@ -12,4 +14,31 @@
 
 .m-expansion-panel--active>.m-expansion-panel-header {
   min-height: inherit;
+}
+
+.m-application--is-ltr .m-list-item__action:first-child, .m-application--is-ltr .m-list-item__icon:first-child {
+  margin-right: 16px;
+}
+
+/* custom */
+
+.priority--default {
+}
+
+.priority--high {
+  color: #F44336;
+}
+
+.priority--medium {
+  color: #FF9800;
+}
+
+.priority--low {
+  color: #2196F3;
+}
+
+.m-simple-checkbox.priority--high .m-icon,
+.m-simple-checkbox.priority--medium .m-icon,
+.m-simple-checkbox.priority--low .m-icon{
+  color: inherit;
 }

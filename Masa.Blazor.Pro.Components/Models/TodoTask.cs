@@ -40,7 +40,12 @@ public class TodoTask
         }
     }
 
-    public string? Tags { get; private set; }
+    public string? Tags { get; set; }
+
+    public object ShallowCopy()
+    {
+        return this.MemberwiseClone();
+    }
 }
 
 public enum TodoTaskPriority

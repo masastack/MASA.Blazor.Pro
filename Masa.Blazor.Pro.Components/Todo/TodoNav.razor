@@ -14,7 +14,7 @@
     <MList Routable>
         @foreach (var item in _categories)
         {
-            <MListItem ActiveClass="primary" Href="@item.Href" Exact>
+            <MListItem ActiveClass="primary--text" Href="@item.Href" Exact>
                 <ItemContent>
                     <MListItemIcon Class="mr-4">
                         <MIcon>@item.IconOrColor</MIcon>
@@ -30,7 +30,7 @@
 
         @foreach (var item in Tags)
         {
-            <MListItem ActiveClass="primary" Href="@($"/todo/tag/{item.Id}")" Exact>
+            <MListItem Dense ActiveClass="primary--text" Href="@($"/todo/tag/{item.Id}")" Exact>
                 @RenderFragments.GenTagItem(item)
             </MListItem>
         }
