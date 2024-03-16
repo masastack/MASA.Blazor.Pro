@@ -1,0 +1,17 @@
+﻿@page "/settings"
+
+<PageTitle>Settings</PageTitle>
+
+<h1>Settings</h1>
+
+<MTextField @bind-Value="@_test"
+            Label="test">
+</MTextField>
+
+<MButton Href="/settings/general">通用</MButton>
+
+@code {
+
+    private string _test;
+
+}

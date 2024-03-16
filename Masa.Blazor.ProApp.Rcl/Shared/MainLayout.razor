@@ -4,9 +4,10 @@
     <MMain>
         <MContainer Fluid>
             <MErrorHandler>
-                <PPageContainer SelfPatterns="@(["/todo"])">
+                <PPageStack TabbedPatterns="@( ["^/$", "/todo", "/user"])"
+                            SelfPatterns="@(["/todo"])">
                     @Body
-                </PPageContainer>
+                </PPageStack>
             </MErrorHandler>
         </MContainer>
     </MMain>

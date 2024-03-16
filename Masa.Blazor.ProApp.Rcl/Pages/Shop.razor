@@ -1,3 +1,71 @@
 ﻿@page "/"
+@using Masa.Blazor.ProApp.Rcl.Models
+@using Masa.Blazor.ProApp.Rcl.Services
+@inject ProductService ProductService
 
 <PageTitle>Shop</PageTitle>
+
+<MAppBar Fixed
+         ElevateOnScroll
+         Color="#f0f3fa">
+    <MTextField Dense
+                TValue="string"
+                Placeholder="@_pinnedSearch"
+                PersistentPlaceholder
+                HideDetails="true"
+                PrependInnerIcon="mdi-magnify"
+                Readonly>
+        <AppendContent>
+            <MButton XSmall Color="primary"
+                     Class="text-capitalize">
+                Search
+            </MButton>
+        </AppendContent>
+    </MTextField>
+</MAppBar>
+
+<MRow Style="padding-top: 56px" Dense>
+    @foreach (var item in _products)
+    {
+        <MCol Cols="6">
+            <MCard Href="@($"/shop/product/{item.Id}")"
+                   Flat
+                   Class="pa-2">
+                <MImage Src="@($"_content/Masa.Blazor.ProApp.Rcl/{item.PictureFile}")"
+                        Height="150"
+                        Contain>
+                </MImage>
+                <div class="subtitle-2">
+                    @item.Name
+                </div>
+                <div class="caption">
+                    <span class="red--text">
+                        <MIcon Color="red" XSmall>mdi-currency-usd</MIcon>
+                        @item.Price
+                    </span>
+                </div>
+            </MCard>
+        </MCol>
+    }
+</MRow>
+
+
+@code
+{
+    private string? _pinnedSearch;
+    private int page = 1;
+    private int pageSize = 10;
+
+    private IEnumerable<Product> _products = [];
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _pinnedSearch = new[] { "饮水机", "纯水机", "净化器" }.ElementAt(Random.Shared.Next(0, 2));
+            _products = await ProductService.GetProductsAsync(page, pageSize);
+            Console.Out.WriteLine($"[Shop] GetProductsAsync {_products.Count()}");
+            StateHasChanged();
+        }
+    }
+}

@@ -1,10 +1,15 @@
 using Masa.Blazor.Pro.Components;
+using Masa.Blazor.ProApp.Rcl.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor(options =>
+{
+    options.DetailedErrors = true;
+});
 builder.Services.AddMasaBlazorPro();
 builder.Services.AddSingleton<ProDatabase>();
+builder.Services.AddScoped<ProductService>();
 
 var app = builder.Build();
 
