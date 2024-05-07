@@ -1,12 +1,12 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM registry.cn-hangzhou.aliyuncs.com/masa/dotnet_aspnet:8.0-1 AS base
+FROM registry.cn-hangzhou.aliyuncs.com/masa/dotnet_aspnet:8.0.3 AS base
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://0.0.0.0:80
 EXPOSE 80
 EXPOSE 443
 
-FROM registry.cn-hangzhou.aliyuncs.com/masa/dotnet_sdk:8.0.100-1 AS build
+FROM registry.cn-hangzhou.aliyuncs.com/masa/sdk:8.0.203 AS build
 WORKDIR /src
 COPY ["Masa.Blazor.Pro/Masa.Blazor.Pro.csproj", "Masa.Blazor.Pro/"]
 RUN dotnet restore "Masa.Blazor.Pro/Masa.Blazor.Pro.csproj"
